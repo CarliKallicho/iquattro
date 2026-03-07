@@ -1,0 +1,85 @@
+/*
+ Theme Name:   iQuattro Group
+ Theme URI:    https://i-quattro.com
+ Description:  Tema corporativo para iQuattro Group - Soluciones tecnológicas integrales
+ Author:       Stradia
+ Author URI:   https://stradia.com
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  iquattro
+*/
+
+/* Variables y reset básico */
+:root {
+  --iq-color-primary: #2563eb;
+  --iq-color-primary-dark: #1e40af;
+  --iq-color-dark: #1f2937;
+  --iq-color-dark-light: #374151;
+  --iq-color-gray: #6b7280;
+  --iq-color-gray-light: #e5e7eb;
+  --iq-color-gray-bg: #f3f4f6;
+  --iq-color-white: #ffffff;
+  --iq-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --iq-radius: 50px;
+  --iq-radius-lg: 12px;
+  --iq-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --iq-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --iq-transition: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--iq-font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--iq-color-dark);
+  background-color: var(--iq-color-white);
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--iq-color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contenedor global */
+.iq-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Utilidades */
+.iq-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

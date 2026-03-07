@@ -1,0 +1,44 @@
+# WordPress
+wp-content/uploads/
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/upgrade/
+wp-content/mu-plugins/
+wp-content/wp-cache-config.php
+*.log
+
+# Configuración local (credenciales, URLs)
+wp-config-local.php
+.env
+.env.local
+.env.*.local
+
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# IDEs y editores
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Dependencias
+node_modules/
+vendor/
+
+# Archivos temporales y debug
+*.tmp
+*.temp
+*.bak
+*.cache
+local-xdebuginfo.php
