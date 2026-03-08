@@ -72,8 +72,8 @@ if (!defined('ABSPATH')) {
   <section class="iq-page-hero">
     <?php iquattro_render_capacitacion_topbar(); ?>
   </section>
-  <?php elseif (is_page(array('data-center', 'seguridad', 'consultoria', 'servicios'))) : ?>
-  <?php /* Topbar se renderiza dentro de .iq-page en cada plantilla (page-data-center, etc.) */ ?>
+  <?php elseif (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios', 'seguridad', 'consultoria', 'servicios'))) : ?>
+  <?php /* Topbar se renderiza dentro de .iq-page en cada plantilla */ ?>
   <?php else : ?>
   <section class="iq-page-hero">
     <div class="iq-topbar">

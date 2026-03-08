@@ -1892,6 +1892,210 @@ body.iq-page-servicios-body {
   }
 }
 
+/* --- Páginas Data Center: Hardware, Software, Servicios (catálogo) --- */
+.iq-dc-catalogo-page {
+  overflow-x: hidden;
+}
+
+.iq-dc-catalogo-page .iq-dc-catalogo-hero .iq-container,
+.iq-dc-catalogo-page .iq-dc-queresolvemos .iq-container,
+.iq-dc-catalogo-page .iq-dc-catalogo-section .iq-container,
+.iq-dc-catalogo-page .iq-dc-cta-section .iq-container,
+.iq-dc-catalogo-page .iq-dc-catalogo-nav .iq-container {
+  max-width: 1688px;
+}
+
+.iq-dc-catalogo-hero {
+  position: relative;
+  background: #fff7ed;
+  padding: 2rem 0 3rem;
+}
+
+.iq-dc-catalogo-hero-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--iq-color-gray-dark, #374151);
+  margin: 0 0 1rem;
+  line-height: 1.25;
+}
+
+.iq-dc-catalogo-hero-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--iq-color-gray-dark, #374151);
+  margin: 0;
+  max-width: 720px;
+}
+
+.iq-dc-queresolvemos {
+  background: #fff;
+  padding: 2.5rem 0;
+}
+
+.iq-dc-queresolvemos .iq-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.iq-dc-queresolvemos-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--iq-color-gray-dark, #374151);
+  margin: 0;
+}
+
+.iq-dc-queresolvemos-box {
+  background: #fff;
+  border: 1px solid var(--iq-color-gray-light, #e5e7eb);
+  border-radius: var(--iq-radius-lg);
+  padding: 1.5rem 2rem;
+}
+
+.iq-dc-queresolvemos-box-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--iq-color-gray-dark, #374151);
+  margin: 0 0 0.75rem;
+}
+
+.iq-dc-queresolvemos-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--iq-color-gray-dark, #374151);
+}
+
+.iq-dc-catalogo-section {
+  background: #fff;
+  padding: 2.5rem 0;
+}
+
+.iq-dc-catalogo-section .iq-section-title {
+  margin-bottom: 1.5rem;
+}
+
+.iq-dc-catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* Página Servicios: 3 cards ocupando todo el ancho */
+.iq-dc-servicios-catalogo-page .iq-dc-catalogo-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.iq-dc-catalogo-card {
+  min-height: 420px;
+  color: #fff;
+  border-radius: var(--iq-radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Cards impares: gradiente claro → oscuro #F3712B 60% */
+.iq-dc-catalogo-card:nth-child(odd) {
+  background: linear-gradient(180deg, rgba(243, 113, 43, 0.35) 0%, rgba(243, 113, 43, 0.85) 100%);
+}
+
+/* Cards pares: gradiente oscuro → claro #F3712B 60% */
+.iq-dc-catalogo-card:nth-child(even) {
+  background: linear-gradient(180deg, rgba(243, 113, 43, 0.85) 0%, rgba(243, 113, 43, 0.35) 100%);
+}
+
+.iq-dc-catalogo-card-icon {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+}
+
+.iq-dc-catalogo-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.iq-dc-catalogo-card-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+  align-self: stretch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.iq-dc-cta-section {
+  background: #fff;
+  padding: 2.5rem 0;
+}
+
+.iq-dc-cta-section .iq-section-title {
+  margin-bottom: 1rem;
+}
+
+.iq-dc-cta-actions {
+  margin: 0;
+}
+
+.iq-dc-catalogo-nav {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--iq-color-gray-light, #e5e7eb);
+}
+
+.iq-dc-catalogo-nav .iq-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iq-dc-catalogo-nav-prev,
+.iq-dc-catalogo-nav-next {
+  color: var(--iq-color-gray-dark, #374151);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.iq-dc-catalogo-nav-prev:hover,
+.iq-dc-catalogo-nav-next:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .iq-dc-queresolvemos .iq-container {
+    grid-template-columns: 1fr;
+  }
+  .iq-dc-catalogo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .iq-dc-servicios-catalogo-page .iq-dc-catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .iq-dc-catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+  .iq-dc-servicios-catalogo-page .iq-dc-catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+  .iq-dc-catalogo-card {
+    min-height: 380px;
+  }
+}
+
 /* --- Página Acerca De --- */
 .iq-acerca-page {
   overflow-x: hidden;
@@ -2348,7 +2552,8 @@ body.iq-page-servicios-body {
 .iq-page-hero-wrap .iq-datacenter-hero,
 .iq-page-hero-wrap .iq-servicios-hero,
 .iq-page-hero-wrap .iq-consultoria-hero,
-.iq-page-hero-wrap .iq-seguridad-hero {
+.iq-page-hero-wrap .iq-seguridad-hero,
+.iq-page-hero-wrap .iq-dc-catalogo-hero {
   padding-top: 5.5rem;
 }
 

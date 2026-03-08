@@ -178,6 +178,27 @@ function iquattro_ensure_data_center_page() {
 add_action('init', 'iquattro_ensure_data_center_page');
 
 /**
+ * Crear páginas Data Center: Hardware, Software, Servicios
+ */
+function iquattro_ensure_data_center_hardware_page() {
+  if (get_page_by_path('data-center-hardware')) return;
+  wp_insert_post(array('post_title' => __('Hardware', 'iquattro'), 'post_name' => 'data-center-hardware', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1));
+}
+add_action('init', 'iquattro_ensure_data_center_hardware_page');
+
+function iquattro_ensure_data_center_software_page() {
+  if (get_page_by_path('data-center-software')) return;
+  wp_insert_post(array('post_title' => __('Software', 'iquattro'), 'post_name' => 'data-center-software', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1));
+}
+add_action('init', 'iquattro_ensure_data_center_software_page');
+
+function iquattro_ensure_data_center_servicios_page() {
+  if (get_page_by_path('data-center-servicios')) return;
+  wp_insert_post(array('post_title' => __('Servicios Data Center', 'iquattro'), 'post_name' => 'data-center-servicios', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1));
+}
+add_action('init', 'iquattro_ensure_data_center_servicios_page');
+
+/**
  * Crear la página Acerca De con slug "acerca-de" si no existe
  */
 function iquattro_ensure_acerca_de_page() {

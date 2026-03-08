@@ -10,24 +10,31 @@ get_header();
 $images_uri = get_template_directory_uri() . '/assets/images/';
 $icons_uri  = get_template_directory_uri() . '/assets/icons/';
 
+$dc_hardware_url  = get_permalink(get_page_by_path('data-center-hardware')) ?: home_url('/data-center-hardware/');
+$dc_software_url  = get_permalink(get_page_by_path('data-center-software')) ?: home_url('/data-center-software/');
+$dc_servicios_url = get_permalink(get_page_by_path('data-center-servicios')) ?: home_url('/data-center-servicios/');
+
 $dc_servicios_cards = array(
   array(
     'icon'    => 'hardware.svg',
     'title'   => __('Hardware', 'iquattro'),
     'desc'    => __('Soluciones de infraestructura física: servidores, almacenamiento y redes para entornos críticos y escalables.', 'iquattro'),
     'btn_txt' => __('Ver Soluciones de Hardware', 'iquattro'),
+    'url'     => $dc_hardware_url,
   ),
   array(
     'icon'    => 'software.svg',
     'title'   => __('Software', 'iquattro'),
     'desc'    => __('Plataformas y licenciamiento para virtualización, gestión y automatización de tu Data Center.', 'iquattro'),
     'btn_txt' => __('Ver Soluciones de Software', 'iquattro'),
+    'url'     => $dc_software_url,
   ),
   array(
     'icon'    => 'servicios.svg',
     'title'   => __('Servicios', 'iquattro'),
     'desc'    => __('Implementación, soporte especializado y gestión continua de infraestructura tecnológica.', 'iquattro'),
     'btn_txt' => __('Ver Servicios de Data Center', 'iquattro'),
+    'url'     => $dc_servicios_url,
   ),
 );
 ?>
@@ -76,7 +83,7 @@ $dc_servicios_cards = array(
             <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-datacenter-servicio-icon" width="48" height="48" loading="lazy">
             <h3 class="iq-datacenter-servicio-title"><?php echo esc_html($card['title']); ?></h3>
             <p class="iq-datacenter-servicio-desc"><?php echo esc_html($card['desc']); ?></p>
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($card['btn_txt']); ?></a>
+            <a href="<?php echo esc_url($card['url']); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($card['btn_txt']); ?></a>
           </div>
         <?php endforeach; ?>
       </div>
