@@ -1,11 +1,16 @@
 <?php
 /**
  * Plantilla página Contacto
+ * Contenido editable desde WordPress (Páginas → Editar).
+ * Teléfonos, correos y horario: Apariencia → Personalizar → Contacto.
  *
  * @package iQuattro
  */
 
 get_header();
+
+global $post;
+$data = iquattro_get_editable_page_data($post);
 
 $phone1 = get_theme_mod('iquattro_phone', '+591 71947016');
 $phone2 = get_theme_mod('iquattro_phone2', '+591 67005756');
@@ -17,14 +22,14 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
 <main id="main" class="iq-main iq-contacto-page">
   <section class="iq-contacto-banner" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-contacto-titulo.jpg'); ?>');">
     <div class="iq-container">
-      <h1 class="iq-contacto-banner-title"><?php esc_html_e('Hablemos sobre tus necesidades tecnológicas', 'iquattro'); ?></h1>
+      <h1 class="iq-contacto-banner-title"><?php echo esc_html($data['banner_title']); ?></h1>
     </div>
   </section>
 
   <section class="iq-section iq-contact-section">
     <div class="iq-container">
-      <h2 class="iq-contacto-main-title"><?php esc_html_e('Estamos listos para ayudarte', 'iquattro'); ?></h2>
-      <p class="iq-contacto-intro"><?php esc_html_e('Nuestro equipo está listo para escucharte y ayudarte a encontrar la solución, servicio o programa de capacitación que mejor se adapte a tus objetivos.', 'iquattro'); ?></p>
+      <h2 class="iq-contacto-main-title"><?php echo esc_html($data['main_title']); ?></h2>
+      <p class="iq-contacto-intro"><?php echo esc_html($data['intro']); ?></p>
 
       <div class="iq-contact-grid">
         <div class="iq-contact-form-wrap">
@@ -59,15 +64,15 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
           </form>
         </div>
         <div class="iq-contact-info iq-contact-info-imagen" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-contacto-costado.jpg'); ?>');">
-          <p><?php esc_html_e('Completa el formulario y uno de nuestros especialistas se pondrá en contacto contigo para brindarte asesoría personalizada.', 'iquattro'); ?></p>
+          <p><?php echo esc_html($data['cta_text']); ?></p>
         </div>
       </div>
 
-      <h3 class="iq-contacto-channels-title"><?php esc_html_e('Si prefieres, también puedes comunicarte con nosotros a través de los siguientes canales', 'iquattro'); ?></h3>
+      <h3 class="iq-contacto-channels-title"><?php echo esc_html($data['channels_title']); ?></h3>
       <div class="iq-contacto-cards">
         <div class="iq-contacto-card iq-contacto-card-tel">
           <span class="iq-contacto-card-icon iq-icon-phone" aria-hidden="true"></span>
-          <h4 class="iq-contacto-card-title"><?php esc_html_e('Teléfonos', 'iquattro'); ?></h4>
+          <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_tel_title']); ?></h4>
           <p class="iq-contacto-card-content">
             <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone1)); ?>"><?php echo esc_html($phone1); ?></a><br>
             <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone2)); ?>"><?php echo esc_html($phone2); ?></a>
@@ -75,7 +80,7 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
         </div>
         <div class="iq-contacto-card iq-contacto-card-email">
           <span class="iq-contacto-card-icon iq-icon-email" aria-hidden="true"></span>
-          <h4 class="iq-contacto-card-title"><?php esc_html_e('Correos electrónicos', 'iquattro'); ?></h4>
+          <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_email_title']); ?></h4>
           <p class="iq-contacto-card-content">
             <a href="mailto:<?php echo esc_attr($email1); ?>"><?php echo esc_html($email1); ?></a><br>
             <a href="mailto:<?php echo esc_attr($email2); ?>"><?php echo esc_html($email2); ?></a>
@@ -83,7 +88,7 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
         </div>
         <div class="iq-contacto-card iq-contacto-card-horario">
           <span class="iq-contacto-card-icon iq-icon-phone" aria-hidden="true"></span>
-          <h4 class="iq-contacto-card-title"><?php esc_html_e('Horario de atención', 'iquattro'); ?></h4>
+          <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_horario_title']); ?></h4>
           <p class="iq-contacto-card-content"><?php echo esc_html($horario); ?></p>
         </div>
       </div>

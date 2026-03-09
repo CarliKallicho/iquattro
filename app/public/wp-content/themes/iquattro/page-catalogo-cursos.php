@@ -7,6 +7,14 @@
 
 get_header();
 
+global $post;
+$data = iquattro_get_editable_page_data($post);
+$data = is_array($data) && !empty($data) ? $data : array();
+$catalog_page_title = isset($data['page_title']) ? $data['page_title'] : __('Catálogo de cursos', 'iquattro');
+$catalog_search_placeholder = isset($data['search_placeholder']) ? $data['search_placeholder'] : __('Buscar cursos', 'iquattro');
+$catalog_filter_label = isset($data['filter_label']) ? $data['filter_label'] : __('Filtrar por', 'iquattro');
+$catalog_filter_all = isset($data['filter_all']) ? $data['filter_all'] : __('Todas las categorías', 'iquattro');
+
 $catalog_categories = array(
   array('id' => 'datos-ia', 'name' => __('Datos e Inteligencia Artificial', 'iquattro'), 'color' => '#2d5a3d'),
   array('id' => 'seguridad', 'name' => __('Seguridad de la Información', 'iquattro'), 'color' => '#D7263D'),
@@ -43,20 +51,20 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
 
 <main id="main" class="iq-main iq-catalogo-page">
   <div class="iq-catalogo-wrap">
-    <h1 class="iq-catalogo-title"><?php esc_html_e('Catálogo de cursos', 'iquattro'); ?></h1>
+    <h1 class="iq-catalogo-title"><?php echo esc_html($catalog_page_title); ?></h1>
 
     <div class="iq-catalogo-toolbar">
       <div class="iq-catalogo-search-wrap">
         <span class="iq-catalogo-search-icon" aria-hidden="true"></span>
-        <input type="search" id="iq-catalogo-search" class="iq-catalogo-search" placeholder="<?php esc_attr_e('Buscar cursos', 'iquattro'); ?>" autocomplete="off">
+        <input type="search" id="iq-catalogo-search" class="iq-catalogo-search" placeholder="<?php echo esc_attr($catalog_search_placeholder); ?>" autocomplete="off">
       </div>
       <div class="iq-catalogo-dropdown-wrap">
-        <button type="button" id="iq-catalogo-filter-btn" class="iq-catalogo-filter-btn" aria-expanded="false" aria-haspopup="listbox" aria-label="<?php esc_attr_e('Filtrar por categoría', 'iquattro'); ?>">
-          <span><?php esc_html_e('Filtrar por', 'iquattro'); ?></span>
+        <button type="button" id="iq-catalogo-filter-btn" class="iq-catalogo-filter-btn" aria-expanded="false" aria-haspopup="listbox" aria-label="<?php echo esc_attr($catalog_filter_label); ?>">
+          <span><?php echo esc_html($catalog_filter_label); ?></span>
           <span class="iq-catalogo-chevron" aria-hidden="true"></span>
         </button>
         <ul id="iq-catalogo-dropdown" class="iq-catalogo-dropdown" role="listbox" hidden>
-          <li role="option" data-category=""><?php esc_html_e('Todas las categorías', 'iquattro'); ?></li>
+          <li role="option" data-category=""><?php echo esc_html($catalog_filter_all); ?></li>
           <?php foreach ($catalog_categories as $cat) : ?>
             <li role="option" data-category="<?php echo esc_attr($cat['id']); ?>"><?php echo esc_html($cat['name']); ?></li>
           <?php endforeach; ?>

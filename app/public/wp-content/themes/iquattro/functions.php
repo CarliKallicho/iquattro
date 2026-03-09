@@ -14,6 +14,9 @@ define('IQUATTRO_VERSION', '1.0.0');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
+require_once IQUATTRO_THEME_DIR . '/inc/iquattro-dc-catalogo-meta.php';
+require_once IQUATTRO_THEME_DIR . '/inc/iquattro-page-meta.php';
+
 /**
  * Configuración del tema
  */

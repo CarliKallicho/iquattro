@@ -1,23 +1,30 @@
 <?php
 /**
  * Plantilla página Servicios
+ * Contenido editable desde WordPress (Páginas → Editar).
  *
  * @package iQuattro
  */
 
 get_header();
 
+global $post;
+$data = iquattro_get_editable_page_data($post);
+
 $images_uri = get_template_directory_uri() . '/assets/images/';
+
+$que_hacemos_cajas = isset($data['que_hacemos_cajas']) ? array_filter(array_map('trim', explode("\n", $data['que_hacemos_cajas']))) : array();
+$servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
 ?>
 <main id="main" class="iq-main iq-servicios-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-servicios-hero" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-servicio.jpg'); ?>');">
     <div class="iq-container">
-      <h1 class="iq-servicios-hero-title"><?php esc_html_e('Servicios tecnológicos para asegurar la continuidad de tu operación', 'iquattro'); ?></h1>
-      <p class="iq-servicios-hero-desc"><?php esc_html_e('A través de nuestra división de Servicios, en iQuattro entregamos soporte técnico especializado y servicios de acompañamiento de calidad, adaptados a las necesidades de cada cliente y respaldados por experiencia, certificaciones y conocimiento profundo de las tecnologías que representamos.', 'iquattro'); ?></p>
+      <h1 class="iq-servicios-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
+      <p class="iq-servicios-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
       <p class="iq-servicios-hero-actions">
-        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php esc_html_e('Solicitar soporte', 'iquattro'); ?></a>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
       </p>
     </div>
   </section>
@@ -25,16 +32,16 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
 
   <section class="iq-section iq-servicios-que-hacemos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Qué hacemos', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['que_hacemos_title']); ?></h2>
       <div class="iq-que-hacemos-grid">
         <div class="iq-que-hacemos-texto">
-          <h3 class="iq-que-hacemos-subtitle"><?php esc_html_e('Soporte, calidad y acompañamiento tecnológico', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Nuestros servicios están diseñados para mantener, optimizar y asegurar el correcto funcionamiento de las soluciones tecnológicas de nuestros clientes, reduciendo riesgos operativos y maximizando el valor de su inversión tecnológica.', 'iquattro'); ?></p>
+          <h3 class="iq-que-hacemos-subtitle"><?php echo esc_html($data['que_hacemos_subtitle']); ?></h3>
+          <p><?php echo esc_html($data['que_hacemos_text']); ?></p>
         </div>
         <div class="iq-que-hacemos-cajas">
-          <div class="iq-que-hacemos-caja"><?php esc_html_e('Soporte técnico especializado', 'iquattro'); ?></div>
-          <div class="iq-que-hacemos-caja"><?php esc_html_e('Quality Assurance y Testing', 'iquattro'); ?></div>
-          <div class="iq-que-hacemos-caja"><?php esc_html_e('Acompañamiento continuo', 'iquattro'); ?></div>
+          <?php foreach ($que_hacemos_cajas as $caja) : ?>
+            <div class="iq-que-hacemos-caja"><?php echo esc_html($caja); ?></div>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
@@ -42,37 +49,32 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
 
   <section class="iq-section iq-servicios-especializados">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Servicios especializados', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['especializados_title']); ?></h2>
       <div class="iq-servicios-cards">
-        <div class="iq-servicio-card">
-          <div class="iq-servicio-card-icon iq-servicio-icon-microsoft" aria-hidden="true"></div>
-          <h3 class="iq-servicio-card-title"><?php esc_html_e('Microsoft', 'iquattro'); ?></h3>
-          <div class="iq-servicio-pills">
-            <span class="iq-servicio-pill"><?php esc_html_e('Exchange Server', 'iquattro'); ?></span>
-            <span class="iq-servicio-pill"><?php esc_html_e('Skype for Business', 'iquattro'); ?></span>
-            <span class="iq-servicio-pill"><?php esc_html_e('Microsoft 365', 'iquattro'); ?></span>
-            <span class="iq-servicio-pill"><?php esc_html_e('AZURE', 'iquattro'); ?></span>
-            <span class="iq-servicio-pill"><?php esc_html_e('Active Directory', 'iquattro'); ?></span>
+        <?php
+        $card_icons = array('iq-servicio-icon-microsoft', 'iq-servicio-icon-almacenamiento');
+        foreach ($servicios_cards as $idx => $card) :
+          $pills = isset($card['pills']) ? array_filter(array_map('trim', explode("\n", $card['pills']))) : array();
+          $icon_class = isset($card_icons[$idx]) ? $card_icons[$idx] : '';
+        ?>
+          <div class="iq-servicio-card">
+            <div class="iq-servicio-card-icon <?php echo esc_attr($icon_class); ?>" aria-hidden="true"></div>
+            <h3 class="iq-servicio-card-title"><?php echo esc_html($card['title']); ?></h3>
+            <div class="iq-servicio-pills">
+              <?php foreach ($pills as $pill) : ?>
+                <span class="iq-servicio-pill"><?php echo esc_html($pill); ?></span>
+              <?php endforeach; ?>
+            </div>
+            <p class="iq-servicio-card-desc"><?php echo esc_html($card['desc']); ?></p>
           </div>
-          <p class="iq-servicio-card-desc"><?php esc_html_e('Diseñados para asegurar disponibilidad, seguridad y rendimiento de los entornos Microsoft.', 'iquattro'); ?></p>
-        </div>
-        <div class="iq-servicio-card">
-          <div class="iq-servicio-card-icon iq-servicio-icon-almacenamiento" aria-hidden="true"></div>
-          <h3 class="iq-servicio-card-title"><?php esc_html_e('Almacenamiento', 'iquattro'); ?></h3>
-          <div class="iq-servicio-pills">
-            <span class="iq-servicio-pill"><?php esc_html_e('Veeam', 'iquattro'); ?></span>
-            <span class="iq-servicio-pill"><?php esc_html_e('Commvault', 'iquattro'); ?></span>
-            <span class="iq-servicio-pill"><?php esc_html_e('NetVault', 'iquattro'); ?></span>
-          </div>
-          <p class="iq-servicio-card-desc"><?php esc_html_e('Orientados al respaldo, recuperación y continuidad del negocio.', 'iquattro'); ?></p>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
 
   <section class="iq-section iq-servicios-contact-section">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Asegura el funcionamiento de tu tecnología con expertos', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
       <div class="iq-servicios-contact-grid">
         <div class="iq-servicios-form-wrap">
           <form id="iq-servicios-form" class="iq-contact-form" method="post" novalidate>
@@ -106,7 +108,7 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
           </form>
         </div>
         <div class="iq-servicios-cta-imagen" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-servicios-costado.jpg'); ?>');">
-          <p><?php esc_html_e('Deja tu operación tecnológica en manos de un equipo especializado y enfocado en resultados.', 'iquattro'); ?></p>
+          <p><?php echo esc_html($data['contact_cta_text']); ?></p>
         </div>
       </div>
     </div>

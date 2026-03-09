@@ -1,0 +1,19 @@
+<?php
+return array(
+  'hero_title' => 'En iQuattro Capacitación no dictamos cursos genéricos, desarrollamos capacidades técnicas aplicables a entornos críticos y reales.',
+  'hero_btn_primary' => 'Explorar cursos',
+  'hero_btn_schedule' => 'Ver cronograma',
+  'hero_btn_event' => 'Ver Próximo Evento',
+  'beneficios_title' => 'Beneficios exclusivos de formarte en iQuattro',
+  'partner_title' => 'Partner oficial en formación tecnológica',
+  'partner_text' => 'En iQuattro formamos parte del programa Microsoft Learning Solutions Partner, lo que nos permite ofrecer contenido oficial y certificaciones reconocidas internacionalmente.',
+  'evoluciona_title' => 'Evoluciona con una formación que genera impacto',
+  'catalogo_section_title' => 'Explora nuestro catálogo de cursos',
+  'catalogo_section_text' => 'Nuestros programas de formación abarcan tecnología, productividad, Microsoft 365, Azure, inteligencia artificial, seguridad digital y análisis de datos. Encuentra rutas de aprendizaje alineadas a tus objetivos.',
+  'catalogo_btn' => 'Ver Catálogo de Cursos',
+  'cronograma_title' => 'Próximos cursos programados',
+  'cronograma_text' => 'Consulta el cronograma actualizado y las plazas disponibles para formación individual o grupal.',
+  'cronograma_btn' => 'Ver Cronograma',
+  'contact_title' => 'Hablemos sobre tu próximo paso profesional',
+  'contact_cta_text' => 'Ya sea para ti o para tu equipo, estamos listos para acompañarte.',
+);

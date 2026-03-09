@@ -7,6 +7,26 @@
 
 get_header();
 
+global $post;
+$data = iquattro_get_editable_page_data($post);
+$data = is_array($data) && !empty($data) ? $data : array();
+$cap_title = isset($data['hero_title']) ? $data['hero_title'] : __('En iQuattro Capacitación no dictamos cursos genéricos, desarrollamos capacidades técnicas aplicables a entornos críticos y reales.', 'iquattro');
+$cap_btn_primary = isset($data['hero_btn_primary']) ? $data['hero_btn_primary'] : __('Explorar cursos', 'iquattro');
+$cap_btn_schedule = isset($data['hero_btn_schedule']) ? $data['hero_btn_schedule'] : __('Ver cronograma', 'iquattro');
+$cap_btn_event = isset($data['hero_btn_event']) ? $data['hero_btn_event'] : __('Ver Próximo Evento', 'iquattro');
+$cap_beneficios_title = isset($data['beneficios_title']) ? $data['beneficios_title'] : __('Beneficios exclusivos de formarte en iQuattro', 'iquattro');
+$cap_partner_title = isset($data['partner_title']) ? $data['partner_title'] : __('Partner oficial en formación tecnológica', 'iquattro');
+$cap_partner_text = isset($data['partner_text']) ? $data['partner_text'] : __('En iQuattro formamos parte del programa Microsoft Learning Solutions Partner, lo que nos permite ofrecer contenido oficial y certificaciones reconocidas internacionalmente.', 'iquattro');
+$cap_evoluciona_title = isset($data['evoluciona_title']) ? $data['evoluciona_title'] : __('Evoluciona con una formación que genera impacto', 'iquattro');
+$cap_catalogo_title = isset($data['catalogo_section_title']) ? $data['catalogo_section_title'] : __('Explora nuestro catálogo de cursos', 'iquattro');
+$cap_catalogo_text = isset($data['catalogo_section_text']) ? $data['catalogo_section_text'] : __('Nuestros programas de formación abarcan tecnología, productividad, Microsoft 365, Azure, inteligencia artificial, seguridad digital y análisis de datos. Encuentra rutas de aprendizaje alineadas a tus objetivos.', 'iquattro');
+$cap_catalogo_btn = isset($data['catalogo_btn']) ? $data['catalogo_btn'] : __('Ver Catálogo de Cursos', 'iquattro');
+$cap_cronograma_title = isset($data['cronograma_title']) ? $data['cronograma_title'] : __('Próximos cursos programados', 'iquattro');
+$cap_cronograma_text = isset($data['cronograma_text']) ? $data['cronograma_text'] : __('Consulta el cronograma actualizado y las plazas disponibles para formación individual o grupal.', 'iquattro');
+$cap_cronograma_btn = isset($data['cronograma_btn']) ? $data['cronograma_btn'] : __('Ver Cronograma', 'iquattro');
+$cap_contact_title = isset($data['contact_title']) ? $data['contact_title'] : __('Hablemos sobre tu próximo paso profesional', 'iquattro');
+$cap_contact_cta = isset($data['contact_cta_text']) ? $data['contact_cta_text'] : __('Ya sea para ti o para tu equipo, estamos listos para acompañarte.', 'iquattro');
+
 $carousel_slides = array(
   array(
     'title'       => __('Datos e Inteligencia Artificial', 'iquattro'),
@@ -85,11 +105,11 @@ $evoluciona_cards = array(
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-capacitacion-hero">
       <div class="iq-container iq-capacitacion-hero-inner">
-        <h1 class="iq-capacitacion-title"><?php esc_html_e('En iQuattro Capacitación no dictamos cursos genéricos, desarrollamos capacidades técnicas aplicables a entornos críticos y reales.', 'iquattro'); ?></h1>
+        <h1 class="iq-capacitacion-title"><?php echo esc_html($cap_title); ?></h1>
         <div class="iq-capacitacion-ctas">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php esc_html_e('Explorar cursos', 'iquattro'); ?></a>
-          <a href="#cronograma" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php esc_html_e('Ver cronograma', 'iquattro'); ?></a>
-          <a href="#evento" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php esc_html_e('Ver Próximo Evento', 'iquattro'); ?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_btn_primary); ?></a>
+          <a href="#cronograma" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_schedule); ?></a>
+          <a href="#evento" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_event); ?></a>
         </div>
       </div>
     </section>
@@ -119,7 +139,7 @@ $evoluciona_cards = array(
 
     <section class="iq-section iq-capacitacion-beneficios">
       <div class="iq-container">
-        <h2 class="iq-capacitacion-section-title"><?php esc_html_e('Beneficios exclusivos de formarte en iQuattro', 'iquattro'); ?></h2>
+        <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_beneficios_title); ?></h2>
         <div class="iq-capacitacion-beneficios-grid">
           <?php foreach ($beneficios_cards as $card) : ?>
             <div class="iq-capacitacion-beneficio-card">
@@ -137,9 +157,9 @@ $evoluciona_cards = array(
 
     <section class="iq-section iq-capacitacion-partner">
       <div class="iq-container">
-        <h2 class="iq-capacitacion-section-title"><?php esc_html_e('Partner oficial en formación tecnológica', 'iquattro'); ?></h2>
+        <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_partner_title); ?></h2>
         <div class="iq-capacitacion-partner-inner">
-          <p class="iq-capacitacion-partner-text"><?php esc_html_e('En iQuattro formamos parte del programa Microsoft Learning Solutions Partner, lo que nos permite ofrecer contenido oficial y certificaciones reconocidas internacionalmente.', 'iquattro'); ?></p>
+          <p class="iq-capacitacion-partner-text"><?php echo esc_html($cap_partner_text); ?></p>
           <?php if (file_exists(get_template_directory() . '/assets/images/microsoft-partner.png')) : ?>
           <div class="iq-capacitacion-partner-logo">
             <img src="<?php echo esc_url($images_dir . 'microsoft-partner.png'); ?>" alt="<?php esc_attr_e('Microsoft Partner', 'iquattro'); ?>" width="180" height="auto" loading="lazy">
@@ -151,7 +171,7 @@ $evoluciona_cards = array(
 
     <section class="iq-section iq-capacitacion-evoluciona">
       <div class="iq-container">
-        <h2 class="iq-capacitacion-section-title"><?php esc_html_e('Evoluciona con una formación que genera impacto', 'iquattro'); ?></h2>
+        <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_evoluciona_title); ?></h2>
         <div class="iq-capacitacion-evoluciona-grid">
           <?php foreach ($evoluciona_cards as $card) : ?>
             <div class="iq-capacitacion-evoluciona-card">
@@ -169,21 +189,21 @@ $evoluciona_cards = array(
     <section class="iq-section iq-capacitacion-catalogo-section" style="background-image: url('<?php echo esc_url($images_dir . 'fondo-capacitacion.jpg'); ?>');">
       <div class="iq-container">
         <div class="iq-capacitacion-catalogo-block">
-          <h2 class="iq-capacitacion-section-title"><?php esc_html_e('Explora nuestro catálogo de cursos', 'iquattro'); ?></h2>
-          <p class="iq-capacitacion-catalogo-text"><?php esc_html_e('Nuestros programas de formación abarcan tecnología, productividad, Microsoft 365, Azure, inteligencia artificial, seguridad digital y análisis de datos. Encuentra rutas de aprendizaje alineadas a tus objetivos.', 'iquattro'); ?></p>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php esc_html_e('Ver Catálogo de Cursos', 'iquattro'); ?></a>
+          <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_catalogo_title); ?></h2>
+          <p class="iq-capacitacion-catalogo-text"><?php echo esc_html($cap_catalogo_text); ?></p>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_catalogo_btn); ?></a>
         </div>
         <div class="iq-capacitacion-catalogo-block" id="cronograma">
-          <h2 class="iq-capacitacion-section-title"><?php esc_html_e('Próximos cursos programados', 'iquattro'); ?></h2>
-          <p class="iq-capacitacion-catalogo-text"><?php esc_html_e('Consulta el cronograma actualizado y las plazas disponibles para formación individual o grupal.', 'iquattro'); ?></p>
-          <a href="#cronograma" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php esc_html_e('Ver Cronograma', 'iquattro'); ?></a>
+          <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_cronograma_title); ?></h2>
+          <p class="iq-capacitacion-catalogo-text"><?php echo esc_html($cap_cronograma_text); ?></p>
+          <a href="#cronograma" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_cronograma_btn); ?></a>
         </div>
       </div>
     </section>
 
     <section class="iq-section iq-capacitacion-contact-section">
       <div class="iq-container">
-        <h2 class="iq-capacitacion-section-title"><?php esc_html_e('Hablemos sobre tu próximo paso profesional', 'iquattro'); ?></h2>
+        <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_contact_title); ?></h2>
         <div class="iq-capacitacion-contact-grid">
           <div class="iq-capacitacion-form-wrap">
             <form id="iq-capacitacion-form" class="iq-contact-form iq-capacitacion-form" method="post" novalidate>
@@ -217,7 +237,7 @@ $evoluciona_cards = array(
             </form>
           </div>
           <div class="iq-capacitacion-cta-imagen" style="background-image: url('<?php echo esc_url($images_dir . 'fondo-capacitacion-costado.jpg'); ?>');">
-            <p class="iq-capacitacion-cta-text"><?php esc_html_e('Ya sea para ti o para tu equipo, estamos listos para acompañarte.', 'iquattro'); ?></p>
+            <p class="iq-capacitacion-cta-text"><?php echo esc_html($cap_contact_cta); ?></p>
           </div>
         </div>
       </div>
