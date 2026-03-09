@@ -108,6 +108,23 @@ function iquattro_ensure_catalogo_cursos_page() {
 add_action('init', 'iquattro_ensure_catalogo_cursos_page');
 
 /**
+ * Crear la página Cronograma con slug "cronograma" si no existe
+ */
+function iquattro_ensure_cronograma_page() {
+  if (get_page_by_path('cronograma')) {
+    return;
+  }
+  wp_insert_post(array(
+    'post_title'   => __('Cronograma', 'iquattro'),
+    'post_name'    => 'cronograma',
+    'post_status'  => 'publish',
+    'post_type'    => 'page',
+    'post_author'  => 1,
+  ));
+}
+add_action('init', 'iquattro_ensure_cronograma_page');
+
+/**
  * Crear la página Contacto con slug "contacto" si no existe
  */
 function iquattro_ensure_contacto_page() {
@@ -431,6 +448,7 @@ function iquattro_handle_contact_form() {
   $telefono = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
   $empresa  = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
   $mensaje  = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
+  $curso_id = isset($_POST['curso_id']) ? absint($_POST['curso_id']) : 0;
 
   $errors = array();
   if (empty($nombre)) $errors[] = __('El nombre es obligatorio.', 'iquattro');
@@ -441,14 +459,25 @@ function iquattro_handle_contact_form() {
     wp_send_json_error(array('message' => implode(' ', $errors)));
   }
 
+  $curso_info = '';
+  if ($curso_id) {
+    $curso = get_post($curso_id);
+    $curso_info = $curso && $curso->post_type === 'curso'
+      ? sprintf("\nCurso inscripción: %s\n", get_the_title($curso_id))
+      : '';
+  }
+
   $to      = get_option('admin_email');
-  $subject = sprintf(__('[iQuattro] Contacto desde web: %s', 'iquattro'), $nombre);
+  $subject = $curso_id
+    ? sprintf(__('[iQuattro] Inscripción curso: %s', 'iquattro'), $nombre)
+    : sprintf(__('[iQuattro] Contacto desde web: %s', 'iquattro'), $nombre);
   $body    = sprintf(
-    "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s\n\nMensaje:\n%s",
+    "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s%s\nMensaje:\n%s",
     $nombre,
     $email,
     $telefono,
     $empresa,
+    $curso_info,
     $mensaje
   );
   $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: ' . $nombre . ' <' . $email . '>');

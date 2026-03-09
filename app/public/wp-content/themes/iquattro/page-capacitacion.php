@@ -108,7 +108,7 @@ $evoluciona_cards = array(
         <h1 class="iq-capacitacion-title"><?php echo esc_html($cap_title); ?></h1>
         <div class="iq-capacitacion-ctas">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_btn_primary); ?></a>
-          <a href="#cronograma" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_schedule); ?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('cronograma')) ?: home_url('/cronograma/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_schedule); ?></a>
           <a href="#evento" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_event); ?></a>
         </div>
       </div>
@@ -196,7 +196,7 @@ $evoluciona_cards = array(
         <div class="iq-capacitacion-catalogo-block" id="cronograma">
           <h2 class="iq-capacitacion-section-title"><?php echo esc_html($cap_cronograma_title); ?></h2>
           <p class="iq-capacitacion-catalogo-text"><?php echo esc_html($cap_cronograma_text); ?></p>
-          <a href="#cronograma" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_cronograma_btn); ?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('cronograma')) ?: home_url('/cronograma/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_cronograma_btn); ?></a>
         </div>
       </div>
     </section>

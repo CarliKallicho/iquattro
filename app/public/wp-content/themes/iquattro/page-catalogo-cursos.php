@@ -37,9 +37,13 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
 $images_uri = get_template_directory_uri() . '/assets/images/';
 ?>
 
+<?php $cronograma_url = get_permalink(get_page_by_path('cronograma')) ?: home_url('/cronograma/'); ?>
 <main id="main" class="iq-main iq-catalogo-page">
   <div class="iq-catalogo-wrap">
-    <h1 class="iq-catalogo-title"><?php echo esc_html($catalog_page_title); ?></h1>
+    <div class="iq-catalogo-header">
+      <h1 class="iq-catalogo-title"><?php echo esc_html($catalog_page_title); ?></h1>
+      <a href="<?php echo esc_url($cronograma_url); ?>" class="iq-catalogo-cronograma-btn"><?php esc_html_e('Ver Cronograma', 'iquattro'); ?></a>
+    </div>
 
     <div class="iq-catalogo-toolbar">
       <div class="iq-catalogo-search-wrap">

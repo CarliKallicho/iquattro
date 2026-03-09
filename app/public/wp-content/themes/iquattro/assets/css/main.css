@@ -3497,3 +3497,330 @@ body.iq-page-servicios-body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Página Cronograma
+   ========================================================================== */
+.iq-cronograma-wrap {
+  min-height: 100%;
+  background: linear-gradient(to bottom, rgba(71, 194, 129, 0.4) 0%, rgba(71, 194, 129, 0.2) 30%, #fff 70%);
+  padding: 100px 1.5rem 4rem;
+}
+
+.iq-cronograma-wrap .iq-topbar-capacitacion {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - 3rem);
+  max-width: 1688px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  min-height: 58px;
+}
+
+.iq-cronograma-inner {
+  max-width: 1688px;
+  margin: 0 auto;
+}
+
+.iq-cronograma-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--iq-color-dark, #1f2937);
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+.iq-cronograma-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.iq-cronograma-card {
+  border-radius: var(--iq-radius-lg);
+  overflow: hidden;
+  width: 100%;
+}
+
+.iq-cronograma-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  min-height: 140px;
+}
+
+.iq-cronograma-card-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.iq-cronograma-card-icon-wrap {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+.iq-cronograma-card-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.iq-cronograma-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.iq-cronograma-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  line-height: 1.3;
+}
+
+.iq-cronograma-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.iq-cronograma-pill {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.iq-cronograma-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.iq-cronograma-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.iq-cronograma-btn-outline {
+  background: #fff;
+  color: inherit;
+  border-color: #fff;
+}
+
+.iq-cronograma-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: inherit;
+}
+
+.iq-cronograma-btn-primary {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-color: #fff;
+}
+
+.iq-cronograma-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.iq-cronograma-empty {
+  text-align: center;
+  color: var(--iq-color-dark-light, #6b7280);
+  font-size: 1.1rem;
+  margin: 2rem 0;
+}
+
+/* Catálogo: botón Ver Cronograma */
+.iq-catalogo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.iq-catalogo-cronograma-btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: #47C281;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.iq-catalogo-cronograma-btn:hover {
+  background: #3ba86d;
+  color: #fff;
+}
+
+/* Modal Inscribirme */
+.iq-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.iq-modal[hidden] {
+  display: none;
+}
+
+.iq-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.iq-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.iq-modal-header {
+  background: #47C281;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.iq-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.iq-modal-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iq-modal-close:hover {
+  opacity: 0.9;
+}
+
+.iq-modal-body {
+  padding: 1.5rem;
+}
+
+.iq-inscribirme-form .iq-form-field,
+.iq-inscribirme-form .iq-form-row {
+  margin-bottom: 1rem;
+}
+
+.iq-inscribirme-form label {
+  display: block;
+  font-weight: 600;
+  color: var(--iq-color-dark, #1f2937);
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.iq-inscribirme-form input[type="text"],
+.iq-inscribirme-form input[type="email"],
+.iq-inscribirme-form input[type="tel"],
+.iq-inscribirme-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(71, 194, 129, 0.5);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.iq-inscribirme-form .iq-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.iq-inscribirme-form .iq-form-actions {
+  margin: 1rem 0 0;
+}
+
+.iq-inscribirme-form .iq-form-message {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.iq-inscribirme-form .iq-form-message.iq-error {
+  color: #D7263D;
+}
+
+.iq-inscribirme-form .iq-form-message.iq-success {
+  color: #47C281;
+}
+
+@media (max-width: 768px) {
+  .iq-cronograma-card-inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.25rem;
+  }
+  .iq-cronograma-card-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .iq-cronograma-card-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .iq-inscribirme-form .iq-form-row {
+    grid-template-columns: 1fr;
+  }
+}

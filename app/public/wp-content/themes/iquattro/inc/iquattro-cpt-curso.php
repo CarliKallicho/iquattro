@@ -89,6 +89,14 @@ function iquattro_curso_ensure_default_categories() {
 }
 add_action('init', 'iquattro_curso_ensure_default_categories', 20);
 
+/** Formatear fecha YYYY-MM-DD para mostrar en cronograma (ej. "15 de mayo") */
+function iquattro_curso_format_fecha($fecha) {
+  if (empty($fecha)) return '';
+  $ts = strtotime($fecha);
+  if ($ts === false) return $fecha;
+  return date_i18n(__('j \d\e F', 'iquattro'), $ts);
+}
+
 /** Obtener color de una categoría (término) */
 function iquattro_curso_get_term_color($term) {
   if (is_object($term) && isset($term->term_id)) {
@@ -101,8 +109,27 @@ function iquattro_curso_get_term_color($term) {
 /** Meta boxes para Curso */
 function iquattro_curso_add_meta_boxes() {
   add_meta_box('iquattro_curso_catalog', __('Card en catálogo', 'iquattro'), 'iquattro_curso_meta_box_catalog', 'curso', 'normal');
+  add_meta_box('iquattro_curso_cronograma', __('Cronograma (si Programado=TRUE)', 'iquattro'), 'iquattro_curso_meta_box_cronograma', 'curso', 'normal');
   add_meta_box('iquattro_curso_detail', __('Detalle del curso (página Detalle Curso)', 'iquattro'), 'iquattro_curso_meta_box_detail', 'curso', 'normal');
   add_meta_box('iquattro_curso_contact', __('Sección contacto (Detalle Curso)', 'iquattro'), 'iquattro_curso_meta_box_contact', 'curso', 'normal');
+}
+
+function iquattro_curso_meta_box_cronograma($post) {
+  $fecha = get_post_meta($post->ID, '_curso_fecha_inicio', true);
+  $modalidad = get_post_meta($post->ID, '_curso_modalidad', true);
+  $dias = get_post_meta($post->ID, '_curso_dias', true);
+  $horarios = get_post_meta($post->ID, '_curso_horarios', true);
+  ?>
+  <p class="description"><?php esc_html_e('Estos campos se muestran en la página Cronograma cuando el curso tiene Programado=TRUE.', 'iquattro'); ?></p>
+  <p><label><?php esc_html_e('Fecha de inicio (YYYY-MM-DD)', 'iquattro'); ?></label><br>
+  <input type="date" name="curso_fecha_inicio" value="<?php echo esc_attr($fecha); ?>" class="widefat"></p>
+  <p><label><?php esc_html_e('Modalidad', 'iquattro'); ?></label><br>
+  <input type="text" name="curso_modalidad" value="<?php echo esc_attr($modalidad); ?>" class="widefat" placeholder="<?php esc_attr_e('ej. Virtual, Presencial', 'iquattro'); ?>"></p>
+  <p><label><?php esc_html_e('Días', 'iquattro'); ?></label><br>
+  <input type="text" name="curso_dias" value="<?php echo esc_attr($dias); ?>" class="widefat" placeholder="<?php esc_attr_e('ej. Lunes, miércoles y viernes', 'iquattro'); ?>"></p>
+  <p><label><?php esc_html_e('Horarios', 'iquattro'); ?></label><br>
+  <input type="text" name="curso_horarios" value="<?php echo esc_attr($horarios); ?>" class="widefat" placeholder="<?php esc_attr_e('ej. 19:00 a 22:00', 'iquattro'); ?>"></p>
+  <?php
 }
 
 function iquattro_curso_meta_box_catalog($post) {
@@ -164,6 +191,10 @@ function iquattro_curso_save_meta($post_id) {
   $fields = array(
     'curso_desc' => '_curso_desc',
     'curso_icon' => '_curso_icon',
+    'curso_fecha_inicio' => '_curso_fecha_inicio',
+    'curso_modalidad' => '_curso_modalidad',
+    'curso_dias' => '_curso_dias',
+    'curso_horarios' => '_curso_horarios',
     'curso_tecnologia' => '_curso_tecnologia',
     'curso_especialidad' => '_curso_especialidad',
     'curso_duracion' => '_curso_duracion',
