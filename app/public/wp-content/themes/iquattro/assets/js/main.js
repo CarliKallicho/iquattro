@@ -5,7 +5,7 @@
 (function($) {
   'use strict';
 
-  var $forms = $('#iq-contact-form, #iq-servicios-form, #iq-consultoria-form, #iq-seguridad-form, #iq-datacenter-form, #iq-capacitacion-form');
+  var $forms = $('#iq-contact-form, #iq-servicios-form, #iq-consultoria-form, #iq-seguridad-form, #iq-datacenter-form, #iq-capacitacion-form, #iq-curso-contact-form');
   if (!$forms.length) return;
 
   function getMessageEl($form) {
@@ -15,6 +15,7 @@
     if (id === 'iq-seguridad-form') return $('#iq-seg-form-message');
     if (id === 'iq-datacenter-form') return $('#iq-dc-form-message');
     if (id === 'iq-capacitacion-form') return $('#iq-cap-form-message');
+    if (id === 'iq-curso-contact-form') return $('#iq-curso-form-message');
     return $('#iq-form-message');
   }
 

@@ -16,6 +16,7 @@ define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
 require_once IQUATTRO_THEME_DIR . '/inc/iquattro-dc-catalogo-meta.php';
 require_once IQUATTRO_THEME_DIR . '/inc/iquattro-page-meta.php';
+require_once IQUATTRO_THEME_DIR . '/inc/iquattro-cpt-curso.php';
 
 /**
  * Configuración del tema
@@ -42,6 +43,14 @@ function iquattro_setup() {
 add_action('after_setup_theme', 'iquattro_setup');
 
 /**
+ * Al activar el tema, actualizar reglas de reescritura para que las URLs del CPT Curso (/curso/slug/) funcionen.
+ */
+function iquattro_flush_rewrite_rules_on_activation() {
+  flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'iquattro_flush_rewrite_rules_on_activation');
+
+/**
  * Añadir clases al body en páginas con fondo gradiente (Data Center, Seguridad, Consultoría, Servicios)
  */
 function iquattro_body_class_page_gradients($classes) {
@@ -56,6 +65,9 @@ function iquattro_body_class_page_gradients($classes) {
   }
   if (is_page('servicios')) {
     $classes[] = 'iq-page-servicios-body';
+  }
+  if (is_singular('curso')) {
+    $classes[] = 'iq-page--curso-detail';
   }
   return $classes;
 }

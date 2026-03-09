@@ -74,6 +74,8 @@ if (!defined('ABSPATH')) {
   </section>
   <?php elseif (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios', 'seguridad', 'consultoria', 'servicios'))) : ?>
   <?php /* Topbar se renderiza dentro de .iq-page en cada plantilla */ ?>
+  <?php elseif (is_singular('curso')) : ?>
+  <?php /* Topbar se renderiza dentro de .iq-curso-detail-wrap en single-curso.php */ ?>
   <?php else : ?>
   <section class="iq-page-hero">
     <div class="iq-topbar">
@@ -98,4 +100,4 @@ if (!defined('ABSPATH')) {
   <?php endif; ?>
 </header>
 
-<div id="iq-page" class="iq-page<?php echo is_page('capacitacion') ? ' iq-page--capacitacion' : ''; ?>">
+<div id="iq-page" class="iq-page<?php echo is_page('capacitacion') ? ' iq-page--capacitacion' : ''; ?><?php echo is_singular('curso') ? ' iq-page--curso-detail' : ''; ?>">
