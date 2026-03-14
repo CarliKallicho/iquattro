@@ -2382,6 +2382,14 @@ body.iq-page-servicios-body {
   padding: 3rem 0 1.5rem;
 }
 
+.iq-footer .iq-container.iq-footer-inner {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 4.5rem;
+  padding-right: 5.5rem;
+  box-sizing: border-box;
+}
+
 .iq-footer a {
   color: var(--iq-color-white);
   text-decoration: none;
@@ -2392,15 +2400,24 @@ body.iq-page-servicios-body {
 }
 
 .iq-footer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
 }
 
+.iq-footer-grid .iq-footer-col {
+  flex: 0 0 auto;
+}
+
 @media (max-width: 768px) {
   .iq-footer-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+  .iq-footer-grid .iq-footer-col {
+    flex: 1 1 100%;
   }
 }
 
@@ -2430,32 +2447,39 @@ body.iq-page-servicios-body {
 .iq-footer-logo-text {
   display: block;
   color: var(--iq-color-white);
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 0 0 0.25rem;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 100%;
+  margin: 0 0 15px;
 }
 
 .iq-footer-tagline {
-  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
   opacity: 0.95;
   margin: 0;
   max-width: 280px;
 }
 
 .iq-footer-title {
-  font-size: 1rem;
   font-weight: 700;
-  margin: 0 0 1rem;
+  font-size: 28px;
+  line-height: 100%;
+  margin: 0 0 15px;
 }
 
 .iq-footer-links {
   list-style: none;
   margin: 0;
   padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
 }
 
 .iq-footer-links li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 15px;
 }
 
 .iq-footer-links a::before {
@@ -2468,13 +2492,16 @@ body.iq-page-servicios-body {
   list-style: none;
   margin: 0;
   padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
 }
 
 .iq-footer-contact-list li {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 15px;
 }
 
 .iq-footer-icon {
@@ -2809,29 +2836,46 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-carousel {
   position: relative;
+  width: 1094px;
+  /*height: 461px;*/
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  min-height: 280px;
+}
+
+.iq-capacitacion-carousel-track {
+  display: flex;
+  width: 500%;
+  height: 100%;
+  transition: transform 0.45s ease-out;
+  will-change: transform;
 }
 
 .iq-capacitacion-slide {
-  display: none;
+  flex: 0 0 20%;
+  width: 20%;
+  height: 100%;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
+  justify-items: center;
   padding: 2rem 2.5rem;
-  min-height: 280px;
+  min-height: 0;
   box-sizing: border-box;
-}
-
-.iq-capacitacion-slide.iq-slide-active {
-  display: grid;
 }
 
 .iq-capacitacion-slide-text {
   padding-right: 1rem;
+  justify-self: center;
+  align-self: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .iq-capacitacion-slide-title {
@@ -2843,24 +2887,27 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-slide-desc {
   font-size: 1rem;
+  font-weight: 400;
   color: var(--iq-color-dark-light);
   margin: 0;
   line-height: 1.5;
 }
 
 .iq-capacitacion-slide-img-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
+  width: 454px;
+  height: 303px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--iq-radius-lg);
+  justify-self: center;
+  align-self: start;
 }
 
 .iq-capacitacion-slide-img {
-  max-width: 100%;
-  max-height: 240px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Dots del carousel */
@@ -2872,8 +2919,8 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-dot {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: none;
   padding: 0;
@@ -2888,7 +2935,6 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-dot.iq-dot-active {
   background: var(--iq-color-dark);
-  transform: scale(1.15);
 }
 
 @media (max-width: 768px) {
@@ -2896,12 +2942,19 @@ body.iq-page-servicios-body {
     flex-wrap: wrap;
     justify-content: center;
   }
+  .iq-capacitacion-carousel {
+    height: auto;
+    min-height: 320px;
+  }
   .iq-capacitacion-slide {
     grid-template-columns: 1fr;
     padding: 1.5rem;
   }
   .iq-capacitacion-slide-img-wrap {
-    min-height: 160px;
+    width: 100%;
+    max-width: 454px;
+    height: 303px;
+    margin: 0 auto;
   }
 }
 
@@ -2926,17 +2979,19 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-beneficio-card {
-  background: rgba(71, 194, 129, 0.35);
+  background: linear-gradient(to bottom, rgba(71, 194, 129, 0.6) 0%, #47C281 100%);
   border-radius: var(--iq-radius-lg);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
+  text-align: center;
 }
 
 .iq-capacitacion-beneficio-icon {
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   flex-shrink: 0;
@@ -2944,10 +2999,12 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-beneficio-list {
   margin: 0;
-  padding-left: 1.25rem;
+  padding: 0;
+  list-style-position: inside;
   color: #fff;
   font-size: 0.9rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .iq-capacitacion-beneficio-list li {
@@ -3009,9 +3066,11 @@ body.iq-page-servicios-body {
   background: var(--iq-color-gray-bg);
   border-radius: var(--iq-radius-lg);
   padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.5rem 1rem;
+  align-items: start;
 }
 
 .iq-capacitacion-evoluciona-icon {
@@ -3019,6 +3078,8 @@ body.iq-page-servicios-body {
   height: 48px;
   object-fit: contain;
   flex-shrink: 0;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .iq-capacitacion-evoluciona-title {
@@ -3026,6 +3087,9 @@ body.iq-page-servicios-body {
   font-weight: 700;
   color: var(--iq-color-dark);
   margin: 0;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
 }
 
 .iq-capacitacion-evoluciona-sub {
@@ -3033,6 +3097,8 @@ body.iq-page-servicios-body {
   font-size: 0.9rem;
   color: var(--iq-color-dark-light);
   line-height: 1.4;
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 
 /* Explora catálogo + Próximos cursos (fondo fondo-capacitacion.jpg) */

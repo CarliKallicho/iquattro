@@ -34,23 +34,23 @@ $carousel_slides = array(
     'image'       => 'a-carousel.jpg',
   ),
   array(
-    'title'       => __('Ciberseguridad', 'iquattro'),
-    'description' => __('Protege tu organización con conocimientos en defensa y respuesta ante amenazas.', 'iquattro'),
+    'title'       => __('Gestión y Estrategia', 'iquattro'),
+    'description' => __('Anticípate a los cambios, mitigar riesgos y tomar decisiones que generen valor real.', 'iquattro'),
     'image'       => 'b-carousel.jpg',
   ),
   array(
-    'title'       => __('Infraestructura y Cloud', 'iquattro'),
-    'description' => __('Domina soluciones de centros de datos, virtualización y servicios en la nube.', 'iquattro'),
-    'image'       => 'c-carousel.jpg',
-  ),
-  array(
-    'title'       => __('Desarrollo y DevOps', 'iquattro'),
-    'description' => __('Integra desarrollo, operaciones y automatización para entregar valor de forma continua.', 'iquattro'),
+    'title'       => __('Desarrollo Software', 'iquattro'),
+    'description' => __('Un enfoque 100% práctico en desarrollo Frontend, Backend y Fullstack.', 'iquattro'),
     'image'       => 'd-carousel.jpg',
   ),
   array(
-    'title'       => __('Gestión de Proyectos TI', 'iquattro'),
-    'description' => __('Planifica, ejecuta y cierra proyectos tecnológicos con metodologías ágiles y tradicionales.', 'iquattro'),
+    'title'       => __('Infraestructura y Cloud', 'iquattro'),
+    'description' => __('Integra servidores físicos con soluciones en la nube.', 'iquattro'),
+    'image'       => 'c-carousel.jpg',
+  ),
+  array(
+    'title'       => __('Seguridad de la Información', 'iquattro'),
+    'description' => __('Blinda tus infraestructuras y lidera la defensa digital.', 'iquattro'),
     'image'       => 'e-carousel.jpg',
   ),
 );
@@ -117,6 +117,7 @@ $evoluciona_cards = array(
     <section class="iq-capacitacion-carousel-section">
       <div class="iq-container">
         <div class="iq-capacitacion-carousel" id="iq-capacitacion-carousel">
+          <div class="iq-capacitacion-carousel-track" id="iq-capacitacion-carousel-track">
           <?php foreach ($carousel_slides as $i => $slide) : ?>
             <div class="iq-capacitacion-slide<?php echo $i === 0 ? ' iq-slide-active' : ''; ?>" data-slide="<?php echo (int) $i; ?>">
               <div class="iq-capacitacion-slide-text">
@@ -128,6 +129,7 @@ $evoluciona_cards = array(
               </div>
             </div>
           <?php endforeach; ?>
+          </div>
         </div>
         <div class="iq-capacitacion-dots" id="iq-capacitacion-dots" aria-label="<?php esc_attr_e('Navegación del carrusel', 'iquattro'); ?>">
           <?php foreach ($carousel_slides as $i => $slide) : ?>
@@ -256,11 +258,16 @@ $evoluciona_cards = array(
   var dots = dotsWrap.querySelectorAll('.iq-capacitacion-dot');
   var total = slides.length;
   var current = 0;
+  var autoInterval;
+
+  var track = document.getElementById('iq-capacitacion-carousel-track');
+  if (!track) return;
 
   function goTo(index) {
     if (index < 0) index = total - 1;
     if (index >= total) index = 0;
     current = index;
+    track.style.transform = 'translateX(-' + (current * 100 / total) + '%)';
     slides.forEach(function(s, i) {
       s.classList.toggle('iq-slide-active', i === current);
     });
@@ -270,8 +277,14 @@ $evoluciona_cards = array(
     });
   }
 
+  function startAuto() {
+    if (autoInterval) clearInterval(autoInterval);
+    autoInterval = setInterval(function() { goTo(current + 1); }, 3000);
+  }
+  startAuto();
+
   dots.forEach(function(btn, i) {
-    btn.addEventListener('click', function() { goTo(i); });
+    btn.addEventListener('click', function() { goTo(i); startAuto(); });
   });
 
   var touchStartX = 0, touchEndX = 0;
@@ -280,6 +293,7 @@ $evoluciona_cards = array(
     touchEndX = e.changedTouches[0].screenX;
     if (touchStartX - touchEndX > 50) goTo(current + 1);
     if (touchEndX - touchStartX > 50) goTo(current - 1);
+    startAuto();
   }, { passive: true });
 })();
 </script>
