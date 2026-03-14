@@ -1,8 +1,8 @@
 <?php
 return array(
   'event_title'         => 'De la Estrategia a la Meta: Proyectos sin Estancamiento',
-  'event_hero_image'    => 'fondo-evento.jpg',
-  'speaker_image'       => 'persona-evento.jpg',
+  'event_hero_image'    => '',
+  'speaker_image'       => '',
   'speaker_name'        => 'Enrique Aparicio',
   'speaker_credentials' => '(PMP, Scrum Master Coach | Project Manager Trainer)',
   'speaker_bio'         => "Enrique Aparicio es un referente en gestión de proyectos en Bolivia. Con amplia experiencia en la implementación de metodologías ágiles y tradicionales, ha acompañado a diversas organizaciones en la ejecución de proyectos estratégicos. Su enfoque práctico y su capacidad para conectar la teoría con la realidad del entorno local lo convierten en un facilitador destacado en procesos de transformación organizacional.",

@@ -13,8 +13,8 @@ $data = iquattro_get_editable_page_data($post);
 $data = is_array($data) && !empty($data) ? $data : array();
 
 $event_title    = isset($data['event_title']) ? $data['event_title'] : __('Próximo evento', 'iquattro');
-$hero_image     = isset($data['event_hero_image']) && $data['event_hero_image'] !== '' ? $data['event_hero_image'] : 'fondo-evento.jpg';
-$speaker_image  = isset($data['speaker_image']) && $data['speaker_image'] !== '' ? $data['speaker_image'] : 'persona-evento.jpg';
+$hero_image     = isset($data['event_hero_image']) ? $data['event_hero_image'] : '';
+$speaker_image  = isset($data['speaker_image']) ? $data['speaker_image'] : '';
 $speaker_name   = isset($data['speaker_name']) ? $data['speaker_name'] : '';
 $speaker_creds  = isset($data['speaker_credentials']) ? $data['speaker_credentials'] : '';
 $speaker_bio    = isset($data['speaker_bio']) ? $data['speaker_bio'] : '';
@@ -29,8 +29,22 @@ $form_cta_title = isset($data['form_cta_title']) ? $data['form_cta_title'] : '';
 $form_cta_text  = isset($data['form_cta_text']) ? $data['form_cta_text'] : '';
 
 $images_uri = get_template_directory_uri() . '/assets/images/';
-$hero_src   = $images_uri . $hero_image;
-$speaker_src = $images_uri . $speaker_image;
+if (is_numeric($hero_image)) {
+  $hero_src = wp_get_attachment_image_url((int) $hero_image, 'full');
+  if (!$hero_src) $hero_src = $images_uri . 'fondo-evento.jpg';
+} elseif ($hero_image !== '') {
+  $hero_src = $images_uri . $hero_image;
+} else {
+  $hero_src = $images_uri . 'fondo-evento.jpg';
+}
+if (is_numeric($speaker_image)) {
+  $speaker_src = wp_get_attachment_image_url((int) $speaker_image, 'full');
+  if (!$speaker_src) $speaker_src = $images_uri . 'persona-evento.jpg';
+} elseif ($speaker_image !== '') {
+  $speaker_src = $images_uri . $speaker_image;
+} else {
+  $speaker_src = $images_uri . 'persona-evento.jpg';
+}
 ?>
 
 <main id="main" class="iq-main iq-evento-page">

@@ -172,5 +172,45 @@ function iquattro_page_meta_save_repeaters($post_id, $slug) {
   }
 }
 
+function iquattro_page_meta_enqueue_evento_media() {
+  $screen = get_current_screen();
+  if (!$screen || $screen->base !== 'post' || $screen->post_type !== 'page') return;
+  $post_id = isset($_GET['post']) ? (int) $_GET['post'] : 0;
+  if (!$post_id) return;
+  $post = get_post($post_id);
+  if (!$post || $post->post_name !== 'evento') return;
+
+  wp_enqueue_media();
+  wp_add_inline_script('media-views', "
+    (function($){
+      $(function(){
+        var frame;
+        $(document).on('click', '.iq-select-image', function(e){
+          e.preventDefault();
+          var target = $(this).data('target');
+          var preview = $(this).data('preview');
+          if (frame) { frame.open(); return; }
+          frame = wp.media({ library: { type: 'image' }, multiple: false });
+          frame.on('select', function(){
+            var att = frame.state().get('selection').first().toJSON();
+            $('#' + target).val(att.id);
+            $('#' + preview).html('<img src=\"' + (att.sizes && att.sizes.medium ? att.sizes.medium.url : att.url) + '\" alt=\"\" style=\"max-width:200px;height:auto;display:block;margin-top:8px;\">');
+            $(this).siblings('.iq-remove-image').show();
+          });
+          frame.open();
+        });
+        $(document).on('click', '.iq-remove-image', function(e){
+          e.preventDefault();
+          var target = $(this).data('target');
+          var preview = $(this).data('preview');
+          $('#' + target).val('');
+          $('#' + preview).empty();
+          $(this).hide();
+        });
+      });
+    })(jQuery);
+  ");
+}
 add_action('add_meta_boxes', 'iquattro_page_meta_add_meta_boxes');
+add_action('admin_enqueue_scripts', 'iquattro_page_meta_enqueue_evento_media');
 add_action('save_post_page', 'iquattro_page_meta_save', 10, 1);
