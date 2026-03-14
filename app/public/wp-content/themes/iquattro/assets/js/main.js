@@ -45,7 +45,9 @@
       email: $form.find('[name="email"]').val(),
       telefono: $form.find('[name="telefono"]').val(),
       empresa: $form.find('[name="empresa"]').val(),
-      mensaje: $form.find('[name="mensaje"]').val()
+      mensaje: $form.find('[name="mensaje"]').val(),
+      form_origin: $form.find('[name="iq_form_origin"]').val() || '',
+      curso_id: $form.find('[name="curso_id"]').val() || ''
     };
 
     setLoading(true);

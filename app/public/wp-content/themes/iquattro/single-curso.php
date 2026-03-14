@@ -126,6 +126,8 @@ $categorias = is_array($terms) ? $terms : array();
             <div class="iq-curso-detail-form-wrap">
               <form id="iq-curso-contact-form" class="iq-contact-form" method="post" novalidate>
                 <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+                <input type="hidden" name="iq_form_origin" value="curso">
+                <input type="hidden" name="curso_id" value="<?php echo (int) $pid; ?>">
                 <p class="iq-form-field">
                   <label for="iq-curso-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
                   <input type="text" id="iq-curso-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>

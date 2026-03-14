@@ -208,6 +208,7 @@ $evoluciona_cards = array(
           <div class="iq-capacitacion-form-wrap">
             <form id="iq-capacitacion-form" class="iq-contact-form iq-capacitacion-form" method="post" novalidate>
               <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+              <input type="hidden" name="iq_form_origin" value="capacitacion">
               <p class="iq-form-field">
                 <label for="iq-cap-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
                 <input type="text" id="iq-cap-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>

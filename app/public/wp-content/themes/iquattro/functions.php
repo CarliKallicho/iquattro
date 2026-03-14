@@ -472,17 +472,37 @@ function iquattro_get_division_pages() {
 }
 
 /**
+ * Nombre de página para el asunto del correo según form_origin (slug)
+ */
+function iquattro_form_origin_page_name($slug) {
+  $names = array(
+    'portada'      => __('Portada', 'iquattro'),
+    'data-center'  => __('Data Center', 'iquattro'),
+    'seguridad'    => __('Seguridad', 'iquattro'),
+    'consultoria'  => __('Consultoría', 'iquattro'),
+    'servicios'    => __('Servicios', 'iquattro'),
+    'capacitacion' => __('Capacitación', 'iquattro'),
+    'contacto'     => __('Contacto', 'iquattro'),
+    'cronograma'   => __('Cronograma (inscripción curso)', 'iquattro'),
+    'curso'        => __('Detalle curso (inscripción)', 'iquattro'),
+  );
+  return isset($names[ $slug ]) ? $names[ $slug ] : $slug;
+}
+
+/**
  * Envío del formulario de contacto (AJAX)
+ * Destino: opción "Correo destino de formularios" en Apariencia → Personalizar → Datos de contacto.
  */
 function iquattro_handle_contact_form() {
   check_ajax_referer('iquattro_contact', 'nonce');
 
-  $nombre   = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
-  $email    = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-  $telefono = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
-  $empresa  = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
-  $mensaje  = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
-  $curso_id = isset($_POST['curso_id']) ? absint($_POST['curso_id']) : 0;
+  $nombre       = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
+  $email        = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+  $telefono     = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
+  $empresa      = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
+  $mensaje      = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
+  $curso_id     = isset($_POST['curso_id']) ? absint($_POST['curso_id']) : 0;
+  $form_origin  = isset($_POST['form_origin']) ? sanitize_text_field($_POST['form_origin']) : '';
 
   $errors = array();
   if (empty($nombre)) $errors[] = __('El nombre es obligatorio.', 'iquattro');
@@ -501,11 +521,15 @@ function iquattro_handle_contact_form() {
       : '';
   }
 
-  $to      = get_option('admin_email');
-  $subject = $curso_id
-    ? sprintf(__('[iQuattro] Inscripción curso: %s', 'iquattro'), $nombre)
-    : sprintf(__('[iQuattro] Contacto desde web: %s', 'iquattro'), $nombre);
-  $body    = sprintf(
+  $to = get_theme_mod('iquattro_form_destination_email', 'pinell.rengel.carlos@gmail.com');
+  if (!is_email($to)) {
+    $to = get_option('admin_email');
+  }
+
+  $page_name = iquattro_form_origin_page_name($form_origin) ?: __('Web', 'iquattro');
+  $subject   = sprintf(__('[iQuattro] Mensaje desde %s: %s', 'iquattro'), $page_name, $nombre);
+
+  $body = sprintf(
     "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s%s\nMensaje:\n%s",
     $nombre,
     $email,
@@ -564,6 +588,18 @@ function iquattro_customize_register($wp_customize) {
     'label'   => __('Ubicación', 'iquattro'),
     'section' => 'iquattro_contact',
     'type'    => 'text',
+  ));
+
+  /* Correo donde llegan los mensajes de todos los formularios del sitio */
+  $wp_customize->add_setting('iquattro_form_destination_email', array(
+    'default'           => 'pinell.rengel.carlos@gmail.com',
+    'sanitize_callback' => 'sanitize_email',
+  ));
+  $wp_customize->add_control('iquattro_form_destination_email', array(
+    'label'       => __('Correo destino de formularios', 'iquattro'),
+    'description' => __('Todos los mensajes enviados desde los formularios (portada, Data Center, Seguridad, Consultoría, Servicios, Capacitación, Contacto) se enviarán a este correo. En producción puede cambiarlo por el correo del cliente (ej. en Bluehost).', 'iquattro'),
+    'section'     => 'iquattro_contact',
+    'type'        => 'email',
   ));
 }
 add_action('customize_register', 'iquattro_customize_register');

@@ -63,6 +63,7 @@ $expertos_diferenciales = isset($data['expertos_diferenciales']) ? array_filter(
         <div class="iq-consultoria-form-wrap">
           <form id="iq-consultoria-form" class="iq-contact-form" method="post" novalidate>
             <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+            <input type="hidden" name="iq_form_origin" value="consultoria">
             <p class="iq-form-field">
               <label for="iq-cons-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
               <input type="text" id="iq-cons-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>

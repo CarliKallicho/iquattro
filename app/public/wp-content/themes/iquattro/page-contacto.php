@@ -35,6 +35,7 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
         <div class="iq-contact-form-wrap">
           <form id="iq-contact-form" class="iq-contact-form" method="post" novalidate>
             <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+            <input type="hidden" name="iq_form_origin" value="contacto">
             <p class="iq-form-field">
               <label for="iq-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
               <input type="text" id="iq-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>

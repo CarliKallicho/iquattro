@@ -111,6 +111,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
     <div class="iq-modal-body">
       <form id="iq-inscribirme-form" class="iq-inscribirme-form" method="post" novalidate>
         <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+        <input type="hidden" name="iq_form_origin" value="cronograma">
         <input type="hidden" name="curso_id" id="iq-inscribirme-curso-id" value="">
         <p class="iq-form-field">
           <label for="iq-inscribirme-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
@@ -199,7 +200,8 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
         telefono: $form.find('[name="telefono"]').val(),
         empresa: $form.find('[name="empresa"]').val(),
         mensaje: $form.find('[name="mensaje"]').val(),
-        curso_id: $form.find('[name="curso_id"]').val()
+        form_origin: $form.find('[name="iq_form_origin"]').val() || '',
+        curso_id: $form.find('[name="curso_id"]').val() || ''
       }).done(function(r) {
         if (r.success && r.data && r.data.message) {
           showMsg(r.data.message, false);

@@ -79,6 +79,7 @@ $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : 
         <div class="iq-servicios-form-wrap">
           <form id="iq-servicios-form" class="iq-contact-form" method="post" novalidate>
             <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+            <input type="hidden" name="iq_form_origin" value="servicios">
             <p class="iq-form-field">
               <label for="iq-serv-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
               <input type="text" id="iq-serv-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>

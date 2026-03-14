@@ -62,6 +62,7 @@ $seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : 
         <div class="iq-seguridad-form-wrap">
           <form id="iq-seguridad-form" class="iq-contact-form" method="post" novalidate>
             <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
+            <input type="hidden" name="iq_form_origin" value="seguridad">
             <p class="iq-form-field">
               <label for="iq-seg-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
               <input type="text" id="iq-seg-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>
