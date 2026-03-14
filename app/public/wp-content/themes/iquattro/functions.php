@@ -125,6 +125,23 @@ function iquattro_ensure_cronograma_page() {
 add_action('init', 'iquattro_ensure_cronograma_page');
 
 /**
+ * Crear la página Evento con slug "evento" si no existe
+ */
+function iquattro_ensure_evento_page() {
+  if (get_page_by_path('evento')) {
+    return;
+  }
+  wp_insert_post(array(
+    'post_title'   => __('Evento', 'iquattro'),
+    'post_name'    => 'evento',
+    'post_status'  => 'publish',
+    'post_type'    => 'page',
+    'post_author'  => 1,
+  ));
+}
+add_action('init', 'iquattro_ensure_evento_page');
+
+/**
  * Crear la página Contacto con slug "contacto" si no existe
  */
 function iquattro_ensure_contacto_page() {
@@ -416,7 +433,7 @@ function iquattro_topbar_logo_filename() {
   if (is_singular('curso')) {
     return 'iquattro-capacitacion-header.png';
   }
-  if (is_page('cronograma')) {
+  if (is_page('cronograma') || is_page('evento')) {
     return 'iquattro-capacitacion-header.png';
   }
   return 'iquattro-capacitacion-header.png';
@@ -485,6 +502,7 @@ function iquattro_form_origin_page_name($slug) {
     'contacto'     => __('Contacto', 'iquattro'),
     'cronograma'   => __('Cronograma (inscripción curso)', 'iquattro'),
     'curso'        => __('Detalle curso (inscripción)', 'iquattro'),
+    'evento'       => __('Evento', 'iquattro'),
   );
   return isset($names[ $slug ]) ? $names[ $slug ] : $slug;
 }

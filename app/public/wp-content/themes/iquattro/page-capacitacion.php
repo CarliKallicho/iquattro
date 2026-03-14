@@ -109,7 +109,7 @@ $evoluciona_cards = array(
         <div class="iq-capacitacion-ctas">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($cap_btn_primary); ?></a>
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('cronograma')) ?: home_url('/cronograma/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_schedule); ?></a>
-          <a href="#evento" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_event); ?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('evento')) ?: home_url('/evento/')); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($cap_btn_event); ?></a>
         </div>
       </div>
     </section>

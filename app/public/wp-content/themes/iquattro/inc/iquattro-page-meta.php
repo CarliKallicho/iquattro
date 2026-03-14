@@ -20,6 +20,7 @@ function iquattro_editable_page_slugs() {
     'contacto',
     'capacitacion',
     'catalogo-cursos',
+    'evento',
   );
 }
 

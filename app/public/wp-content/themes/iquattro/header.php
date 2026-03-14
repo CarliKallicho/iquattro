@@ -70,6 +70,8 @@ if (!defined('ABSPATH')) {
   <?php /* Topbar Capacitación se renderiza dentro de .iq-capacitacion-wrap en page-capacitacion.php */ ?>
   <?php elseif (is_page('cronograma')) : ?>
   <?php /* Topbar se renderiza dentro de .iq-cronograma-wrap en page-cronograma.php */ ?>
+  <?php elseif (is_page('evento')) : ?>
+  <?php /* Topbar se renderiza dentro de .iq-evento-wrap en page-evento.php */ ?>
   <?php elseif (is_page(array('acerca-de', 'contacto'))) : ?>
   <section class="iq-page-hero">
     <?php iquattro_render_capacitacion_topbar(); ?>
