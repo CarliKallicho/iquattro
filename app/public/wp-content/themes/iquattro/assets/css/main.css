@@ -736,6 +736,79 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
+/* Bordes de formulario por página */
+body.iq-page-data-center-body .iq-contact-form input[type="text"],
+body.iq-page-data-center-body .iq-contact-form input[type="email"],
+body.iq-page-data-center-body .iq-contact-form input[type="tel"],
+body.iq-page-data-center-body .iq-contact-form textarea {
+  border-color: #F3712B;
+}
+body.iq-page-data-center-body .iq-contact-form input:focus,
+body.iq-page-data-center-body .iq-contact-form textarea:focus {
+  border-color: #F3712B;
+  box-shadow: 0 0 0 3px rgba(243, 113, 43, 0.2);
+}
+
+body.iq-page-seguridad-body .iq-contact-form input[type="text"],
+body.iq-page-seguridad-body .iq-contact-form input[type="email"],
+body.iq-page-seguridad-body .iq-contact-form input[type="tel"],
+body.iq-page-seguridad-body .iq-contact-form textarea {
+  border-color: #D7263D;
+}
+body.iq-page-seguridad-body .iq-contact-form input:focus,
+body.iq-page-seguridad-body .iq-contact-form textarea:focus {
+  border-color: #D7263D;
+  box-shadow: 0 0 0 3px rgba(215, 38, 61, 0.2);
+}
+
+body.iq-page-consultoria-body .iq-contact-form input[type="text"],
+body.iq-page-consultoria-body .iq-contact-form input[type="email"],
+body.iq-page-consultoria-body .iq-contact-form input[type="tel"],
+body.iq-page-consultoria-body .iq-contact-form textarea {
+  border-color: #7B4B94;
+}
+body.iq-page-consultoria-body .iq-contact-form input:focus,
+body.iq-page-consultoria-body .iq-contact-form textarea:focus {
+  border-color: #7B4B94;
+  box-shadow: 0 0 0 3px rgba(123, 75, 148, 0.2);
+}
+
+body.iq-page-servicios-body .iq-contact-form input[type="text"],
+body.iq-page-servicios-body .iq-contact-form input[type="email"],
+body.iq-page-servicios-body .iq-contact-form input[type="tel"],
+body.iq-page-servicios-body .iq-contact-form textarea {
+  border-color: #FFC847;
+}
+body.iq-page-servicios-body .iq-contact-form input:focus,
+body.iq-page-servicios-body .iq-contact-form textarea:focus {
+  border-color: #FFC847;
+  box-shadow: 0 0 0 3px rgba(255, 200, 71, 0.25);
+}
+
+.iq-page--capacitacion .iq-contact-form input[type="text"],
+.iq-page--capacitacion .iq-contact-form input[type="email"],
+.iq-page--capacitacion .iq-contact-form input[type="tel"],
+.iq-page--capacitacion .iq-contact-form textarea {
+  border-color: #47C281;
+}
+.iq-page--capacitacion .iq-contact-form input:focus,
+.iq-page--capacitacion .iq-contact-form textarea:focus {
+  border-color: #47C281;
+  box-shadow: 0 0 0 3px rgba(71, 194, 129, 0.2);
+}
+
+.iq-contacto-page .iq-contact-form input[type="text"],
+.iq-contacto-page .iq-contact-form input[type="email"],
+.iq-contacto-page .iq-contact-form input[type="tel"],
+.iq-contacto-page .iq-contact-form textarea {
+  border-color: #0D9FDC;
+}
+.iq-contacto-page .iq-contact-form input:focus,
+.iq-contacto-page .iq-contact-form textarea:focus {
+  border-color: #0D9FDC;
+  box-shadow: 0 0 0 3px rgba(13, 159, 220, 0.2);
+}
+
 .iq-form-field {
   margin-bottom: 1rem;
 }
