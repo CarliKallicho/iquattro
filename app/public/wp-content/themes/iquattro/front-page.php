@@ -101,35 +101,7 @@ get_header();
       <h2 class="iq-section-title iq-trust-title"><?php esc_html_e('¿Por qué las empresas confían en iQuattro?', 'iquattro'); ?></h2>
       <div class="iq-trust-visual">
         <div class="iq-trust-sphere" aria-hidden="true" role="img"></div>
-        <div class="iq-trust-arcs">
-          <!-- Semi-luna exterior: 3 primeros textos -->
-          <svg class="iq-trust-arc iq-trust-arc-outer" viewBox="0 0 1346 526" aria-hidden="true">
-            <defs>
-              <path id="iq-trust-path-outer" d="M 173 426 A 500 500 0 0 0 1173 426" />
-            </defs>
-            <text fill="#fff" font-size="18" font-weight="500" text-anchor="middle">
-              <textPath href="#iq-trust-path-outer" startOffset="12%"><?php echo esc_html(__('Formación altamente especializada', 'iquattro')); ?></textPath>
-            </text>
-            <text fill="#fff" font-size="18" font-weight="500" text-anchor="middle">
-              <textPath href="#iq-trust-path-outer" startOffset="42%"><?php echo esc_html(__('Experiencia local + alianzas globales', 'iquattro')); ?></textPath>
-            </text>
-            <text fill="#fff" font-size="18" font-weight="500" text-anchor="middle">
-              <textPath href="#iq-trust-path-outer" startOffset="72%"><?php echo esc_html(__('Infraestructura robusta con marcas líderes', 'iquattro')); ?></textPath>
-            </text>
-          </svg>
-          <!-- Semi-luna interior: 2 últimos textos -->
-          <svg class="iq-trust-arc iq-trust-arc-inner" viewBox="0 0 1346 526" aria-hidden="true">
-            <defs>
-              <path id="iq-trust-path-inner" d="M 323 426 A 350 350 0 0 0 1023 426" />
-            </defs>
-            <text fill="#fff" font-size="16" font-weight="500" text-anchor="middle">
-              <textPath href="#iq-trust-path-inner" startOffset="25%"><?php echo esc_html(__('Protección integral (ciberseguridad ofensiva, defensiva, respuesta)', 'iquattro')); ?></textPath>
-            </text>
-            <text fill="#fff" font-size="16" font-weight="500" text-anchor="middle">
-              <textPath href="#iq-trust-path-inner" startOffset="72%"><?php echo esc_html(__('Soporte técnico certificado', 'iquattro')); ?></textPath>
-            </text>
-          </svg>
-        </div>
+        
       </div>
     </div>
   </section>

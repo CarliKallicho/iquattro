@@ -391,14 +391,48 @@ function iquattro_fix_capacitacion_menu_url($items, $args) {
 add_filter('wp_nav_menu_objects', 'iquattro_fix_capacitacion_menu_url', 10, 2);
 
 /**
+ * Logo del topbar según la página actual (slug).
+ *
+ * @return string Nombre del archivo de imagen en assets/images/
+ */
+function iquattro_topbar_logo_filename() {
+  $logos = array(
+    'acerca-de'             => 'logo-iquattro-acerca.png',
+    'data-center'          => 'logo-iquattro-datacenter.png',
+    'data-center-hardware' => 'logo-iquattro-datacenter.png',
+    'data-center-software' => 'logo-iquattro-datacenter.png',
+    'data-center-servicios'=> 'logo-iquattro-datacenter.png',
+    'seguridad'            => 'logo-iquattro-seguridad.png',
+    'consultoria'          => 'logo-iquattro-consultoria.png',
+    'servicios'            => 'logo-iquattro-servicios.png',
+    'capacitacion'         => 'iquattro-capacitacion-header.png',
+    'contacto'             => 'logo-iquattro-contacto.png',
+  );
+  foreach ($logos as $slug => $filename) {
+    if (is_page($slug)) {
+      return $filename;
+    }
+  }
+  if (is_singular('curso')) {
+    return 'iquattro-capacitacion-header.png';
+  }
+  if (is_page('cronograma')) {
+    return 'iquattro-capacitacion-header.png';
+  }
+  return 'iquattro-capacitacion-header.png';
+}
+
+/**
  * Renderizar el topbar de la página Capacitación (logo + menú). Se usa dentro de .iq-capacitacion-wrap.
  */
 function iquattro_render_capacitacion_topbar() {
+  $logo_file = iquattro_topbar_logo_filename();
+  $logo_src = get_template_directory_uri() . '/assets/images/' . $logo_file;
   ?>
   <div class="iq-topbar iq-topbar-capacitacion">
     <div class="iq-topbar-capacitacion-inner">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-topbar-capacitacion-logo">
-        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/iquattro-capacitacion-header.png'); ?>" alt="<?php bloginfo('name'); ?> - <?php esc_attr_e('Capacitación', 'iquattro'); ?>" class="iq-topbar-capacitacion-img">
+        <img src="<?php echo esc_url($logo_src); ?>" alt="<?php bloginfo('name'); ?> - <?php esc_attr_e('Capacitación', 'iquattro'); ?>" class="iq-topbar-capacitacion-img">
       </a>
       <nav class="iq-nav" aria-label="<?php esc_attr_e('Menú principal', 'iquattro'); ?>">
         <?php

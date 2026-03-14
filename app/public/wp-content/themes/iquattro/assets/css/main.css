@@ -39,7 +39,7 @@
 /* Topbar portada: dentro del hero, transparente y fixed (siempre visible) */
 .iq-topbar-hero {
   position: fixed;
-  top: 1.5rem;
+  top: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -53,6 +53,13 @@
   justify-content: center;
   background: transparent;
   border-radius: 100px;
+}
+
+/* Solo en la portada: topbar con efecto vidrio y fondo #F9F9F9 al 40% */
+.home .iq-topbar-hero {
+  background: rgba(249, 249, 249, 0.4);
+  /* backdrop-filter: blur(12px); */
+  /* -webkit-backdrop-filter: blur(12px); */
 }
 
 .iq-topbar-hero .iq-topbar-inner {
@@ -498,7 +505,7 @@
   width: 1346px;
   max-width: 100%;
   height: 526px;
-  background-image: url('../images/mundo.png');
+  background-image: url('../images/Globo.png');
   background-size: 1346px 526px;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -801,12 +808,25 @@
   overflow: hidden;
 }
 
+/* Portada: fondo con imagen verde costado */
+.iq-front .iq-contact-info {
+  background-image: url('../images/fondo-pag-inicio-verde-costado.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: #e8f5e9;
+}
+
 .iq-contact-info-bg {
   position: absolute;
   inset: 0;
   opacity: 0.35;
   background-image: radial-gradient(circle at 1px 1px, var(--iq-color-primary) 1px, transparent 0);
   background-size: 20px 20px;
+}
+
+/* En portada no aplicar patrón sobre la imagen de fondo */
+.iq-front .iq-contact-info-bg {
+  opacity: 0;
 }
 
 .iq-contact-info p {
@@ -2113,7 +2133,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-acerca-hero-inner {
-  text-align: center;
+  text-align: left;
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
@@ -2137,6 +2157,7 @@ body.iq-page-servicios-body {
   font-weight: 700;
   color: var(--iq-color-dark);
   font-size: 1.1rem;
+  text-align: center;
 }
 
 /* Misión y Visión (2 cards) */
@@ -2156,9 +2177,11 @@ body.iq-page-servicios-body {
   border-radius: var(--iq-radius-lg);
   padding: 2rem;
   box-shadow: var(--iq-shadow-md);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem 1rem;
+  align-items: start;
 }
 
 .iq-acerca-mv-icon {
@@ -2166,6 +2189,8 @@ body.iq-page-servicios-body {
   height: 48px;
   object-fit: contain;
   flex-shrink: 0;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .iq-acerca-mv-title {
@@ -2173,6 +2198,14 @@ body.iq-page-servicios-body {
   font-weight: 700;
   color: var(--iq-color-dark);
   margin: 0;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+
+.iq-acerca-mv-content {
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 
 .iq-acerca-mv-content p {
