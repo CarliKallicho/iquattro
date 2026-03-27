@@ -22,17 +22,17 @@ get_header();
         <div class="iq-feature">
           <span class="iq-feature-icon iq-icon-innovation" aria-hidden="true"></span>
           <h3 class="iq-feature-title"><?php esc_html_e('Innovación contínua', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Creamos soluciones que anticipan las necesidades tecnológicas de tu organización, integrando nuevas ideas, metodologías y herramientas que impulsan tu crecimiento.', 'iquattro'); ?></p>
+          <p><?php echo wp_kses_post(__('Creamos soluciones que anticipan las necesidades tecnológicas de tu organización, integrando <strong>nuevas ideas, metodologías y herramientas</strong> que impulsan tu crecimiento.', 'iquattro')); ?></p>
         </div>
         <div class="iq-feature">
           <span class="iq-feature-icon iq-icon-shield" aria-hidden="true"></span>
           <h3 class="iq-feature-title"><?php esc_html_e('Seguridad en cada paso', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Protegemos tus datos, procesos e infraestructura con un enfoque integral que combina prevención, respuesta y resiliencia para garantizar continuidad operativa.', 'iquattro'); ?></p>
+          <p><?php echo wp_kses_post(__('<strong>Protegemos tus datos, procesos e infraestructura</strong> con un enfoque integral que combina prevención, respuesta y resiliencia para garantizar continuidad operativa.', 'iquattro')); ?></p>
         </div>
         <div class="iq-feature">
           <span class="iq-feature-icon iq-icon-excellence" aria-hidden="true"></span>
           <h3 class="iq-feature-title"><?php esc_html_e('Excelencia técnica', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Nuestro equipo certificado y multidisciplinario ejecuta cada proyecto con precisión, rigor y calidad, asegurando resultados confiables y medibles.', 'iquattro'); ?></p>
+          <p><?php echo wp_kses_post(__('Nuestro equipo <strong>certificado y multidisciplinario</strong> ejecuta cada proyecto con precisión, rigor y calidad, asegurando resultados confiables y medibles.', 'iquattro')); ?></p>
         </div>
       </div>
     </div>
@@ -97,11 +97,18 @@ get_header();
 
   <!-- Por qué confían en iQuattro -->
   <section class="iq-section iq-trust">
-    <div class="iq-container">
+    <div class="iq-container iq-trust-inner">
       <h2 class="iq-section-title iq-trust-title"><?php esc_html_e('¿Por qué las empresas confían en iQuattro?', 'iquattro'); ?></h2>
-      <div class="iq-trust-visual">
-        <div class="iq-trust-sphere" aria-hidden="true" role="img"></div>
-        
+    </div>
+    <div class="iq-trust-visual iq-trust-visual--full">
+      <?php
+      $iq_trust_theme_uri = get_template_directory_uri();
+      $iq_trust_arc_desc   = __( 'Formación altamente especializada. Experiencia local y alianzas globales. Infraestructura robusta con marcas líderes. Protección integral: ciberseguridad ofensiva, defensiva y respuesta. Soporte técnico certificado.', 'iquattro' );
+      ?>
+      <div class="iq-trust-composite" role="img" aria-label="<?php echo esc_attr( $iq_trust_arc_desc ); ?>">
+        <div class="iq-trust-globe" aria-hidden="true"></div>
+        <img class="iq-trust-text-layer iq-trust-text-layer--z" src="<?php echo esc_url( $iq_trust_theme_uri . '/assets/images/z.png' ); ?>" alt="" loading="lazy" decoding="async">
+        <img class="iq-trust-text-layer iq-trust-text-layer--y" src="<?php echo esc_url( $iq_trust_theme_uri . '/assets/images/y.png' ); ?>" alt="" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -125,23 +132,23 @@ get_header();
   </section>
 
   <!-- CTA Transformar infraestructura -->
-  <section class="iq-section iq-cta">
+  <!--<section class="iq-section iq-cta">
     <div class="iq-container">
       <h2 class="iq-section-title"><?php esc_html_e('¿Listo para transformar tu infraestructura tecnológica?', 'iquattro'); ?></h2>
       <p><?php esc_html_e('Acompañamos a empresas e instituciones en cada etapa de su evolución digital, combinando conocimiento, innovación y experiencia para ofrecer soluciones en capacitación, ciberseguridad, infraestructura, soporte y consultoría tecnológica.', 'iquattro'); ?></p>
       <p><?php esc_html_e('Nuestro propósito es ayudarte a construir entornos más seguros, eficientes y preparados para el futuro.', 'iquattro'); ?></p>
     </div>
-  </section>
+  </section> -->
 
   <!-- Innovación continua (destacado) -->
-  <section class="iq-section iq-innovation-box">
+  <!--<section class="iq-section iq-innovation-box">
     <div class="iq-container">
       <div class="iq-innovation-card">
         <h3 class="iq-innovation-title"><?php esc_html_e('Innovación contínua', 'iquattro'); ?></h3>
         <p><?php esc_html_e('Creamos soluciones que anticipan las necesidades tecnológicas de tu organización, integrando nuevas ideas, metodologías y herramientas que impulsan tu crecimiento.', 'iquattro'); ?></p>
       </div>
     </div>
-  </section>
+  </section>  -->
 
   <!-- Contacto -->
   <section class="iq-section iq-contact-section" id="contacto">
