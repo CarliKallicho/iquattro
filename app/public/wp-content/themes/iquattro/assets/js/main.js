@@ -5,7 +5,7 @@
 (function($) {
   'use strict';
 
-  var $forms = $('#iq-contact-form, #iq-servicios-form, #iq-consultoria-form, #iq-seguridad-form, #iq-datacenter-form, #iq-capacitacion-form, #iq-curso-contact-form, #iq-evento-form');
+  var $forms = $('#iq-contact-form, #iq-servicios-form, #iq-consultoria-form, #iq-seguridad-form, #iq-datacenter-form, #iq-capacitacion-form');
   if (!$forms.length) return;
 
   function getMessageEl($form) {
@@ -15,8 +15,6 @@
     if (id === 'iq-seguridad-form') return $('#iq-seg-form-message');
     if (id === 'iq-datacenter-form') return $('#iq-dc-form-message');
     if (id === 'iq-capacitacion-form') return $('#iq-cap-form-message');
-    if (id === 'iq-curso-contact-form') return $('#iq-curso-form-message');
-    if (id === 'iq-evento-form') return $('#iq-evento-form-message');
     return $('#iq-form-message');
   }
 
@@ -46,9 +44,7 @@
       email: $form.find('[name="email"]').val(),
       telefono: $form.find('[name="telefono"]').val(),
       empresa: $form.find('[name="empresa"]').val(),
-      mensaje: $form.find('[name="mensaje"]').val(),
-      form_origin: $form.find('[name="iq_form_origin"]').val() || '',
-      curso_id: $form.find('[name="curso_id"]').val() || ''
+      mensaje: $form.find('[name="mensaje"]').val()
     };
 
     setLoading(true);

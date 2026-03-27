@@ -44,7 +44,10 @@ if (!defined('ABSPATH')) {
     <div class="iq-hero-bg" aria-hidden="true"></div>
     <div class="iq-container iq-hero-inner">
       <div class="iq-hero-content">
-        <h1 class="iq-hero-title"><?php esc_html_e('¿Qué desafío tecnológico quieres resolver hoy?', 'iquattro'); ?></h1>
+        <h1 class="iq-hero-title">
+          <span class="iq-hero-title-line"><?php esc_html_e('¿Qué desafío tecnológico', 'iquattro'); ?></span>
+          <span class="iq-hero-title-line"><?php esc_html_e('quieres resolver hoy?', 'iquattro'); ?></span>
+        </h1>
       </div>
       <div class="iq-hero-logo">
         <?php if (has_custom_logo()) : ?>
@@ -56,7 +59,7 @@ if (!defined('ABSPATH')) {
       <div class="iq-hero-ctas">
         <div class="iq-hero-ctas-row iq-hero-ctas-row--top">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('capacitacion')) ?: home_url('/capacitacion/')); ?>" class="iq-hero-cta"><?php esc_html_e('Necesito capacitar a mi equipo', 'iquattro'); ?></a>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('servicios')) ?: home_url('/servicios/')); ?>" class="iq-hero-cta"><?php esc_html_e('Busco licencias o infraestructura', 'iquattro'); ?></a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('data-center')) ?: home_url('/data-center/')); ?>" class="iq-hero-cta"><?php esc_html_e('Busco licencias o infraestructura', 'iquattro'); ?></a>
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('servicios')) ?: home_url('/servicios/')); ?>" class="iq-hero-cta"><?php esc_html_e('Requiero soporte especializado', 'iquattro'); ?></a>
         </div>
         <div class="iq-hero-ctas-row iq-hero-ctas-row--bottom">
@@ -68,18 +71,12 @@ if (!defined('ABSPATH')) {
   </section>
   <?php elseif (is_page('capacitacion')) : ?>
   <?php /* Topbar Capacitación se renderiza dentro de .iq-capacitacion-wrap en page-capacitacion.php */ ?>
-  <?php elseif (is_page('cronograma')) : ?>
-  <?php /* Topbar se renderiza dentro de .iq-cronograma-wrap en page-cronograma.php */ ?>
-  <?php elseif (is_page('evento')) : ?>
-  <?php /* Topbar se renderiza dentro de .iq-evento-wrap en page-evento.php */ ?>
   <?php elseif (is_page(array('acerca-de', 'contacto'))) : ?>
   <section class="iq-page-hero">
     <?php iquattro_render_capacitacion_topbar(); ?>
   </section>
-  <?php elseif (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios', 'seguridad', 'consultoria', 'servicios'))) : ?>
-  <?php /* Topbar se renderiza dentro de .iq-page en cada plantilla */ ?>
-  <?php elseif (is_singular('curso')) : ?>
-  <?php /* Topbar se renderiza dentro de .iq-curso-detail-wrap en single-curso.php */ ?>
+  <?php elseif (is_page(array('data-center', 'seguridad', 'consultoria', 'servicios'))) : ?>
+  <?php /* Topbar se renderiza dentro de .iq-page en cada plantilla (page-data-center, etc.) */ ?>
   <?php else : ?>
   <section class="iq-page-hero">
     <div class="iq-topbar">
@@ -104,4 +101,4 @@ if (!defined('ABSPATH')) {
   <?php endif; ?>
 </header>
 
-<div id="iq-page" class="iq-page<?php echo is_page('capacitacion') ? ' iq-page--capacitacion' : ''; ?><?php echo is_singular('curso') ? ' iq-page--curso-detail' : ''; ?>">
+<div id="iq-page" class="iq-page<?php echo is_page('capacitacion') ? ' iq-page--capacitacion' : ''; ?>">

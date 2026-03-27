@@ -1,30 +1,57 @@
 <?php
 /**
  * Plantilla página Seguridad
- * Contenido editable desde WordPress (Páginas → Editar).
  *
  * @package iQuattro
  */
 
 get_header();
 
-global $post;
-$data = iquattro_get_editable_page_data($post);
-
 $images_uri = get_template_directory_uri() . '/assets/images/';
 $icons_uri  = get_template_directory_uri() . '/assets/icons/';
 
-$seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : array();
+$seguridad_cards = array(
+  array(
+    'icon'  => 'ethical.svg',
+    'title' => __('Ethical Hacking', 'iquattro'),
+    'desc'  => __('Descubrimos vulnerabilidades mediante pruebas controladas que simulan ataques reales.', 'iquattro'),
+  ),
+  array(
+    'icon'  => 'requerimientos.svg',
+    'title' => __('Requerimientos regulatorios', 'iquattro'),
+    'desc'  => __('Te acompañamos en la implementación de controles de seguridad alineados a normativas y estándares exigidos por la industria.', 'iquattro'),
+  ),
+  array(
+    'icon'  => 'compliance.svg',
+    'title' => __('Compliance', 'iquattro'),
+    'desc'  => __('Diseñamos e implementamos estrategias de cumplimiento que aseguran el correcto manejo de la información y reducen riesgos legales y operativos.', 'iquattro'),
+  ),
+  array(
+    'icon'  => 'antivirus.svg',
+    'title' => __('Antivirus', 'iquattro'),
+    'desc'  => __('Protección avanzada contra malware, virus y amenazas avanzadas y emergentes en todos los endpoints de la organización.', 'iquattro'),
+  ),
+  array(
+    'icon'  => 'dataloss.svg',
+    'title' => __('Data Loss Prevention (DLP)', 'iquattro'),
+    'desc'  => __('Prevención de pérdida, fuga o uso indebido de información crítica, tanto interna como externamente.', 'iquattro'),
+  ),
+  array(
+    'icon'  => 'ransomware.svg',
+    'title' => __('Anti Ransomware', 'iquattro'),
+    'desc'  => __('Soluciones especializadas para prevenir, detectar y mitigar ataques de ransomware que pueden comprometer tu operación.', 'iquattro'),
+  ),
+);
 ?>
 <main id="main" class="iq-main iq-seguridad-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-seguridad-hero" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-seguridad.jpg'); ?>');">
     <div class="iq-container">
-      <h1 class="iq-seguridad-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-seguridad-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+      <h1 class="iq-seguridad-hero-title"><?php esc_html_e('Seguridad digital para proteger lo que hace crecer tu negocio', 'iquattro'); ?></h1>
+      <p class="iq-seguridad-hero-desc"><?php esc_html_e('Protegemos la información crítica de tu organización y garantizamos la continuidad de tu operación, mediante soluciones avanzadas de ciberseguridad, cumplimiento normativo y monitoreo permanente, respaldadas por profesionales certificados y tecnología líder.', 'iquattro'); ?></p>
       <p class="iq-seguridad-hero-actions">
-        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php esc_html_e('Solicitar evaluación', 'iquattro'); ?></a>
       </p>
     </div>
   </section>
@@ -32,14 +59,12 @@ $seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : 
 
   <section class="iq-section iq-seguridad-que-protegemos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['que_protegemos_title']); ?></h2>
-      <p class="iq-seguridad-intro"><?php echo esc_html($data['que_protegemos_intro']); ?></p>
+      <h2 class="iq-section-title"><?php esc_html_e('¿Qué protegemos?', 'iquattro'); ?></h2>
+      <p class="iq-seguridad-intro"><?php esc_html_e('En iQuattro ayudamos a las organizaciones a anticipar, detectar y responder ante amenazas digitales, combinando servicios especializados, cumplimiento regulatorio y soluciones tecnológicas alineadas a las mejores prácticas de seguridad.', 'iquattro'); ?></p>
       <div class="iq-seguridad-cards">
         <?php foreach ($seguridad_cards as $card) : ?>
           <div class="iq-seguridad-card">
-            <?php if (!empty($card['icon'])) : ?>
-              <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-seguridad-card-icon" width="48" height="48" loading="lazy">
-            <?php endif; ?>
+            <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-seguridad-card-icon" width="48" height="48" loading="lazy">
             <h3 class="iq-seguridad-card-title"><?php echo esc_html($card['title']); ?></h3>
             <p class="iq-seguridad-card-desc"><?php echo esc_html($card['desc']); ?></p>
           </div>
@@ -50,19 +75,18 @@ $seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : 
 
   <section class="iq-section iq-seguridad-monitoreo">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['monitoreo_title']); ?></h2>
-      <p class="iq-seguridad-intro"><?php echo esc_html($data['monitoreo_intro']); ?></p>
+      <h2 class="iq-section-title"><?php esc_html_e('Monitoreo de seguridad 24/7', 'iquattro'); ?></h2>
+      <p class="iq-seguridad-intro"><?php esc_html_e('A través de servicios premium conducidos por nuestro equipo de expertos certificados y tecnologías especializadas, habilitamos a tu organización a operar con total confianza, detectando amenazas en tiempo real y cumpliendo requerimientos regulatorios con el acompañamiento permanente de iQuattro.', 'iquattro'); ?></p>
     </div>
   </section>
 
   <section class="iq-section iq-seguridad-contact-section">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
+      <h2 class="iq-section-title"><?php esc_html_e('Protege hoy la información que no puedes perder mañana', 'iquattro'); ?></h2>
       <div class="iq-seguridad-contact-grid">
         <div class="iq-seguridad-form-wrap">
           <form id="iq-seguridad-form" class="iq-contact-form" method="post" novalidate>
             <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
-            <input type="hidden" name="iq_form_origin" value="seguridad">
             <p class="iq-form-field">
               <label for="iq-seg-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
               <input type="text" id="iq-seg-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>
@@ -92,7 +116,7 @@ $seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : 
           </form>
         </div>
         <div class="iq-seguridad-cta-imagen" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-servicios-costado.jpg'); ?>');">
-          <p><?php echo esc_html($data['contact_cta_text']); ?></p>
+          <p><?php esc_html_e('Evalúa el nivel de seguridad de tu organización y define una estrategia sólida con el acompañamiento de expertos.', 'iquattro'); ?></p>
         </div>
       </div>
     </div>

@@ -1,30 +1,23 @@
 <?php
 /**
  * Plantilla página Consultoría
- * Contenido editable desde WordPress (Páginas → Editar).
  *
  * @package iQuattro
  */
 
 get_header();
 
-global $post;
-$data = iquattro_get_editable_page_data($post);
-
 $images_uri = get_template_directory_uri() . '/assets/images/';
-
-$pensamos_soluciones = isset($data['pensamos_soluciones']) ? array_filter(array_map('trim', explode("\n", $data['pensamos_soluciones']))) : array();
-$expertos_diferenciales = isset($data['expertos_diferenciales']) ? array_filter(array_map('trim', explode("\n", $data['expertos_diferenciales']))) : array();
 ?>
 <main id="main" class="iq-main iq-consultoria-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-consultoria-hero" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-consultoria.jpg'); ?>');">
     <div class="iq-container">
-      <h1 class="iq-consultoria-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-consultoria-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+      <h1 class="iq-consultoria-hero-title"><?php esc_html_e('Consultoría tecnológica para decisiones estratégicas', 'iquattro'); ?></h1>
+      <p class="iq-consultoria-hero-desc"><?php esc_html_e('Acompañamos a las organizaciones en sus procesos de transformación digital mediante consultoría especializada que integra negocio, tecnología y ejecución, respaldada por más de 20 años de experiencia en múltiples industrias.', 'iquattro'); ?></p>
       <p class="iq-consultoria-hero-actions">
-        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php esc_html_e('Solicitar asesoría', 'iquattro'); ?></a>
       </p>
     </div>
   </section>
@@ -32,38 +25,38 @@ $expertos_diferenciales = isset($data['expertos_diferenciales']) ? array_filter(
 
   <section class="iq-section iq-consultoria-pensamos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['pensamos_title']); ?></h2>
-      <p class="iq-consultoria-intro"><?php echo esc_html($data['pensamos_intro']); ?></p>
-      <h3 class="iq-consultoria-subtitle"><?php echo esc_html($data['pensamos_subtitle']); ?></h3>
+      <h2 class="iq-section-title"><?php esc_html_e('Pensamos la tecnología desde el negocio', 'iquattro'); ?></h2>
+      <p class="iq-consultoria-intro"><?php esc_html_e('En iQuattro analizamos los contextos organizacionales desde una mirada estratégica hasta el detalle técnico, identificando oportunidades reales de mejora, eficiencia y crecimiento sostenible.', 'iquattro'); ?></p>
+      <h3 class="iq-consultoria-subtitle"><?php esc_html_e('Nuestra consultoría está orientada a:', 'iquattro'); ?></h3>
       <div class="iq-consultoria-soluciones">
-        <?php foreach ($pensamos_soluciones as $sol) : ?>
-          <div class="iq-consultoria-solucion"><?php echo esc_html($sol); ?></div>
-        <?php endforeach; ?>
+        <div class="iq-consultoria-solucion"><?php esc_html_e('Transformación digital', 'iquattro'); ?></div>
+        <div class="iq-consultoria-solucion"><?php esc_html_e('Optimización de procesos', 'iquattro'); ?></div>
+        <div class="iq-consultoria-solucion"><?php esc_html_e('Alineación entre tecnología y objetivos del negocio', 'iquattro'); ?></div>
       </div>
     </div>
   </section>
 
   <section class="iq-section iq-consultoria-expertos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['expertos_title']); ?></h2>
-      <p class="iq-consultoria-intro"><?php echo esc_html($data['expertos_intro']); ?></p>
-      <h3 class="iq-consultoria-subtitle"><?php echo esc_html($data['expertos_subtitle']); ?></h3>
+      <h2 class="iq-section-title"><?php esc_html_e('Expertos que marcan la diferencia', 'iquattro'); ?></h2>
+      <p class="iq-consultoria-intro"><?php esc_html_e('Todos nuestros servicios están orientados a que la experiencia de nuestros clientes sea relevante y satisfactoria. Contamos con un equipo de profesionales de primer nivel, con amplia experiencia en distintos rubros del mercado nacional y regional, respaldados por certificaciones que avalan la calidad de los resultados que entregamos.', 'iquattro'); ?></p>
+      <h3 class="iq-consultoria-subtitle"><?php esc_html_e('Diferenciales:', 'iquattro'); ?></h3>
       <div class="iq-consultoria-diferenciales">
-        <?php foreach ($expertos_diferenciales as $dif) : ?>
-          <div class="iq-consultoria-diferencial"><?php echo esc_html($dif); ?></div>
-        <?php endforeach; ?>
+        <div class="iq-consultoria-diferencial"><?php esc_html_e('Más de 20 años de experiencia acumulada', 'iquattro'); ?></div>
+        <div class="iq-consultoria-diferencial"><?php esc_html_e('Certificaciones Internacionales', 'iquattro'); ?></div>
+        <div class="iq-consultoria-diferencial"><?php esc_html_e('Visión estratégica y técnica integrada', 'iquattro'); ?></div>
+        <div class="iq-consultoria-diferencial"><?php esc_html_e('Experiencia multisectorial', 'iquattro'); ?></div>
       </div>
     </div>
   </section>
 
   <section class="iq-section iq-consultoria-contact-section">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
+      <h2 class="iq-section-title"><?php esc_html_e('Toma decisiones tecnológicas con respaldo experto', 'iquattro'); ?></h2>
       <div class="iq-consultoria-contact-grid">
         <div class="iq-consultoria-form-wrap">
           <form id="iq-consultoria-form" class="iq-contact-form" method="post" novalidate>
             <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
-            <input type="hidden" name="iq_form_origin" value="consultoria">
             <p class="iq-form-field">
               <label for="iq-cons-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
               <input type="text" id="iq-cons-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>
@@ -93,7 +86,7 @@ $expertos_diferenciales = isset($data['expertos_diferenciales']) ? array_filter(
           </form>
         </div>
         <div class="iq-consultoria-cta-imagen" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-consultoria-costado.jpg'); ?>');">
-          <p><?php echo esc_html($data['contact_cta_text']); ?></p>
+          <p><?php esc_html_e('Conversemos sobre los desafíos de tu organización y diseñemos juntos una estrategia tecnológica alineada a tus objetivos.', 'iquattro'); ?></p>
         </div>
       </div>
     </div>

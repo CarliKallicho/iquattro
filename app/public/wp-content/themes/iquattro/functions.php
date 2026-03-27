@@ -14,10 +14,6 @@ define('IQUATTRO_VERSION', '1.0.0');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
-require_once IQUATTRO_THEME_DIR . '/inc/iquattro-dc-catalogo-meta.php';
-require_once IQUATTRO_THEME_DIR . '/inc/iquattro-page-meta.php';
-require_once IQUATTRO_THEME_DIR . '/inc/iquattro-cpt-curso.php';
-
 /**
  * Configuración del tema
  */
@@ -43,14 +39,6 @@ function iquattro_setup() {
 add_action('after_setup_theme', 'iquattro_setup');
 
 /**
- * Al activar el tema, actualizar reglas de reescritura para que las URLs del CPT Curso (/curso/slug/) funcionen.
- */
-function iquattro_flush_rewrite_rules_on_activation() {
-  flush_rewrite_rules();
-}
-add_action('after_switch_theme', 'iquattro_flush_rewrite_rules_on_activation');
-
-/**
  * Añadir clases al body en páginas con fondo gradiente (Data Center, Seguridad, Consultoría, Servicios)
  */
 function iquattro_body_class_page_gradients($classes) {
@@ -65,9 +53,6 @@ function iquattro_body_class_page_gradients($classes) {
   }
   if (is_page('servicios')) {
     $classes[] = 'iq-page-servicios-body';
-  }
-  if (is_singular('curso')) {
-    $classes[] = 'iq-page--curso-detail';
   }
   return $classes;
 }
@@ -106,40 +91,6 @@ function iquattro_ensure_catalogo_cursos_page() {
   ));
 }
 add_action('init', 'iquattro_ensure_catalogo_cursos_page');
-
-/**
- * Crear la página Cronograma con slug "cronograma" si no existe
- */
-function iquattro_ensure_cronograma_page() {
-  if (get_page_by_path('cronograma')) {
-    return;
-  }
-  wp_insert_post(array(
-    'post_title'   => __('Cronograma', 'iquattro'),
-    'post_name'    => 'cronograma',
-    'post_status'  => 'publish',
-    'post_type'    => 'page',
-    'post_author'  => 1,
-  ));
-}
-add_action('init', 'iquattro_ensure_cronograma_page');
-
-/**
- * Crear la página Evento con slug "evento" si no existe
- */
-function iquattro_ensure_evento_page() {
-  if (get_page_by_path('evento')) {
-    return;
-  }
-  wp_insert_post(array(
-    'post_title'   => __('Evento', 'iquattro'),
-    'post_name'    => 'evento',
-    'post_status'  => 'publish',
-    'post_type'    => 'page',
-    'post_author'  => 1,
-  ));
-}
-add_action('init', 'iquattro_ensure_evento_page');
 
 /**
  * Crear la página Contacto con slug "contacto" si no existe
@@ -225,27 +176,6 @@ function iquattro_ensure_data_center_page() {
   ));
 }
 add_action('init', 'iquattro_ensure_data_center_page');
-
-/**
- * Crear páginas Data Center: Hardware, Software, Servicios
- */
-function iquattro_ensure_data_center_hardware_page() {
-  if (get_page_by_path('data-center-hardware')) return;
-  wp_insert_post(array('post_title' => __('Hardware', 'iquattro'), 'post_name' => 'data-center-hardware', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1));
-}
-add_action('init', 'iquattro_ensure_data_center_hardware_page');
-
-function iquattro_ensure_data_center_software_page() {
-  if (get_page_by_path('data-center-software')) return;
-  wp_insert_post(array('post_title' => __('Software', 'iquattro'), 'post_name' => 'data-center-software', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1));
-}
-add_action('init', 'iquattro_ensure_data_center_software_page');
-
-function iquattro_ensure_data_center_servicios_page() {
-  if (get_page_by_path('data-center-servicios')) return;
-  wp_insert_post(array('post_title' => __('Servicios Data Center', 'iquattro'), 'post_name' => 'data-center-servicios', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1));
-}
-add_action('init', 'iquattro_ensure_data_center_servicios_page');
 
 /**
  * Crear la página Acerca De con slug "acerca-de" si no existe
@@ -408,48 +338,14 @@ function iquattro_fix_capacitacion_menu_url($items, $args) {
 add_filter('wp_nav_menu_objects', 'iquattro_fix_capacitacion_menu_url', 10, 2);
 
 /**
- * Logo del topbar según la página actual (slug).
- *
- * @return string Nombre del archivo de imagen en assets/images/
- */
-function iquattro_topbar_logo_filename() {
-  $logos = array(
-    'acerca-de'             => 'logo-iquattro-acerca.png',
-    'data-center'          => 'logo-iquattro-datacenter.png',
-    'data-center-hardware' => 'logo-iquattro-datacenter.png',
-    'data-center-software' => 'logo-iquattro-datacenter.png',
-    'data-center-servicios'=> 'logo-iquattro-datacenter.png',
-    'seguridad'            => 'logo-iquattro-seguridad.png',
-    'consultoria'          => 'logo-iquattro-consultoria.png',
-    'servicios'            => 'logo-iquattro-servicios.png',
-    'capacitacion'         => 'iquattro-capacitacion-header.png',
-    'contacto'             => 'logo-iquattro-contacto.png',
-  );
-  foreach ($logos as $slug => $filename) {
-    if (is_page($slug)) {
-      return $filename;
-    }
-  }
-  if (is_singular('curso')) {
-    return 'iquattro-capacitacion-header.png';
-  }
-  if (is_page('cronograma') || is_page('evento')) {
-    return 'iquattro-capacitacion-header.png';
-  }
-  return 'iquattro-capacitacion-header.png';
-}
-
-/**
  * Renderizar el topbar de la página Capacitación (logo + menú). Se usa dentro de .iq-capacitacion-wrap.
  */
 function iquattro_render_capacitacion_topbar() {
-  $logo_file = iquattro_topbar_logo_filename();
-  $logo_src = get_template_directory_uri() . '/assets/images/' . $logo_file;
   ?>
   <div class="iq-topbar iq-topbar-capacitacion">
     <div class="iq-topbar-capacitacion-inner">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-topbar-capacitacion-logo">
-        <img src="<?php echo esc_url($logo_src); ?>" alt="<?php bloginfo('name'); ?> - <?php esc_attr_e('Capacitación', 'iquattro'); ?>" class="iq-topbar-capacitacion-img">
+        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/iquattro-capacitacion-header.png'); ?>" alt="<?php bloginfo('name'); ?> - <?php esc_attr_e('Capacitación', 'iquattro'); ?>" class="iq-topbar-capacitacion-img">
       </a>
       <nav class="iq-nav" aria-label="<?php esc_attr_e('Menú principal', 'iquattro'); ?>">
         <?php
@@ -489,38 +385,16 @@ function iquattro_get_division_pages() {
 }
 
 /**
- * Nombre de página para el asunto del correo según form_origin (slug)
- */
-function iquattro_form_origin_page_name($slug) {
-  $names = array(
-    'portada'      => __('Portada', 'iquattro'),
-    'data-center'  => __('Data Center', 'iquattro'),
-    'seguridad'    => __('Seguridad', 'iquattro'),
-    'consultoria'  => __('Consultoría', 'iquattro'),
-    'servicios'    => __('Servicios', 'iquattro'),
-    'capacitacion' => __('Capacitación', 'iquattro'),
-    'contacto'     => __('Contacto', 'iquattro'),
-    'cronograma'   => __('Cronograma (inscripción curso)', 'iquattro'),
-    'curso'        => __('Detalle curso (inscripción)', 'iquattro'),
-    'evento'       => __('Evento', 'iquattro'),
-  );
-  return isset($names[ $slug ]) ? $names[ $slug ] : $slug;
-}
-
-/**
  * Envío del formulario de contacto (AJAX)
- * Destino: opción "Correo destino de formularios" en Apariencia → Personalizar → Datos de contacto.
  */
 function iquattro_handle_contact_form() {
   check_ajax_referer('iquattro_contact', 'nonce');
 
-  $nombre       = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
-  $email        = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-  $telefono     = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
-  $empresa      = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
-  $mensaje      = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
-  $curso_id     = isset($_POST['curso_id']) ? absint($_POST['curso_id']) : 0;
-  $form_origin  = isset($_POST['form_origin']) ? sanitize_text_field($_POST['form_origin']) : '';
+  $nombre   = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
+  $email    = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+  $telefono = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
+  $empresa  = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
+  $mensaje  = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
 
   $errors = array();
   if (empty($nombre)) $errors[] = __('El nombre es obligatorio.', 'iquattro');
@@ -531,29 +405,14 @@ function iquattro_handle_contact_form() {
     wp_send_json_error(array('message' => implode(' ', $errors)));
   }
 
-  $curso_info = '';
-  if ($curso_id) {
-    $curso = get_post($curso_id);
-    $curso_info = $curso && $curso->post_type === 'curso'
-      ? sprintf("\nCurso inscripción: %s\n", get_the_title($curso_id))
-      : '';
-  }
-
-  $to = get_theme_mod('iquattro_form_destination_email', 'pinell.rengel.carlos@gmail.com');
-  if (!is_email($to)) {
-    $to = get_option('admin_email');
-  }
-
-  $page_name = iquattro_form_origin_page_name($form_origin) ?: __('Web', 'iquattro');
-  $subject   = sprintf(__('[iQuattro] Mensaje desde %s: %s', 'iquattro'), $page_name, $nombre);
-
-  $body = sprintf(
-    "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s%s\nMensaje:\n%s",
+  $to      = get_option('admin_email');
+  $subject = sprintf(__('[iQuattro] Contacto desde web: %s', 'iquattro'), $nombre);
+  $body    = sprintf(
+    "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s\n\nMensaje:\n%s",
     $nombre,
     $email,
     $telefono,
     $empresa,
-    $curso_info,
     $mensaje
   );
   $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: ' . $nombre . ' <' . $email . '>');
@@ -606,18 +465,6 @@ function iquattro_customize_register($wp_customize) {
     'label'   => __('Ubicación', 'iquattro'),
     'section' => 'iquattro_contact',
     'type'    => 'text',
-  ));
-
-  /* Correo donde llegan los mensajes de todos los formularios del sitio */
-  $wp_customize->add_setting('iquattro_form_destination_email', array(
-    'default'           => 'pinell.rengel.carlos@gmail.com',
-    'sanitize_callback' => 'sanitize_email',
-  ));
-  $wp_customize->add_control('iquattro_form_destination_email', array(
-    'label'       => __('Correo destino de formularios', 'iquattro'),
-    'description' => __('Todos los mensajes enviados desde los formularios (portada, Data Center, Seguridad, Consultoría, Servicios, Capacitación, Contacto) se enviarán a este correo. En producción puede cambiarlo por el correo del cliente (ej. en Bluehost).', 'iquattro'),
-    'section'     => 'iquattro_contact',
-    'type'        => 'email',
   ));
 }
 add_action('customize_register', 'iquattro_customize_register');
