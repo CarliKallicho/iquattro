@@ -502,6 +502,9 @@ function iquattro_render_capacitacion_topbar() {
   } elseif (is_page('consultoria')) {
     $logo_src = $theme_uri . '/assets/images/logo-iquattro-consultoria.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Consultoría', 'iquattro');
+  } elseif (is_page('servicios')) {
+    $logo_src = $theme_uri . '/assets/images/logo-iquattro-servicios.png';
+    $logo_alt = get_bloginfo('name') . ' – ' . __('Servicios', 'iquattro');
   } else {
     $logo_src = $theme_uri . '/assets/images/iquattro-capacitacion-header.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Capacitación', 'iquattro');

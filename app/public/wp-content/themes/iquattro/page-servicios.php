@@ -14,32 +14,56 @@ $hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $images_uri . 'fondo-ser
 $cta_bg = iquattro_meta_image_url($data['cta_side_bg_id'], $images_uri . 'fondo-servicios-costado.jpg');
 $que_cajas = array_filter(array_map('trim', explode("\n", (string) $data['que_hacemos_cajas'])));
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
+$serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 ?>
 <main id="main" class="iq-main iq-servicios-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-servicios-hero" style="background-image: url('<?php echo esc_url($hero_bg); ?>');">
     <div class="iq-container">
-      <h1 class="iq-servicios-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-servicios-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
-      <p class="iq-servicios-hero-actions">
-        <a href="#iq-servicios-form" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
-      </p>
+      <div class="iq-servicios-hero-copy">
+        <h1 class="iq-servicios-hero-title">
+          <?php
+          $serv_l1 = isset($serv_hero_title_lines[0]) ? $serv_hero_title_lines[0] : '';
+          $serv_l2 = isset($serv_hero_title_lines[1]) ? $serv_hero_title_lines[1] : '';
+          if ($serv_l1 !== '' && $serv_l2 !== '') :
+            ?>
+            <span class="iq-servicios-hero-title-line"><?php echo esc_html($serv_l1); ?></span>
+            <span class="iq-servicios-hero-title-line"><?php echo esc_html($serv_l2); ?></span>
+          <?php else : ?>
+            <?php echo esc_html($serv_l1 !== '' ? $serv_l1 : $serv_l2); ?>
+          <?php endif; ?>
+        </h1>
+        <p class="iq-servicios-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+        <p class="iq-servicios-hero-actions">
+          <a href="#iq-servicios-form" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+        </p>
+      </div>
     </div>
   </section>
   </div>
 
   <section class="iq-section iq-servicios-que-hacemos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['que_hacemos_title']); ?></h2>
-      <div class="iq-que-hacemos-grid">
-        <div class="iq-que-hacemos-texto">
-          <h3 class="iq-que-hacemos-subtitle"><?php echo esc_html($data['que_hacemos_subtitle']); ?></h3>
-          <p><?php echo esc_html($data['que_hacemos_text']); ?></p>
-        </div>
-        <div class="iq-que-hacemos-cajas">
-          <?php foreach ($que_cajas as $line) : ?>
-            <div class="iq-que-hacemos-caja"><?php echo esc_html($line); ?></div>
+      <?php
+      $qh_sub = isset($data['que_hacemos_subtitle']) ? trim((string) $data['que_hacemos_subtitle']) : '';
+      $qh_txt = isset($data['que_hacemos_text']) ? trim((string) $data['que_hacemos_text']) : '';
+      if ($qh_sub !== '' || $qh_txt !== '') :
+        ?>
+      <div class="iq-servicios-que-hacemos-lead">
+        <?php if ($qh_sub !== '') : ?>
+          <h3 class="iq-servicios-que-hacemos-lead-sub"><?php echo esc_html($qh_sub); ?></h3>
+        <?php endif; ?>
+        <?php if ($qh_txt !== '') : ?>
+          <p class="iq-servicios-que-hacemos-lead-text"><?php echo esc_html($qh_txt); ?></p>
+        <?php endif; ?>
+      </div>
+      <?php endif; ?>
+      <div class="iq-servicios-que-hacemos-grid">
+        <h2 class="iq-section-title iq-servicios-que-hacemos-title"><?php echo esc_html($data['que_hacemos_title']); ?></h2>
+        <div class="iq-servicios-que-hacemos-pills-wrap">
+          <?php foreach ($que_cajas as $pill) : ?>
+            <span class="iq-servicios-que-hacemos-pill"><?php echo esc_html($pill); ?></span>
           <?php endforeach; ?>
         </div>
       </div>
@@ -61,7 +85,9 @@ $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : 
           $pills = array_filter(array_map('trim', explode("\n", (string) (isset($card['pills']) ? $card['pills'] : ''))));
           ?>
           <div class="iq-servicio-card">
-            <div class="<?php echo esc_attr($icon_class); ?>" aria-hidden="true"></div>
+            <div class="iq-servicio-card-icon-shell" aria-hidden="true">
+              <div class="<?php echo esc_attr($icon_class); ?>"></div>
+            </div>
             <h3 class="iq-servicio-card-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
             <?php if (!empty($pills)) : ?>
               <div class="iq-servicio-pills">
@@ -107,7 +133,7 @@ $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : 
               <textarea id="iq-serv-mensaje" name="mensaje" rows="4" placeholder="<?php esc_attr_e('Ingresa tu mensaje', 'iquattro'); ?>" required></textarea>
             </p>
             <p class="iq-form-actions">
-              <button type="submit" class="iq-btn iq-btn-primary iq-btn-enviar"><?php esc_html_e('Enviar', 'iquattro'); ?></button>
+              <button type="submit" class="iq-btn iq-btn-primary iq-btn-enviar iq-btn-servicios"><?php esc_html_e('Enviar', 'iquattro'); ?></button>
             </p>
             <p class="iq-form-message" id="iq-serv-form-message" aria-live="polite"></p>
           </form>
