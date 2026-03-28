@@ -8,7 +8,7 @@ return array(
   'hero_btn_event' => 'Ver Próximo Evento',
   'beneficios_title' => 'Beneficios exclusivos de formarte en iQuattro',
   'partner_title' => 'Partner oficial en formación tecnológica',
-  'partner_text' => 'En iQuattro formamos parte del programa Microsoft Learning Solutions Partner, lo que nos permite ofrecer contenido oficial y certificaciones reconocidas internacionalmente.',
+  'partner_text' => '<p>iQuattro forma parte del programa <strong>Microsoft Learning Solutions Partner</strong>, lo que nos permite impartir contenidos oficiales del fabricante, con materiales y currículas alineadas a los estándares internacionales.</p>',
   'evoluciona_title' => 'Evoluciona con una formación que genera impacto',
   'catalogo_section_title' => 'Explora nuestro catálogo de cursos',
   'catalogo_section_text' => 'Nuestros programas de formación abarcan tecnología, productividad, Microsoft 365, Azure, inteligencia artificial, seguridad digital y análisis de datos. Encuentra rutas de aprendizaje alineadas a tus objetivos.',

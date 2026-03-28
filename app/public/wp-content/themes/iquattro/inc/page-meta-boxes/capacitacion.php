@@ -12,7 +12,7 @@
 
   <p><strong><?php esc_html_e('Partner Microsoft', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_partner_title" value="<?php echo esc_attr($data['partner_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Texto', 'iquattro'); ?></label><br><textarea name="iq_page_partner_text" class="widefat" rows="2"><?php echo esc_textarea($data['partner_text']); ?></textarea></p>
+  <p><label><?php esc_html_e('Texto', 'iquattro'); ?></label><br><textarea name="iq_page_partner_text" class="widefat" rows="4"><?php echo esc_textarea($data['partner_text']); ?></textarea><br><span class="description"><?php esc_html_e('HTML básico permitido (por ejemplo la etiqueta strong para negrita).', 'iquattro'); ?></span></p>
   <?php
   iquattro_page_meta_render_attachment_field('iq_page_partner_logo_id', __('Logo partner (por defecto: microsoft-partner.png)', 'iquattro'), $data['partner_logo_id']);
   ?>

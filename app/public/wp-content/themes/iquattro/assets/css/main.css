@@ -3715,14 +3715,15 @@ body.iq-page-servicios-body {
   justify-content: flex-end;
 }
 
-/* Fondo página Capacitación: #47C281 40% → blanco */
+/* Fondo página Capacitación: degradado verde (aclarado) → blanco */
 .iq-capacitacion-page {
   min-height: 100vh;
 }
 
 .iq-capacitacion-wrap {
   min-height: 100%;
-  background: linear-gradient(to bottom, rgba(71, 194, 129, 0.4) 0%, rgba(71, 194, 129, 0.2) 30%, #fff 70%);
+  /* Verde mezclado 30% hacia blanco (misma estructura de paradas) */
+  background: linear-gradient(to bottom, rgba(126, 212, 167, 0.4) 0%, rgba(126, 212, 167, 0.2) 30%, #fff 70%);
   padding: 100px 1.5rem 4rem;
 }
 
@@ -3739,14 +3740,22 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-title {
-  font-size: clamp(1.35rem, 2.5vw, 2.25rem);
-  font-weight: 700;
+  font-family: var(--iq-font-sans);
+  font-size: 48px;
+  font-weight: 800;
+  font-style: normal;
   color: var(--iq-color-dark);
   margin: 0 0 2rem;
   max-width: 56ch;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.35;
+  line-height: 1.25;
+}
+
+@media (max-width: 640px) {
+  .iq-capacitacion-title {
+    font-size: clamp(1.35rem, 5vw, 48px);
+  }
 }
 
 .iq-capacitacion-ctas {
@@ -3755,6 +3764,7 @@ body.iq-page-servicios-body {
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  margin-top: 4rem;
 }
 
 .iq-capacitacion-btn {
@@ -3766,7 +3776,51 @@ body.iq-page-servicios-body {
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* Hero: Explorar cursos, Ver cronograma, Ver próximo evento */
+.iq-capacitacion-hero .iq-capacitacion-btn {
+  border-radius: 50px;
+  font-size: 25px;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1.2;
+}
+
+.iq-capacitacion-hero .iq-capacitacion-ctas > .iq-capacitacion-btn:first-child {
+  width: 270px;
+  /*flex: 0 0 190px;
+  max-width: 190px;*/
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* Ver cronograma, Ver próximo evento */
+.iq-capacitacion-hero .iq-capacitacion-btn-secondary {
+  font-size: 18px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@media (max-width: 480px) {
+  .iq-capacitacion-hero .iq-capacitacion-btn-primary {
+    font-size: clamp(1rem, 4.5vw, 25px);
+  }
+
+  .iq-capacitacion-hero .iq-capacitacion-btn-secondary {
+    font-size: clamp(0.875rem, 3.5vw, 18px);
+  }
+}
+
+.iq-capacitacion-hero .iq-capacitacion-btn:hover,
+.iq-capacitacion-hero .iq-capacitacion-btn:focus-visible {
+  background: #fff !important;
+  color: #000 !important;
+  border-color: rgba(0, 0, 0, 0.12);
+  text-decoration: none;
 }
 
 .iq-capacitacion-btn-primary {
@@ -3794,10 +3848,11 @@ body.iq-page-servicios-body {
 /* Carousel Capacitación */
 .iq-capacitacion-carousel-section {
   padding: 0 0 2rem;
+  margin-top: 4rem;
 }
 
 .iq-capacitacion-carousel-section .iq-container {
-  max-width: 1688px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -3811,67 +3866,100 @@ body.iq-page-servicios-body {
   min-height: 280px;
 }
 
+.iq-capacitacion-carousel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iq-capacitacion-carousel-track {
+    transition: none;
+  }
+}
+
 .iq-capacitacion-slide {
-  display: none;
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
   padding: 2rem 2.5rem;
   min-height: 280px;
   box-sizing: border-box;
 }
 
-.iq-capacitacion-slide.iq-slide-active {
-  display: grid;
-}
-
 .iq-capacitacion-slide-text {
   padding-right: 1rem;
+  align-self: start;
 }
 
 .iq-capacitacion-slide-title {
-  font-size: 1.35rem;
+  font-family: var(--iq-font-sans);
+  font-size: 28px;
   font-weight: 700;
+  font-style: normal;
   color: var(--iq-color-dark);
   margin: 0 0 0.75rem;
+  line-height: 1.25;
 }
 
 .iq-capacitacion-slide-desc {
-  font-size: 1rem;
+  font-family: var(--iq-font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
   color: var(--iq-color-dark-light);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
+/*
+ * Marco fijo; las imágenes ocupan el 100% del contenedor (cover recorta si hace falta).
+ * Bordes 5px vía overflow en el wrap.
+ */
 .iq-capacitacion-slide-img-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
+  position: relative;
+  width: 100%;
+  height: 240px;
+  min-height: 240px;
+  border-radius: 5px;
+  overflow: hidden;
+  align-self: start;
+  background: #e5e7eb;
 }
 
 .iq-capacitacion-slide-img {
-  max-width: 100%;
-  max-height: 240px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
 }
 
 /* Dots del carousel */
 .iq-capacitacion-dots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-top: 1.25rem;
 }
 
 .iq-capacitacion-dot {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   border-radius: 50%;
   border: none;
   padding: 0;
+  box-sizing: border-box;
   background: var(--iq-color-gray);
   cursor: pointer;
   transition: background 0.2s;
@@ -3895,8 +3983,12 @@ body.iq-page-servicios-body {
     grid-template-columns: 1fr;
     padding: 1.5rem;
   }
+  .iq-capacitacion-slide-title {
+    font-size: clamp(1.15rem, 4vw, 28px);
+  }
   .iq-capacitacion-slide-img-wrap {
-    min-height: 160px;
+    height: 200px;
+    min-height: 200px;
   }
 }
 
@@ -3911,7 +4003,7 @@ body.iq-page-servicios-body {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: var(--iq-color-dark);
-  margin: 0 0 1.5rem;
+  margin: 0 0 0;
 }
 
 .iq-capacitacion-beneficios-grid {
@@ -3921,32 +4013,67 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-beneficio-card {
-  background: rgba(71, 194, 129, 0.35);
+  background: linear-gradient(180deg, #47c28199 0%, #12b76a 100%);
   border-radius: var(--iq-radius-lg);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
+  transition: box-shadow 0.25s ease;
 }
 
 .iq-capacitacion-beneficio-icon {
-  width: 56px;
-  height: 56px;
+  width: 200px;
+  height: 155px;
   object-fit: contain;
+  object-position: center;
   filter: brightness(0) invert(1);
   flex-shrink: 0;
+  display: block;
+  margin: 0 auto;
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-icon,
+.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-icon {
+  width: 120px;
+  height: 93px;
 }
 
 .iq-capacitacion-beneficio-list {
   margin: 0;
   padding-left: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  align-self: stretch;
   color: #fff;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  list-style: disc;
 }
 
 .iq-capacitacion-beneficio-list li {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
   margin-bottom: 0.35rem;
+  transition: font-size 0.25s ease, font-weight 0.25s ease, margin-bottom 0.25s ease;
+}
+
+.iq-capacitacion-beneficio-list li:last-child {
+  margin-bottom: 0;
+}
+
+.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-list li,
+.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-list li {
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-list li:last-child,
+.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-list li:last-child {
+  margin-bottom: 0;
 }
 
 /* Partner Microsoft */
@@ -3965,14 +4092,45 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-partner-text {
   margin: 0;
-  color: var(--iq-color-dark-light);
-  line-height: 1.6;
-  max-width: 60ch;
+  /*max-width: 60ch;*/
+  font-family: var(--iq-font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  color: var(--iq-color-dark);
+}
+
+.iq-capacitacion-partner-text p {
+  margin: 0 0 15px;
+}
+
+.iq-capacitacion-partner-text p:last-child {
+  margin-bottom: 0;
+}
+
+.iq-capacitacion-partner-text strong {
+  font-weight: 700;
+}
+
+.iq-capacitacion-partner-logo {
+  width: 482px;
+  max-width: 100%;
+  height: 179px;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .iq-capacitacion-partner-logo img {
-  max-width: 180px;
-  height: auto;
+  width: 402px;
+  height: 139px;
+  max-width: min(402px, calc(100% - 2rem));
+  max-height: min(139px, calc(100% - 2rem));
+  object-fit: contain;
   display: block;
 }
 
@@ -4000,34 +4158,56 @@ body.iq-page-servicios-body {
   grid-column: span 1;
 }
 
+.iq-capacitacion-evoluciona .iq-capacitacion-section-title {
+  font-family: var(--iq-font-sans);
+  font-size: 36px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.2;
+  color: #000;
+  margin: 0 0 1.5rem;
+}
+
 .iq-capacitacion-evoluciona-card {
   background: var(--iq-color-gray-bg);
   border-radius: var(--iq-radius-lg);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.iq-capacitacion-evoluciona-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  flex-shrink: 0;
+  gap: 15px;
 }
 
 .iq-capacitacion-evoluciona-title {
-  font-size: 1rem;
+  font-family: var(--iq-font-sans);
+  font-size: 28px;
   font-weight: 700;
-  color: var(--iq-color-dark);
+  font-style: normal;
+  line-height: 1.25;
+  color: #000;
   margin: 0;
+}
+
+.iq-capacitacion-evoluciona-title .iq-capacitacion-evoluciona-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 0.5rem;
+  vertical-align: -0.2em;
+  object-fit: contain;
 }
 
 .iq-capacitacion-evoluciona-sub {
   margin: 0;
-  font-size: 0.9rem;
-  color: var(--iq-color-dark-light);
-  line-height: 1.4;
+  font-family: var(--iq-font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  color: #000;
+}
+
+.iq-capacitacion-evoluciona-sub + .iq-capacitacion-evoluciona-sub {
+  margin-top: 15px;
 }
 
 /* Explora catálogo + Próximos cursos (fondo fondo-capacitacion.jpg) */
@@ -4136,6 +4316,12 @@ body.iq-page-servicios-body {
   }
   .iq-capacitacion-evoluciona-grid {
     grid-template-columns: 1fr;
+  }
+  .iq-capacitacion-evoluciona .iq-capacitacion-section-title {
+    font-size: clamp(1.35rem, 5vw, 36px);
+  }
+  .iq-capacitacion-evoluciona-title {
+    font-size: clamp(1.1rem, 4.5vw, 28px);
   }
   .iq-capacitacion-cta-text {
     font-size: 1.25rem;

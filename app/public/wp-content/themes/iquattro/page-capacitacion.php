@@ -19,23 +19,23 @@ $carousel_slides = array(
     'image'       => 'a-carousel.jpg',
   ),
   array(
-    'title'       => __('Ciberseguridad', 'iquattro'),
-    'description' => __('Protege tu organización con conocimientos en defensa y respuesta ante amenazas.', 'iquattro'),
+    'title'       => __('Gestión y Estrategia', 'iquattro'),
+    'description' => __('Anticípate a los cambios, mitigar riesgos y tomar decisiones que generen valor real.', 'iquattro'),
     'image'       => 'b-carousel.jpg',
   ),
   array(
-    'title'       => __('Infraestructura y Cloud', 'iquattro'),
-    'description' => __('Domina soluciones de centros de datos, virtualización y servicios en la nube.', 'iquattro'),
+    'title'       => __('Desarrollo Software', 'iquattro'),
+    'description' => __('Un enfoque 100% practico en desarrollo Fronted, Backend y Fullstack.', 'iquattro'),
     'image'       => 'c-carousel.jpg',
   ),
   array(
-    'title'       => __('Desarrollo y DevOps', 'iquattro'),
-    'description' => __('Integra desarrollo, operaciones y automatización para entregar valor de forma continua.', 'iquattro'),
+    'title'       => __('Infraestructura y Cloud', 'iquattro'),
+    'description' => __('Integra servidores físicos con soluciones en la nube.', 'iquattro'),
     'image'       => 'd-carousel.jpg',
   ),
   array(
-    'title'       => __('Gestión de Proyectos TI', 'iquattro'),
-    'description' => __('Planifica, ejecuta y cierra proyectos tecnológicos con metodologías ágiles y tradicionales.', 'iquattro'),
+    'title'       => __('Seguridad de la Información', 'iquattro'),
+    'description' => __('Blinda tus infraestructuras y lidera la defensa digital.', 'iquattro'),
     'image'       => 'e-carousel.jpg',
   ),
 );
@@ -104,8 +104,9 @@ $evoluciona_cards = array(
     <section class="iq-capacitacion-carousel-section">
       <div class="iq-container">
         <div class="iq-capacitacion-carousel" id="iq-capacitacion-carousel">
+          <div class="iq-capacitacion-carousel-track" id="iq-capacitacion-carousel-track">
           <?php foreach ($carousel_slides as $i => $slide) : ?>
-            <div class="iq-capacitacion-slide<?php echo $i === 0 ? ' iq-slide-active' : ''; ?>" data-slide="<?php echo (int) $i; ?>">
+            <div class="iq-capacitacion-slide" data-slide="<?php echo (int) $i; ?>">
               <div class="iq-capacitacion-slide-text">
                 <h3 class="iq-capacitacion-slide-title"><?php echo esc_html($slide['title']); ?></h3>
                 <p class="iq-capacitacion-slide-desc"><?php echo esc_html($slide['description']); ?></p>
@@ -115,6 +116,7 @@ $evoluciona_cards = array(
               </div>
             </div>
           <?php endforeach; ?>
+          </div>
         </div>
         <div class="iq-capacitacion-dots" id="iq-capacitacion-dots" aria-label="<?php esc_attr_e('Navegación del carrusel', 'iquattro'); ?>">
           <?php foreach ($carousel_slides as $i => $slide) : ?>
@@ -130,7 +132,7 @@ $evoluciona_cards = array(
         <div class="iq-capacitacion-beneficios-grid">
           <?php foreach ($beneficios_cards as $card) : ?>
             <div class="iq-capacitacion-beneficio-card">
-              <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-beneficio-icon" width="56" height="56" loading="lazy">
+              <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-beneficio-icon" width="200" height="155" loading="lazy">
               <ul class="iq-capacitacion-beneficio-list">
                 <?php foreach ($card['items'] as $item) : ?>
                   <li><?php echo esc_html($item); ?></li>
@@ -146,10 +148,19 @@ $evoluciona_cards = array(
       <div class="iq-container">
         <h2 class="iq-capacitacion-section-title"><?php echo esc_html($data['partner_title']); ?></h2>
         <div class="iq-capacitacion-partner-inner">
-          <p class="iq-capacitacion-partner-text"><?php echo esc_html($data['partner_text']); ?></p>
+          <div class="iq-capacitacion-partner-text">
+            <?php
+            $partner_raw = isset($data['partner_text']) ? (string) $data['partner_text'] : '';
+            if (strpos($partner_raw, '<') !== false) {
+              echo wp_kses_post($partner_raw);
+            } else {
+              echo wp_kses_post(wpautop(esc_html($partner_raw)));
+            }
+            ?>
+          </div>
           <?php if ($partner_logo) : ?>
           <div class="iq-capacitacion-partner-logo">
-            <img src="<?php echo esc_url($partner_logo); ?>" alt="<?php esc_attr_e('Microsoft Partner', 'iquattro'); ?>" width="180" height="auto" loading="lazy">
+            <img src="<?php echo esc_url($partner_logo); ?>" alt="<?php esc_attr_e('Microsoft Partner', 'iquattro'); ?>" width="402" height="139" loading="lazy">
           </div>
           <?php endif; ?>
         </div>
@@ -162,8 +173,10 @@ $evoluciona_cards = array(
         <div class="iq-capacitacion-evoluciona-grid">
           <?php foreach ($evoluciona_cards as $card) : ?>
             <div class="iq-capacitacion-evoluciona-card">
-              <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-evoluciona-icon" width="48" height="48" loading="lazy">
-              <h3 class="iq-capacitacion-evoluciona-title"><?php echo esc_html($card['title']); ?></h3>
+              <h3 class="iq-capacitacion-evoluciona-title">
+                <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-evoluciona-icon" width="30" height="30" loading="lazy">
+                <?php echo esc_html($card['title']); ?>
+              </h3>
               <?php if ($card['sub']) : ?>
                 <p class="iq-capacitacion-evoluciona-sub"><?php echo esc_html($card['sub']); ?></p>
               <?php endif; ?>
@@ -235,38 +248,108 @@ $evoluciona_cards = array(
 <script>
 (function() {
   var carousel = document.getElementById('iq-capacitacion-carousel');
+  var track = document.getElementById('iq-capacitacion-carousel-track');
   var dotsWrap = document.getElementById('iq-capacitacion-dots');
-  if (!carousel || !dotsWrap) return;
+  if (!carousel || !track || !dotsWrap) return;
 
   var slides = carousel.querySelectorAll('.iq-capacitacion-slide');
   var dots = dotsWrap.querySelectorAll('.iq-capacitacion-dot');
   var total = slides.length;
-  var current = 0;
+  if (total < 1) return;
 
-  function goTo(index) {
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-    current = index;
-    slides.forEach(function(s, i) {
-      s.classList.toggle('iq-slide-active', i === current);
-    });
+  var current = 0;
+  var autoplayMs = 3000;
+  var timer = null;
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function syncDots() {
     dots.forEach(function(d, i) {
       d.classList.toggle('iq-dot-active', i === current);
       d.setAttribute('aria-current', i === current ? 'true' : 'false');
     });
   }
 
+  function applyTransform(instant) {
+    var pct = current * 100;
+    if (prefersReduced) {
+      track.style.transform = 'translateX(-' + pct + '%)';
+      return;
+    }
+    if (instant) {
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(-' + pct + '%)';
+      void track.offsetHeight;
+      track.style.transition = '';
+    } else {
+      track.style.transform = 'translateX(-' + pct + '%)';
+    }
+  }
+
+  function goTo(index) {
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    var prev = current;
+    current = index;
+    var wrap = (prev === total - 1 && current === 0) || (prev === 0 && current === total - 1);
+    var instant = prefersReduced || wrap || Math.abs(current - prev) > 1;
+    applyTransform(instant);
+    syncDots();
+  }
+
+  function next() {
+    goTo(current + 1);
+  }
+
+  function prev() {
+    goTo(current - 1);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    if (prefersReduced || total < 2) return;
+    timer = window.setInterval(next, autoplayMs);
+  }
+
+  function stopAutoplay() {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  track.style.transform = 'translateX(0)';
+  syncDots();
+
   dots.forEach(function(btn, i) {
-    btn.addEventListener('click', function() { goTo(i); });
+    btn.addEventListener('click', function() {
+      stopAutoplay();
+      goTo(i);
+      startAutoplay();
+    });
   });
 
-  var touchStartX = 0, touchEndX = 0;
-  carousel.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-  carousel.addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) goTo(current + 1);
-    if (touchEndX - touchStartX > 50) goTo(current - 1);
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  var touchStartX = 0;
+  carousel.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
   }, { passive: true });
+  carousel.addEventListener('touchend', function(e) {
+    var x = e.changedTouches[0].screenX;
+    if (touchStartX - x > 50) {
+      stopAutoplay();
+      next();
+      startAutoplay();
+    }
+    if (x - touchStartX > 50) {
+      stopAutoplay();
+      prev();
+      startAutoplay();
+    }
+  }, { passive: true });
+
+  startAutoplay();
 })();
 </script>
 
