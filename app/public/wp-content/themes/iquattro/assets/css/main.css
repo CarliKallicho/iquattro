@@ -299,7 +299,7 @@
 
 /* --- Secciones genéricas --- */
 .iq-section {
-  padding: 3.5rem 0;
+  padding: 1.5rem 0;
 }
 
 .iq-section-title {
@@ -2175,14 +2175,14 @@ body.iq-page-servicios-body {
 }
 
 .iq-acerca-hero-inner {
-  text-align: center;
+  text-align: left;
   max-width: 720px;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
 }
 
 .iq-acerca-hero-title {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: 36px;
   font-weight: 700;
   color: var(--iq-color-dark);
   margin: 0 0 1rem;
@@ -2190,15 +2190,19 @@ body.iq-page-servicios-body {
 
 .iq-acerca-hero-desc {
   margin: 0 0 1rem;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--iq-color-dark-light);
   line-height: 1.6;
 }
 
 .iq-acerca-hero-subtitle {
   margin: 0;
-  font-weight: 700;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 100%;
   color: var(--iq-color-dark);
-  font-size: 1.1rem;
 }
 
 /* Misión y Visión (2 cards) */

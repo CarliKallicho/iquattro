@@ -341,11 +341,19 @@ add_filter('wp_nav_menu_objects', 'iquattro_fix_capacitacion_menu_url', 10, 2);
  * Renderizar el topbar de la página Capacitación (logo + menú). Se usa dentro de .iq-capacitacion-wrap.
  */
 function iquattro_render_capacitacion_topbar() {
+  $theme_uri = get_template_directory_uri();
+  if (is_page('acerca-de')) {
+    $logo_src = $theme_uri . '/assets/images/logo-iquattro-acerca.png';
+    $logo_alt = get_bloginfo('name') . ' – ' . __('Acerca de', 'iquattro');
+  } else {
+    $logo_src = $theme_uri . '/assets/images/iquattro-capacitacion-header.png';
+    $logo_alt = get_bloginfo('name') . ' – ' . __('Capacitación', 'iquattro');
+  }
   ?>
   <div class="iq-topbar iq-topbar-capacitacion">
     <div class="iq-topbar-capacitacion-inner">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-topbar-capacitacion-logo">
-        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/iquattro-capacitacion-header.png'); ?>" alt="<?php bloginfo('name'); ?> - <?php esc_attr_e('Capacitación', 'iquattro'); ?>" class="iq-topbar-capacitacion-img">
+        <img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($logo_alt); ?>" class="iq-topbar-capacitacion-img">
       </a>
       <nav class="iq-nav" aria-label="<?php esc_attr_e('Menú principal', 'iquattro'); ?>">
         <?php
