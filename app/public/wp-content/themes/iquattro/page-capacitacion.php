@@ -185,8 +185,14 @@ $evoluciona_cards = array(
             <?php endforeach; ?>
           </div>
           <div class="iq-capacitacion-evoluciona-row iq-capacitacion-evoluciona-row--bottom">
-            <?php foreach (array_slice($evoluciona_cards, 3, 2) as $card) : ?>
-              <div class="iq-capacitacion-evoluciona-card iq-capacitacion-evoluciona-card--bottom">
+            <?php foreach (array_slice($evoluciona_cards, 3, 2) as $ev_bottom_idx => $card) : ?>
+              <?php
+              $bottom_card_class = 'iq-capacitacion-evoluciona-card iq-capacitacion-evoluciona-card--bottom';
+              if ((int) $ev_bottom_idx === 0) {
+                $bottom_card_class .= ' iq-capacitacion-evoluciona-card--preparacion';
+              }
+              ?>
+              <div class="<?php echo esc_attr($bottom_card_class); ?>">
                 <h3 class="iq-capacitacion-evoluciona-title">
                   <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-evoluciona-icon" width="30" height="30" loading="lazy">
                   <?php echo esc_html($card['title']); ?>

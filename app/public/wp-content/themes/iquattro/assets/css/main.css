@@ -4157,20 +4157,30 @@ body.iq-page-servicios-body {
   width: 100%;
 }
 
-/* Fila inferior: 2 cards más anchas, centradas como pareja (independientes del grid de arriba) */
+/* Fila inferior: mismo ancho total que la fila de 3 cards; Preparación en una línea; Acompañamiento ocupa el resto */
 .iq-capacitacion-evoluciona-row--bottom {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: stretch;
   gap: 1.5rem;
   width: 100%;
+  min-width: 0;
 }
 
-.iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom {
-  flex: 1 1 calc(50% - 0.75rem);
-  max-width: calc(50% - 0.75rem);
-  min-width: min(100%, 260px);
+.iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom.iq-capacitacion-evoluciona-card--preparacion {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--preparacion .iq-capacitacion-evoluciona-title {
+  white-space: nowrap;
+}
+
+.iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom:not(.iq-capacitacion-evoluciona-card--preparacion) {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .iq-capacitacion-evoluciona .iq-capacitacion-section-title {
@@ -4431,6 +4441,13 @@ body.iq-page-servicios-body {
   }
 }
 
+/* Tablets: el título largo puede forzar scroll; se permite salto de línea */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .iq-capacitacion-evoluciona-card--preparacion .iq-capacitacion-evoluciona-title {
+    white-space: normal;
+  }
+}
+
 @media (max-width: 768px) {
   .iq-capacitacion-beneficios-grid {
     grid-template-columns: 1fr;
@@ -4439,9 +4456,25 @@ body.iq-page-servicios-body {
     grid-template-columns: 1fr;
   }
 
-  .iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom {
-    flex: 1 1 100%;
+  .iq-capacitacion-evoluciona-row--bottom {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom.iq-capacitacion-evoluciona-card--preparacion {
+    flex: 1 1 auto;
+    width: 100%;
     max-width: 100%;
+  }
+
+  .iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom:not(.iq-capacitacion-evoluciona-card--preparacion) {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .iq-capacitacion-evoluciona-card--preparacion .iq-capacitacion-evoluciona-title {
+    white-space: normal;
   }
   .iq-capacitacion-evoluciona .iq-capacitacion-section-title {
     font-size: clamp(1.35rem, 5vw, 36px);
