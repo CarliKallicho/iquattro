@@ -4142,20 +4142,35 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-evoluciona-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   gap: 1.5rem;
+  width: 100%;
 }
 
-.iq-capacitacion-evoluciona-grid .iq-capacitacion-evoluciona-card:nth-child(1),
-.iq-capacitacion-evoluciona-grid .iq-capacitacion-evoluciona-card:nth-child(2),
-.iq-capacitacion-evoluciona-grid .iq-capacitacion-evoluciona-card:nth-child(3) {
-  grid-column: span 1;
+/* Fila superior: 3 columnas simétricas y centradas en el ancho del contenedor */
+.iq-capacitacion-evoluciona-row--top {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.iq-capacitacion-evoluciona-grid .iq-capacitacion-evoluciona-card:nth-child(4),
-.iq-capacitacion-evoluciona-grid .iq-capacitacion-evoluciona-card:nth-child(5) {
-  grid-column: span 1;
+/* Fila inferior: 2 cards más anchas, centradas como pareja (independientes del grid de arriba) */
+.iq-capacitacion-evoluciona-row--bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom {
+  flex: 1 1 calc(50% - 0.75rem);
+  max-width: calc(50% - 0.75rem);
+  min-width: min(100%, 260px);
 }
 
 .iq-capacitacion-evoluciona .iq-capacitacion-section-title {
@@ -4229,13 +4244,73 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-catalogo-block {
-  max-width: 720px;
+  /*max-width: 720px;*/
+}
+
+/* Bloques catálogo + cronograma: título + cuerpo (misma tipografía) */
+.iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-title,
+.iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-title {
+  font-family: var(--iq-font-sans);
+  font-size: 48px;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1.15;
+  color: #000;
+  margin: 0 0 2rem;
+}
+
+.iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-text,
+.iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-text {
+  font-family: var(--iq-font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  color: #000;
+  margin: 0 0 2rem;
+}
+
+.iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-text p,
+.iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-text p {
+  margin: 0 0 15px;
+}
+
+.iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-text p:last-child,
+.iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+.iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-text strong,
+.iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-text strong {
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-title,
+  .iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-title {
+    font-size: clamp(1.5rem, 5vw, 48px);
+  }
 }
 
 .iq-capacitacion-catalogo-text {
-  margin: 0 0 1rem;
   color: var(--iq-color-dark-light);
   line-height: 1.6;
+}
+
+/* Catálogo / Cronograma: botones CTA */
+.iq-capacitacion-catalogo-section .iq-capacitacion-btn.iq-capacitacion-btn-primary {
+  border-radius: 50px;
+  background: #0a121fcc;
+  color: #fff;
+  border-color: transparent;
+}
+
+.iq-capacitacion-catalogo-section .iq-capacitacion-btn.iq-capacitacion-btn-primary:hover,
+.iq-capacitacion-catalogo-section .iq-capacitacion-btn.iq-capacitacion-btn-primary:focus-visible {
+  background: #fff !important;
+  color: #000 !important;
+  border-color: rgba(0, 0, 0, 0.12);
+  text-decoration: none;
 }
 
 /* Contacto Capacitación (form + CTA con fondo-capacitacion-costado.jpg) */
@@ -4243,6 +4318,31 @@ body.iq-page-servicios-body {
   max-width: 1688px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.iq-capacitacion-contact-section .iq-capacitacion-contact-title {
+  font-family: var(--iq-font-sans);
+  font-size: 36px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.2;
+  color: var(--iq-color-dark);
+  margin: 0 0 1.5rem;
+}
+
+.iq-capacitacion-form-wrap .iq-contact-form input[type="text"],
+.iq-capacitacion-form-wrap .iq-contact-form input[type="email"],
+.iq-capacitacion-form-wrap .iq-contact-form input[type="tel"],
+.iq-capacitacion-form-wrap .iq-contact-form textarea {
+  border: 2px solid #47c281;
+  border-radius: 6px;
+}
+
+.iq-capacitacion-form-wrap .iq-contact-form input:focus,
+.iq-capacitacion-form-wrap .iq-contact-form textarea:focus {
+  outline: none;
+  border-color: #47c281;
+  box-shadow: 0 0 0 3px rgba(71, 194, 129, 0.35);
 }
 
 .iq-capacitacion-contact-grid {
@@ -4272,21 +4372,42 @@ body.iq-page-servicios-body {
   background-repeat: no-repeat;
   border-radius: var(--iq-radius-lg);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 2rem;
   overflow: hidden;
 }
 
-.iq-capacitacion-cta-text {
+.iq-capacitacion-cta-copy {
   position: relative;
+  width: 100%;
   margin: 0;
-  color: #fff;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.3;
   z-index: 1;
-  text-align: center;
+  text-align: left;
+  color: #000;
+  font-family: var(--iq-font-sans);
+}
+
+.iq-capacitacion-cta-copy > p:first-of-type {
+  margin: 0 0 15px;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.3;
+  color: inherit;
+}
+
+.iq-capacitacion-cta-copy > p:not(:first-of-type) {
+  margin: 0 0 15px;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  color: inherit;
+}
+
+.iq-capacitacion-cta-copy > p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 1100px) {
@@ -4305,8 +4426,8 @@ body.iq-page-servicios-body {
   .iq-capacitacion-partner-inner {
     grid-template-columns: 1fr;
   }
-  .iq-capacitacion-evoluciona-grid {
-    grid-template-columns: 1fr 1fr;
+  .iq-capacitacion-evoluciona-row--top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -4314,8 +4435,13 @@ body.iq-page-servicios-body {
   .iq-capacitacion-beneficios-grid {
     grid-template-columns: 1fr;
   }
-  .iq-capacitacion-evoluciona-grid {
+  .iq-capacitacion-evoluciona-row--top {
     grid-template-columns: 1fr;
+  }
+
+  .iq-capacitacion-evoluciona-row--bottom .iq-capacitacion-evoluciona-card--bottom {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
   .iq-capacitacion-evoluciona .iq-capacitacion-section-title {
     font-size: clamp(1.35rem, 5vw, 36px);
@@ -4323,8 +4449,12 @@ body.iq-page-servicios-body {
   .iq-capacitacion-evoluciona-title {
     font-size: clamp(1.1rem, 4.5vw, 28px);
   }
-  .iq-capacitacion-cta-text {
-    font-size: 1.25rem;
+  .iq-capacitacion-cta-copy > p:first-of-type {
+    font-size: clamp(1.125rem, 4vw, 28px);
+  }
+
+  .iq-capacitacion-cta-copy > p:not(:first-of-type) {
+    font-size: clamp(1rem, 3vw, 18px);
   }
 }
 

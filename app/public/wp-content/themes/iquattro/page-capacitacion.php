@@ -171,31 +171,64 @@ $evoluciona_cards = array(
       <div class="iq-container">
         <h2 class="iq-capacitacion-section-title"><?php echo esc_html($data['evoluciona_title']); ?></h2>
         <div class="iq-capacitacion-evoluciona-grid">
-          <?php foreach ($evoluciona_cards as $card) : ?>
-            <div class="iq-capacitacion-evoluciona-card">
-              <h3 class="iq-capacitacion-evoluciona-title">
-                <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-evoluciona-icon" width="30" height="30" loading="lazy">
-                <?php echo esc_html($card['title']); ?>
-              </h3>
-              <?php if ($card['sub']) : ?>
-                <p class="iq-capacitacion-evoluciona-sub"><?php echo esc_html($card['sub']); ?></p>
-              <?php endif; ?>
-            </div>
-          <?php endforeach; ?>
+          <div class="iq-capacitacion-evoluciona-row iq-capacitacion-evoluciona-row--top">
+            <?php foreach (array_slice($evoluciona_cards, 0, 3) as $card) : ?>
+              <div class="iq-capacitacion-evoluciona-card">
+                <h3 class="iq-capacitacion-evoluciona-title">
+                  <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-evoluciona-icon" width="30" height="30" loading="lazy">
+                  <?php echo esc_html($card['title']); ?>
+                </h3>
+                <?php if ($card['sub']) : ?>
+                  <p class="iq-capacitacion-evoluciona-sub"><?php echo esc_html($card['sub']); ?></p>
+                <?php endif; ?>
+              </div>
+            <?php endforeach; ?>
+          </div>
+          <div class="iq-capacitacion-evoluciona-row iq-capacitacion-evoluciona-row--bottom">
+            <?php foreach (array_slice($evoluciona_cards, 3, 2) as $card) : ?>
+              <div class="iq-capacitacion-evoluciona-card iq-capacitacion-evoluciona-card--bottom">
+                <h3 class="iq-capacitacion-evoluciona-title">
+                  <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-evoluciona-icon" width="30" height="30" loading="lazy">
+                  <?php echo esc_html($card['title']); ?>
+                </h3>
+                <?php if ($card['sub']) : ?>
+                  <p class="iq-capacitacion-evoluciona-sub"><?php echo esc_html($card['sub']); ?></p>
+                <?php endif; ?>
+              </div>
+            <?php endforeach; ?>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="iq-section iq-capacitacion-catalogo-section" style="background-image: url('<?php echo esc_url($catalogo_bg); ?>');">
       <div class="iq-container">
-        <div class="iq-capacitacion-catalogo-block">
-          <h2 class="iq-capacitacion-section-title"><?php echo esc_html($data['catalogo_section_title']); ?></h2>
-          <p class="iq-capacitacion-catalogo-text"><?php echo esc_html($data['catalogo_section_text']); ?></p>
+        <div class="iq-capacitacion-catalogo-block iq-capacitacion-catalogo-block--intro">
+          <h2 class="iq-capacitacion-section-title iq-capacitacion-catalogo-intro-title"><?php echo esc_html($data['catalogo_section_title']); ?></h2>
+          <div class="iq-capacitacion-catalogo-text iq-capacitacion-catalogo-intro-text">
+            <?php
+            $catalogo_intro_raw = isset($data['catalogo_section_text']) ? (string) $data['catalogo_section_text'] : '';
+            if (strpos($catalogo_intro_raw, '<') !== false) {
+              echo wp_kses_post($catalogo_intro_raw);
+            } else {
+              echo wp_kses_post(wpautop(esc_html($catalogo_intro_raw)));
+            }
+            ?>
+          </div>
           <a href="<?php echo esc_url($catalogo_cursos_url); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($data['catalogo_btn']); ?></a>
         </div>
-        <div class="iq-capacitacion-catalogo-block" id="cronograma">
-          <h2 class="iq-capacitacion-section-title"><?php echo esc_html($data['cronograma_title']); ?></h2>
-          <p class="iq-capacitacion-catalogo-text"><?php echo esc_html($data['cronograma_text']); ?></p>
+        <div class="iq-capacitacion-catalogo-block iq-capacitacion-catalogo-block--cronograma" id="cronograma">
+          <h2 class="iq-capacitacion-section-title iq-capacitacion-catalogo-intro-title"><?php echo esc_html($data['cronograma_title']); ?></h2>
+          <div class="iq-capacitacion-catalogo-text iq-capacitacion-catalogo-intro-text">
+            <?php
+            $cronograma_raw = isset($data['cronograma_text']) ? (string) $data['cronograma_text'] : '';
+            if (strpos($cronograma_raw, '<') !== false) {
+              echo wp_kses_post($cronograma_raw);
+            } else {
+              echo wp_kses_post(wpautop(esc_html($cronograma_raw)));
+            }
+            ?>
+          </div>
           <a href="<?php echo esc_url($cronograma_url); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($data['cronograma_btn']); ?></a>
         </div>
       </div>
@@ -203,7 +236,7 @@ $evoluciona_cards = array(
 
     <section class="iq-section iq-capacitacion-contact-section">
       <div class="iq-container">
-        <h2 class="iq-capacitacion-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
+        <h2 class="iq-capacitacion-section-title iq-capacitacion-contact-title"><?php echo esc_html($data['contact_title']); ?></h2>
         <div class="iq-capacitacion-contact-grid">
           <div class="iq-capacitacion-form-wrap">
             <form id="iq-capacitacion-form" class="iq-contact-form iq-capacitacion-form" method="post" novalidate>
@@ -237,7 +270,26 @@ $evoluciona_cards = array(
             </form>
           </div>
           <div class="iq-capacitacion-cta-imagen" style="background-image: url('<?php echo esc_url($images_dir . 'fondo-capacitacion-costado.jpg'); ?>');">
-            <p class="iq-capacitacion-cta-text"><?php echo esc_html($data['contact_cta_text']); ?></p>
+            <div class="iq-capacitacion-cta-copy">
+              <?php
+              $cta_raw = isset($data['contact_cta_text']) ? (string) $data['contact_cta_text'] : '';
+              if (strpos($cta_raw, '<') !== false) {
+                echo wp_kses_post($cta_raw);
+              } else {
+                $plain = trim($cta_raw);
+                $lead = 'Ya sea para ti o para tu equipo, estamos listos para acompañarte.';
+                $rest = 'Déjanos tus datos y te contactaremos para brindarte información clara y personalizada sobre nuestros programas de capacitación.';
+                if ($plain !== '' && strpos($plain, $lead) === 0) {
+                  $after = trim(substr($plain, strlen($lead)));
+                  $after = ltrim($after, " \t\n\r\0\x0B.");
+                  $body  = ($after !== '') ? $after : $rest;
+                  echo wp_kses_post('<p>' . esc_html($lead) . '</p><p>' . esc_html($body) . '</p>');
+                } elseif ($plain !== '') {
+                  echo wp_kses_post(wpautop(esc_html($plain)));
+                }
+              }
+              ?>
+            </div>
           </div>
         </div>
       </div>
