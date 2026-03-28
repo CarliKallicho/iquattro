@@ -21,18 +21,32 @@ $dc_card_urls = array(
   get_permalink(get_page_by_path('data-center-software')) ?: home_url('/data-center-software/'),
   get_permalink(get_page_by_path('data-center-servicios')) ?: home_url('/data-center-servicios/'),
 );
+$dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 ?>
 <main id="main" class="iq-main iq-datacenter-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-datacenter-hero" style="background-image: url('<?php echo esc_url($hero_bg); ?>');">
-    <div class="iq-container">
-      <h1 class="iq-datacenter-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_1']); ?></p>
-      <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_2']); ?></p>
-      <p class="iq-datacenter-hero-actions">
-        <a href="#iq-dc-servicios" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
-      </p>
+    <div class="iq-container iq-datacenter-hero-grid">
+      <div class="iq-datacenter-hero-copy">
+        <h1 class="iq-datacenter-hero-title">
+          <?php
+          $dc_l1 = isset($dc_hero_title_lines[0]) ? $dc_hero_title_lines[0] : '';
+          $dc_l2 = isset($dc_hero_title_lines[1]) ? $dc_hero_title_lines[1] : '';
+          if ($dc_l1 !== '' && $dc_l2 !== '') :
+            ?>
+            <span class="iq-datacenter-hero-title-line"><?php echo esc_html($dc_l1); ?></span>
+            <span class="iq-datacenter-hero-title-line"><?php echo esc_html($dc_l2); ?></span>
+          <?php else : ?>
+            <?php echo esc_html($dc_l1 !== '' ? $dc_l1 : $dc_l2); ?>
+          <?php endif; ?>
+        </h1>
+        <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_1']); ?></p>
+        <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_2']); ?></p>
+        <p class="iq-datacenter-hero-actions">
+          <a href="#iq-dc-servicios" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+        </p>
+      </div>
     </div>
   </section>
   </div>
@@ -40,25 +54,49 @@ $dc_card_urls = array(
   <section class="iq-section iq-datacenter-infra">
     <div class="iq-container">
       <h2 class="iq-section-title"><?php echo esc_html($data['infra_title']); ?></h2>
-      <p class="iq-datacenter-intro"><?php echo esc_html($data['infra_intro']); ?></p>
+      <?php
+      $infra_intro_raw = isset($data['infra_intro']) ? (string) $data['infra_intro'] : '';
+      ?>
+      <div class="iq-datacenter-intro iq-datacenter-infra-intro">
+        <?php
+        if (strpos($infra_intro_raw, '<') !== false) {
+          echo wp_kses_post($infra_intro_raw);
+        } else {
+          echo wp_kses_post(wpautop(esc_html($infra_intro_raw)));
+        }
+        ?>
+      </div>
     </div>
   </section>
 
   <section class="iq-section iq-datacenter-como">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['como_title']); ?></h2>
-      <div class="iq-datacenter-pills-wrap">
-        <?php foreach ($como_pills as $pill) : ?>
-          <span class="iq-datacenter-pill"><?php echo esc_html($pill); ?></span>
-        <?php endforeach; ?>
+      <div class="iq-datacenter-como-grid">
+        <h2 class="iq-section-title iq-datacenter-como-title"><?php echo esc_html($data['como_title']); ?></h2>
+        <div class="iq-datacenter-pills-wrap">
+          <?php foreach ($como_pills as $pill) : ?>
+            <span class="iq-datacenter-pill"><?php echo esc_html($pill); ?></span>
+          <?php endforeach; ?>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="iq-dc-servicios" class="iq-section iq-datacenter-servicios">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['servicios_title']); ?></h2>
-      <p class="iq-datacenter-intro"><?php echo esc_html($data['servicios_intro']); ?></p>
+      <h2 class="iq-section-title iq-datacenter-servicios-title"><?php echo esc_html($data['servicios_title']); ?></h2>
+      <?php
+      $servicios_intro_raw = isset($data['servicios_intro']) ? (string) $data['servicios_intro'] : '';
+      ?>
+      <div class="iq-datacenter-intro iq-datacenter-servicios-intro">
+        <?php
+        if (strpos($servicios_intro_raw, '<') !== false) {
+          echo wp_kses_post($servicios_intro_raw);
+        } else {
+          echo wp_kses_post(wpautop(esc_html($servicios_intro_raw)));
+        }
+        ?>
+      </div>
       <div class="iq-datacenter-servicios-cards">
         <?php foreach ($servicios_cards as $idx => $card) : ?>
           <?php
@@ -70,10 +108,12 @@ $dc_card_urls = array(
           $card_url = isset($dc_card_urls[ $idx ]) ? $dc_card_urls[ $idx ] : (get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/'));
           ?>
           <div class="iq-datacenter-servicio-card">
-            <img src="<?php echo esc_url($icon_src); ?>" alt="" class="iq-datacenter-servicio-icon" width="48" height="48" loading="lazy">
-            <h3 class="iq-datacenter-servicio-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+            <div class="iq-datacenter-servicio-head">
+              <img src="<?php echo esc_url($icon_src); ?>" alt="" class="iq-datacenter-servicio-icon" width="30" height="30" loading="lazy">
+              <h3 class="iq-datacenter-servicio-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+            </div>
             <p class="iq-datacenter-servicio-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
-            <a href="<?php echo esc_url($card_url); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html(isset($card['btn_txt']) ? $card['btn_txt'] : ''); ?></a>
+            <a href="<?php echo esc_url($card_url); ?>" class="iq-btn iq-btn-dark iq-datacenter-servicio-btn"><?php echo esc_html(isset($card['btn_txt']) ? $card['btn_txt'] : ''); ?></a>
           </div>
         <?php endforeach; ?>
       </div>
@@ -82,12 +122,24 @@ $dc_card_urls = array(
 
   <section class="iq-section iq-datacenter-soluciones">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['soluciones_title']); ?></h2>
+      <h2 class="iq-section-title iq-datacenter-soluciones-title"><?php echo esc_html($data['soluciones_title']); ?></h2>
       <div class="iq-datacenter-soluciones-cards">
-        <?php foreach ($soluciones_cards as $sc) : ?>
-          <div class="iq-datacenter-solucion-card">
+        <?php foreach ($soluciones_cards as $sol_idx => $sc) : ?>
+          <?php
+          $sol_grad = ((int) $sol_idx === 1) ? 'iq-datacenter-solucion-card--grad-dark-light' : 'iq-datacenter-solucion-card--grad-light-dark';
+          $sol_text = isset($sc['text']) ? (string) $sc['text'] : '';
+          ?>
+          <div class="iq-datacenter-solucion-card <?php echo esc_attr($sol_grad); ?>">
             <h3 class="iq-datacenter-solucion-title"><?php echo esc_html(isset($sc['title']) ? $sc['title'] : ''); ?></h3>
-            <p><?php echo esc_html(isset($sc['text']) ? $sc['text'] : ''); ?></p>
+            <div class="iq-datacenter-solucion-body">
+              <?php
+              if (strpos($sol_text, '<') !== false) {
+                echo wp_kses_post($sol_text);
+              } else {
+                echo wp_kses_post(wpautop(esc_html($sol_text)));
+              }
+              ?>
+            </div>
           </div>
         <?php endforeach; ?>
       </div>

@@ -46,7 +46,7 @@ add_action('after_setup_theme', 'iquattro_setup');
  * Añadir clases al body en páginas con fondo gradiente (Data Center, Seguridad, Consultoría, Servicios)
  */
 function iquattro_body_class_page_gradients($classes) {
-  if (is_page('data-center')) {
+  if (is_page('data-center') || is_page(array('data-center-hardware', 'data-center-software', 'data-center-servicios'))) {
     $classes[] = 'iq-page-data-center-body';
   }
   if (is_page('seguridad')) {
@@ -61,6 +61,28 @@ function iquattro_body_class_page_gradients($classes) {
   return $classes;
 }
 add_filter('body_class', 'iquattro_body_class_page_gradients');
+
+/**
+ * Capa de gradiente anclada al viewport (no se desplaza con el scroll del documento).
+ * Un div position:fixed es más fiable que background-attachment/body::before con html { overflow-x: hidden }.
+ */
+function iquattro_render_fixed_page_gradient() {
+  $variant = '';
+  if (is_page('data-center') || is_page(array('data-center-hardware', 'data-center-software', 'data-center-servicios'))) {
+    $variant = 'datacenter';
+  } elseif (is_page('seguridad')) {
+    $variant = 'seguridad';
+  } elseif (is_page('consultoria')) {
+    $variant = 'consultoria';
+  } elseif (is_page('servicios')) {
+    $variant = 'servicios';
+  }
+  if ($variant === '') {
+    return;
+  }
+  echo '<div class="iq-fixed-page-gradient iq-fixed-page-gradient--' . esc_attr($variant) . '" aria-hidden="true"></div>';
+}
+add_action('wp_body_open', 'iquattro_render_fixed_page_gradient', 1);
 
 /**
  * Crear la página Capacitación con slug "capacitacion" si no existe (para que page-capacitacion.php funcione)
@@ -342,6 +364,46 @@ function iquattro_fix_capacitacion_menu_url($items, $args) {
 add_filter('wp_nav_menu_objects', 'iquattro_fix_capacitacion_menu_url', 10, 2);
 
 /**
+ * Título del hero Data Center en dos líneas: usa el carácter | en el meta (primera|segunda).
+ * Si el texto guardado es el antiguo en una sola frase, parte después de "para ".
+ *
+ * @return string[] Una cadena, o dos para dos líneas.
+ */
+function iquattro_dc_hero_title_lines($title) {
+  $title = trim((string) $title);
+  if ($title === '') {
+    return array('');
+  }
+  $normalize = static function ($s) {
+    return trim(preg_replace('/\s+/u', ' ', $s));
+  };
+  if (strpos($title, '|') !== false) {
+    $parts = explode('|', $title, 2);
+    return array(
+      $normalize($parts[0]),
+      isset($parts[1]) ? $normalize($parts[1]) : '',
+    );
+  }
+  // Dos líneas desde el textarea (Enter entre frases).
+  if (preg_match('/\R/u', $title)) {
+    $parts = preg_split('/\R/u', $title, 2);
+    $a = $normalize($parts[0]);
+    $b = isset($parts[1]) ? $normalize($parts[1]) : '';
+    if ($a !== '' && $b !== '') {
+      return array($a, $b);
+    }
+  }
+  $prefix = 'Soluciones de Data Center para ';
+  if (strpos($title, $prefix) === 0) {
+    $rest = $normalize(substr($title, strlen($prefix)));
+    if ($rest !== '') {
+      return array('Soluciones de Data Center para', $rest);
+    }
+  }
+  return array($title);
+}
+
+/**
  * Renderizar el topbar de la página Capacitación (logo + menú). Se usa dentro de .iq-capacitacion-wrap.
  */
 function iquattro_render_capacitacion_topbar() {
@@ -349,6 +411,9 @@ function iquattro_render_capacitacion_topbar() {
   if (is_page('acerca-de')) {
     $logo_src = $theme_uri . '/assets/images/logo-iquattro-acerca.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Acerca de', 'iquattro');
+  } elseif (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios'))) {
+    $logo_src = $theme_uri . '/assets/images/logo-iquattro-datacenter.png';
+    $logo_alt = get_bloginfo('name') . ' – ' . __('Data Center', 'iquattro');
   } else {
     $logo_src = $theme_uri . '/assets/images/iquattro-capacitacion-header.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Capacitación', 'iquattro');

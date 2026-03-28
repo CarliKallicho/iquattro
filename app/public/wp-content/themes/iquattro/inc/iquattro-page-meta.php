@@ -91,6 +91,7 @@ function iquattro_page_meta_html_field_keys($meta_slug) {
   $map = array(
     'acerca-de' => array('mision_content', 'vision_content'),
     'front-page' => array('feature1_text', 'feature2_text', 'feature3_text'),
+    'data-center' => array('infra_intro', 'servicios_intro'),
   );
   $keys = isset($map[ $meta_slug ]) ? $map[ $meta_slug ] : array();
   return apply_filters('iquattro_page_meta_html_field_keys', $keys, $meta_slug);
@@ -332,7 +333,12 @@ function iquattro_page_meta_save_repeaters($post_id, $meta_slug) {
           continue;
         }
         if ($field_type === 'textarea') {
-          $val = sanitize_textarea_field(wp_unslash($_POST[ $name ]));
+          $raw_ta = wp_unslash($_POST[ $name ]);
+          if ($meta_slug === 'data-center' && $rep_key === 'soluciones_cards' && $field_name === 'text') {
+            $val = wp_kses_post($raw_ta);
+          } else {
+            $val = sanitize_textarea_field($raw_ta);
+          }
         } elseif ($field_type === 'attachment') {
           $val = absint(wp_unslash($_POST[ $name ]));
         } else {

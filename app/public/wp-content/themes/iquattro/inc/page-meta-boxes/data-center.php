@@ -10,14 +10,21 @@ $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards']
   <?php
   iquattro_page_meta_render_attachment_field('iq_page_hero_bg_id', __('Imagen de fondo del hero (por defecto: fondo-datacenter.jpg)', 'iquattro'), $data['hero_bg_id']);
   ?>
-  <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_hero_title" value="<?php echo esc_attr($data['hero_title']); ?>" class="widefat"></p>
+  <p>
+    <label><?php esc_html_e('Título (dos líneas: separa con el carácter |)', 'iquattro'); ?></label><br>
+    <textarea name="iq_page_hero_title" class="widefat" rows="2" placeholder="<?php esc_attr_e('Primera línea|segunda línea', 'iquattro'); ?>"><?php echo esc_textarea($data['hero_title']); ?></textarea>
+  </p>
   <p><label><?php esc_html_e('Descripción 1', 'iquattro'); ?></label><br><textarea name="iq_page_hero_desc_1" class="widefat" rows="2"><?php echo esc_textarea($data['hero_desc_1']); ?></textarea></p>
   <p><label><?php esc_html_e('Descripción 2', 'iquattro'); ?></label><br><textarea name="iq_page_hero_desc_2" class="widefat" rows="2"><?php echo esc_textarea($data['hero_desc_2']); ?></textarea></p>
   <p><label><?php esc_html_e('Texto botón', 'iquattro'); ?></label><br><input type="text" name="iq_page_hero_btn" value="<?php echo esc_attr($data['hero_btn']); ?>" class="widefat"></p>
 
   <p><strong><?php esc_html_e('Infraestructura', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_infra_title" value="<?php echo esc_attr($data['infra_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Texto', 'iquattro'); ?></label><br><textarea name="iq_page_infra_intro" class="widefat" rows="3"><?php echo esc_textarea($data['infra_intro']); ?></textarea></p>
+  <p>
+    <label><?php esc_html_e('Texto', 'iquattro'); ?></label>
+    <span class="description"><?php esc_html_e('Puedes usar párrafos HTML (&lt;p&gt;…&lt;/p&gt;) y negrita con &lt;strong&gt;…&lt;/strong&gt;.', 'iquattro'); ?></span><br>
+    <textarea name="iq_page_infra_intro" class="widefat" rows="10"><?php echo esc_textarea($data['infra_intro']); ?></textarea>
+  </p>
 
   <p><strong><?php esc_html_e('Cómo trabajamos', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_como_title" value="<?php echo esc_attr($data['como_title']); ?>" class="widefat"></p>
@@ -25,7 +32,11 @@ $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards']
 
   <p><strong><?php esc_html_e('Nuestros servicios', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_servicios_title" value="<?php echo esc_attr($data['servicios_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Intro', 'iquattro'); ?></label><br><textarea name="iq_page_servicios_intro" class="widefat" rows="2"><?php echo esc_textarea($data['servicios_intro']); ?></textarea></p>
+  <p>
+    <label><?php esc_html_e('Intro', 'iquattro'); ?></label>
+    <span class="description"><?php esc_html_e('Párrafos con &lt;p&gt;…&lt;/p&gt; o texto plano (saltos de línea).', 'iquattro'); ?></span><br>
+    <textarea name="iq_page_servicios_intro" class="widefat" rows="6"><?php echo esc_textarea($data['servicios_intro']); ?></textarea>
+  </p>
   <p><?php esc_html_e('Cards (icono = nombre en assets/icons/; enlaces Hardware/Software/Servicios se generan automático)', 'iquattro'); ?></p>
   <?php for ($i = 0; $i < 5; $i++) : $c = isset($servicios_cards[$i]) ? $servicios_cards[$i] : array('icon'=>'','icon_id'=>0,'title'=>'','desc'=>'','btn_txt'=>''); ?>
     <div style="border:1px solid #ccc;padding:10px;margin-bottom:8px;background:#f9f9f9;">
@@ -50,7 +61,10 @@ $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards']
     <div style="border:1px solid #ccc;padding:10px;margin-bottom:8px;background:#f9f9f9;">
       <strong><?php echo esc_html(sprintf(__('Solución %d', 'iquattro'), $i+1)); ?></strong>
       <p><input type="text" name="iq_page_soluciones_cards_<?php echo $i; ?>_title" value="<?php echo esc_attr($c['title']); ?>" placeholder="<?php esc_attr_e('Título', 'iquattro'); ?>" class="widefat"></p>
-      <p><textarea name="iq_page_soluciones_cards_<?php echo $i; ?>_text" class="widefat" rows="3"><?php echo esc_textarea(isset($c['text'])?$c['text']:''); ?></textarea></p>
+      <p>
+        <span class="description"><?php esc_html_e('Texto: puedes usar &lt;p&gt; y &lt;strong&gt; para negritas.', 'iquattro'); ?></span><br>
+        <textarea name="iq_page_soluciones_cards_<?php echo $i; ?>_text" class="widefat" rows="8"><?php echo esc_textarea(isset($c['text']) ? $c['text'] : ''); ?></textarea>
+      </p>
     </div>
   <?php endfor; ?>
 

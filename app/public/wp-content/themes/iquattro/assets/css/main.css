@@ -1873,85 +1873,607 @@
   overflow-x: hidden;
 }
 
-/* Fondo gradiente en el body de la página Data Center (toda la pantalla) */
-body.iq-page-data-center-body {
-  background: linear-gradient(to bottom, rgba(243, 113, 43, 0.6), rgba(255, 255, 255, 0.98));
-  min-height: 100vh;
-  background-attachment: fixed;
+/*
+ * Gradientes de página: div fijo al viewport (primer hijo de body vía wp_body_open).
+ * Oscuro arriba → claro abajo en la ventana; al hacer scroll solo se mueve el contenido, no el degradado.
+ */
+html:has(body.iq-page-data-center-body),
+html:has(body.iq-page-seguridad-body),
+html:has(body.iq-page-consultoria-body),
+html:has(body.iq-page-servicios-body) {
+  background-color: transparent;
 }
 
-/* Fondo gradiente en el body de la página Seguridad: oscuro a claro #D7263D 60% */
-body.iq-page-seguridad-body {
-  background: linear-gradient(to bottom, rgba(215, 38, 61, 0.6), rgba(255, 255, 255, 0.98));
-  min-height: 100vh;
-  background-attachment: fixed;
-}
-
-/* Fondo gradiente en el body de la página Consultoría: claro a oscuro #7B4B94 60% */
-body.iq-page-consultoria-body {
-  background: linear-gradient(to bottom, rgba(123, 75, 148, 0.6),  rgba(255, 255, 255, 0.98));
-  min-height: 100vh;
-  background-attachment: fixed;
-}
-
-/* Fondo gradiente en el body de la página Servicios: claro a oscuro #FFC847 60% */
+body.iq-page-data-center-body,
+body.iq-page-seguridad-body,
+body.iq-page-consultoria-body,
 body.iq-page-servicios-body {
-  background: linear-gradient(to bottom, rgba(255, 200, 71, 0.6),  rgba(255, 255, 255, 0.98));
+  background: none;
   min-height: 100vh;
-  background-attachment: fixed;
+}
+
+.iq-fixed-page-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* ~20% más claro: mezcla de los naranjas hacia blanco (misma estructura de paradas) */
+.iq-fixed-page-gradient--datacenter {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(245, 141, 85, 0.28) 0%,
+    rgba(245, 141, 85, 0.4) 42%,
+    rgba(255, 255, 255, 0.99) 100%
+  );
+}
+
+.iq-fixed-page-gradient--seguridad {
+  background-image: linear-gradient(to bottom, rgba(215, 38, 61, 0.6), rgba(255, 255, 255, 0.98));
+}
+
+.iq-fixed-page-gradient--consultoria {
+  background-image: linear-gradient(to bottom, rgba(123, 75, 148, 0.6), rgba(255, 255, 255, 0.98));
+}
+
+.iq-fixed-page-gradient--servicios {
+  background-image: linear-gradient(to bottom, rgba(255, 200, 71, 0.6), rgba(255, 255, 255, 0.98));
+}
+
+/* --- Data Center catálogo (hardware / software / servicios): mismo gradiente de página y cards tipo Soluciones --- */
+.iq-dc-catalogo-page {
+  overflow-x: hidden;
+}
+
+/* Mismo criterio de ancho que .iq-datacenter-infra / .iq-datacenter-servicios (casi ancho completo, márgenes laterales suaves) */
+.iq-dc-catalogo-page .iq-container {
+  max-width: none;
+  width: 100%;
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+}
+
+.iq-dc-catalogo-hero {
+  text-align: center;
+}
+
+.iq-dc-catalogo-hero .iq-container {
+  text-align: center;
+}
+
+.iq-dc-catalogo-hero-title {
+  font-family: var(--iq-font-sans);
+  font-size: 48px;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  color: var(--iq-color-dark);
+  text-align: center;
+  width: 100%;
+  max-width: none;
+}
+
+.iq-dc-catalogo-hero-desc {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--iq-color-dark);
+  text-align: center;
+  width: 100%;
+  max-width: none;
+}
+
+/* Data Center catálogo — "Qué resolvemos": ~¼ título | ~¾ caja blanca (como diseño) */
+.iq-dc-queresolvemos-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  column-gap: clamp(1rem, 3vw, 2.5rem);
+  row-gap: 1rem;
+  align-items: start;
+}
+
+.iq-dc-queresolvemos-title {
+  grid-column: 1;
+  margin: 0;
+  padding: 0;
+  font-family: var(--iq-font-sans);
+  font-size: 36px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.2;
+  color: var(--iq-color-dark);
+  text-align: left;
+}
+
+.iq-dc-queresolvemos-box {
+  grid-column: 2;
+  margin: 0;
+  padding: clamp(1.35rem, 2.5vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.iq-dc-queresolvemos-box-title {
+  margin: 0 0 1rem;
+  padding: 0;
+  font-family: var(--iq-font-sans);
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1.35;
+  color: var(--iq-color-dark);
+  text-align: left;
+  width: 100%;
+}
+
+.iq-dc-queresolvemos-box-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--iq-color-dark);
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .iq-dc-queresolvemos-row {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-dc-queresolvemos-box {
+    grid-column: 1;
+  }
+}
+
+.iq-dc-catalogo-nav {
+  padding: 1.5rem 0 2.5rem;
+}
+
+.iq-dc-catalogo-nav .iq-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iq-dc-catalogo-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0a121f;
+  background: #f9f9f999;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.iq-dc-catalogo-nav-btn:hover {
+  background: #0a121fcc;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(10, 18, 31, 0.25);
+}
+
+.iq-dc-catalogo-nav-btn:focus-visible {
+  outline: 2px solid #0a121f;
+  outline-offset: 3px;
+}
+
+.iq-dc-catalogo-nav-btn:hover:focus-visible {
+  outline-color: #fff;
+}
+
+.iq-dc-catalogo-nav-chevron {
+  flex-shrink: 0;
+  display: block;
+  color: currentColor;
+}
+
+.iq-dc-catalogo-nav-btn--prev .iq-dc-catalogo-nav-chevron {
+  margin-right: 0.15rem;
+}
+
+.iq-dc-catalogo-nav-btn--next .iq-dc-catalogo-nav-chevron {
+  margin-left: 0.15rem;
+}
+
+@media (max-width: 520px) {
+  .iq-dc-catalogo-nav .iq-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .iq-dc-catalogo-nav-btn {
+    width: 100%;
+  }
+}
+
+.iq-dc-catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .iq-dc-catalogo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .iq-dc-catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Data Center — catálogo Servicios (solo 3 cards): tres columnas a ancho completo; en tablet la tercera queda centrada */
+.iq-dc-servicios-catalogo-page .iq-dc-catalogo-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .iq-dc-servicios-catalogo-page .iq-dc-catalogo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .iq-dc-servicios-catalogo-page .iq-dc-catalogo-card:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 28rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .iq-dc-servicios-catalogo-page .iq-dc-catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-dc-servicios-catalogo-page .iq-dc-catalogo-card:nth-child(3) {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
+    max-width: none;
+  }
+}
+
+.iq-dc-catalogo-card--grad-light-dark {
+  background: linear-gradient(to bottom, #f3712b99, #f3712b);
+}
+
+.iq-dc-catalogo-card--grad-dark-light {
+  background: linear-gradient(to bottom, #f3712b, #f3712b99);
+}
+
+.iq-dc-catalogo-card {
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+  box-shadow: var(--iq-shadow);
+  color: #fff;
+}
+
+.iq-dc-catalogo-card-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.iq-dc-catalogo-card-icon {
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+}
+
+.iq-dc-catalogo-card-title {
+  font-size: clamp(1.25rem, 2.5vw, 28px);
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.iq-dc-catalogo-card-body {
+  text-align: left;
+}
+
+.iq-dc-catalogo-card-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-align: left;
+}
+
+.iq-dc-catalogo-card-list li {
+  margin-bottom: 0.35rem;
+}
+
+.iq-dc-catalogo-card-list li:last-child {
+  margin-bottom: 0;
 }
 
 .iq-datacenter-page .iq-datacenter-hero .iq-container,
-.iq-datacenter-page .iq-datacenter-infra .iq-container,
 .iq-datacenter-page .iq-datacenter-como .iq-container,
-.iq-datacenter-page .iq-datacenter-servicios .iq-container,
 .iq-datacenter-page .iq-datacenter-soluciones .iq-container,
 .iq-datacenter-page .iq-datacenter-contact-section .iq-container {
   max-width: 1688px;
   width: 100%;
 }
 
+/* Infraestructura: ancho casi completo de la ventana (márgenes laterales suaves) */
+.iq-datacenter-page .iq-datacenter-infra .iq-container {
+  max-width: none;
+  width: 100%;
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* Nuestros servicios (intro): mismo ancho completo que Infraestructura */
+.iq-datacenter-page .iq-datacenter-servicios .iq-container {
+  max-width: none;
+  width: 100%;
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+}
+
 .iq-datacenter-hero {
   position: relative;
-  background-color: #fffbeb;
-  background-size: cover;
-  background-position: center;
+  background-color: #ffffff;
+  background-size: auto 100%;
+  background-position: right center;
   background-repeat: no-repeat;
-  padding: 3rem 1.5rem;
-  overflow: hidden;
+  padding: clamp(2.75rem, 6.5vh, 5.25rem) 1.5rem clamp(2.25rem, 5vh, 4rem);
+  /* visible: el título en 2 líneas con nowrap puede superar el ancho previo; evita recortar texto */
+  overflow: visible;
   border-radius: 16px;
+  min-height: clamp(22rem, 52vh, 36rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Hero en dos columnas: más espacio a la izquierda para el título en una sola línea por fila */
+.iq-datacenter-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  min-height: min(28rem, 44vh);
+}
+
+.iq-datacenter-hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: none;
+  width: 100%;
+  min-width: 0;
+  align-self: center;
+  padding-top: clamp(0.5rem, 2vh, 1.75rem);
+  margin-top: 30px;
 }
 
 .iq-datacenter-hero-title {
   position: relative;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--iq-color-dark);
-  margin: 0 0 1rem;
-  max-width: 42ch;
+  font-family: var(--iq-font-sans);
+  /* Escala hasta 48px pero baja antes en anchos medios para que cada línea del título quepa en una fila */
+  font-size: clamp(1.35rem, 2.85vw + 0.35rem, 48px);
+  font-weight: 800;
+  font-style: normal;
+  color: #2d343e;
+  margin: 0 0 1.35rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  word-break: normal;
+  overflow-wrap: normal;
+  margin-bottom: 50px;
+}
+
+/* Exactamente 2 líneas en pantalla: una fila = línea 1 (…Data Center para), otra = línea 2 (entornos…) */
+.iq-datacenter-hero-title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .iq-datacenter-hero-desc {
   position: relative;
-  margin: 0 0 0.75rem;
-  color: var(--iq-color-dark);
-  max-width: 65ch;
-  line-height: 1.6;
+  margin: 0 0 1rem;
+  font-family: var(--iq-font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  color: #374151;
+  line-height: 1.55;
+  max-width: 40rem;
+}
+
+.iq-datacenter-hero-copy > p.iq-datacenter-hero-desc:nth-of-type(2) {
+  margin-bottom: 0;
 }
 
 .iq-datacenter-hero-actions {
   position: relative;
-  margin: 1rem 0 0;
+  margin: 3.5rem 0 0;
 }
 
 .iq-datacenter-hero-actions .iq-btn {
   padding: 0.75rem 1.75rem;
 }
 
-/* Infraestructura y Cómo trabajamos (fondo melocotón) */
-.iq-datacenter-infra,
+.iq-datacenter-hero-actions .iq-btn-dark {
+  background: #2d343e;
+}
+
+.iq-datacenter-hero-actions .iq-btn-dark:hover {
+  background: #1f252c;
+}
+
+@media (max-width: 767px) {
+  .iq-datacenter-hero-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .iq-datacenter-hero-copy {
+    max-width: none;
+    padding-top: 0.25rem;
+  }
+
+  .iq-datacenter-hero {
+    min-height: clamp(18rem, 42vh, 26rem);
+    padding: 2rem 1.25rem 1.75rem;
+    background-size: 70% auto;
+    background-position: right -10% bottom;
+  }
+
+  .iq-datacenter-hero-title {
+    font-size: clamp(1.15rem, 4.25vw, 1.85rem);
+  }
+
+  .iq-datacenter-hero-title-line {
+    white-space: nowrap;
+  }
+}
+
+/* Infraestructura: sin fondo de sección (gradiente del body) */
+.iq-datacenter-infra {
+  background: transparent;
+}
+
+/* Cómo trabajamos: sin fondo (gradiente del body) */
 .iq-datacenter-como {
-  background: #fff7ed;
+  background: transparent;
+}
+
+.iq-datacenter-como-grid {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.iq-datacenter-como .iq-datacenter-como-title {
+  font-size: clamp(1.5rem, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+  color: var(--iq-color-dark);
+}
+
+.iq-datacenter-como .iq-datacenter-pills-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.85rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.iq-datacenter-como .iq-datacenter-pill {
+  display: block;
+  width: 100%;
+  max-width: min(100%, 42rem);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.9rem 1.35rem;
+  background: #f9f9f9;
+  color: var(--iq-color-dark);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 767px) {
+  .iq-datacenter-como-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .iq-datacenter-como .iq-datacenter-pills-wrap {
+    align-items: stretch;
+  }
+
+  .iq-datacenter-como .iq-datacenter-pill {
+    max-width: none;
+  }
+}
+
+/* Infraestructura: título 36px Bold; cuerpo 18px Regular; negritas en intro */
+.iq-datacenter-infra .iq-section-title {
+  font-size: clamp(1.5rem, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.iq-datacenter-infra .iq-datacenter-infra-intro {
+  margin: 0 0 1.5rem;
+  max-width: none;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--iq-color-dark-light);
+}
+
+.iq-datacenter-infra .iq-datacenter-intro.iq-datacenter-infra-intro {
+  max-width: none;
+}
+
+.iq-datacenter-infra .iq-datacenter-infra-intro strong {
+  font-weight: 700;
+  color: var(--iq-color-dark);
+}
+
+.iq-datacenter-infra .iq-datacenter-infra-intro p {
+  margin: 0 0 1rem;
+}
+
+.iq-datacenter-infra .iq-datacenter-infra-intro p:last-child {
+  margin-bottom: 0;
 }
 
 .iq-datacenter-intro {
@@ -1965,29 +2487,41 @@ body.iq-page-servicios-body {
   margin-bottom: 0;
 }
 
-.iq-datacenter-pills-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.iq-datacenter-pill {
-  display: inline-block;
-  padding: 0.6rem 1.25rem;
-  background: #ffedd5;
-  color: var(--iq-color-dark);
-  font-weight: 600;
-  font-size: 0.95rem;
-  border-radius: 50px;
-}
-
-/* Nuestros servicios (3 cards con iconos) */
+/* Nuestros servicios: sin fondo de sección; más aire antes de la sección Soluciones */
 .iq-datacenter-servicios {
-  background: #fff;
+  background: transparent;
+  padding-bottom: 2.5rem;
 }
 
-.iq-datacenter-servicios .iq-datacenter-intro {
-  margin-bottom: 2rem;
+.iq-datacenter-servicios .iq-datacenter-servicios-title {
+  font-size: clamp(1.5rem, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+  text-align: left;
+  color: var(--iq-color-dark);
+}
+
+.iq-datacenter-servicios .iq-datacenter-servicios-intro {
+  margin: 0 0 2rem;
+  max-width: none;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--iq-color-dark-light);
+}
+
+.iq-datacenter-servicios .iq-datacenter-servicios-intro p {
+  margin: 0 0 15px;
+}
+
+.iq-datacenter-servicios .iq-datacenter-servicios-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.iq-datacenter-servicios .iq-datacenter-intro.iq-datacenter-servicios-intro {
+  max-width: none;
 }
 
 .iq-datacenter-servicios-cards {
@@ -1999,43 +2533,88 @@ body.iq-page-servicios-body {
 .iq-datacenter-servicio-card {
   background: #fff;
   border: 1px solid var(--iq-color-gray-light);
-  border-radius: var(--iq-radius-lg);
-  padding: 1.5rem;
+  border-radius: 18px;
+  padding: 1.5rem 1.5rem 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
   box-shadow: var(--iq-shadow);
+  min-height: 0;
+}
+
+.iq-datacenter-servicio-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
 }
 
 .iq-datacenter-servicio-icon {
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .iq-datacenter-servicio-title {
-  font-size: 1.2rem;
+  font-size: clamp(1.25rem, 2.5vw, 28px);
   font-weight: 700;
-  color: var(--iq-color-dark);
+  color: #2d343e;
   margin: 0;
+  line-height: 1.2;
 }
 
 .iq-datacenter-servicio-desc {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--iq-color-dark-light);
   line-height: 1.5;
   flex-grow: 1;
 }
 
-.iq-datacenter-servicio-card .iq-btn {
-  align-self: flex-start;
+.iq-datacenter-servicio-btn.iq-btn {
+  align-self: center;
+  margin-top: auto;
+  width: 285px;
+  max-width: 100%;
+  height: 42px;
+  min-height: 42px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 100px;
+  background: #2d343e;
+  color: #fff;
+  border: 1px solid #2d343e;
+  transition: background var(--iq-transition), color var(--iq-transition), border-color var(--iq-transition);
 }
 
-/* Soluciones (3 cards gradiente naranja) */
+.iq-datacenter-servicio-btn.iq-btn:hover {
+  background: #fff !important;
+  color: #2d343e;
+  border-color: #2d343e;
+}
+
+/* Soluciones: sin fondo de sección (las cards conservan su propio estilo) */
 .iq-datacenter-soluciones {
-  background: #fff;
+  background: transparent;
+  padding-top: 2.5rem;
+}
+
+.iq-datacenter-soluciones .iq-datacenter-soluciones-title {
+  font-size: clamp(1.5rem, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 2.25rem;
+  text-align: left;
+  color: var(--iq-color-dark);
 }
 
 .iq-datacenter-soluciones-cards {
@@ -2044,33 +2623,59 @@ body.iq-page-servicios-body {
   gap: 1.5rem;
 }
 
+/* Marca/Naranja 60 #F3712B99 y 100 #F3712B */
+.iq-datacenter-solucion-card--grad-light-dark {
+  background: linear-gradient(to bottom, #f3712b99, #f3712b);
+}
+
+.iq-datacenter-solucion-card--grad-dark-light {
+  background: linear-gradient(to bottom, #f3712b, #f3712b99);
+}
+
 .iq-datacenter-solucion-card {
-  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
   color: #fff;
-  border-radius: var(--iq-radius-lg);
-  padding: 1.5rem;
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+  align-items: stretch;
+  box-shadow: var(--iq-shadow);
 }
 
 .iq-datacenter-solucion-title {
-  font-size: 1.1rem;
+  font-size: clamp(1.25rem, 2.5vw, 28px);
   font-weight: 700;
   margin: 0;
   color: #fff;
+  text-align: center;
+  line-height: 1.25;
 }
 
-.iq-datacenter-solucion-card p {
-  margin: 0;
-  font-size: 0.9rem;
+.iq-datacenter-solucion-body {
+  font-size: 18px;
+  font-weight: 400;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.95);
+  color: #fff;
+  text-align: left;
 }
 
-/* Sección contacto Data Center */
+.iq-datacenter-solucion-body p {
+  margin: 0 0 15px;
+}
+
+.iq-datacenter-solucion-body p:last-child {
+  margin-bottom: 0;
+}
+
+.iq-datacenter-solucion-body strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Sección contacto Data Center: sin fondo de sección (formulario y costado conservan sus paneles) */
 .iq-datacenter-contact-section {
-  background: var(--iq-color-gray-bg);
+  background: transparent;
 }
 
 .iq-datacenter-contact-grid {
@@ -2133,14 +2738,20 @@ body.iq-page-servicios-body {
 }
 
 @media (max-width: 768px) {
+  .iq-datacenter-servicio-btn.iq-btn {
+    height: auto;
+    min-height: 42px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    white-space: normal;
+    text-align: center;
+  }
+
   .iq-datacenter-servicios-cards {
     grid-template-columns: 1fr;
   }
   .iq-datacenter-soluciones-cards {
     grid-template-columns: 1fr;
-  }
-  .iq-datacenter-pills-wrap {
-    flex-direction: column;
   }
   .iq-datacenter-contact-grid {
     grid-template-columns: 1fr;
@@ -2658,6 +3269,7 @@ body.iq-page-servicios-body {
 
 /* Hero integrado con el topbar: padding-top para que el contenido no quede bajo el topbar fijo */
 .iq-page-hero-wrap .iq-datacenter-hero,
+.iq-page-hero-wrap .iq-dc-catalogo-hero,
 .iq-page-hero-wrap .iq-servicios-hero,
 .iq-page-hero-wrap .iq-consultoria-hero,
 .iq-page-hero-wrap .iq-seguridad-hero {
