@@ -2168,6 +2168,18 @@ body.iq-page-servicios-body {
 .iq-acerca-page .iq-acerca-valores .iq-container {
   max-width: 1688px;
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Panel interno: ocupa el 100% del .iq-container (igual que .iq-acerca-mv-grid en Misión/Visión) */
+.iq-acerca-valores-panel {
+  width: 100%;
+  max-width: 100%;
+  background: #f9f9f9;
+  border-radius: var(--iq-radius-lg);
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .iq-acerca-hero {
@@ -2227,22 +2239,31 @@ body.iq-page-servicios-body {
   gap: 1rem;
 }
 
+.iq-acerca-mv-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .iq-acerca-mv-icon {
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .iq-acerca-mv-title {
-  font-size: 1.35rem;
+  font-size: 28px;
   font-weight: 700;
   color: var(--iq-color-dark);
   margin: 0;
 }
 
 .iq-acerca-mv-content p {
-  margin: 0 0 0.75rem;
+  margin: 0 0 15px;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--iq-color-dark);
   line-height: 1.6;
 }
@@ -2251,61 +2272,66 @@ body.iq-page-servicios-body {
   margin-bottom: 0;
 }
 
-/* Valores (título + icono, 4 cards) */
+.iq-acerca-mv-content strong {
+  font-weight: 700;
+}
+
+/* Valores (título + icono, 4 cards): fondo en .iq-container, no full-bleed */
 .iq-acerca-valores {
-  background: #fff;
+  background: transparent;
 }
 
 .iq-acerca-valores-heading {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 1.5rem;
+  font-size: 28px;
   font-weight: 700;
   color: var(--iq-color-dark);
   margin: 0 0 1.5rem;
 }
 
 .iq-acerca-valores-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .iq-acerca-valores-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
 .iq-acerca-valor-card {
   border-radius: var(--iq-radius-lg);
   padding: 1.5rem;
-  color: #fff;
 }
 
-/* Card 1 y 3: gradiente oscuro a claro (#0D9FDC 60%) */
+/* Cards 1 y 3: Celeste 60% → Celeste 20% */
 .iq-acerca-valor-dark-light {
-  background: linear-gradient(to bottom, #0D9FDC, rgba(13, 159, 220, 0.6));
+  background: linear-gradient(to bottom, #0d9fdc99, #0d9fdc33);
 }
 
-/* Card 2 y 4: gradiente claro a oscuro (#0D9FDC 60%) */
+/* Cards 2 y 4: Celeste 20% → Celeste 60% */
 .iq-acerca-valor-light-dark {
-  background: linear-gradient(to bottom, rgba(13, 159, 220, 0.6), #0D9FDC);
+  background: linear-gradient(to bottom, #0d9fdc33, #0d9fdc99);
 }
 
 .iq-acerca-valor-title {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   margin: 0 0 0.5rem;
-  color: #fff;
+  color: #000000;
 }
 
 .iq-acerca-valor-card p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 18px;
+  font-weight: 400;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.95);
+  color: #000000;
 }
 
 @media (max-width: 900px) {
