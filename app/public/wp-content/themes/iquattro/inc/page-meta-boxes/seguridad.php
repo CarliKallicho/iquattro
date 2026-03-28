@@ -12,7 +12,7 @@ $cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : array();
 
   <p><strong><?php esc_html_e('¿Qué protegemos?', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_que_protegemos_title" value="<?php echo esc_attr($data['que_protegemos_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Intro', 'iquattro'); ?></label><br><textarea name="iq_page_que_protegemos_intro" class="widefat" rows="3"><?php echo esc_textarea($data['que_protegemos_intro']); ?></textarea></p>
+  <p><label><?php esc_html_e('Intro', 'iquattro'); ?></label><br><textarea name="iq_page_que_protegemos_intro" class="widefat" rows="4"><?php echo esc_textarea($data['que_protegemos_intro']); ?></textarea><br><span class="description"><?php esc_html_e('Permite HTML para negritas, p. ej.: &lt;strong&gt;texto&lt;/strong&gt;', 'iquattro'); ?></span></p>
   <p><?php esc_html_e('Cards (icono = nombre en assets/icons/)', 'iquattro'); ?></p>
   <?php for ($i = 0; $i < 10; $i++) : $c = isset($cards[$i]) ? $cards[$i] : array('icon'=>'','icon_id'=>0,'title'=>'','desc'=>''); ?>
     <div style="border:1px solid #ccc;padding:10px;margin-bottom:8px;background:#f9f9f9;">
@@ -32,7 +32,7 @@ $cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : array();
 
   <p><strong><?php esc_html_e('Monitoreo 24/7', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_monitoreo_title" value="<?php echo esc_attr($data['monitoreo_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Texto', 'iquattro'); ?></label><br><textarea name="iq_page_monitoreo_intro" class="widefat" rows="3"><?php echo esc_textarea($data['monitoreo_intro']); ?></textarea></p>
+  <p><label><?php esc_html_e('Texto', 'iquattro'); ?></label><br><textarea name="iq_page_monitoreo_intro" class="widefat" rows="5"><?php echo esc_textarea($data['monitoreo_intro']); ?></textarea><br><span class="description"><?php esc_html_e('Permite HTML para negritas, p. ej.: &lt;strong&gt;texto&lt;/strong&gt;', 'iquattro'); ?></span></p>
 
   <p><strong><?php esc_html_e('Sección contacto', 'iquattro'); ?></strong></p>
   <?php

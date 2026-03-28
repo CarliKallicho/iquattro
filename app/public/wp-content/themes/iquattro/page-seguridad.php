@@ -12,38 +12,58 @@ $data = iquattro_get_editable_page_data($post);
 $images_uri = get_template_directory_uri() . '/assets/images/';
 $icons_uri  = get_template_directory_uri() . '/assets/icons/';
 $hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $images_uri . 'fondo-seguridad.jpg');
-$cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-servicios-costado.jpg');
+$cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-seguridad-costado.jpg');
 $seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : array();
+$seg_hero_title_lines = iquattro_seguridad_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 ?>
 <main id="main" class="iq-main iq-seguridad-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-seguridad-hero" style="background-image: url('<?php echo esc_url($hero_bg); ?>');">
     <div class="iq-container">
-      <h1 class="iq-seguridad-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-seguridad-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
-      <p class="iq-seguridad-hero-actions">
-        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
-      </p>
+      <div class="iq-seguridad-hero-copy">
+        <h1 class="iq-seguridad-hero-title">
+          <?php
+          $seg_l1 = isset($seg_hero_title_lines[0]) ? $seg_hero_title_lines[0] : '';
+          $seg_l2 = isset($seg_hero_title_lines[1]) ? $seg_hero_title_lines[1] : '';
+          if ($seg_l1 !== '' && $seg_l2 !== '') :
+            ?>
+            <span class="iq-seguridad-hero-title-line"><?php echo esc_html($seg_l1); ?></span>
+            <span class="iq-seguridad-hero-title-line"><?php echo esc_html($seg_l2); ?></span>
+          <?php else : ?>
+            <?php echo esc_html($seg_l1 !== '' ? $seg_l1 : $seg_l2); ?>
+          <?php endif; ?>
+        </h1>
+        <p class="iq-seguridad-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+        <p class="iq-seguridad-hero-actions">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+        </p>
+      </div>
     </div>
   </section>
   </div>
 
   <section class="iq-section iq-seguridad-que-protegemos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['que_protegemos_title']); ?></h2>
-      <p class="iq-seguridad-intro"><?php echo esc_html($data['que_protegemos_intro']); ?></p>
+      <h2 class="iq-section-title iq-seguridad-que-protegemos-title"><?php echo esc_html($data['que_protegemos_title']); ?></h2>
+    </div>
+    <div class="iq-seguridad-intro-full">
+      <p class="iq-seguridad-intro iq-seguridad-intro--que-protegemos"><?php echo wp_kses_post($data['que_protegemos_intro']); ?></p>
+    </div>
+    <div class="iq-container">
       <div class="iq-seguridad-cards">
-        <?php foreach ($seguridad_cards as $card) : ?>
+        <?php foreach ($seguridad_cards as $card_idx => $card) : ?>
           <?php
           $icon_src = iquattro_page_icon_or_attachment_url(
             isset($card['icon']) ? $card['icon'] : '',
             isset($card['icon_id']) ? (int) $card['icon_id'] : 0,
             $icons_uri
           );
+          /* Impares: claro → oscuro; pares: oscuro → claro */
+          $seg_card_grad = ((int) $card_idx % 2 === 0) ? 'iq-seguridad-card--grad-light-dark' : 'iq-seguridad-card--grad-dark-light';
           ?>
-          <div class="iq-seguridad-card">
-            <img src="<?php echo esc_url($icon_src); ?>" alt="" class="iq-seguridad-card-icon" width="48" height="48" loading="lazy">
+          <div class="iq-seguridad-card <?php echo esc_attr($seg_card_grad); ?>">
+            <img src="<?php echo esc_url($icon_src); ?>" alt="" class="iq-seguridad-card-icon" width="200" height="200" loading="lazy">
             <h3 class="iq-seguridad-card-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
             <p class="iq-seguridad-card-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
           </div>
@@ -55,7 +75,7 @@ $seguridad_cards = isset($data['seguridad_cards']) ? $data['seguridad_cards'] : 
   <section class="iq-section iq-seguridad-monitoreo">
     <div class="iq-container">
       <h2 class="iq-section-title"><?php echo esc_html($data['monitoreo_title']); ?></h2>
-      <p class="iq-seguridad-intro"><?php echo esc_html($data['monitoreo_intro']); ?></p>
+      <p class="iq-seguridad-intro iq-seguridad-intro--monitoreo"><?php echo wp_kses_post($data['monitoreo_intro']); ?></p>
     </div>
   </section>
 

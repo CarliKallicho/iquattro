@@ -92,6 +92,7 @@ function iquattro_page_meta_html_field_keys($meta_slug) {
     'acerca-de' => array('mision_content', 'vision_content'),
     'front-page' => array('feature1_text', 'feature2_text', 'feature3_text'),
     'data-center' => array('infra_intro', 'servicios_intro'),
+    'seguridad' => array('que_protegemos_intro', 'monitoreo_intro'),
   );
   $keys = isset($map[ $meta_slug ]) ? $map[ $meta_slug ] : array();
   return apply_filters('iquattro_page_meta_html_field_keys', $keys, $meta_slug);
