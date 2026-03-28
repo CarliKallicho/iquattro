@@ -1,5 +1,7 @@
 <?php
 return array(
+  'hero_bg_id'    => 0,
+  'contact_side_bg_id' => 0,
   'hero_title'    => 'Soluciones de Data Center para entornos críticos y escalables',
   'hero_desc_1'   => 'Diseñamos, implementamos y gestionamos infraestructuras tecnológicas robustas, seguras y escalables para el crecimiento de tu organización.',
   'hero_desc_2'   => 'Desde sistemas con los que puedes empezar hasta infinitos límites en la nube, acompañamos cada etapa de tu operación.',
@@ -11,9 +13,9 @@ return array(
   'servicios_title' => 'Nuestros servicios',
   'servicios_intro' => 'Acompañamos a empresas e instituciones en el diseño, implementación y operación de infraestructura de Data Center, con soluciones que se adaptan a tu madurez tecnológica y objetivos de negocio.',
   'servicios_cards' => array(
-    array('icon' => 'hardware.svg', 'title' => 'Hardware', 'desc' => 'Soluciones de infraestructura física: servidores, almacenamiento y redes para entornos críticos y escalables.', 'btn_txt' => 'Ver Soluciones de Hardware'),
-    array('icon' => 'software.svg', 'title' => 'Software', 'desc' => 'Plataformas y licenciamiento para virtualización, gestión y automatización de tu Data Center.', 'btn_txt' => 'Ver Soluciones de Software'),
-    array('icon' => 'servicios.svg', 'title' => 'Servicios', 'desc' => 'Implementación, soporte especializado y gestión continua de infraestructura tecnológica.', 'btn_txt' => 'Ver Servicios de Data Center'),
+    array('icon' => 'hardware.svg', 'icon_id' => 0, 'title' => 'Hardware', 'desc' => 'Soluciones de infraestructura física: servidores, almacenamiento y redes para entornos críticos y escalables.', 'btn_txt' => 'Ver Soluciones de Hardware'),
+    array('icon' => 'software.svg', 'icon_id' => 0, 'title' => 'Software', 'desc' => 'Plataformas y licenciamiento para virtualización, gestión y automatización de tu Data Center.', 'btn_txt' => 'Ver Soluciones de Software'),
+    array('icon' => 'servicios.svg', 'icon_id' => 0, 'title' => 'Servicios', 'desc' => 'Implementación, soporte especializado y gestión continua de infraestructura tecnológica.', 'btn_txt' => 'Ver Servicios de Data Center'),
   ),
   'soluciones_title' => 'Soluciones diseñadas para entornos empresariales exigentes',
   'soluciones_cards' => array(

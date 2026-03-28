@@ -1,5 +1,7 @@
 <?php
 return array(
+  'hero_bg_id' => 0,
+  'contact_side_bg_id' => 0,
   'hero_title' => 'Consultoría tecnológica para decisiones estratégicas',
   'hero_desc'  => 'Acompañamos a las organizaciones en sus procesos de transformación digital mediante consultoría especializada que integra negocio, tecnología y ejecución, respaldada por más de 20 años de experiencia en múltiples industrias.',
   'hero_btn'   => 'Solicitar asesoría',

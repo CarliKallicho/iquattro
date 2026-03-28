@@ -9,6 +9,9 @@
 
 get_header();
 
+global $post;
+$data = iquattro_get_editable_page_data($post);
+
 $query = new WP_Query(array(
   'post_type'      => 'curso',
   'posts_per_page' => -1,
@@ -54,7 +57,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
   <div class="iq-cronograma-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <div class="iq-container iq-cronograma-inner">
-      <h1 class="iq-cronograma-title"><?php esc_html_e('Cronograma', 'iquattro'); ?></h1>
+      <h1 class="iq-cronograma-title"><?php echo esc_html($data['page_title']); ?></h1>
       <div class="iq-cronograma-cards">
         <?php foreach ($cursos as $c) :
           $terms = is_array($c['terms']) ? $c['terms'] : array();
@@ -94,7 +97,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
         <?php endforeach; ?>
       </div>
       <?php if (empty($cursos)) : ?>
-        <p class="iq-cronograma-empty"><?php esc_html_e('No hay cursos programados en este momento.', 'iquattro'); ?></p>
+        <p class="iq-cronograma-empty"><?php echo esc_html($data['empty_message']); ?></p>
       <?php endif; ?>
     </div>
   </div>

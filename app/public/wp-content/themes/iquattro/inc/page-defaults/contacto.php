@@ -1,5 +1,7 @@
 <?php
 return array(
+  'banner_bg_id' => 0,
+  'contact_side_bg_id' => 0,
   'banner_title' => 'Hablemos sobre tus necesidades tecnológicas',
   'main_title' => 'Estamos listos para ayudarte',
   'intro' => 'Nuestro equipo está listo para escucharte y ayudarte a encontrar la solución, servicio o programa de capacitación que mejor se adapte a tus objetivos.',

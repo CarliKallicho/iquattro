@@ -13,11 +13,17 @@
   <p><strong><?php esc_html_e('Partner Microsoft', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_partner_title" value="<?php echo esc_attr($data['partner_title']); ?>" class="widefat"></p>
   <p><label><?php esc_html_e('Texto', 'iquattro'); ?></label><br><textarea name="iq_page_partner_text" class="widefat" rows="2"><?php echo esc_textarea($data['partner_text']); ?></textarea></p>
+  <?php
+  iquattro_page_meta_render_attachment_field('iq_page_partner_logo_id', __('Logo partner (por defecto: microsoft-partner.png)', 'iquattro'), $data['partner_logo_id']);
+  ?>
 
   <p><strong><?php esc_html_e('Evoluciona', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_evoluciona_title" value="<?php echo esc_attr($data['evoluciona_title']); ?>" class="widefat"></p>
 
   <p><strong><?php esc_html_e('Catálogo / Cronograma', 'iquattro'); ?></strong></p>
+  <?php
+  iquattro_page_meta_render_attachment_field('iq_page_catalogo_section_bg_id', __('Imagen de fondo del bloque (por defecto: fondo-capacitacion.jpg)', 'iquattro'), $data['catalogo_section_bg_id']);
+  ?>
   <p><label><?php esc_html_e('Título sección catálogo', 'iquattro'); ?></label><br><input type="text" name="iq_page_catalogo_section_title" value="<?php echo esc_attr($data['catalogo_section_title']); ?>" class="widefat"></p>
   <p><label><?php esc_html_e('Texto catálogo', 'iquattro'); ?></label><br><textarea name="iq_page_catalogo_section_text" class="widefat" rows="2"><?php echo esc_textarea($data['catalogo_section_text']); ?></textarea></p>
   <p><label><?php esc_html_e('Texto botón catálogo', 'iquattro'); ?></label><br><input type="text" name="iq_page_catalogo_btn" value="<?php echo esc_attr($data['catalogo_btn']); ?>" class="widefat"></p>

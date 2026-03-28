@@ -1,5 +1,7 @@
 <?php
 return array(
+  'hero_bg_id' => 0,
+  'cta_side_bg_id' => 0,
   'hero_title' => 'Servicios tecnológicos para asegurar la continuidad de tu operación',
   'hero_desc'  => 'A través de nuestra división de Servicios, en iQuattro entregamos soporte técnico especializado y servicios de acompañamiento de calidad, adaptados a las necesidades de cada cliente y respaldados por experiencia, certificaciones y conocimiento profundo de las tecnologías que representamos.',
   'hero_btn'   => 'Solicitar soporte',

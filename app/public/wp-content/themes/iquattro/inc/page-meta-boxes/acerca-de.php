@@ -9,11 +9,11 @@ $valores = isset($data['valores_cards']) ? $data['valores_cards'] : array();
 
   <p><strong><?php esc_html_e('Misión', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_mision_title" value="<?php echo esc_attr($data['mision_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Contenido (párrafos separados por línea en blanco)', 'iquattro'); ?></label><br><textarea name="iq_page_mision_content" class="widefat" rows="5"><?php echo esc_textarea($data['mision_content']); ?></textarea></p>
+  <p><label><?php esc_html_e('Contenido (HTML permitido: p, strong, em, br…)', 'iquattro'); ?></label><br><textarea name="iq_page_mision_content" class="widefat" rows="6"><?php echo esc_textarea($data['mision_content']); ?></textarea></p>
 
   <p><strong><?php esc_html_e('Visión', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_vision_title" value="<?php echo esc_attr($data['vision_title']); ?>" class="widefat"></p>
-  <p><label><?php esc_html_e('Contenido', 'iquattro'); ?></label><br><textarea name="iq_page_vision_content" class="widefat" rows="5"><?php echo esc_textarea($data['vision_content']); ?></textarea></p>
+  <p><label><?php esc_html_e('Contenido (HTML permitido)', 'iquattro'); ?></label><br><textarea name="iq_page_vision_content" class="widefat" rows="6"><?php echo esc_textarea($data['vision_content']); ?></textarea></p>
 
   <p><strong><?php esc_html_e('Valores', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título sección', 'iquattro'); ?></label><br><input type="text" name="iq_page_valores_heading" value="<?php echo esc_attr($data['valores_heading']); ?>" class="widefat"></p>

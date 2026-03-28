@@ -7,40 +7,31 @@
 
 get_header();
 
+global $post;
+$data = iquattro_get_editable_page_data($post);
 $images_uri = get_template_directory_uri() . '/assets/images/';
 $icons_uri  = get_template_directory_uri() . '/assets/icons/';
-
-$dc_servicios_cards = array(
-  array(
-    'icon'    => 'hardware.svg',
-    'title'   => __('Hardware', 'iquattro'),
-    'desc'    => __('Soluciones de infraestructura física: servidores, almacenamiento y redes para entornos críticos y escalables.', 'iquattro'),
-    'btn_txt' => __('Ver Soluciones de Hardware', 'iquattro'),
-  ),
-  array(
-    'icon'    => 'software.svg',
-    'title'   => __('Software', 'iquattro'),
-    'desc'    => __('Plataformas y licenciamiento para virtualización, gestión y automatización de tu Data Center.', 'iquattro'),
-    'btn_txt' => __('Ver Soluciones de Software', 'iquattro'),
-  ),
-  array(
-    'icon'    => 'servicios.svg',
-    'title'   => __('Servicios', 'iquattro'),
-    'desc'    => __('Implementación, soporte especializado y gestión continua de infraestructura tecnológica.', 'iquattro'),
-    'btn_txt' => __('Ver Servicios de Data Center', 'iquattro'),
-  ),
+$hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $images_uri . 'fondo-datacenter.jpg');
+$cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-datacenter-costado.jpg');
+$como_pills = array_filter(array_map('trim', explode("\n", (string) $data['como_pills'])));
+$servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
+$soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards'] : array();
+$dc_card_urls = array(
+  get_permalink(get_page_by_path('data-center-hardware')) ?: home_url('/data-center-hardware/'),
+  get_permalink(get_page_by_path('data-center-software')) ?: home_url('/data-center-software/'),
+  get_permalink(get_page_by_path('data-center-servicios')) ?: home_url('/data-center-servicios/'),
 );
 ?>
 <main id="main" class="iq-main iq-datacenter-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
-    <section class="iq-datacenter-hero" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-datacenter.jpg'); ?>');">
+    <section class="iq-datacenter-hero" style="background-image: url('<?php echo esc_url($hero_bg); ?>');">
     <div class="iq-container">
-      <h1 class="iq-datacenter-hero-title"><?php esc_html_e('Soluciones de Data Center para entornos críticos y escalables', 'iquattro'); ?></h1>
-      <p class="iq-datacenter-hero-desc"><?php esc_html_e('Diseñamos, implementamos y gestionamos infraestructuras tecnológicas robustas, seguras y escalables para el crecimiento de tu organización.', 'iquattro'); ?></p>
-      <p class="iq-datacenter-hero-desc"><?php esc_html_e('Desde sistemas con los que puedes empezar hasta infinitos límites en la nube, acompañamos cada etapa de tu operación.', 'iquattro'); ?></p>
+      <h1 class="iq-datacenter-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
+      <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_1']); ?></p>
+      <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_2']); ?></p>
       <p class="iq-datacenter-hero-actions">
-        <a href="#iq-dc-servicios" class="iq-btn iq-btn-dark"><?php esc_html_e('Explorar soluciones', 'iquattro'); ?></a>
+        <a href="#iq-dc-servicios" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
       </p>
     </div>
   </section>
@@ -48,35 +39,41 @@ $dc_servicios_cards = array(
 
   <section class="iq-section iq-datacenter-infra">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Infraestructura diseñada para operar sin interrupciones', 'iquattro'); ?></h2>
-      <p class="iq-datacenter-intro"><?php esc_html_e('Diseñamos infraestructura tecnológica que combina disponibilidad, seguridad y escalabilidad. Nuestras soluciones de Data Center abarcan desde instalaciones on-premise hasta entornos en la nube con Azure, AWS o Google Cloud, adaptadas a las necesidades de cada organización.', 'iquattro'); ?></p>
+      <h2 class="iq-section-title"><?php echo esc_html($data['infra_title']); ?></h2>
+      <p class="iq-datacenter-intro"><?php echo esc_html($data['infra_intro']); ?></p>
     </div>
   </section>
 
   <section class="iq-section iq-datacenter-como">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Cómo trabajamos', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['como_title']); ?></h2>
       <div class="iq-datacenter-pills-wrap">
-        <span class="iq-datacenter-pill"><?php esc_html_e('Arquitecturas escalables y seguras', 'iquattro'); ?></span>
-        <span class="iq-datacenter-pill"><?php esc_html_e('Implementación basada en buenas prácticas internacionales', 'iquattro'); ?></span>
-        <span class="iq-datacenter-pill"><?php esc_html_e('Integración con servicios cloud híbridos', 'iquattro'); ?></span>
-        <span class="iq-datacenter-pill"><?php esc_html_e('Soporte especializado y continuidad operativa', 'iquattro'); ?></span>
-        <span class="iq-datacenter-pill"><?php esc_html_e('Profesionales certificados en soluciones de Data Center', 'iquattro'); ?></span>
+        <?php foreach ($como_pills as $pill) : ?>
+          <span class="iq-datacenter-pill"><?php echo esc_html($pill); ?></span>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
 
   <section id="iq-dc-servicios" class="iq-section iq-datacenter-servicios">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Nuestros servicios', 'iquattro'); ?></h2>
-      <p class="iq-datacenter-intro"><?php esc_html_e('Acompañamos a empresas e instituciones en el diseño, implementación y operación de infraestructura de Data Center, con soluciones que se adaptan a tu madurez tecnológica y objetivos de negocio.', 'iquattro'); ?></p>
+      <h2 class="iq-section-title"><?php echo esc_html($data['servicios_title']); ?></h2>
+      <p class="iq-datacenter-intro"><?php echo esc_html($data['servicios_intro']); ?></p>
       <div class="iq-datacenter-servicios-cards">
-        <?php foreach ($dc_servicios_cards as $card) : ?>
+        <?php foreach ($servicios_cards as $idx => $card) : ?>
+          <?php
+          $icon_src = iquattro_page_icon_or_attachment_url(
+            isset($card['icon']) ? $card['icon'] : '',
+            isset($card['icon_id']) ? (int) $card['icon_id'] : 0,
+            $icons_uri
+          );
+          $card_url = isset($dc_card_urls[ $idx ]) ? $dc_card_urls[ $idx ] : (get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/'));
+          ?>
           <div class="iq-datacenter-servicio-card">
-            <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-datacenter-servicio-icon" width="48" height="48" loading="lazy">
-            <h3 class="iq-datacenter-servicio-title"><?php echo esc_html($card['title']); ?></h3>
-            <p class="iq-datacenter-servicio-desc"><?php echo esc_html($card['desc']); ?></p>
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($card['btn_txt']); ?></a>
+            <img src="<?php echo esc_url($icon_src); ?>" alt="" class="iq-datacenter-servicio-icon" width="48" height="48" loading="lazy">
+            <h3 class="iq-datacenter-servicio-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+            <p class="iq-datacenter-servicio-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
+            <a href="<?php echo esc_url($card_url); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html(isset($card['btn_txt']) ? $card['btn_txt'] : ''); ?></a>
           </div>
         <?php endforeach; ?>
       </div>
@@ -85,27 +82,21 @@ $dc_servicios_cards = array(
 
   <section class="iq-section iq-datacenter-soluciones">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Soluciones diseñadas para entornos empresariales exigentes', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['soluciones_title']); ?></h2>
       <div class="iq-datacenter-soluciones-cards">
-        <div class="iq-datacenter-solucion-card">
-          <h3 class="iq-datacenter-solucion-title"><?php esc_html_e('BC / DR - Continuidad y recuperación', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Diseñamos e implementamos estrategias de respaldo y recuperación ante desastres que garantizan la continuidad de tu operación y la protección de la información crítica.', 'iquattro'); ?></p>
-        </div>
-        <div class="iq-datacenter-solucion-card">
-          <h3 class="iq-datacenter-solucion-title"><?php esc_html_e('Gestión de Data Centers', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Servicios de operación, monitoreo y mantenimiento de infraestructura para maximizar la disponibilidad y el rendimiento de tus sistemas.', 'iquattro'); ?></p>
-        </div>
-        <div class="iq-datacenter-solucion-card">
-          <h3 class="iq-datacenter-solucion-title"><?php esc_html_e('Teletrabajo y entornos distribuidos', 'iquattro'); ?></h3>
-          <p><?php esc_html_e('Soluciones seguras para trabajo remoto, acceso a aplicaciones y conectividad que permiten a tu equipo operar desde cualquier lugar sin comprometer la seguridad.', 'iquattro'); ?></p>
-        </div>
+        <?php foreach ($soluciones_cards as $sc) : ?>
+          <div class="iq-datacenter-solucion-card">
+            <h3 class="iq-datacenter-solucion-title"><?php echo esc_html(isset($sc['title']) ? $sc['title'] : ''); ?></h3>
+            <p><?php echo esc_html(isset($sc['text']) ? $sc['text'] : ''); ?></p>
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
 
   <section class="iq-section iq-datacenter-contact-section">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Construye una infraestructura preparada para el futuro', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
       <div class="iq-datacenter-contact-grid">
         <div class="iq-datacenter-form-wrap">
           <form id="iq-datacenter-form" class="iq-contact-form" method="post" novalidate>
@@ -138,8 +129,8 @@ $dc_servicios_cards = array(
             <p class="iq-form-message" id="iq-dc-form-message" aria-live="polite"></p>
           </form>
         </div>
-        <div class="iq-datacenter-cta-imagen" style="background-image: url('<?php echo esc_url($images_uri . 'fondo-datacenter-costado.jpg'); ?>');">
-          <p><?php esc_html_e('Conversemos sobre tus desafíos de infraestructura, continuidad operativa y crecimiento tecnológico.', 'iquattro'); ?></p>
+        <div class="iq-datacenter-cta-imagen" style="background-image: url('<?php echo esc_url($cta_bg); ?>');">
+          <p><?php echo esc_html($data['contact_cta_text']); ?></p>
         </div>
       </div>
     </div>

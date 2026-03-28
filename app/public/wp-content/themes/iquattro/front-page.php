@@ -6,87 +6,86 @@
  */
 
 get_header();
+
+global $wp_query;
+// Misma página que WordPress está mostrando como portada (evita desajuste ID vs page_on_front).
+$fp_post = null;
+if ($wp_query->is_front_page() && get_option('show_on_front') === 'page') {
+  $qid = (int) $wp_query->get_queried_object_id();
+  if ($qid) {
+    $fp_post = get_post($qid);
+  }
+  if (!$fp_post instanceof WP_Post) {
+    $fid = (int) get_option('page_on_front');
+    $fp_post = $fid ? get_post($fid) : null;
+  }
+} elseif (get_option('show_on_front') === 'page') {
+  $fid = (int) get_option('page_on_front');
+  $fp_post = $fid ? get_post($fid) : null;
+}
+if (!$fp_post instanceof WP_Post) {
+  $qo = get_queried_object();
+  if ($qo instanceof WP_Post && $qo->post_type === 'page') {
+    $fp_post = $qo;
+  }
+}
+$data = $fp_post ? iquattro_get_editable_page_data($fp_post) : array();
+if (empty($data)) {
+  $data = iquattro_get_page_defaults('front-page');
+}
+$theme_uri = get_template_directory_uri();
+$images_uri = $theme_uri . '/assets/images/';
+$divisions = isset($data['front_divisions']) ? $data['front_divisions'] : array();
+$allies = isset($data['front_allies']) ? $data['front_allies'] : array();
+$trust_z = iquattro_meta_image_url($data['trust_z_img_id'], $images_uri . 'z.png');
+$trust_y = iquattro_meta_image_url($data['trust_y_img_id'], $images_uri . 'y.png');
 ?>
 
 <main id="main" class="iq-main iq-front">
 
-  <!-- Somos iQuattro -->
   <section class="iq-section iq-somos">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Somos iQuattro: tu socio tecnológico integral', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['somos_title']); ?></h2>
       <div class="iq-somos-intro">
-        <p><?php esc_html_e('Acompañamos a empresas e instituciones en cada etapa de su evolución digital, combinando conocimiento, innovación y experiencia para ofrecer soluciones en capacitación, ciberseguridad, infraestructura, soporte y consultoría tecnológica.', 'iquattro'); ?></p>
-        <p><?php esc_html_e('Nuestro propósito es ayudarte a construir entornos más seguros, eficientes y preparados para el futuro.', 'iquattro'); ?></p>
+        <p><?php echo esc_html($data['somos_p1']); ?></p>
+        <p><?php echo esc_html($data['somos_p2']); ?></p>
       </div>
       <div class="iq-features">
-        <div class="iq-feature">
-          <span class="iq-feature-icon iq-icon-innovation" aria-hidden="true"></span>
-          <h3 class="iq-feature-title"><?php esc_html_e('Innovación contínua', 'iquattro'); ?></h3>
-          <p><?php echo wp_kses_post(__('Creamos soluciones que anticipan las necesidades tecnológicas de tu organización, integrando <strong>nuevas ideas, metodologías y herramientas</strong> que impulsan tu crecimiento.', 'iquattro')); ?></p>
-        </div>
-        <div class="iq-feature">
-          <span class="iq-feature-icon iq-icon-shield" aria-hidden="true"></span>
-          <h3 class="iq-feature-title"><?php esc_html_e('Seguridad en cada paso', 'iquattro'); ?></h3>
-          <p><?php echo wp_kses_post(__('<strong>Protegemos tus datos, procesos e infraestructura</strong> con un enfoque integral que combina prevención, respuesta y resiliencia para garantizar continuidad operativa.', 'iquattro')); ?></p>
-        </div>
-        <div class="iq-feature">
-          <span class="iq-feature-icon iq-icon-excellence" aria-hidden="true"></span>
-          <h3 class="iq-feature-title"><?php esc_html_e('Excelencia técnica', 'iquattro'); ?></h3>
-          <p><?php echo wp_kses_post(__('Nuestro equipo <strong>certificado y multidisciplinario</strong> ejecuta cada proyecto con precisión, rigor y calidad, asegurando resultados confiables y medibles.', 'iquattro')); ?></p>
-        </div>
+        <?php for ($f = 1; $f <= 3; $f++) : ?>
+          <div class="iq-feature">
+            <span class="iq-feature-icon <?php echo $f === 1 ? 'iq-icon-innovation' : ($f === 2 ? 'iq-icon-shield' : 'iq-icon-excellence'); ?>" aria-hidden="true"></span>
+            <h3 class="iq-feature-title"><?php echo esc_html($data['feature' . $f . '_title']); ?></h3>
+            <p><?php echo wp_kses_post($data['feature' . $f . '_text']); ?></p>
+          </div>
+        <?php endfor; ?>
       </div>
     </div>
   </section>
 
-  <!-- Nuestras divisiones -->
   <section class="iq-section iq-divisions">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Nuestras divisiones', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['divisions_title']); ?></h2>
       <div class="iq-divisions-grid">
-        <?php
-        $divisions = array(
-          array(
-            'slug'         => 'data-center',
-            'label'        => __('Data Center', 'iquattro'),
-            'class'        => 'iq-div-dc',
-            'description'  => __('Provisión de hardware, soluciones de software para resolver desafíos de virtualización, respaldos, comprensión de información entre otros', 'iquattro'),
-          ),
-          array(
-            'slug'         => 'seguridad',
-            'label'        => __('Seguridad', 'iquattro'),
-            'class'        => 'iq-div-seg',
-            'description'  => __('Protección de datos, maximizar la continuidad del negocio, servicios como Ethical Hacking, Antivirus, Data Loss Prevention, Anti Ransomware, entre otros.', 'iquattro'),
-          ),
-          array(
-            'slug'         => 'capacitacion',
-            'label'        => __('Capacitación', 'iquattro'),
-            'class'        => 'iq-div-cap',
-            'description'  => __('Programas y cursos de capacitación y rutas de certificación', 'iquattro'),
-          ),
-          array(
-            'slug'         => 'consultoria',
-            'label'        => __('Consultoría', 'iquattro'),
-            'class'        => 'iq-div-cons',
-            'description'  => __('Analizamos los contextos organizacionales desde el punto de vista ampliamente estratégico hasta el profundamente técnico.', 'iquattro'),
-          ),
-          array(
-            'slug'         => 'servicios',
-            'label'        => __('Servicios', 'iquattro'),
-            'class'        => 'iq-div-serv',
-            'description'  => __('Provisión de soporte técnico en los productos que representamos, servicios de Quality Assurance y Testing.', 'iquattro'),
-          ),
-        );
-        foreach ($divisions as $div) :
-          $url    = get_permalink(get_page_by_path($div['slug'])) ?: home_url('/' . $div['slug'] . '/');
-          $img_url = get_template_directory_uri() . '/assets/images/' . $div['slug'] . '.jpg';
+        <?php foreach ($divisions as $div) : ?>
+          <?php
+          $slug = isset($div['slug']) ? $div['slug'] : '';
+          if ($slug === '') {
+            continue;
+          }
+          $url = get_permalink(get_page_by_path($slug)) ?: home_url('/' . $slug . '/');
+          $fallback_img = $images_uri . $slug . '.jpg';
+          $img_url = iquattro_meta_image_url(isset($div['image_id']) ? (int) $div['image_id'] : 0, $fallback_img);
+          $label = isset($div['label']) ? $div['label'] : '';
+          $desc = isset($div['description']) ? $div['description'] : '';
+          $card_class = isset($div['card_class']) ? $div['card_class'] : '';
           ?>
-          <a href="<?php echo esc_url($url); ?>" class="iq-division-card <?php echo esc_attr($div['class']); ?>">
+          <a href="<?php echo esc_url($url); ?>" class="iq-division-card <?php echo esc_attr($card_class); ?>">
             <span class="iq-division-img-wrap" aria-hidden="true" style="background-image: url('<?php echo esc_url($img_url); ?>');"></span>
-            <span class="iq-division-label"><?php echo esc_html($div['label']); ?></span>
+            <span class="iq-division-label"><?php echo esc_html($label); ?></span>
             <span class="iq-division-hover">
               <span class="iq-division-hover-img" style="background-image: url('<?php echo esc_url($img_url); ?>');" aria-hidden="true"></span>
-              <span class="iq-division-hover-title"><?php echo esc_html($div['label']); ?></span>
-              <span class="iq-division-desc"><?php echo esc_html($div['description']); ?></span>
+              <span class="iq-division-hover-title"><?php echo esc_html($label); ?></span>
+              <span class="iq-division-desc"><?php echo esc_html($desc); ?></span>
               <span class="iq-division-btn"><?php esc_html_e('Ver más', 'iquattro'); ?></span>
             </span>
           </a>
@@ -95,65 +94,43 @@ get_header();
     </div>
   </section>
 
-  <!-- Por qué confían en iQuattro -->
   <section class="iq-section iq-trust">
     <div class="iq-container iq-trust-inner">
-      <h2 class="iq-section-title iq-trust-title"><?php esc_html_e('¿Por qué las empresas confían en iQuattro?', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title iq-trust-title"><?php echo esc_html($data['trust_title']); ?></h2>
     </div>
     <div class="iq-trust-visual iq-trust-visual--full">
-      <?php
-      $iq_trust_theme_uri = get_template_directory_uri();
-      $iq_trust_arc_desc   = __( 'Formación altamente especializada. Experiencia local y alianzas globales. Infraestructura robusta con marcas líderes. Protección integral: ciberseguridad ofensiva, defensiva y respuesta. Soporte técnico certificado.', 'iquattro' );
-      ?>
-      <div class="iq-trust-composite" role="img" aria-label="<?php echo esc_attr( $iq_trust_arc_desc ); ?>">
+      <div class="iq-trust-composite" role="img" aria-label="<?php echo esc_attr($data['trust_arc_desc']); ?>">
         <div class="iq-trust-globe" aria-hidden="true"></div>
-        <img class="iq-trust-text-layer iq-trust-text-layer--z" src="<?php echo esc_url( $iq_trust_theme_uri . '/assets/images/z.png' ); ?>" alt="" loading="lazy" decoding="async">
-        <img class="iq-trust-text-layer iq-trust-text-layer--y" src="<?php echo esc_url( $iq_trust_theme_uri . '/assets/images/y.png' ); ?>" alt="" loading="lazy" decoding="async">
+        <img class="iq-trust-text-layer iq-trust-text-layer--z" src="<?php echo esc_url($trust_z); ?>" alt="" loading="lazy" decoding="async">
+        <img class="iq-trust-text-layer iq-trust-text-layer--y" src="<?php echo esc_url($trust_y); ?>" alt="" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
 
-  <!-- Aliados tecnológicos -->
   <section class="iq-section iq-allies">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Aliados tecnológicos de clase mundial', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['allies_title']); ?></h2>
       <div class="iq-allies-grid">
-        <?php
-        $allies = array( 'gitlab', 'vmware', 'veeam', 'quest', 'microsoft', 'fortinet', 'solarwinds', 'dellemc' );
-        foreach ( $allies as $ally_name ) :
-          $ally_img = get_template_directory_uri() . '/assets/images/' . esc_attr( $ally_name ) . '.png';
+        <?php foreach ($allies as $ally) : ?>
+          <?php
+          $slug = isset($ally['slug']) ? $ally['slug'] : '';
+          if ($slug === '') {
+            continue;
+          }
+          $fallback = $images_uri . sanitize_file_name($slug) . '.png';
+          $ally_img = iquattro_meta_image_url(isset($ally['logo_id']) ? (int) $ally['logo_id'] : 0, $fallback);
           ?>
-          <div class="iq-ally" title="<?php echo esc_attr( $ally_name ); ?>">
-            <img class="iq-ally-logo" src="<?php echo esc_url( $ally_img ); ?>" alt="<?php echo esc_attr( $ally_name ); ?>" loading="lazy">
+          <div class="iq-ally" title="<?php echo esc_attr($slug); ?>">
+            <img class="iq-ally-logo" src="<?php echo esc_url($ally_img); ?>" alt="<?php echo esc_attr($slug); ?>" loading="lazy">
           </div>
         <?php endforeach; ?>
       </div>
     </div>
   </section>
 
-  <!-- CTA Transformar infraestructura -->
-  <!--<section class="iq-section iq-cta">
-    <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('¿Listo para transformar tu infraestructura tecnológica?', 'iquattro'); ?></h2>
-      <p><?php esc_html_e('Acompañamos a empresas e instituciones en cada etapa de su evolución digital, combinando conocimiento, innovación y experiencia para ofrecer soluciones en capacitación, ciberseguridad, infraestructura, soporte y consultoría tecnológica.', 'iquattro'); ?></p>
-      <p><?php esc_html_e('Nuestro propósito es ayudarte a construir entornos más seguros, eficientes y preparados para el futuro.', 'iquattro'); ?></p>
-    </div>
-  </section> -->
-
-  <!-- Innovación continua (destacado) -->
-  <!--<section class="iq-section iq-innovation-box">
-    <div class="iq-container">
-      <div class="iq-innovation-card">
-        <h3 class="iq-innovation-title"><?php esc_html_e('Innovación contínua', 'iquattro'); ?></h3>
-        <p><?php esc_html_e('Creamos soluciones que anticipan las necesidades tecnológicas de tu organización, integrando nuevas ideas, metodologías y herramientas que impulsan tu crecimiento.', 'iquattro'); ?></p>
-      </div>
-    </div>
-  </section>  -->
-
-  <!-- Contacto -->
   <section class="iq-section iq-contact-section" id="contacto">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php esc_html_e('Estamos listos para ayudarte', 'iquattro'); ?></h2>
+      <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
       <div class="iq-contact-grid">
         <div class="iq-contact-form-wrap">
           <form id="iq-contact-form" class="iq-contact-form" method="post" novalidate>
@@ -188,7 +165,7 @@ get_header();
         </div>
         <div class="iq-contact-info">
           <div class="iq-contact-info-bg" aria-hidden="true"></div>
-          <p><?php esc_html_e('Ya sea que busques capacitarte, fortalecer la seguridad de tu empresa o desarrollar un proyecto tecnológico, déjanos tus datos y conversemos.', 'iquattro'); ?></p>
+          <p><?php echo esc_html($data['contact_side_text']); ?></p>
         </div>
       </div>
     </div>

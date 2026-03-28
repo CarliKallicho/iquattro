@@ -1,5 +1,7 @@
 <?php
 return array(
+  'catalogo_section_bg_id' => 0,
+  'partner_logo_id' => 0,
   'hero_title' => 'En iQuattro Capacitación no dictamos cursos genéricos, desarrollamos capacidades técnicas aplicables a entornos críticos y reales.',
   'hero_btn_primary' => 'Explorar cursos',
   'hero_btn_schedule' => 'Ver cronograma',
