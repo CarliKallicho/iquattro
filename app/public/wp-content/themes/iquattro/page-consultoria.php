@@ -14,17 +14,31 @@ $hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $images_uri . 'fondo-con
 $cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-consultoria-costado.jpg');
 $pensamos_sol = array_filter(array_map('trim', explode("\n", (string) $data['pensamos_soluciones'])));
 $diferenciales = array_filter(array_map('trim', explode("\n", (string) $data['expertos_diferenciales'])));
+$cons_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 ?>
 <main id="main" class="iq-main iq-consultoria-page">
   <div class="iq-page-hero-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <section class="iq-consultoria-hero" style="background-image: url('<?php echo esc_url($hero_bg); ?>');">
     <div class="iq-container">
-      <h1 class="iq-consultoria-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-consultoria-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
-      <p class="iq-consultoria-hero-actions">
-        <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
-      </p>
+      <div class="iq-consultoria-hero-copy">
+        <h1 class="iq-consultoria-hero-title">
+          <?php
+          $cons_l1 = isset($cons_hero_title_lines[0]) ? $cons_hero_title_lines[0] : '';
+          $cons_l2 = isset($cons_hero_title_lines[1]) ? $cons_hero_title_lines[1] : '';
+          if ($cons_l1 !== '' && $cons_l2 !== '') :
+            ?>
+            <span class="iq-consultoria-hero-title-line"><?php echo esc_html($cons_l1); ?></span>
+            <span class="iq-consultoria-hero-title-line"><?php echo esc_html($cons_l2); ?></span>
+          <?php else : ?>
+            <?php echo esc_html($cons_l1 !== '' ? $cons_l1 : $cons_l2); ?>
+          <?php endif; ?>
+        </h1>
+        <p class="iq-consultoria-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+        <p class="iq-consultoria-hero-actions">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/')); ?>" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+        </p>
+      </div>
     </div>
   </section>
   </div>
@@ -85,7 +99,7 @@ $diferenciales = array_filter(array_map('trim', explode("\n", (string) $data['ex
               <textarea id="iq-cons-mensaje" name="mensaje" rows="4" placeholder="<?php esc_attr_e('Ingresa tu mensaje', 'iquattro'); ?>" required></textarea>
             </p>
             <p class="iq-form-actions">
-              <button type="submit" class="iq-btn iq-btn-primary iq-btn-enviar"><?php esc_html_e('Enviar', 'iquattro'); ?></button>
+              <button type="submit" class="iq-btn iq-btn-primary iq-btn-enviar iq-btn-consultoria"><?php esc_html_e('Enviar', 'iquattro'); ?></button>
             </p>
             <p class="iq-form-message" id="iq-cons-form-message" aria-live="polite"></p>
           </form>

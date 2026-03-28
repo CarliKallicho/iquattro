@@ -445,6 +445,47 @@ function iquattro_seguridad_hero_title_lines($title) {
 }
 
 /**
+ * Título del hero Consultoría en dos líneas: | o salto de línea; si es una sola frase, parte después de " para ".
+ *
+ * @return string[] Una o dos cadenas.
+ */
+function iquattro_consultoria_hero_title_lines($title) {
+  $title = trim((string) $title);
+  if ($title === '') {
+    return array('');
+  }
+  $normalize = static function ($s) {
+    return trim(preg_replace('/\s+/u', ' ', $s));
+  };
+  if (strpos($title, '|') !== false) {
+    $parts = explode('|', $title, 2);
+    return array(
+      $normalize($parts[0]),
+      isset($parts[1]) ? $normalize($parts[1]) : '',
+    );
+  }
+  if (preg_match('/\R/u', $title)) {
+    $parts = preg_split('/\R/u', $title, 2);
+    $a = $normalize($parts[0]);
+    $b = isset($parts[1]) ? $normalize($parts[1]) : '';
+    if ($a !== '' && $b !== '') {
+      return array($a, $b);
+    }
+  }
+  $needle = ' para ';
+  $pos = mb_stripos($title, $needle, 0, 'UTF-8');
+  if ($pos !== false) {
+    $after = mb_substr($title, $pos + mb_strlen($needle, 'UTF-8'), null, 'UTF-8');
+    $after = $normalize($after);
+    if ($after !== '') {
+      $first = $normalize(mb_substr($title, 0, $pos)) . ' para';
+      return array($first, $after);
+    }
+  }
+  return array($title);
+}
+
+/**
  * Renderizar el topbar de la página Capacitación (logo + menú). Se usa dentro de .iq-capacitacion-wrap.
  */
 function iquattro_render_capacitacion_topbar() {
@@ -458,6 +499,9 @@ function iquattro_render_capacitacion_topbar() {
   } elseif (is_page('seguridad')) {
     $logo_src = $theme_uri . '/assets/images/logo-iquattro-seguridad.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Seguridad', 'iquattro');
+  } elseif (is_page('consultoria')) {
+    $logo_src = $theme_uri . '/assets/images/logo-iquattro-consultoria.png';
+    $logo_alt = get_bloginfo('name') . ' – ' . __('Consultoría', 'iquattro');
   } else {
     $logo_src = $theme_uri . '/assets/images/iquattro-capacitacion-header.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Capacitación', 'iquattro');
