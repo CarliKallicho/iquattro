@@ -84,34 +84,36 @@ $categorias = is_array($terms) ? $terms : array();
           <?php endif; ?>
 
           <div class="iq-curso-detail-right-stack">
-            <?php if (!empty($descripcion_items)) : ?>
-              <section class="iq-curso-detail-section">
-                <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Descripción', 'iquattro'); ?></h2>
+            <section class="iq-curso-detail-section">
+              <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Descripción', 'iquattro'); ?></h2>
+              <?php if (!empty($descripcion_items)) : ?>
                 <ul class="iq-curso-detail-list">
                   <?php foreach ($descripcion_items as $item) : ?>
                     <li><?php echo esc_html($item); ?></li>
                   <?php endforeach; ?>
                 </ul>
-              </section>
-            <?php endif; ?>
+              <?php else : ?>
+                <p class="iq-curso-detail-text">—</p>
+              <?php endif; ?>
+            </section>
 
-            <?php if ($objetivo !== '') : ?>
-              <section class="iq-curso-detail-section">
-                <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Objetivo', 'iquattro'); ?></h2>
-                <p class="iq-curso-detail-text"><?php echo esc_html($objetivo); ?></p>
-              </section>
-            <?php endif; ?>
+            <section class="iq-curso-detail-section">
+              <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Objetivo', 'iquattro'); ?></h2>
+              <p class="iq-curso-detail-text"><?php echo $objetivo !== '' ? esc_html($objetivo) : '—'; ?></p>
+            </section>
 
-            <?php if (!empty($perfil_items)) : ?>
-              <section class="iq-curso-detail-section">
-                <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Perfil del participante', 'iquattro'); ?></h2>
+            <section class="iq-curso-detail-section">
+              <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Perfil del participante', 'iquattro'); ?></h2>
+              <?php if (!empty($perfil_items)) : ?>
                 <ul class="iq-curso-detail-list">
                   <?php foreach ($perfil_items as $item) : ?>
                     <li><?php echo esc_html($item); ?></li>
                   <?php endforeach; ?>
                 </ul>
-              </section>
-            <?php endif; ?>
+              <?php else : ?>
+                <p class="iq-curso-detail-text">—</p>
+              <?php endif; ?>
+            </section>
 
             <section class="iq-curso-detail-section">
               <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Requisitos de conocimiento', 'iquattro'); ?></h2>
