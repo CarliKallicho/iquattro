@@ -5275,12 +5275,14 @@ body.iq-page-servicios-body {
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
+  justify-content: flex-start;
   margin-bottom: 1.5rem;
 }
 
 .iq-catalogo-search-wrap {
-  flex: 1;
-  min-width: 200px;
+  flex: 1 1 auto;
+  max-width: 1300px;
+  min-width: min(100%, 200px);
   position: relative;
   display: flex;
   align-items: center;
@@ -5311,9 +5313,9 @@ body.iq-page-servicios-body {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.75rem;
   border: 1px solid var(--iq-color-gray-light);
-  border-radius: 8px;
+  border-radius: 100px;
   font-size: 1rem;
-  background: #fff;
+  background: #f9f9f9;
 }
 
 .iq-catalogo-search:focus {
@@ -5323,12 +5325,17 @@ body.iq-page-servicios-body {
 
 .iq-catalogo-dropdown-wrap {
   position: relative;
+  width: 250px;
+  flex: 0 0 250px;
 }
 
 .iq-catalogo-filter-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
   padding: 0.75rem 1.25rem;
   background: #47C281;
   color: #fff;
@@ -5356,9 +5363,12 @@ body.iq-page-servicios-body {
   position: absolute;
   top: 100%;
   left: 0;
+  right: 0;
   margin: 0.25rem 0 0;
   padding: 0.5rem 0;
-  min-width: 220px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
   background: #fff;
   border: 1px solid var(--iq-color-gray-light);
   border-radius: 8px;
@@ -5378,19 +5388,27 @@ body.iq-page-servicios-body {
 
 .iq-catalogo-category-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
   margin-bottom: 2rem;
 }
 
 .iq-catalogo-cat-btn {
-  padding: 0.5rem 1rem;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.65rem 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   color: #fff;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: filter 0.2s, box-shadow 0.2s;
 }
 
@@ -5404,22 +5422,27 @@ body.iq-page-servicios-body {
 
 .iq-catalogo-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .iq-catalogo-card {
   border-radius: 12px;
   overflow: hidden;
-  min-height: 120px;
+  min-height: 190px;
   color: #fff;
 }
 
 a.iq-catalogo-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 190px;
   text-decoration: none;
   color: inherit;
   transition: filter 0.2s, transform 0.2s;
+  box-sizing: border-box;
 }
 
 a.iq-catalogo-card:hover {
@@ -5440,24 +5463,30 @@ a.iq-catalogo-card:hover {
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem;
-  min-height: 120px;
+  min-height: 190px;
+  flex: 1;
   box-sizing: border-box;
+  width: 100%;
+}
+
+.iq-catalogo-card-inner:has(.iq-catalogo-card-programado) {
+  padding-bottom: 2.75rem;
 }
 
 .iq-catalogo-card-icon-wrap {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.2);
-  border-radius: 8px;
+  background: transparent;
+  border-radius: 0;
 }
 
 .iq-catalogo-card-icon {
-  width: 28px;
-  height: 28px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -5465,6 +5494,9 @@ a.iq-catalogo-card:hover {
 .iq-catalogo-card-text {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .iq-catalogo-card-title {
@@ -5475,10 +5507,16 @@ a.iq-catalogo-card:hover {
 }
 
 .iq-catalogo-card-desc {
-  font-size: 0.85rem;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  color: #fff;
   margin: 0;
-  opacity: 0.95;
-  line-height: 1.4;
+  line-height: 1.35;
+}
+
+.iq-catalogo-card-desc + .iq-catalogo-card-desc {
+  margin-top: 10px;
 }
 
 .iq-catalogo-card-programado {
@@ -5488,37 +5526,55 @@ a.iq-catalogo-card:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.5rem;
-  background: rgba(0,0,0,0.25);
-  border-radius: 6px;
-  font-size: 0.75rem;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  color: #fff;
 }
 
+.iq-catalogo-card-programado-icon,
 .iq-catalogo-card-programado img {
   display: block;
-}
-
-@media (max-width: 1200px) {
-  .iq-catalogo-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 768px) {
-  .iq-catalogo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .iq-catalogo-toolbar {
+    flex-direction: column;
+    align-items: stretch;
   }
+
+  .iq-catalogo-search-wrap {
+    max-width: none;
+  }
+
+  .iq-catalogo-dropdown-wrap {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .iq-catalogo-category-buttons {
+    flex-wrap: wrap;
+  }
+
+  .iq-catalogo-cat-btn {
+    flex: 1 1 calc(50% - 0.375rem);
+    min-width: min(100%, 140px);
+    white-space: normal;
+  }
+
+  .iq-catalogo-grid {
+    gap: 0.75rem;
+  }
+
   .iq-catalogo-card-inner {
     padding: 1rem;
-    min-height: 100px;
-  }
-  .iq-catalogo-card-icon-wrap {
-    width: 40px;
-    height: 40px;
-  }
-  .iq-catalogo-card-icon {
-    width: 24px;
-    height: 24px;
   }
 }

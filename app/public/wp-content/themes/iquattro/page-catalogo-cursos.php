@@ -111,12 +111,21 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
               <img src="<?php echo esc_url($icons_uri . $icon); ?>" alt="" class="iq-catalogo-card-icon" loading="lazy">
             </div>
             <div class="iq-catalogo-card-text">
-              <h3 class="iq-catalogo-card-title"><?php echo esc_html($card_title); ?></h3>
-              <p class="iq-catalogo-card-desc"><?php echo esc_html($desc); ?></p>
+              <h3 class="iq-catalogo-card-title iq-sr-only"><?php echo esc_html($card_title); ?></h3>
+              <?php
+              $desc_lines = preg_split('/\r\n|\r|\n/', (string) $desc, -1, PREG_SPLIT_NO_EMPTY);
+              if (empty($desc_lines)) {
+                echo '<p class="iq-catalogo-card-desc"></p>';
+              } else {
+                foreach ($desc_lines as $line) {
+                  echo '<p class="iq-catalogo-card-desc">' . esc_html(trim($line)) . '</p>';
+                }
+              }
+              ?>
             </div>
             <?php if ($programado) : ?>
               <div class="iq-catalogo-card-programado">
-                <img src="<?php echo esc_url($icons_uri . 'icon-programado.svg'); ?>" alt="" width="16" height="16" loading="lazy">
+                <img src="<?php echo esc_url($icons_uri . 'icon-programado.svg'); ?>" alt="" width="24" height="24" class="iq-catalogo-card-programado-icon" loading="lazy">
                 <span><?php esc_html_e('Programado', 'iquattro'); ?></span>
               </div>
             <?php endif; ?>
