@@ -28,7 +28,7 @@ $contact_title = get_post_meta($pid, '_curso_contact_title', true);
 $contact_cta = get_post_meta($pid, '_curso_contact_cta_text', true);
 
 if ($contact_title === '') $contact_title = __('Encuentra la formación adecuada para ti o tu equipo', 'iquattro');
-if ($contact_cta === '') $contact_cta = __('Cada proceso de capacitación tiene un objetivo distinto.', 'iquattro') . ' ' . __('Completa el formulario y te ayudaremos a evaluar si este curso es el indicado o a definir una ruta de aprendizaje más alineada a tus necesidades.', 'iquattro');
+if ($contact_cta === '') $contact_cta = __('Cada proceso de capacitación tiene un objetivo distinto.', 'iquattro') . "\n" . __('Completa el formulario y te ayudaremos a evaluar si este curso es el indicado o a definir una ruta de aprendizaje más alineada a tus necesidades.', 'iquattro');
 
 $contenido_items = $contenido_raw ? array_filter(array_map('trim', explode("\n", $contenido_raw))) : array();
 $descripcion_items = $descripcion_raw ? array_filter(array_map('trim', explode("\n", $descripcion_raw))) : array();
@@ -164,7 +164,18 @@ $categorias = is_array($terms) ? $terms : array();
               </form>
             </div>
             <div class="iq-curso-detail-cta">
-              <p><?php echo esc_html($contact_cta); ?></p>
+              <div class="iq-curso-detail-cta-copy">
+                <?php
+                $cta_lines = preg_split('/\r\n|\r|\n/', (string) $contact_cta, -1, PREG_SPLIT_NO_EMPTY);
+                if (empty($cta_lines)) {
+                  echo '<p></p>';
+                } else {
+                  foreach ($cta_lines as $line) {
+                    echo '<p>' . esc_html(trim($line)) . '</p>';
+                  }
+                }
+                ?>
+              </div>
             </div>
           </div>
         </section>
