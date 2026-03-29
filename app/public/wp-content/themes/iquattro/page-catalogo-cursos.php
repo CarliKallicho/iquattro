@@ -45,7 +45,9 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
 ?>
 
 <main id="main" class="iq-main iq-catalogo-page">
-  <div class="iq-catalogo-wrap">
+  <div class="iq-capacitacion-wrap">
+    <?php iquattro_render_capacitacion_topbar(); ?>
+    <div class="iq-catalogo-wrap">
     <h1 class="iq-catalogo-title"><?php echo esc_html($data['page_title']); ?></h1>
 
     <div class="iq-catalogo-toolbar">
@@ -106,6 +108,7 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
           </div>
         </article>
       <?php endforeach; ?>
+    </div>
     </div>
   </div>
 </main>

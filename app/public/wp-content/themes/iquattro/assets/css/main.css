@@ -4499,6 +4499,19 @@ body.iq-page-servicios-body {
   background: #fff;
 }
 
+/* Mismo topbar que Capacitación; fondo blanco (sin degradado del hero) */
+.iq-catalogo-page .iq-capacitacion-wrap {
+  background: #fff;
+}
+
+.iq-cronograma-page {
+  background: #fff;
+}
+
+.iq-cronograma-page .iq-capacitacion-wrap {
+  background: #fff;
+}
+
 .iq-catalogo-wrap {
   max-width: 1688px;
   margin: 0 auto;
