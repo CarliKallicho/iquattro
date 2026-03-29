@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('IQUATTRO_VERSION', '1.0.3');
+define('IQUATTRO_VERSION', '1.0.4');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
@@ -587,16 +587,37 @@ function iquattro_get_division_pages() {
 }
 
 /**
+ * Nombre de página para el asunto del correo según form_origin (slug)
+ */
+function iquattro_form_origin_page_name($slug) {
+  $names = array(
+    'portada'      => __('Portada', 'iquattro'),
+    'data-center'  => __('Data Center', 'iquattro'),
+    'seguridad'    => __('Seguridad', 'iquattro'),
+    'consultoria'  => __('Consultoría', 'iquattro'),
+    'servicios'    => __('Servicios', 'iquattro'),
+    'capacitacion' => __('Capacitación', 'iquattro'),
+    'contacto'     => __('Contacto', 'iquattro'),
+    'cronograma'   => __('Cronograma (inscripción curso)', 'iquattro'),
+    'curso'        => __('Detalle curso (inscripción)', 'iquattro'),
+    'evento'       => __('Evento', 'iquattro'),
+  );
+  return isset($names[ $slug ]) ? $names[ $slug ] : $slug;
+}
+
+/**
  * Envío del formulario de contacto (AJAX)
  */
 function iquattro_handle_contact_form() {
   check_ajax_referer('iquattro_contact', 'nonce');
 
-  $nombre   = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
-  $email    = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-  $telefono = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
-  $empresa  = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
-  $mensaje  = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
+  $nombre      = isset($_POST['nombre']) ? sanitize_text_field($_POST['nombre']) : '';
+  $email       = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+  $telefono    = isset($_POST['telefono']) ? sanitize_text_field($_POST['telefono']) : '';
+  $empresa     = isset($_POST['empresa']) ? sanitize_text_field($_POST['empresa']) : '';
+  $mensaje     = isset($_POST['mensaje']) ? sanitize_textarea_field($_POST['mensaje']) : '';
+  $curso_id    = isset($_POST['curso_id']) ? absint($_POST['curso_id']) : 0;
+  $form_origin = isset($_POST['form_origin']) ? sanitize_text_field($_POST['form_origin']) : '';
 
   $errors = array();
   if (empty($nombre)) $errors[] = __('El nombre es obligatorio.', 'iquattro');
@@ -607,14 +628,29 @@ function iquattro_handle_contact_form() {
     wp_send_json_error(array('message' => implode(' ', $errors)));
   }
 
-  $to      = get_option('admin_email');
-  $subject = sprintf(__('[iQuattro] Contacto desde web: %s', 'iquattro'), $nombre);
-  $body    = sprintf(
-    "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s\n\nMensaje:\n%s",
+  $curso_info = '';
+  if ($curso_id) {
+    $curso = get_post($curso_id);
+    $curso_info = $curso && $curso->post_type === 'curso'
+      ? sprintf("\nCurso inscripción: %s\n", get_the_title($curso_id))
+      : '';
+  }
+
+  $to = get_theme_mod('iquattro_form_destination_email', '');
+  if (!is_email($to)) {
+    $to = get_option('admin_email');
+  }
+
+  $page_name = iquattro_form_origin_page_name($form_origin) ?: __('Web', 'iquattro');
+  $subject   = sprintf(__('[iQuattro] Mensaje desde %s: %s', 'iquattro'), $page_name, $nombre);
+
+  $body = sprintf(
+    "Nombre: %s\nEmail: %s\nTeléfono: %s\nEmpresa: %s%s\nMensaje:\n%s",
     $nombre,
     $email,
     $telefono,
     $empresa,
+    $curso_info,
     $mensaje
   );
   $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: ' . $nombre . ' <' . $email . '>');
@@ -637,6 +673,17 @@ function iquattro_customize_register($wp_customize) {
   $wp_customize->add_section('iquattro_contact', array(
     'title'    => __('Datos de contacto', 'iquattro'),
     'priority' => 30,
+  ));
+
+  $wp_customize->add_setting('iquattro_form_destination_email', array(
+    'default'           => '',
+    'sanitize_callback' => 'sanitize_email',
+  ));
+  $wp_customize->add_control('iquattro_form_destination_email', array(
+    'label'       => __('Correo destino de formularios (vacío = correo del sitio)', 'iquattro'),
+    'description' => __('Recibe los envíos AJAX de contacto e inscripción (cronograma, etc.).', 'iquattro'),
+    'section'     => 'iquattro_contact',
+    'type'        => 'email',
   ));
 
   $wp_customize->add_setting('iquattro_phone', array(

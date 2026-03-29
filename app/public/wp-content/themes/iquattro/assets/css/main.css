@@ -4688,6 +4688,127 @@ body.iq-page-servicios-body {
   margin: 2rem 0;
 }
 
+/* Modal Inscribirme (cronograma) — branch_old_ok */
+.iq-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.iq-modal[hidden] {
+  display: none;
+}
+
+.iq-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.iq-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.iq-modal-header {
+  background: #47C281;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.iq-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.iq-modal-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iq-modal-close:hover {
+  opacity: 0.9;
+}
+
+.iq-modal-body {
+  padding: 1.5rem;
+}
+
+.iq-inscribirme-form .iq-form-field,
+.iq-inscribirme-form .iq-form-row {
+  margin-bottom: 1rem;
+}
+
+.iq-inscribirme-form label {
+  display: block;
+  font-weight: 600;
+  color: var(--iq-color-dark, #1f2937);
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.iq-inscribirme-form input[type="text"],
+.iq-inscribirme-form input[type="email"],
+.iq-inscribirme-form input[type="tel"],
+.iq-inscribirme-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(71, 194, 129, 0.5);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.iq-inscribirme-form .iq-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.iq-inscribirme-form .iq-form-actions {
+  margin: 1rem 0 0;
+}
+
+.iq-inscribirme-form .iq-form-message {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.iq-inscribirme-form .iq-form-message.iq-error {
+  color: #D7263D;
+}
+
+.iq-inscribirme-form .iq-form-message.iq-success {
+  color: #47C281;
+}
+
 /* ==========================================================================
    Página Evento (branch_old_ok)
    ========================================================================== */
