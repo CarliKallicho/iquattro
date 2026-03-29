@@ -55,23 +55,25 @@ $categorias = is_array($terms) ? $terms : array();
         <?php endif; ?>
 
         <div class="iq-curso-detail-cards">
-          <div class="iq-curso-info-card">
-            <strong><?php esc_html_e('Tecnología', 'iquattro'); ?></strong>
-            <span><?php echo $tecnologia !== '' ? esc_html($tecnologia) : '—'; ?></span>
+          <div class="iq-curso-info-card iq-curso-info-card-combined">
+            <div class="iq-curso-info-block">
+              <strong><?php esc_html_e('Tecnología', 'iquattro'); ?></strong>
+              <span><?php echo $tecnologia !== '' ? esc_html($tecnologia) : '—'; ?></span>
+            </div>
+            <div class="iq-curso-info-block">
+              <strong><?php esc_html_e('Especialidad', 'iquattro'); ?></strong>
+              <span><?php echo $especialidad !== '' ? esc_html($especialidad) : '—'; ?></span>
+            </div>
           </div>
-          <div class="iq-curso-info-card">
-            <strong><?php esc_html_e('Especialidad', 'iquattro'); ?></strong>
-            <span><?php echo $especialidad !== '' ? esc_html($especialidad) : '—'; ?></span>
-          </div>
-          <div class="iq-curso-info-card">
+          <div class="iq-curso-info-card iq-curso-info-card-duracion">
             <strong><?php esc_html_e('Duración', 'iquattro'); ?></strong>
             <span><?php echo $duracion !== '' ? esc_html($duracion) : '—'; ?></span>
           </div>
         </div>
 
-        <div class="iq-curso-detail-grid">
+        <div class="iq-curso-detail-layout">
           <?php if (!empty($contenido_items)) : ?>
-            <section class="iq-curso-detail-section">
+            <section class="iq-curso-detail-section iq-curso-detail-section-contenido">
               <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Contenido', 'iquattro'); ?></h2>
               <ul class="iq-curso-detail-list">
                 <?php foreach ($contenido_items as $item) : ?>
@@ -80,45 +82,48 @@ $categorias = is_array($terms) ? $terms : array();
               </ul>
             </section>
           <?php endif; ?>
-          <?php if (!empty($descripcion_items)) : ?>
+
+          <div class="iq-curso-detail-right-stack">
+            <?php if (!empty($descripcion_items)) : ?>
+              <section class="iq-curso-detail-section">
+                <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Descripción', 'iquattro'); ?></h2>
+                <ul class="iq-curso-detail-list">
+                  <?php foreach ($descripcion_items as $item) : ?>
+                    <li><?php echo esc_html($item); ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              </section>
+            <?php endif; ?>
+
+            <?php if ($objetivo !== '') : ?>
+              <section class="iq-curso-detail-section">
+                <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Objetivo', 'iquattro'); ?></h2>
+                <p class="iq-curso-detail-text"><?php echo esc_html($objetivo); ?></p>
+              </section>
+            <?php endif; ?>
+
+            <?php if (!empty($perfil_items)) : ?>
+              <section class="iq-curso-detail-section">
+                <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Perfil del participante', 'iquattro'); ?></h2>
+                <ul class="iq-curso-detail-list">
+                  <?php foreach ($perfil_items as $item) : ?>
+                    <li><?php echo esc_html($item); ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              </section>
+            <?php endif; ?>
+
             <section class="iq-curso-detail-section">
-              <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Descripción', 'iquattro'); ?></h2>
-              <ul class="iq-curso-detail-list">
-                <?php foreach ($descripcion_items as $item) : ?>
-                  <li><?php echo esc_html($item); ?></li>
-                <?php endforeach; ?>
-              </ul>
+              <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Requisitos de conocimiento', 'iquattro'); ?></h2>
+              <p class="iq-curso-detail-text"><?php echo $requisitos !== '' ? esc_html($requisitos) : '—'; ?></p>
             </section>
-          <?php endif; ?>
+
+            <section class="iq-curso-detail-section">
+              <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Observaciones', 'iquattro'); ?></h2>
+              <p class="iq-curso-detail-text"><?php echo $observaciones !== '' ? esc_html($observaciones) : '—'; ?></p>
+            </section>
+          </div>
         </div>
-
-        <?php if ($objetivo !== '') : ?>
-          <section class="iq-curso-detail-section iq-curso-detail-full">
-            <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Objetivo', 'iquattro'); ?></h2>
-            <p class="iq-curso-detail-text"><?php echo esc_html($objetivo); ?></p>
-          </section>
-        <?php endif; ?>
-
-        <?php if (!empty($perfil_items)) : ?>
-          <section class="iq-curso-detail-section iq-curso-detail-full">
-            <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Perfil del participante', 'iquattro'); ?></h2>
-            <ul class="iq-curso-detail-list">
-              <?php foreach ($perfil_items as $item) : ?>
-                <li><?php echo esc_html($item); ?></li>
-              <?php endforeach; ?>
-            </ul>
-          </section>
-        <?php endif; ?>
-
-        <section class="iq-curso-detail-section iq-curso-detail-full">
-          <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Requisitos de conocimiento', 'iquattro'); ?></h2>
-          <p class="iq-curso-detail-text"><?php echo $requisitos !== '' ? esc_html($requisitos) : '—'; ?></p>
-        </section>
-
-        <section class="iq-curso-detail-section iq-curso-detail-full">
-          <h2 class="iq-curso-detail-section-title"><?php esc_html_e('Observaciones', 'iquattro'); ?></h2>
-          <p class="iq-curso-detail-text"><?php echo $observaciones !== '' ? esc_html($observaciones) : '—'; ?></p>
-        </section>
 
         <section class="iq-curso-detail-contact">
           <h2 class="iq-curso-detail-section-title"><?php echo esc_html($contact_title); ?></h2>

@@ -212,7 +212,7 @@
 
 .iq-hero-title {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0;
   line-height: 1.25;
@@ -265,7 +265,7 @@
   color: var(--iq-color-white) !important;
   text-decoration: none !important;
   border-radius: var(--iq-radius);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 18px;
   line-height: 1;
   white-space: nowrap;
@@ -309,7 +309,7 @@
 
 .iq-section-title {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0 0 1.5rem;
 }
@@ -351,7 +351,7 @@
 .home .iq-section.iq-somos .iq-section-title {
   width: 100%;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .home .iq-section.iq-somos .iq-somos-intro p {
@@ -405,7 +405,7 @@
   flex: 1;
   min-width: 0;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
   margin: 0 0 0.5rem;
   color: var(--iq-color-dark);
@@ -477,7 +477,7 @@
   right: 0;
   padding: 1rem 0.5rem;
   background: #717680;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 28px;
   line-height: 1.1;
   text-align: center;
@@ -544,7 +544,7 @@
 .iq-division-hover-title {
   flex-shrink: 0;
   padding: 0 1rem;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 28px;
   line-height: 1.1;
   text-align: center;
@@ -576,7 +576,7 @@
   margin: 0 auto;
   background: linear-gradient(180deg, #fb9b5c 0%, #f08a45 100%);
   color: var(--iq-color-white);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 18px;
   border-radius: 21px;
   border: none;
@@ -630,7 +630,7 @@
   text-align: left;
   margin-left: 0;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
 }
 
@@ -792,7 +792,7 @@
 /* --- Aliados --- */
 .home .iq-allies .iq-section-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .home .iq-allies-grid {
@@ -882,7 +882,7 @@
 
 .iq-innovation-title {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 0.75rem;
   color: var(--iq-color-dark);
 }
@@ -936,7 +936,7 @@
   width: 100%;
   padding: 0.6rem 0.75rem;
   border: 1px solid #93c5fd;
-  border-radius: 6px;
+  border-radius: 50px;
   font-family: inherit;
   font-size: 1rem;
   transition: border-color var(--iq-transition), box-shadow var(--iq-transition);
@@ -1095,7 +1095,7 @@
 
 .home .iq-contact-section .iq-contact-info p {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   color: #111827;
 }
@@ -1112,7 +1112,7 @@
 
 .iq-contacto-page .iq-contact-info-imagen p {
   color: #000;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 28px;
   line-height: 1.25;
 }
@@ -1127,7 +1127,7 @@
   background: #0d9fdc;
   border-radius: 10px;
   color: #fff;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .iq-contacto-page .iq-btn-enviar:hover {
@@ -1150,7 +1150,7 @@
 .iq-contacto-page .iq-contact-form input[type="tel"],
 .iq-contacto-page .iq-contact-form textarea {
   border: 2px solid #0d9fdc;
-  border-radius: 6px;
+  border-radius: 50px;
 }
 
 .iq-contacto-page .iq-contact-form input:focus,
@@ -1198,7 +1198,7 @@
 
 .iq-contacto-main-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   color: var(--iq-color-dark);
   margin: 0 0 0.75rem;
@@ -1225,7 +1225,7 @@
 
 .iq-contacto-channels-title {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 2.5rem 0 1.5rem;
 }
@@ -1295,7 +1295,7 @@ span.iq-contacto-card-icon {
 
 .iq-contacto-card-title {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   color: #000;
   margin: 0;
@@ -1466,7 +1466,7 @@ span.iq-contacto-card-icon {
 
 .iq-servicios-que-hacemos-lead-sub {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0 0 0.75rem;
 }
@@ -1488,7 +1488,7 @@ span.iq-contacto-card-icon {
 
 .iq-servicios-que-hacemos .iq-servicios-que-hacemos-title {
   font-size: clamp(1.5rem, 3.5vw, 36px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   margin: 0;
   text-align: left;
@@ -1543,7 +1543,7 @@ span.iq-contacto-card-icon {
 
 .iq-servicios-especializados > .iq-container > .iq-section-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   color: var(--iq-color-dark);
@@ -1605,7 +1605,7 @@ span.iq-contacto-card-icon {
 
 .iq-servicio-card-title {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #000;
   margin: 0;
   text-align: center;
@@ -1646,7 +1646,7 @@ span.iq-contacto-card-icon {
 
 .iq-servicios-contact-section > .iq-container > .iq-section-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   color: var(--iq-color-dark);
@@ -1678,7 +1678,7 @@ span.iq-contacto-card-icon {
 .iq-servicios-form-wrap .iq-contact-form input[type="tel"],
 .iq-servicios-form-wrap .iq-contact-form textarea {
   border: 2px solid #ffc847;
-  border-radius: 6px;
+  border-radius: 50px;
 }
 
 .iq-servicios-form-wrap .iq-contact-form input:focus,
@@ -1723,7 +1723,7 @@ span.iq-contacto-card-icon {
   color: #000;
   font-family: var(--iq-font-sans);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.3;
   z-index: 1;
@@ -1854,7 +1854,7 @@ span.iq-contacto-card-icon {
 .iq-consultoria-pensamos > .iq-container > .iq-section-title,
 .iq-consultoria-expertos > .iq-container > .iq-section-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   color: var(--iq-color-dark);
@@ -1872,7 +1872,7 @@ span.iq-contacto-card-icon {
 
 .iq-consultoria-subtitle {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0 0 1rem;
 }
@@ -1895,7 +1895,7 @@ span.iq-contacto-card-icon {
   padding: 1rem 1.25rem;
   border-radius: var(--iq-radius-lg);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   color: #000;
   line-height: 1.3;
@@ -1914,7 +1914,7 @@ span.iq-contacto-card-icon {
   text-align: center;
   padding: 1rem 1.25rem;
   border-radius: var(--iq-radius-lg);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
   color: #fff;
   line-height: 1.3;
@@ -1967,7 +1967,7 @@ span.iq-contacto-card-icon {
 .iq-consultoria-form-wrap .iq-contact-form input[type="tel"],
 .iq-consultoria-form-wrap .iq-contact-form textarea {
   border: 2px solid #7b4b94;
-  border-radius: 6px;
+  border-radius: 50px;
 }
 
 .iq-consultoria-form-wrap .iq-contact-form input:focus,
@@ -2010,7 +2010,7 @@ span.iq-contacto-card-icon {
   color: #000;
   font-family: var(--iq-font-sans);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.3;
   z-index: 1;
@@ -2144,7 +2144,7 @@ span.iq-contacto-card-icon {
 
 .iq-seguridad-que-protegemos .iq-section-title.iq-seguridad-que-protegemos-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   margin: 0 0 1.25rem;
@@ -2175,7 +2175,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-seguridad-intro--que-protegemos strong {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .iq-seguridad-intro {
@@ -2225,7 +2225,7 @@ span.iq-contacto-card-icon {
 .iq-seguridad-card-title {
   font-family: var(--iq-font-sans);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.25;
   color: #fff;
@@ -2258,7 +2258,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-seguridad-intro--monitoreo strong {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* Sección contacto Seguridad — sin fondo de sección (degradado del body) */
@@ -2292,7 +2292,7 @@ span.iq-contacto-card-icon {
 .iq-seguridad-form-wrap .iq-contact-form input[type="tel"],
 .iq-seguridad-form-wrap .iq-contact-form textarea {
   border: 2px solid #d7263d;
-  border-radius: 6px;
+  border-radius: 50px;
 }
 
 .iq-seguridad-form-wrap .iq-contact-form input:focus,
@@ -2335,7 +2335,7 @@ span.iq-contacto-card-icon {
   color: #000;
   font-family: var(--iq-font-sans);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.3;
   z-index: 1;
@@ -2496,7 +2496,7 @@ body.iq-page-servicios-body {
   padding: 0;
   font-family: var(--iq-font-sans);
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   color: var(--iq-color-dark);
@@ -2568,7 +2568,7 @@ body.iq-page-servicios-body {
   padding: 0.85rem 1.75rem;
   border-radius: 999px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   color: #0a121f;
   background: #f9f9f999;
@@ -2706,7 +2706,7 @@ body.iq-page-servicios-body {
 
 .iq-dc-catalogo-card-title {
   font-size: clamp(1.25rem, 2.5vw, 28px);
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   color: #fff;
   text-align: center;
@@ -2897,7 +2897,7 @@ body.iq-page-servicios-body {
 
 .iq-datacenter-como .iq-datacenter-como-title {
   font-size: clamp(1.5rem, 3.5vw, 36px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   margin: 0;
   text-align: left;
@@ -2948,7 +2948,7 @@ body.iq-page-servicios-body {
 /* Infraestructura: título 36px Bold; cuerpo 18px Regular; negritas en intro */
 .iq-datacenter-infra .iq-section-title {
   font-size: clamp(1.5rem, 3.5vw, 36px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.25rem;
 }
@@ -2968,7 +2968,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-datacenter-infra .iq-datacenter-infra-intro strong {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
 }
 
@@ -2999,7 +2999,7 @@ body.iq-page-servicios-body {
 
 .iq-datacenter-servicios .iq-datacenter-servicios-title {
   font-size: clamp(1.5rem, 3.5vw, 36px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   margin: 0 0 1.25rem;
   text-align: left;
@@ -3063,7 +3063,7 @@ body.iq-page-servicios-body {
 
 .iq-datacenter-servicio-title {
   font-size: clamp(1.25rem, 2.5vw, 28px);
-  font-weight: 700;
+  font-weight: 800;
   color: #2d343e;
   margin: 0;
   line-height: 1.2;
@@ -3091,7 +3091,7 @@ body.iq-page-servicios-body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   border-radius: 100px;
   background: #2d343e;
@@ -3114,7 +3114,7 @@ body.iq-page-servicios-body {
 
 .iq-datacenter-soluciones .iq-datacenter-soluciones-title {
   font-size: clamp(1.5rem, 3.5vw, 36px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
   margin: 0 0 2.25rem;
   text-align: left;
@@ -3149,7 +3149,7 @@ body.iq-page-servicios-body {
 
 .iq-datacenter-solucion-title {
   font-size: clamp(1.25rem, 2.5vw, 28px);
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   color: #fff;
   text-align: center;
@@ -3173,7 +3173,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-datacenter-solucion-body strong {
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
 }
 
@@ -3224,7 +3224,7 @@ body.iq-page-servicios-body {
   position: relative;
   margin: 0;
   color: var(--iq-color-dark);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 28px;
   line-height: 1.3;
   z-index: 1;
@@ -3310,7 +3310,7 @@ body.iq-page-servicios-body {
 
 .iq-acerca-hero-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0 0 1rem;
 }
@@ -3370,7 +3370,7 @@ body.iq-page-servicios-body {
 
 .iq-acerca-mv-title {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0;
 }
@@ -3388,7 +3388,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-acerca-mv-content strong {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* Valores (título + icono, 4 cards): fondo en .iq-container, no full-bleed */
@@ -3401,7 +3401,7 @@ body.iq-page-servicios-body {
   align-items: center;
   gap: 0.75rem;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0 0 1.5rem;
 }
@@ -3533,7 +3533,7 @@ body.iq-page-servicios-body {
 
 .iq-footer-title {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 1rem;
 }
 
@@ -3911,7 +3911,7 @@ body.iq-page-servicios-body {
 /* Ver cronograma, Ver próximo evento */
 .iq-capacitacion-hero .iq-capacitacion-btn-secondary {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -4010,7 +4010,7 @@ body.iq-page-servicios-body {
 .iq-capacitacion-slide-title {
   font-family: var(--iq-font-sans);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   color: var(--iq-color-dark);
   margin: 0 0 0.75rem;
@@ -4111,7 +4111,7 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-section-title {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   margin: 0 0 0;
 }
@@ -4220,7 +4220,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-partner-text strong {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .iq-capacitacion-partner-logo {
@@ -4296,7 +4296,7 @@ body.iq-page-servicios-body {
 .iq-capacitacion-evoluciona .iq-capacitacion-section-title {
   font-family: var(--iq-font-sans);
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   color: #000;
@@ -4315,7 +4315,7 @@ body.iq-page-servicios-body {
 .iq-capacitacion-evoluciona-title {
   font-family: var(--iq-font-sans);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.25;
   color: #000;
@@ -4402,7 +4402,7 @@ body.iq-page-servicios-body {
 
 .iq-capacitacion-catalogo-block--intro .iq-capacitacion-catalogo-intro-text strong,
 .iq-capacitacion-catalogo-block--cronograma .iq-capacitacion-catalogo-intro-text strong {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 @media (max-width: 768px) {
@@ -4443,7 +4443,7 @@ body.iq-page-servicios-body {
 .iq-capacitacion-contact-section .iq-capacitacion-contact-title {
   font-family: var(--iq-font-sans);
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.2;
   color: var(--iq-color-dark);
@@ -4455,7 +4455,7 @@ body.iq-page-servicios-body {
 .iq-capacitacion-form-wrap .iq-contact-form input[type="tel"],
 .iq-capacitacion-form-wrap .iq-contact-form textarea {
   border: 2px solid #47c281;
-  border-radius: 6px;
+  border-radius: 50px;
 }
 
 .iq-capacitacion-form-wrap .iq-contact-form input:focus,
@@ -4511,7 +4511,7 @@ body.iq-page-servicios-body {
 .iq-capacitacion-cta-copy > p:first-of-type {
   margin: 0 0 15px;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   line-height: 1.3;
   color: inherit;
@@ -4650,7 +4650,7 @@ body.iq-page-servicios-body {
 
 .iq-cronograma-title {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 2rem;
   text-align: center;
@@ -4733,7 +4733,7 @@ body.iq-page-servicios-body {
 
 .iq-cronograma-card-title {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   color: #fff;
   margin: 0;
@@ -4860,7 +4860,7 @@ body.iq-page-servicios-body {
   justify-content: center;
   padding: 0.6rem 1.35rem;
   border-radius: 50px;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 18px;
   font-style: normal;
   text-align: center;
@@ -4955,7 +4955,7 @@ body.iq-page-servicios-body {
 
 .iq-modal-title {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
   margin: 0;
 }
@@ -5106,8 +5106,8 @@ body.iq-page-servicios-body {
 }
 
 .iq-evento-title {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 0;
   line-height: 1.3;
@@ -5160,7 +5160,7 @@ body.iq-page-servicios-body {
 
 .iq-evento-speaker-name {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 0.25rem;
 }
@@ -5191,7 +5191,7 @@ body.iq-page-servicios-body {
 
 .iq-evento-block-title {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 0.75rem;
 }
@@ -5211,7 +5211,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-evento-datos dt {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0;
 }
@@ -5228,7 +5228,7 @@ body.iq-page-servicios-body {
 
 .iq-evento-form-heading {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 1.5rem;
 }
@@ -5257,7 +5257,7 @@ body.iq-page-servicios-body {
 
 .iq-evento-form-cta-title {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 0.75rem;
   color: #fff;
 }
@@ -5465,11 +5465,13 @@ body.iq-page-servicios-body {
 }
 
 .iq-curso-detail-title {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
+  width: 100%;
+  font-size: 48px;
+  font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
   line-height: 1.3;
+  text-align: center;
 }
 
 .iq-curso-detail-pills {
@@ -5482,7 +5484,7 @@ body.iq-page-servicios-body {
 .iq-curso-detail-pill {
   display: inline-block;
   padding: 0.35rem 0.75rem;
-  border-radius: 6px;
+  border-radius: 50px;
   color: #fff;
   font-size: 0.9rem;
   font-weight: 500;
@@ -5490,62 +5492,91 @@ body.iq-page-servicios-body {
 
 .iq-curso-detail-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.35fr 0.95fr;
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .iq-curso-info-card {
-  background: #fff;
+  background: #f9f9f9;
   border-radius: var(--iq-radius-lg);
   padding: 1.25rem;
   border: 1px solid var(--iq-color-gray-light, #e5e7eb);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.75rem;
 }
 
 .iq-curso-info-card strong {
-  font-size: 0.85rem;
-  color: var(--iq-color-gray-dark, #374151);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--iq-color-dark, #1f2937);
+  line-height: 1.2;
 }
 
 .iq-curso-info-card span {
-  font-size: 1rem;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--iq-color-dark, #1f2937);
 }
 
-.iq-curso-detail-grid {
+.iq-curso-info-card-combined {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.iq-curso-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.iq-curso-info-card-duracion {
+  justify-content: flex-start;
+}
+
+.iq-curso-detail-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
+  align-items: stretch;
+}
+
+.iq-curso-detail-section-contenido {
+  height: 100%;
+}
+
+.iq-curso-detail-right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .iq-curso-detail-section {
-  background: #fff;
+  background: #f9f9f9;
   border-radius: var(--iq-radius-lg);
   padding: 1.5rem;
   border: 1px solid var(--iq-color-gray-light, #e5e7eb);
 }
 
-.iq-curso-detail-section.iq-curso-detail-full {
-  grid-column: 1 / -1;
-  margin-bottom: 1.25rem;
-}
-
 .iq-curso-detail-section-title {
-  font-size: 1.1rem;
+  font-size: 28px;
   font-weight: 700;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 0.75rem;
+  line-height: 1.2;
 }
 
 .iq-curso-detail-list {
   margin: 0;
   padding-left: 1.25rem;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--iq-color-dark, #1f2937);
 }
 
@@ -5555,8 +5586,9 @@ body.iq-page-servicios-body {
 
 .iq-curso-detail-text {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--iq-color-dark, #1f2937);
 }
 
@@ -5619,7 +5651,12 @@ body.iq-page-servicios-body {
     grid-template-columns: 1fr;
   }
 
-  .iq-curso-detail-grid {
+  .iq-curso-info-card-combined {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .iq-curso-detail-layout {
     grid-template-columns: 1fr;
   }
 
@@ -5636,7 +5673,7 @@ body.iq-page-servicios-body {
 
 .iq-catalogo-title {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--iq-color-dark);
   text-align: center;
   margin: 0 0 2rem;
@@ -5873,7 +5910,7 @@ a.iq-catalogo-card:hover {
 
 .iq-catalogo-card-title {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 0.35rem;
   line-height: 1.25;
 }
@@ -5950,3 +5987,4 @@ a.iq-catalogo-card:hover {
     padding: 1rem;
   }
 }
+
