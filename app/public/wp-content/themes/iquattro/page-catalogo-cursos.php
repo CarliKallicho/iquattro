@@ -10,38 +10,39 @@ get_header();
 global $post;
 $data = iquattro_get_editable_page_data($post);
 
-$catalog_categories = array(
-  array('id' => 'datos-ia', 'name' => __('Datos e Inteligencia Artificial', 'iquattro'), 'color' => '#2d5a3d'),
-  array('id' => 'seguridad', 'name' => __('Seguridad de la Información', 'iquattro'), 'color' => '#D7263D'),
-  array('id' => 'desarrollo', 'name' => __('Desarrollo de Software', 'iquattro'), 'color' => '#1e3a5f'),
-  array('id' => 'ofimatica', 'name' => __('Ofimática', 'iquattro'), 'color' => '#47C281'),
-  array('id' => 'gestion', 'name' => __('Gestión y Estrategia', 'iquattro'), 'color' => '#7B4B94'),
-  array('id' => 'infraestructura', 'name' => __('Infraestructura y Cloud', 'iquattro'), 'color' => '#60a5fa'),
-);
+$catalog_categories = array();
+$categoria_terms = get_terms(array(
+  'taxonomy'   => 'categoria_curso',
+  'hide_empty' => false,
+));
+if (!is_wp_error($categoria_terms) && !empty($categoria_terms)) {
+  foreach ($categoria_terms as $categoria_term) {
+    $catalog_categories[] = array(
+      'id'    => $categoria_term->slug,
+      'name'  => $categoria_term->name,
+      'color' => iquattro_curso_get_term_color($categoria_term),
+    );
+  }
+} else {
+  $defaults = iquattro_curso_category_default_colors();
+  foreach ($defaults as $slug => $hex) {
+    $catalog_categories[] = array(
+      'id'    => $slug,
+      'name'  => $slug,
+      'color' => $hex,
+    );
+  }
+}
 
-$catalog_cards = array(
-  array('title' => __('GitOps', 'iquattro'), 'desc' => __('Metodología y herramientas para operar con Git.', 'iquattro'), 'categories' => array('infraestructura'), 'icon' => 'bulbo.svg', 'programado' => true),
-  array('title' => __('Spring Boot & Apache Kafka', 'iquattro'), 'desc' => __('Desarrollo de aplicaciones con Spring Boot y mensajería Kafka.', 'iquattro'), 'categories' => array('desarrollo'), 'icon' => 'insignia.svg', 'programado' => false),
-  array('title' => __('COBIT 2019 Foundation', 'iquattro'), 'desc' => __('Gobierno y gestión de TI con COBIT.', 'iquattro'), 'categories' => array('gestion'), 'icon' => 'verificacion.svg', 'programado' => true),
-  array('title' => __('Docker & Kubernetes', 'iquattro'), 'desc' => __('Contenedores y orquestación en la nube.', 'iquattro'), 'categories' => array('infraestructura', 'desarrollo'), 'icon' => 'bulbo.svg', 'programado' => false),
-  array('title' => __('ORACLE Database 12c', 'iquattro'), 'desc' => __('Administración y optimización de bases de datos Oracle.', 'iquattro'), 'categories' => array('datos-ia', 'ofimatica'), 'icon' => 'insignia.svg', 'programado' => false),
-  array('title' => __('Bases de Datos con MongoDB', 'iquattro'), 'desc' => __('Bases de datos NoSQL y MongoDB.', 'iquattro'), 'categories' => array('datos-ia'), 'icon' => 'verificacion.svg', 'programado' => false),
-  array('title' => __('Managing Microsoft Teams', 'iquattro'), 'desc' => __('Gestión y administración de Microsoft Teams.', 'iquattro'), 'categories' => array('infraestructura', 'ofimatica'), 'icon' => 'bulbo.svg', 'programado' => false),
-  array('title' => __('Pentesting Web', 'iquattro'), 'desc' => __('Pruebas de penetración y seguridad web.', 'iquattro'), 'categories' => array('seguridad'), 'icon' => 'insignia.svg', 'programado' => true),
-  array('title' => __('Managing Professional (MP) y Strategic Leader (SL)', 'iquattro'), 'desc' => __('Certificación PRINCE2 para dirección de proyectos.', 'iquattro'), 'categories' => array('gestion'), 'icon' => 'verificacion.svg', 'programado' => true),
-  array('title' => __('Administración de protección de la información y cumplimiento en Microsoft 365', 'iquattro'), 'desc' => __('Seguridad y cumplimiento en el ecosistema Microsoft 365.', 'iquattro'), 'categories' => array('seguridad', 'ofimatica'), 'icon' => 'bulbo.svg', 'programado' => false),
-  array('title' => __('Machine Learning aplicado', 'iquattro'), 'desc' => __('Fundamentos y prácticas de machine learning.', 'iquattro'), 'categories' => array('datos-ia'), 'icon' => 'insignia.svg', 'programado' => false),
-  array('title' => __('Ciberseguridad ofensiva', 'iquattro'), 'desc' => __('Técnicas de ethical hacking y red team.', 'iquattro'), 'categories' => array('seguridad'), 'icon' => 'verificacion.svg', 'programado' => false),
-  array('title' => __('DevOps y CI/CD', 'iquattro'), 'desc' => __('Pipeline de integración y despliegue continuo.', 'iquattro'), 'categories' => array('desarrollo', 'infraestructura'), 'icon' => 'bulbo.svg', 'programado' => false),
-  array('title' => __('Excel avanzado', 'iquattro'), 'desc' => __('Análisis de datos y automatización con Excel.', 'iquattro'), 'categories' => array('ofimatica'), 'icon' => 'insignia.svg', 'programado' => false),
-  array('title' => __('Gestión de proyectos ágil', 'iquattro'), 'desc' => __('Scrum, Kanban y metodologías ágiles.', 'iquattro'), 'categories' => array('gestion'), 'icon' => 'verificacion.svg', 'programado' => false),
-  array('title' => __('Azure Fundamentals', 'iquattro'), 'desc' => __('Introducción a servicios en la nube Microsoft Azure.', 'iquattro'), 'categories' => array('infraestructura'), 'icon' => 'bulbo.svg', 'programado' => false),
-  array('title' => __('Python para datos', 'iquattro'), 'desc' => __('Análisis y visualización de datos con Python.', 'iquattro'), 'categories' => array('datos-ia', 'desarrollo'), 'icon' => 'insignia.svg', 'programado' => false),
-  array('title' => __('ISO 27001 y gestión de riesgos', 'iquattro'), 'desc' => __('Normativa de seguridad de la información.', 'iquattro'), 'categories' => array('seguridad', 'gestion'), 'icon' => 'verificacion.svg', 'programado' => false),
-);
+$catalog_query = new WP_Query(array(
+  'post_type'      => 'curso',
+  'post_status'    => 'publish',
+  'posts_per_page' => -1,
+  'orderby'        => 'title',
+  'order'          => 'ASC',
+));
 
 $icons_uri = get_template_directory_uri() . '/assets/icons/';
-$images_uri = get_template_directory_uri() . '/assets/images/';
 ?>
 
 <main id="main" class="iq-main iq-catalogo-page">
@@ -76,38 +77,58 @@ $images_uri = get_template_directory_uri() . '/assets/images/';
     </div>
 
     <div class="iq-catalogo-grid" id="iq-catalogo-grid">
-      <?php foreach ($catalog_cards as $card) :
-        $cat_ids = $card['categories'];
-        $colors = array();
-        foreach ($cat_ids as $cid) {
-          foreach ($catalog_categories as $c) {
-            if ($c['id'] === $cid) {
-              $colors[] = $c['color'];
-              break;
+      <?php
+      if ($catalog_query->have_posts()) :
+        while ($catalog_query->have_posts()) :
+          $catalog_query->the_post();
+          $cid = get_the_ID();
+          $card_title = get_the_title();
+          $desc = get_post_meta($cid, '_curso_desc', true);
+          $icon = get_post_meta($cid, '_curso_icon', true) ?: 'bulbo.svg';
+          $programado = get_post_meta($cid, '_curso_programado', true) === '1';
+          $terms = get_the_terms($cid, 'categoria_curso');
+          $cat_ids = array();
+          $colors = array();
+          if (is_array($terms)) {
+            foreach ($terms as $t) {
+              $cat_ids[] = $t->slug;
+              $colors[] = iquattro_curso_get_term_color($t);
             }
           }
-        }
-        $search_text = $card['title'] . ' ' . $card['desc'];
-        $categories_attr = implode(' ', $cat_ids);
-      ?>
-        <article class="iq-catalogo-card" data-categories="<?php echo esc_attr($categories_attr); ?>" data-search="<?php echo esc_attr(mb_strtolower($search_text)); ?>" data-category-filter="" style="<?php echo count($colors) === 2 ? 'background: linear-gradient(135deg, ' . esc_attr($colors[0]) . ', ' . esc_attr($colors[1]) . ');' : 'background-color: ' . esc_attr($colors[0]) . ';'; ?>">
+          if (empty($colors)) {
+            $colors[] = '#47C281';
+          }
+          $search_text = $card_title . ' ' . $desc;
+          $search_key = function_exists('mb_strtolower') ? mb_strtolower($search_text, 'UTF-8') : strtolower($search_text);
+          $categories_attr = implode(' ', $cat_ids);
+          $bg_style = count($colors) >= 2
+            ? 'background: linear-gradient(135deg, ' . esc_attr($colors[0]) . ', ' . esc_attr($colors[1]) . ');'
+            : 'background-color: ' . esc_attr($colors[0]) . ';';
+          ?>
+        <a href="<?php the_permalink(); ?>" class="iq-catalogo-card" data-categories="<?php echo esc_attr($categories_attr); ?>" data-search="<?php echo esc_attr($search_key); ?>" data-category-filter="" style="<?php echo $bg_style; ?>">
           <div class="iq-catalogo-card-inner">
             <div class="iq-catalogo-card-icon-wrap">
-              <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-catalogo-card-icon" loading="lazy">
+              <img src="<?php echo esc_url($icons_uri . $icon); ?>" alt="" class="iq-catalogo-card-icon" loading="lazy">
             </div>
             <div class="iq-catalogo-card-text">
-              <h3 class="iq-catalogo-card-title"><?php echo esc_html($card['title']); ?></h3>
-              <p class="iq-catalogo-card-desc"><?php echo esc_html($card['desc']); ?></p>
+              <h3 class="iq-catalogo-card-title"><?php echo esc_html($card_title); ?></h3>
+              <p class="iq-catalogo-card-desc"><?php echo esc_html($desc); ?></p>
             </div>
-            <?php if (!empty($card['programado'])) : ?>
+            <?php if ($programado) : ?>
               <div class="iq-catalogo-card-programado">
                 <img src="<?php echo esc_url($icons_uri . 'icon-programado.svg'); ?>" alt="" width="16" height="16" loading="lazy">
                 <span><?php esc_html_e('Programado', 'iquattro'); ?></span>
               </div>
             <?php endif; ?>
           </div>
-        </article>
-      <?php endforeach; ?>
+        </a>
+          <?php
+        endwhile;
+        wp_reset_postdata();
+      else :
+        ?>
+        <p class="iq-catalogo-empty"><?php esc_html_e('No hay cursos publicados todavía.', 'iquattro'); ?></p>
+      <?php endif; ?>
     </div>
     </div>
   </div>

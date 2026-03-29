@@ -26,13 +26,23 @@ function iquattro_register_curso_cpt() {
     ),
     'public' => true,
     'has_archive' => false,
-    'rewrite' => array('slug' => 'curso'),
+    'rewrite' => array('slug' => 'cursos'),
     'supports' => array('title', 'thumbnail'),
     'menu_icon' => 'dashicons-welcome-learn-more',
     'show_in_rest' => false,
   ));
 }
 add_action('init', 'iquattro_register_curso_cpt');
+
+/** Regenerar reglas al cambiar el slug del CPT (p. ej. curso → cursos). */
+function iquattro_curso_maybe_flush_rewrite_rules() {
+  $slug = 'cursos';
+  if (get_option('iquattro_curso_rewrite_slug', '') !== $slug) {
+    flush_rewrite_rules(false);
+    update_option('iquattro_curso_rewrite_slug', $slug);
+  }
+}
+add_action('init', 'iquattro_curso_maybe_flush_rewrite_rules', 999);
 
 function iquattro_register_categoria_curso_taxonomy() {
   register_taxonomy('categoria_curso', 'curso', array(

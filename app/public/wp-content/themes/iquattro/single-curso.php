@@ -38,7 +38,7 @@ $terms = get_the_terms($pid, 'categoria_curso');
 $categorias = is_array($terms) ? $terms : array();
 ?>
 <main id="main" class="iq-main iq-curso-detail-page">
-  <div class="iq-curso-detail-wrap">
+  <div class="iq-capacitacion-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
 
     <div class="iq-curso-detail-content">
