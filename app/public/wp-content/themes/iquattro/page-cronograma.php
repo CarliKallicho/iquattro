@@ -68,29 +68,48 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
           $bg_style = count($colors) === 2
             ? 'background: linear-gradient(90deg, ' . esc_attr($colors[0]) . ', ' . esc_attr($colors[1]) . ');'
             : (count($colors) === 1 ? 'background-color: ' . esc_attr($colors[0]) . ';' : 'background-color: #47C281;');
-          $card_color = !empty($colors[0]) ? $colors[0] : '#47C281';
+          $accent_color = !empty($colors[0]) ? $colors[0] : '#47C281';
           $fecha_display = $c['fecha'] ? iquattro_curso_format_fecha($c['fecha']) : '—';
         ?>
-          <article class="iq-cronograma-card" style="<?php echo $bg_style; ?> --iq-card-color: <?php echo esc_attr($card_color); ?>">
+          <article class="iq-cronograma-card" style="<?php echo $bg_style; ?> --iq-cronograma-accent: <?php echo esc_attr($accent_color); ?>;">
             <div class="iq-cronograma-card-inner">
-              <div class="iq-cronograma-card-left">
-                <div class="iq-cronograma-card-icon-wrap">
-                  <img src="<?php echo esc_url($icons_uri . $c['icon']); ?>" alt="" class="iq-cronograma-card-icon" loading="lazy">
-                </div>
-                <div class="iq-cronograma-card-content">
-                  <h2 class="iq-cronograma-card-title"><?php echo esc_html($c['titulo']); ?></h2>
-                  <div class="iq-cronograma-pills">
-                    <span class="iq-cronograma-pill"><?php esc_html_e('Fecha de Inicio:', 'iquattro'); ?> <?php echo esc_html($fecha_display); ?></span>
-                    <span class="iq-cronograma-pill"><?php esc_html_e('Modalidad:', 'iquattro'); ?> <?php echo esc_html($c['modalidad'] ?: '—'); ?></span>
-                    <span class="iq-cronograma-pill"><?php esc_html_e('Duración:', 'iquattro'); ?> <?php echo esc_html($c['duracion'] ?: '—'); ?></span>
-                    <span class="iq-cronograma-pill"><?php esc_html_e('Días:', 'iquattro'); ?> <?php echo esc_html($c['dias'] ?: '—'); ?></span>
-                    <span class="iq-cronograma-pill"><?php esc_html_e('Horarios:', 'iquattro'); ?> <?php echo esc_html($c['horarios'] ?: '—'); ?></span>
+              <div class="iq-cronograma-card-icon-wrap">
+                <img src="<?php echo esc_url($icons_uri . $c['icon']); ?>" alt="" class="iq-cronograma-card-icon" loading="lazy" width="198" height="198">
+              </div>
+              <div class="iq-cronograma-card-main">
+                <div class="iq-cronograma-card-body">
+                <h2 class="iq-cronograma-card-title"><?php echo esc_html($c['titulo']); ?></h2>
+                <div class="iq-cronograma-pills">
+                  <div class="iq-cronograma-pills-row iq-cronograma-pills-row--top">
+                    <span class="iq-cronograma-pill">
+                      <span class="iq-cronograma-pill-label"><?php esc_html_e('Fecha de Inicio:', 'iquattro'); ?></span>
+                      <span class="iq-cronograma-pill-value"><?php echo esc_html($fecha_display); ?></span>
+                    </span>
+                    <span class="iq-cronograma-pill">
+                      <span class="iq-cronograma-pill-label"><?php esc_html_e('Modalidad:', 'iquattro'); ?></span>
+                      <span class="iq-cronograma-pill-value"><?php echo esc_html($c['modalidad'] ?: '—'); ?></span>
+                    </span>
+                    <span class="iq-cronograma-pill">
+                      <span class="iq-cronograma-pill-label"><?php esc_html_e('Duración:', 'iquattro'); ?></span>
+                      <span class="iq-cronograma-pill-value"><?php echo esc_html($c['duracion'] ?: '—'); ?></span>
+                    </span>
+                  </div>
+                  <div class="iq-cronograma-pills-row iq-cronograma-pills-row--bottom">
+                    <span class="iq-cronograma-pill">
+                      <span class="iq-cronograma-pill-label"><?php esc_html_e('Días:', 'iquattro'); ?></span>
+                      <span class="iq-cronograma-pill-value"><?php echo esc_html($c['dias'] ?: '—'); ?></span>
+                    </span>
+                    <span class="iq-cronograma-pill">
+                      <span class="iq-cronograma-pill-label"><?php esc_html_e('Horarios:', 'iquattro'); ?></span>
+                      <span class="iq-cronograma-pill-value"><?php echo esc_html($c['horarios'] ?: '—'); ?></span>
+                    </span>
                   </div>
                 </div>
-              </div>
-              <div class="iq-cronograma-card-actions">
-                <a href="<?php echo esc_url($c['url']); ?>" class="iq-cronograma-btn iq-cronograma-btn-outline" style="border-color: var(--iq-card-color); color: var(--iq-card-color);"><?php esc_html_e('Ver Contenido', 'iquattro'); ?></a>
-                <button type="button" class="iq-cronograma-btn iq-cronograma-btn-primary iq-inscribirme-btn" style="background-color: var(--iq-card-color); border-color: var(--iq-card-color);" data-curso-id="<?php echo (int) $c['id']; ?>" data-curso-titulo="<?php echo esc_attr($c['titulo']); ?>"><?php esc_html_e('Inscribirme', 'iquattro'); ?></button>
+                </div>
+                <div class="iq-cronograma-card-actions">
+                  <a href="<?php echo esc_url($c['url']); ?>" class="iq-cronograma-btn iq-cronograma-btn-ghost"><?php esc_html_e('Ver Contenido', 'iquattro'); ?></a>
+                  <button type="button" class="iq-cronograma-btn iq-cronograma-btn-ghost iq-inscribirme-btn" data-curso-id="<?php echo (int) $c['id']; ?>" data-curso-titulo="<?php echo esc_attr($c['titulo']); ?>"><?php esc_html_e('Inscribirme', 'iquattro'); ?></button>
+                </div>
               </div>
             </div>
           </article>

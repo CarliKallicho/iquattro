@@ -4568,117 +4568,228 @@ body.iq-page-servicios-body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  align-items: center;
 }
 
 .iq-cronograma-card {
+  --iq-cronograma-accent: #47c281;
   border-radius: var(--iq-radius-lg);
   overflow: hidden;
   width: 100%;
+  max-width: 1600px;
+  box-sizing: border-box;
 }
 
 .iq-cronograma-card-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 198px minmax(0, 1fr);
+  grid-template-rows: minmax(318px, auto);
+  align-items: stretch;
+  gap: 1.5rem 2rem;
   padding: 1.5rem 2rem;
-  min-height: 140px;
-}
-
-.iq-cronograma-card-left {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex: 1;
-  min-width: 0;
+  min-height: 318px;
+  box-sizing: border-box;
 }
 
 .iq-cronograma-card-icon-wrap {
+  grid-column: 1;
+  grid-row: 1;
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  width: 198px;
+  height: 198px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  justify-content: flex-start;
+  background: transparent;
+  border-radius: 0;
+  align-self: center;
+  justify-self: start;
 }
 
 .iq-cronograma-card-icon {
-  width: 40px;
-  height: 40px;
+  width: 198px;
+  height: 198px;
   object-fit: contain;
+  display: block;
   filter: brightness(0) invert(1);
 }
 
-.iq-cronograma-card-content {
-  flex: 1;
+.iq-cronograma-card-main {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   min-width: 0;
+  min-height: 318px;
+  gap: 0;
+}
+
+.iq-cronograma-card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 3rem 0 0;
 }
 
 .iq-cronograma-card-title {
-  font-size: 1.15rem;
+  font-size: 28px;
   font-weight: 700;
+  font-style: normal;
   color: #fff;
-  margin: 0 0 0.75rem;
-  line-height: 1.3;
+  margin: 0;
+  line-height: 1.25;
 }
 
 .iq-cronograma-pills {
+  width: 823px;
+  max-width: 100%;
+  height: 144px;
+  box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.iq-cronograma-pills-row {
+  display: flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.iq-cronograma-pills-row--top {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  height: 62px;
+}
+
+.iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1) {
+  width: 316px;
+}
+
+.iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(2) {
+  width: 236px;
+}
+
+.iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(3) {
+  width: 231px;
+}
+
+.iq-cronograma-pills-row--bottom {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+  height: 62px;
+}
+
+.iq-cronograma-pills-row--bottom .iq-cronograma-pill:first-child {
+  width: 349px;
+}
+
+.iq-cronograma-pills-row--bottom .iq-cronograma-pill:last-child {
+  width: 283px;
 }
 
 .iq-cronograma-pill {
-  display: inline-block;
-  padding: 0.25rem 0.6rem;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 6px;
-  color: #fff;
-  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 0.65rem;
+  height: 62px;
+  background: #fff;
+  border-radius: 20px;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.iq-cronograma-pill-label {
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
+  color: #000;
+}
+
+.iq-cronograma-pill-value {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  color: #000;
+}
+
+.iq-cronograma-pill-label::after {
+  content: '\00a0';
 }
 
 .iq-cronograma-card-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem 1rem;
   flex-shrink: 0;
+  margin-top: 0;
+  padding-top: 0.75rem;
 }
 
 .iq-cronograma-btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.35rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  font-style: normal;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   border: 2px solid transparent;
+  background: transparent;
+  color: #000;
   white-space: nowrap;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: 1.2;
 }
 
-.iq-cronograma-btn-outline {
-  background: #fff;
-  color: inherit;
-  border-color: #fff;
+.iq-cronograma-btn:hover {
+  opacity: 0.85;
 }
 
-.iq-cronograma-btn-outline:hover {
-  background: rgba(255, 255, 255, 0.9);
-  color: inherit;
+.iq-cronograma-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
-.iq-cronograma-btn-primary {
-  background: rgba(255, 255, 255, 0.3);
-  color: #fff;
-  border-color: #fff;
+.iq-cronograma-card .iq-cronograma-btn-ghost {
+  background: rgba(255, 255, 255, 0.55);
+  background: color-mix(in srgb, var(--iq-cronograma-accent) 32%, white);
+  color: #000;
+  border-color: transparent;
 }
 
-.iq-cronograma-btn-primary:hover {
-  background: rgba(255, 255, 255, 0.5);
-  color: #fff;
+.iq-cronograma-card .iq-cronograma-btn-ghost:hover {
+  background: color-mix(in srgb, var(--iq-cronograma-accent) 42%, white);
+  color: #000;
+  opacity: 1;
+}
+
+.iq-cronograma-card .iq-cronograma-btn:hover {
+  opacity: 1;
 }
 
 .iq-cronograma-empty {
@@ -5023,21 +5134,119 @@ body.iq-page-servicios-body {
   color: #fff;
 }
 
+@media (max-width: 1024px) {
+  .iq-cronograma-card-inner {
+    grid-template-columns: minmax(120px, 160px) minmax(0, 1fr);
+    min-height: 0;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .iq-cronograma-card-icon-wrap,
+  .iq-cronograma-card-icon {
+    width: 140px;
+    height: 140px;
+  }
+
+  .iq-cronograma-card-title {
+    font-size: clamp(1.15rem, 2.5vw, 28px);
+  }
+
+  .iq-cronograma-pill-label,
+  .iq-cronograma-pill-value {
+    font-size: clamp(15px, 1.8vw, 18px);
+  }
+
+  .iq-cronograma-pills {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    gap: 12px;
+  }
+
+  .iq-cronograma-pills-row--top,
+  .iq-cronograma-pills-row--bottom {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 48px;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1),
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(2),
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(3) {
+    width: auto;
+    flex: 1 1 calc(33.333% - 8px);
+    min-width: min(160px, 100%);
+    height: auto;
+    min-height: 48px;
+  }
+
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:first-child,
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:last-child {
+    width: auto;
+    flex: 1 1 calc(50% - 6px);
+    min-width: min(140px, 100%);
+    height: auto;
+    min-height: 48px;
+  }
+}
+
 @media (max-width: 768px) {
   .iq-cronograma-card-inner {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    min-height: 0;
     padding: 1.25rem;
   }
 
-  .iq-cronograma-card-left {
+  .iq-cronograma-card-icon-wrap {
+    justify-content: flex-start;
+  }
+
+  .iq-cronograma-card-icon-wrap,
+  .iq-cronograma-card-icon {
+    width: min(198px, 50vw);
+    height: min(198px, 50vw);
+  }
+
+  .iq-cronograma-card-main {
+    min-height: 0;
+    width: 100%;
+  }
+
+  .iq-cronograma-pills {
+    width: 100%;
+    height: auto;
+    gap: 10px;
+  }
+
+  .iq-cronograma-pills-row--top,
+  .iq-cronograma-pills-row--bottom {
     flex-direction: column;
-    align-items: flex-start;
+    height: auto;
+    align-items: stretch;
+  }
+
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1),
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(2),
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(3),
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:first-child,
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:last-child {
+    width: 100%;
+    flex: none;
+    min-height: 48px;
+    height: auto;
   }
 
   .iq-cronograma-card-actions {
-    flex-direction: row;
     justify-content: flex-end;
+    width: 100%;
+  }
+
+  .iq-cronograma-btn {
+    font-size: clamp(15px, 4vw, 18px);
+    padding: 0.5rem 1rem;
   }
 
   .iq-inscribirme-form .iq-form-row {
