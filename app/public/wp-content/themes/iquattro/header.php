@@ -69,7 +69,7 @@ if (!defined('ABSPATH')) {
       </div>
     </div>
   </section>
-  <?php elseif (is_page(array('capacitacion', 'catalogo-cursos', 'cronograma')) || is_singular('curso')) : ?>
+  <?php elseif (is_page(array('capacitacion', 'catalogo-cursos', 'cronograma', 'evento')) || is_singular('curso')) : ?>
   <?php /* Topbar Capacitación: plantillas de página + single curso (detalle) */ ?>
   <?php elseif (is_page(array('acerca-de', 'contacto'))) : ?>
   <section class="iq-page-hero">
@@ -101,4 +101,4 @@ if (!defined('ABSPATH')) {
   <?php endif; ?>
 </header>
 
-<div id="iq-page" class="iq-page<?php echo (is_page(array('capacitacion', 'catalogo-cursos', 'cronograma')) || is_singular('curso')) ? ' iq-page--capacitacion' : ''; ?>">
+<div id="iq-page" class="iq-page<?php echo (is_page(array('capacitacion', 'catalogo-cursos', 'cronograma', 'evento')) || is_singular('curso')) ? ' iq-page--capacitacion' : ''; ?>">

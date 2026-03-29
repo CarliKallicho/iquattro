@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('IQUATTRO_VERSION', '1.0.0');
+define('IQUATTRO_VERSION', '1.0.3');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
@@ -117,6 +117,40 @@ function iquattro_ensure_catalogo_cursos_page() {
   ));
 }
 add_action('init', 'iquattro_ensure_catalogo_cursos_page');
+
+/**
+ * Crear la página Evento con slug "evento" si no existe (plantilla page-evento.php)
+ */
+function iquattro_ensure_evento_page() {
+  if (get_page_by_path('evento')) {
+    return;
+  }
+  wp_insert_post(array(
+    'post_title'   => __('Próximo evento', 'iquattro'),
+    'post_name'    => 'evento',
+    'post_status'  => 'publish',
+    'post_type'    => 'page',
+    'post_author'  => 1,
+  ));
+}
+add_action('init', 'iquattro_ensure_evento_page');
+
+/**
+ * Crear la página Cronograma con slug "cronograma" si no existe
+ */
+function iquattro_ensure_cronograma_page() {
+  if (get_page_by_path('cronograma')) {
+    return;
+  }
+  wp_insert_post(array(
+    'post_title'   => __('Cronograma', 'iquattro'),
+    'post_name'    => 'cronograma',
+    'post_status'  => 'publish',
+    'post_type'    => 'page',
+    'post_author'  => 1,
+  ));
+}
+add_action('init', 'iquattro_ensure_cronograma_page');
 
 /**
  * Crear la página Contacto con slug "contacto" si no existe

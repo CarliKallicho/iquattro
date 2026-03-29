@@ -54,7 +54,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
 ?>
 
 <main id="main" class="iq-main iq-cronograma-page">
-  <div class="iq-capacitacion-wrap">
+  <div class="iq-cronograma-wrap">
     <?php iquattro_render_capacitacion_topbar(); ?>
     <div class="iq-container iq-cronograma-inner">
       <h1 class="iq-cronograma-title"><?php echo esc_html($data['page_title']); ?></h1>

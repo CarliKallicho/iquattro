@@ -11,6 +11,7 @@ global $post;
 $data = iquattro_get_editable_page_data($post);
 $catalogo_cursos_url = get_permalink(get_page_by_path('catalogo-cursos')) ?: home_url('/catalogo-cursos/');
 $cronograma_url = get_permalink(get_page_by_path('cronograma')) ?: home_url('/cronograma/');
+$evento_url = get_permalink(get_page_by_path('evento')) ?: home_url('/evento/');
 
 $carousel_slides = array(
   array(
@@ -96,7 +97,7 @@ $evoluciona_cards = array(
         <div class="iq-capacitacion-ctas">
           <a href="<?php echo esc_url($catalogo_cursos_url); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-primary"><?php echo esc_html($data['hero_btn_primary']); ?></a>
           <a href="<?php echo esc_url($cronograma_url); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($data['hero_btn_schedule']); ?></a>
-          <a href="#evento" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($data['hero_btn_event']); ?></a>
+          <a href="<?php echo esc_url($evento_url); ?>" class="iq-capacitacion-btn iq-capacitacion-btn-secondary"><?php echo esc_html($data['hero_btn_event']); ?></a>
         </div>
       </div>
     </section>
