@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('IQUATTRO_VERSION', '1.0.9');
+define('IQUATTRO_VERSION', '1.1.7');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
@@ -527,6 +527,9 @@ function iquattro_render_capacitacion_topbar() {
   if (is_page('acerca-de')) {
     $logo_src = $theme_uri . '/assets/images/logo-iquattro-acerca.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Acerca de', 'iquattro');
+  } elseif (is_page('contacto')) {
+    $logo_src = $theme_uri . '/assets/images/logo-iquattro-contacto.png';
+    $logo_alt = get_bloginfo('name') . ' – ' . __('Contacto', 'iquattro');
   } elseif (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios'))) {
     $logo_src = $theme_uri . '/assets/images/logo-iquattro-datacenter.png';
     $logo_alt = get_bloginfo('name') . ' – ' . __('Data Center', 'iquattro');

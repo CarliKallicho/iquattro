@@ -1114,6 +1114,7 @@
   color: #000;
   font-weight: 700;
   font-size: 28px;
+  line-height: 1.25;
 }
 
 .iq-contacto-page .iq-btn-enviar {
@@ -1123,6 +1124,39 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: #0d9fdc;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.iq-contacto-page .iq-btn-enviar:hover {
+  background: #0b87ba;
+  color: #fff;
+}
+
+.iq-contacto-page .iq-contact-form label {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  color: var(--iq-color-dark, #1f2937);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.iq-contacto-page .iq-contact-form input[type="text"],
+.iq-contacto-page .iq-contact-form input[type="email"],
+.iq-contacto-page .iq-contact-form input[type="tel"],
+.iq-contacto-page .iq-contact-form textarea {
+  border: 2px solid #0d9fdc;
+  border-radius: 6px;
+}
+
+.iq-contacto-page .iq-contact-form input:focus,
+.iq-contacto-page .iq-contact-form textarea:focus {
+  border-color: #0d9fdc;
+  box-shadow: 0 0 0 3px rgba(13, 159, 220, 0.2);
 }
 
 /* --- Página Contacto (banner, cards) --- */
@@ -1153,24 +1187,40 @@
 
 .iq-contacto-banner-title {
   position: relative;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 800;
+  font-style: normal;
   color: var(--iq-color-dark);
   margin: 0;
   text-align: center;
+  line-height: 1.2;
 }
 
 .iq-contacto-main-title {
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-size: 36px;
   font-weight: 700;
+  font-style: normal;
   color: var(--iq-color-dark);
   margin: 0 0 0.75rem;
+  line-height: 1.25;
 }
 
-.iq-contacto-intro {
+.iq-contacto-intro-wrap {
   margin: 0 0 2rem;
-  color: var(--iq-color-dark-light);
   max-width: 100%;
+}
+
+.iq-contacto-intro-wrap .iq-contacto-intro {
+  margin: 0 0 15px;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--iq-color-dark, #1f2937);
+  line-height: 1.5;
+}
+
+.iq-contacto-intro-wrap .iq-contacto-intro:last-child {
+  margin-bottom: 0;
 }
 
 .iq-contacto-channels-title {
@@ -1195,7 +1245,6 @@
   padding: 1.5rem;
   min-height: 208px;
   box-sizing: border-box;
-  background: linear-gradient(to bottom, rgba(13, 159, 220, 0.85), rgba(13, 159, 220, 0.5));
   border-radius: 12px;
 }
 
@@ -1204,21 +1253,30 @@
   flex: 568.5 1 0;
   min-width: 0;
   height: 208px;
+  background: linear-gradient(to bottom, #0d9fdc99, #0d9fdc33);
 }
 
 .iq-contacto-card-horario {
   flex: 391 1 0;
   min-width: 0;
   height: 208px;
-  background: #fff;
+  background: #f9f9f9;
   border: 1px solid var(--iq-color-gray-light);
 }
 
-.iq-contacto-card-icon {
+.iq-contacto-card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  background: #1f2937;
+}
+
+span.iq-contacto-card-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  background: #000;
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -1227,23 +1285,45 @@
   mask-position: center;
 }
 
+.iq-contacto-card-icon-img {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
 .iq-contacto-card-title {
-  font-size: 1rem;
+  font-size: 28px;
   font-weight: 700;
+  font-style: normal;
   color: #000;
   margin: 0;
+  line-height: 1.2;
 }
 
 .iq-contacto-card-content {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 18px;
+  font-style: normal;
   color: #000;
-  line-height: 1.5;
+}
+
+.iq-contacto-card-tel .iq-contacto-card-content,
+.iq-contacto-card-email .iq-contacto-card-content {
+  font-weight: 800;
+  line-height: calc(18px + 10px);
+}
+
+.iq-contacto-card-horario .iq-contacto-card-content {
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .iq-contacto-card-content a {
   color: #000;
   text-decoration: none;
+  font-weight: inherit;
 }
 
 .iq-contacto-card-content a:hover {
@@ -1251,6 +1331,18 @@
 }
 
 @media (max-width: 768px) {
+  .iq-contacto-banner-title {
+    font-size: clamp(1.75rem, 6vw, 48px);
+  }
+
+  .iq-contacto-main-title {
+    font-size: clamp(1.5rem, 5vw, 36px);
+  }
+
+  .iq-contacto-card-title {
+    font-size: clamp(1.15rem, 4vw, 28px);
+  }
+
   .iq-contacto-card-tel,
   .iq-contacto-card-email,
   .iq-contacto-card-horario {
@@ -4531,7 +4623,7 @@ body.iq-page-servicios-body {
 
 .iq-cronograma-wrap {
   min-height: 100%;
-  background: linear-gradient(to bottom, rgba(71, 194, 129, 0.4) 0%, rgba(71, 194, 129, 0.2) 30%, #fff 70%);
+  background: #fff;
   padding: 100px 1.5rem 4rem;
 }
 
@@ -4611,7 +4703,8 @@ body.iq-page-servicios-body {
   height: 198px;
   object-fit: contain;
   display: block;
-  filter: brightness(0) invert(1);
+  /* Tinte #F9F9F9 (249/255) sobre icono en negro + invert */
+  filter: brightness(0) invert(1) brightness(0.9765);
 }
 
 .iq-cronograma-card-main {
@@ -4635,7 +4728,7 @@ body.iq-page-servicios-body {
   gap: 1rem;
   min-width: 0;
   min-height: 0;
-  padding: 3rem 0 0;
+  padding: 2rem 0 0;
 }
 
 .iq-cronograma-card-title {
@@ -4687,32 +4780,48 @@ body.iq-page-servicios-body {
 
 .iq-cronograma-pills-row--bottom {
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
+  flex-wrap: nowrap;
   gap: 20px;
   width: 100%;
+  min-height: 62px;
   height: 62px;
 }
 
-.iq-cronograma-pills-row--bottom .iq-cronograma-pill:first-child {
+.iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(1) {
   width: 349px;
 }
 
-.iq-cronograma-pills-row--bottom .iq-cronograma-pill:last-child {
+.iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(2) {
   width: 283px;
+}
+
+.iq-cronograma-pills-row--bottom .iq-cronograma-card-actions {
+  margin-left: auto;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: stretch;
+  padding-top: 0;
+  height: 62px;
+  padding:1rem 0 0 7.5rem;
 }
 
 .iq-cronograma-pill {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   padding: 0 0.65rem;
   height: 62px;
-  background: #fff;
+  background: #f9f9f9;
   border-radius: 20px;
   box-sizing: border-box;
   min-width: 0;
   overflow: hidden;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 0 0.15em;
 }
 
 .iq-cronograma-pill-label {
@@ -4736,13 +4845,13 @@ body.iq-page-servicios-body {
 .iq-cronograma-card-actions {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
   gap: 0.75rem 1rem;
   flex-shrink: 0;
   margin-top: 0;
-  padding-top: 0.75rem;
+  padding-top: 0;
 }
 
 .iq-cronograma-btn {
@@ -4783,8 +4892,9 @@ body.iq-page-servicios-body {
 }
 
 .iq-cronograma-card .iq-cronograma-btn-ghost:hover {
-  background: color-mix(in srgb, var(--iq-cronograma-accent) 42%, white);
-  color: #000;
+  background: #000;
+  color: #fff;
+  border-color: transparent;
   opacity: 1;
 }
 
@@ -4835,7 +4945,7 @@ body.iq-page-servicios-body {
 
 .iq-modal-header {
   background: #47C281;
-  padding: 1.25rem 1.5rem;
+  padding: 0.5rem 1.5rem 0;
   border-radius: 16px 16px 0 0;
   display: flex;
   align-items: center;
@@ -4918,6 +5028,47 @@ body.iq-page-servicios-body {
 
 .iq-inscribirme-form .iq-form-message.iq-success {
   color: #47C281;
+}
+
+/* Modal inscripción cronograma: 1079×750, marco verde interior */
+.iq-modal--inscribirme-cronograma .iq-modal-dialog {
+  width: min(100%, 1079px);
+  max-width: 1079px;
+  max-height: min(750px, 90vh);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.iq-modal--inscribirme-cronograma .iq-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.5rem 1.75rem 2rem;
+  background: #47C281;
+}
+
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form-frame {
+  border: 2px solid #47c281;
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem 1.75rem;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form .iq-form-field:last-of-type,
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form .iq-form-row {
+  margin-bottom: 1rem;
+}
+
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form input[type="text"],
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form input[type="email"],
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form input[type="tel"],
+.iq-modal--inscribirme-cronograma .iq-inscribirme-form textarea {
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgba(71, 194, 129, 0.55);
 }
 
 /* ==========================================================================
@@ -5182,13 +5333,22 @@ body.iq-page-servicios-body {
     min-height: 48px;
   }
 
-  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:first-child,
-  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:last-child {
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(1),
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(2) {
     width: auto;
     flex: 1 1 calc(50% - 6px);
     min-width: min(140px, 100%);
     height: auto;
     min-height: 48px;
+  }
+
+  .iq-cronograma-pills-row--bottom .iq-cronograma-card-actions {
+    margin-left: 0;
+    flex: 1 1 100%;
+    width: 100%;
+    height: auto;
+    min-height: 48px;
+    justify-content: flex-end;
   }
 }
 
@@ -5231,17 +5391,20 @@ body.iq-page-servicios-body {
   .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1),
   .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(2),
   .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(3),
-  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:first-child,
-  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:last-child {
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(1),
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(2) {
     width: 100%;
     flex: none;
     min-height: 48px;
     height: auto;
   }
 
-  .iq-cronograma-card-actions {
-    justify-content: flex-end;
+  .iq-cronograma-pills-row--bottom .iq-cronograma-card-actions {
+    margin-left: 0;
     width: 100%;
+    height: auto;
+    min-height: 48px;
+    justify-content: flex-end;
   }
 
   .iq-cronograma-btn {

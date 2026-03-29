@@ -103,12 +103,12 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
                       <span class="iq-cronograma-pill-label"><?php esc_html_e('Horarios:', 'iquattro'); ?></span>
                       <span class="iq-cronograma-pill-value"><?php echo esc_html($c['horarios'] ?: '—'); ?></span>
                     </span>
+                    <div class="iq-cronograma-card-actions">
+                      <a href="<?php echo esc_url($c['url']); ?>" class="iq-cronograma-btn iq-cronograma-btn-ghost"><?php esc_html_e('Ver Contenido', 'iquattro'); ?></a>
+                      <button type="button" class="iq-cronograma-btn iq-cronograma-btn-ghost iq-inscribirme-btn" data-curso-id="<?php echo (int) $c['id']; ?>" data-curso-titulo="<?php echo esc_attr($c['titulo']); ?>"><?php esc_html_e('Inscribirme', 'iquattro'); ?></button>
+                    </div>
                   </div>
                 </div>
-                </div>
-                <div class="iq-cronograma-card-actions">
-                  <a href="<?php echo esc_url($c['url']); ?>" class="iq-cronograma-btn iq-cronograma-btn-ghost"><?php esc_html_e('Ver Contenido', 'iquattro'); ?></a>
-                  <button type="button" class="iq-cronograma-btn iq-cronograma-btn-ghost iq-inscribirme-btn" data-curso-id="<?php echo (int) $c['id']; ?>" data-curso-titulo="<?php echo esc_attr($c['titulo']); ?>"><?php esc_html_e('Inscribirme', 'iquattro'); ?></button>
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
 </main>
 
 <!-- Modal Inscribirme -->
-<div id="iq-inscribirme-modal" class="iq-modal" role="dialog" aria-modal="true" aria-labelledby="iq-inscribirme-modal-title" hidden>
+<div id="iq-inscribirme-modal" class="iq-modal iq-modal--inscribirme-cronograma" role="dialog" aria-modal="true" aria-labelledby="iq-inscribirme-modal-title" hidden>
   <div class="iq-modal-backdrop" data-close-modal></div>
   <div class="iq-modal-dialog">
     <div class="iq-modal-header">
@@ -135,6 +135,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
         <?php wp_nonce_field('iquattro_contact', 'iq_contact_nonce'); ?>
         <input type="hidden" name="iq_form_origin" value="cronograma">
         <input type="hidden" name="curso_id" id="iq-inscribirme-curso-id" value="">
+        <div class="iq-inscribirme-form-frame">
         <p class="iq-form-field">
           <label for="iq-inscribirme-nombre"><?php esc_html_e('Nombre completo', 'iquattro'); ?></label>
           <input type="text" id="iq-inscribirme-nombre" name="nombre" placeholder="<?php esc_attr_e('Ingresa tu nombre completo', 'iquattro'); ?>" required>
@@ -161,6 +162,7 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
           <button type="submit" class="iq-btn iq-btn-curso-enviar"><?php esc_html_e('Enviar', 'iquattro'); ?></button>
         </p>
         <p class="iq-form-message" id="iq-inscribirme-form-message" aria-live="polite"></p>
+        </div>
       </form>
     </div>
   </div>

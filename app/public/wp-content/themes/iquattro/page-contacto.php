@@ -10,12 +10,13 @@ get_header();
 global $post;
 $data = iquattro_get_editable_page_data($post);
 
-$phone1 = get_theme_mod('iquattro_phone', '+591 71947016');
-$phone2 = get_theme_mod('iquattro_phone2', '+591 67005756');
+$phone1 = get_theme_mod('iquattro_phone', '+591-71947016');
+$phone2 = get_theme_mod('iquattro_phone2', '+591-67005756');
 $email1 = get_theme_mod('iquattro_email', 'marisol@i-quattro.com');
 $email2 = get_theme_mod('iquattro_email2', 'ivar@i-quattro.com');
 $horario = get_theme_mod('iquattro_horario', __('Lunes a viernes 08:30 - 18:00', 'iquattro'));
 $images_uri = get_template_directory_uri() . '/assets/images/';
+$icons_uri  = get_template_directory_uri() . '/assets/icons/';
 $banner_bg = iquattro_meta_image_url($data['banner_bg_id'], $images_uri . 'fondo-contacto-titulo.jpg');
 $side_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-contacto-costado.jpg');
 ?>
@@ -29,7 +30,18 @@ $side_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'f
   <section class="iq-section iq-contact-section">
     <div class="iq-container">
       <h2 class="iq-contacto-main-title"><?php echo esc_html($data['main_title']); ?></h2>
-      <p class="iq-contacto-intro"><?php echo esc_html($data['intro']); ?></p>
+      <div class="iq-contacto-intro-wrap">
+        <?php
+        $intro_lines = preg_split('/\r\n|\r|\n/', (string) $data['intro'], -1, PREG_SPLIT_NO_EMPTY);
+        if (empty($intro_lines)) {
+          echo '<p class="iq-contacto-intro"></p>';
+        } else {
+          foreach ($intro_lines as $line) {
+            echo '<p class="iq-contacto-intro">' . esc_html(trim($line)) . '</p>';
+          }
+        }
+        ?>
+      </div>
 
       <div class="iq-contact-grid">
         <div class="iq-contact-form-wrap">
@@ -71,24 +83,30 @@ $side_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'f
       <h3 class="iq-contacto-channels-title"><?php echo esc_html($data['channels_title']); ?></h3>
       <div class="iq-contacto-cards">
         <div class="iq-contacto-card iq-contacto-card-tel">
-          <span class="iq-contacto-card-icon iq-icon-phone" aria-hidden="true"></span>
-          <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_tel_title']); ?></h4>
+          <div class="iq-contacto-card-head">
+            <img src="<?php echo esc_url($icons_uri . 'icon-telefono.svg'); ?>" alt="" class="iq-contacto-card-icon-img" width="30" height="30" loading="lazy">
+            <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_tel_title']); ?></h4>
+          </div>
           <p class="iq-contacto-card-content">
             <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone1)); ?>"><?php echo esc_html($phone1); ?></a><br>
             <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone2)); ?>"><?php echo esc_html($phone2); ?></a>
           </p>
         </div>
         <div class="iq-contacto-card iq-contacto-card-email">
-          <span class="iq-contacto-card-icon iq-icon-email" aria-hidden="true"></span>
-          <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_email_title']); ?></h4>
+          <div class="iq-contacto-card-head">
+            <img src="<?php echo esc_url($icons_uri . 'icon-mail.svg'); ?>" alt="" class="iq-contacto-card-icon-img" width="30" height="30" loading="lazy">
+            <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_email_title']); ?></h4>
+          </div>
           <p class="iq-contacto-card-content">
             <a href="mailto:<?php echo esc_attr($email1); ?>"><?php echo esc_html($email1); ?></a><br>
             <a href="mailto:<?php echo esc_attr($email2); ?>"><?php echo esc_html($email2); ?></a>
           </p>
         </div>
         <div class="iq-contacto-card iq-contacto-card-horario">
-          <span class="iq-contacto-card-icon iq-icon-phone" aria-hidden="true"></span>
-          <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_horario_title']); ?></h4>
+          <div class="iq-contacto-card-head">
+            <span class="iq-contacto-card-icon iq-icon-clock" aria-hidden="true"></span>
+            <h4 class="iq-contacto-card-title"><?php echo esc_html($data['channel_horario_title']); ?></h4>
+          </div>
           <p class="iq-contacto-card-content"><?php echo esc_html($horario); ?></p>
         </div>
       </div>
