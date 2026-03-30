@@ -14,5 +14,5 @@ return array(
   'observaciones'       => "Estacionamiento disponible cerca del teleférico línea verde.",
   'form_title'          => 'Reserva tu cupo en este evento',
   'form_cta_title'      => 'Completa el formulario para inscribirte en este curso.',
-  'form_cta_text'       => 'Nuestro equipo confirmará tu inscripción y te enviará la información necesaria para tu participación en el evento.',
+  'form_cta_text'       => 'Nuestro equipo confirmará tu registro y te enviará toda la información necesaria para tu participación.',
 );

@@ -134,7 +134,16 @@ if (is_numeric($speaker_image)) {
           </div>
           <div class="iq-evento-form-cta">
             <?php if ($form_cta_title !== '') : ?><h3 class="iq-evento-form-cta-title"><?php echo esc_html($form_cta_title); ?></h3><?php endif; ?>
-            <?php if ($form_cta_text !== '') : ?><p><?php echo esc_html($form_cta_text); ?></p><?php endif; ?>
+            <?php if ($form_cta_text !== '') :
+              $form_cta_lines = preg_split('/\r\n|\r|\n/', (string) $form_cta_text, -1, PREG_SPLIT_NO_EMPTY);
+              if (empty($form_cta_lines)) {
+                echo '<p></p>';
+              } else {
+                foreach ($form_cta_lines as $line) {
+                  echo '<p>' . esc_html(trim($line)) . '</p>';
+                }
+              }
+            endif; ?>
           </div>
         </div>
       </div>
