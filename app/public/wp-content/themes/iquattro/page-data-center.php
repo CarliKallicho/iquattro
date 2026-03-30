@@ -11,7 +11,10 @@ global $post;
 $data = iquattro_get_editable_page_data($post);
 $images_uri = get_template_directory_uri() . '/assets/images/';
 $icons_uri  = get_template_directory_uri() . '/assets/icons/';
-$hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $images_uri . 'fondo-datacenter.jpg');
+$hero_default = file_exists(get_template_directory() . '/assets/images/data-center.png')
+  ? ($images_uri . 'data-center.png')
+  : ($images_uri . 'data-center.jpg');
+$hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $hero_default);
 $cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-datacenter-costado.jpg');
 $como_pills = array_filter(array_map('trim', explode("\n", (string) $data['como_pills'])));
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();

@@ -1170,7 +1170,7 @@
 }
 
 .iq-contacto-page .iq-contact-form-wrap {
-  background: #fff;
+  background: #f9f9f9;
   border: 1px solid var(--iq-color-gray-light);
 }
 
@@ -1661,7 +1661,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-servicios-form-wrap {
-  background: transparent;
+  background: #f9f9f9;
   border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 2rem;
   border-radius: var(--iq-radius-lg);
@@ -1950,7 +1950,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-consultoria-form-wrap {
-  background: transparent;
+  background: #f9f9f9;
   border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 2rem;
   border-radius: var(--iq-radius-lg);
@@ -2275,7 +2275,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-seguridad-form-wrap {
-  background: transparent;
+  background: #f9f9f9;
   border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 2rem;
   border-radius: var(--iq-radius-lg);
@@ -2763,8 +2763,8 @@ body.iq-page-servicios-body {
 .iq-datacenter-hero {
   position: relative;
   background-color: #ffffff;
-  background-size: auto 100%;
-  background-position: right center;
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
   padding: clamp(2.75rem, 6.5vh, 5.25rem) 1.5rem clamp(2.25rem, 5vh, 4rem);
   /* visible: el título en 2 líneas con nowrap puede superar el ancho previo; evita recortar texto */
@@ -3191,14 +3191,34 @@ body.iq-page-servicios-body {
 }
 
 .iq-datacenter-form-wrap {
-  background: #fff;
+  background: #f9f9f9;
   border: 1px solid var(--iq-color-gray-light);
   padding: 2rem;
   border-radius: var(--iq-radius-lg);
 }
 
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form label {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form input[type="text"],
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form input[type="email"],
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form input[type="tel"],
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form textarea {
+  border: 3px solid #f3712b;
+}
+
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form input:focus,
+.iq-datacenter-page .iq-datacenter-form-wrap .iq-contact-form textarea:focus {
+  border: 3px solid #f3712b;
+  box-shadow: 0 0 0 3px rgba(243, 113, 43, 0.25);
+}
+
 .iq-btn-datacenter.iq-btn-primary {
   background: #ea580c;
+  border-radius: 10px;
 }
 
 .iq-btn-datacenter.iq-btn-primary:hover {
@@ -4543,7 +4563,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-form-wrap {
-  background: #fff;
+  background: #f9f9f9;
   border: 1px solid var(--iq-color-gray-light);
   padding: 2rem;
   border-radius: var(--iq-radius-lg);
