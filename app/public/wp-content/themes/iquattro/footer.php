@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
       <div class="iq-footer-col iq-footer-brand">
         <div class="iq-footer-brand-inner">
           <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-footer-logo">
-            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/iquattro-logo-blanco.png'); ?>" alt="<?php bloginfo('name'); ?>" class="iq-footer-logo-img" width="120" height="auto">
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/iquattro-logo-blanco.png'); ?>" alt="<?php bloginfo('name'); ?>" class="iq-footer-logo-img" width="110" height="150">
           </a>
           <div class="iq-footer-brand-text">
             <span class="iq-footer-logo-text">iQuattro SRL</span>

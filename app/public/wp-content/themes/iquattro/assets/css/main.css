@@ -3482,21 +3482,29 @@ body.iq-page-servicios-body {
 
 .iq-footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
   margin-bottom: 2rem;
+  align-items: start;
 }
 
 @media (max-width: 768px) {
   .iq-footer-grid {
     grid-template-columns: 1fr;
   }
+
+  .iq-footer-divisions,
+  .iq-footer-contact {
+    justify-self: start;
+  }
 }
 
 .iq-footer-brand-inner {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  min-height: 120px;
 }
 
 .iq-footer-logo {
@@ -3507,33 +3515,43 @@ body.iq-page-servicios-body {
 
 .iq-footer-logo-img {
   display: block;
-  max-width: 140px;
-  height: auto;
+  width: 110px;
+  height: 150px;
+  max-width: none;
+  object-fit: contain;
 }
 
 .iq-footer-brand-text {
   flex: 1;
   min-width: 0;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .iq-footer-logo-text {
   display: block;
   color: var(--iq-color-white);
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 0 0 0.25rem;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
 }
 
 .iq-footer-tagline {
-  font-size: 0.9rem;
-  opacity: 0.95;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 1;
   margin: 0;
-  max-width: 280px;
+  max-width: 430px;
 }
 
 .iq-footer-title {
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
   margin: 0 0 1rem;
 }
 
@@ -3544,13 +3562,16 @@ body.iq-page-servicios-body {
 }
 
 .iq-footer-links li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .iq-footer-links a::before {
   content: "› ";
-  margin-right: 0.25rem;
-  opacity: 0.8;
+  margin-right: 0.35rem;
+  opacity: 1;
 }
 
 .iq-footer-contact-list {
@@ -3562,16 +3583,34 @@ body.iq-page-servicios-body {
 .iq-footer-contact-list li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 0.65rem;
+  margin-bottom: 0.6rem;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .iq-footer-icon {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  background: currentColor;
-  opacity: 0.9;
+  background: #fff;
+  opacity: 1;
+}
+
+.iq-footer-divisions {
+  justify-self: center;
+}
+
+.iq-footer-contact {
+  justify-self: end;
+}
+
+.iq-footer-inner {
+  max-width: none;
+  width: 100%;
+  padding-left: clamp(1.25rem, 3.5vw, 3rem);
+  padding-right: clamp(1.25rem, 3.5vw, 3rem);
 }
 
 .iq-icon-location {
@@ -6120,5 +6159,41 @@ a.iq-catalogo-card:hover {
   .iq-catalogo-card-inner {
     padding: 1rem;
   }
+}
+
+/* Normalización global: todos los formularios con radius 10px */
+.iq-contact-form input[type="text"],
+.iq-contact-form input[type="email"],
+.iq-contact-form input[type="tel"],
+.iq-contact-form textarea,
+.iq-inscribirme-form input[type="text"],
+.iq-inscribirme-form input[type="email"],
+.iq-inscribirme-form input[type="tel"],
+.iq-inscribirme-form textarea {
+  border-radius: 10px;
+}
+
+/* Formularios de Seguridad, Consultoría, Servicios, Capacitación y Contacto */
+.iq-seguridad-form-wrap .iq-contact-form input[type="text"],
+.iq-seguridad-form-wrap .iq-contact-form input[type="email"],
+.iq-seguridad-form-wrap .iq-contact-form input[type="tel"],
+.iq-seguridad-form-wrap .iq-contact-form textarea,
+.iq-consultoria-form-wrap .iq-contact-form input[type="text"],
+.iq-consultoria-form-wrap .iq-contact-form input[type="email"],
+.iq-consultoria-form-wrap .iq-contact-form input[type="tel"],
+.iq-consultoria-form-wrap .iq-contact-form textarea,
+.iq-servicios-form-wrap .iq-contact-form input[type="text"],
+.iq-servicios-form-wrap .iq-contact-form input[type="email"],
+.iq-servicios-form-wrap .iq-contact-form input[type="tel"],
+.iq-servicios-form-wrap .iq-contact-form textarea,
+.iq-capacitacion-form-wrap .iq-contact-form input[type="text"],
+.iq-capacitacion-form-wrap .iq-contact-form input[type="email"],
+.iq-capacitacion-form-wrap .iq-contact-form input[type="tel"],
+.iq-capacitacion-form-wrap .iq-contact-form textarea,
+.iq-contacto-page .iq-contact-form input[type="text"],
+.iq-contacto-page .iq-contact-form input[type="email"],
+.iq-contacto-page .iq-contact-form input[type="tel"],
+.iq-contacto-page .iq-contact-form textarea {
+  border-radius: 10px;
 }
 
