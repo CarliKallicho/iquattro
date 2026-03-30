@@ -85,6 +85,27 @@ function iquattro_get_page_defaults($slug) {
 }
 
 /**
+ * Decodifica secuencias unicode escapadas (ej: \u00f3) en strings y arrays.
+ */
+function iquattro_decode_escaped_unicode($value) {
+  if (is_array($value)) {
+    foreach ($value as $k => $v) {
+      $value[$k] = iquattro_decode_escaped_unicode($v);
+    }
+    return $value;
+  }
+
+  if (!is_string($value) || !preg_match('/(?:\\\\u|u)[0-9a-fA-F]{4}/', $value)) {
+    return $value;
+  }
+
+  return preg_replace_callback('/(?:\\\\u|u)([0-9a-fA-F]{4})/', function($m) {
+    $decoded = json_decode('"\\u' . $m[1] . '"');
+    return is_string($decoded) ? $decoded : $m[0];
+  }, $value);
+}
+
+/**
  * Campos de texto que guardan HTML (wp_kses_post) por meta slug.
  */
 function iquattro_page_meta_html_field_keys($meta_slug) {
@@ -178,15 +199,16 @@ function iquattro_get_editable_page_data($post) {
     if (is_array($default_value) && isset($default_value[0]) && is_array($default_value[0])) {
       if ($stored !== '' && $stored !== false) {
         $decoded = json_decode($stored, true);
-        $data[ $key ] = is_array($decoded) ? $decoded : $default_value;
+        $data[ $key ] = is_array($decoded) ? iquattro_decode_escaped_unicode($decoded) : $default_value;
       } else {
-        $data[ $key ] = $default_value;
+        $data[ $key ] = iquattro_decode_escaped_unicode($default_value);
       }
     } else {
       if (in_array($key, $attachment_keys, true)) {
         $data[ $key ] = ($stored !== '' && $stored !== false) ? (int) $stored : (int) $default_value;
       } else {
-        $data[ $key ] = ($stored !== '' && $stored !== false) ? $stored : $default_value;
+        $raw_value = ($stored !== '' && $stored !== false) ? $stored : $default_value;
+        $data[ $key ] = iquattro_decode_escaped_unicode($raw_value);
       }
     }
   }
@@ -199,9 +221,9 @@ function iquattro_get_editable_page_data($post) {
         $stored = get_post_meta($pid, '_iq_page_' . $rep_key, true);
         if ($stored !== '' && $stored !== false) {
           $decoded = json_decode($stored, true);
-          $data[ $rep_key ] = is_array($decoded) ? $decoded : (isset($defaults[ $rep_key ]) ? $defaults[ $rep_key ] : array());
+          $data[ $rep_key ] = is_array($decoded) ? iquattro_decode_escaped_unicode($decoded) : (isset($defaults[ $rep_key ]) ? iquattro_decode_escaped_unicode($defaults[ $rep_key ]) : array());
         } elseif (isset($defaults[ $rep_key ])) {
-          $data[ $rep_key ] = $defaults[ $rep_key ];
+          $data[ $rep_key ] = iquattro_decode_escaped_unicode($defaults[ $rep_key ]);
         } else {
           $data[ $rep_key ] = array();
         }
@@ -301,6 +323,7 @@ function iquattro_page_meta_save($post_id) {
       }
       if (isset($_POST[ $input_name ])) {
         $raw_in = wp_unslash($_POST[ $input_name ]);
+        $raw_in = iquattro_decode_escaped_unicode($raw_in);
         if (in_array($key, iquattro_page_meta_html_field_keys($meta_slug), true)) {
           update_post_meta($post_id, $meta_key, wp_kses_post($raw_in));
         } else {
@@ -336,6 +359,7 @@ function iquattro_page_meta_save_repeaters($post_id, $meta_slug) {
         }
         if ($field_type === 'textarea') {
           $raw_ta = wp_unslash($_POST[ $name ]);
+          $raw_ta = iquattro_decode_escaped_unicode($raw_ta);
           if ($meta_slug === 'data-center' && $rep_key === 'soluciones_cards' && $field_name === 'text') {
             $val = wp_kses_post($raw_ta);
           } else {
@@ -344,7 +368,8 @@ function iquattro_page_meta_save_repeaters($post_id, $meta_slug) {
         } elseif ($field_type === 'attachment') {
           $val = absint(wp_unslash($_POST[ $name ]));
         } else {
-          $val = sanitize_text_field(wp_unslash($_POST[ $name ]));
+          $raw_text = iquattro_decode_escaped_unicode(wp_unslash($_POST[ $name ]));
+          $val = sanitize_text_field($raw_text);
         }
         $row[ $field_name ] = $val;
         if ($field_type === 'attachment') {
