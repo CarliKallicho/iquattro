@@ -1291,6 +1291,7 @@ span.iq-contacto-card-icon {
   height: 30px;
   object-fit: contain;
   display: block;
+  filter: none;
 }
 
 .iq-contacto-card-title {
@@ -3596,6 +3597,15 @@ body.iq-page-servicios-body {
   height: 18px;
   background: #fff;
   opacity: 1;
+}
+
+.iq-footer-icon-img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .iq-footer-divisions {
@@ -6217,4 +6227,5 @@ a.iq-catalogo-card:hover {
 .iq-contacto-page .iq-contact-form textarea {
   border-radius: 10px;
 }
+
 

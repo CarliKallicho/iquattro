@@ -51,15 +51,15 @@ if (!defined('ABSPATH')) {
         <h3 class="iq-footer-title"><?php esc_html_e('Datos de Contacto', 'iquattro'); ?></h3>
         <ul class="iq-footer-contact-list">
           <li>
-            <span class="iq-footer-icon iq-icon-location" aria-hidden="true"></span>
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/icons/ubicacion.svg'); ?>" alt="" class="iq-footer-icon-img" width="24" height="24" loading="lazy" aria-hidden="true">
             <?php echo esc_html(get_theme_mod('iquattro_location', 'Bolivia')); ?>
           </li>
           <li>
-            <span class="iq-footer-icon iq-icon-email" aria-hidden="true"></span>
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/icons/icon-mail.svg'); ?>" alt="" class="iq-footer-icon-img" width="24" height="24" loading="lazy" aria-hidden="true">
             <a href="mailto:<?php echo esc_attr(get_theme_mod('iquattro_email', 'marisol@i-quattro.com')); ?>"><?php echo esc_html(get_theme_mod('iquattro_email', 'marisol@i-quattro.com')); ?></a>
           </li>
           <li>
-            <span class="iq-footer-icon iq-icon-phone" aria-hidden="true"></span>
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/icons/icon-telefono.svg'); ?>" alt="" class="iq-footer-icon-img" width="24" height="24" loading="lazy" aria-hidden="true">
             <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', get_theme_mod('iquattro_phone', '+591 71947016'))); ?>"><?php echo esc_html(get_theme_mod('iquattro_phone', '+591 71947016')); ?></a>
           </li>
         </ul>
