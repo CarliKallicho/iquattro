@@ -3515,8 +3515,8 @@ body.iq-page-servicios-body {
 
 .iq-footer-logo-img {
   display: block;
-  width: 110px;
-  height: 150px;
+  width: 90px;
+  height: 120px;
   max-width: none;
   object-fit: contain;
 }
@@ -3862,6 +3862,27 @@ body.iq-page-servicios-body {
 
 .iq-topbar-capacitacion-inner .iq-nav-list {
   justify-content: flex-end;
+}
+
+.iq-topbar-capacitacion-inner .iq-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1;
+  color: var(--iq-color-dark, #1f2937);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.iq-topbar-capacitacion-inner .iq-nav-link:hover {
+  background: #f9f9f9;
+  color: var(--iq-color-dark, #1f2937);
+  text-decoration: none;
 }
 
 /* Fondo página Capacitación: degradado verde (aclarado) → blanco */
