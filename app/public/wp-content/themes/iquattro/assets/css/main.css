@@ -5110,7 +5110,7 @@ body.iq-page-servicios-body {
   font-weight: 800;
   color: var(--iq-color-dark, #1f2937);
   margin: 0 0 0;
-  line-height: 1.3;
+  line-height: 1.2;
   text-align: center;
   padding: 0 1rem;
 }
@@ -5118,19 +5118,22 @@ body.iq-page-servicios-body {
 .iq-evento-hero-image {
   margin-top: 1rem;
   width: 100%;
-  min-height: 280px;
+  max-width: 1608px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 0 0 var(--iq-radius-lg) var(--iq-radius-lg);
+  border-radius: 10px;
 }
 
 .iq-evento-content {
-  background: #fff;
-  border-radius: var(--iq-radius-lg);
-  padding: 2rem;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
   margin-bottom: 2rem;
-  box-shadow: var(--iq-shadow-md);
+  box-shadow: none;
 }
 
 .iq-evento-content .iq-container {
@@ -5140,9 +5143,16 @@ body.iq-page-servicios-body {
 
 .iq-evento-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
   align-items: start;
+}
+
+.iq-evento-speaker {
+  background: #f9f9f9;
+  border-radius: var(--iq-radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--iq-color-gray-light, #e5e7eb);
 }
 
 .iq-evento-speaker-photo-wrap {
@@ -5183,6 +5193,10 @@ body.iq-page-servicios-body {
 
 .iq-evento-block {
   margin-bottom: 1.5rem;
+  background: #f9f9f9;
+  border-radius: var(--iq-radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--iq-color-gray-light, #e5e7eb);
 }
 
 .iq-evento-block:last-child {
@@ -5418,6 +5432,10 @@ body.iq-page-servicios-body {
 
   .iq-evento-grid {
     grid-template-columns: 1fr;
+  }
+
+  .iq-evento-hero-image {
+    height: min(500px, 48vw);
   }
 
   .iq-evento-form-grid {
