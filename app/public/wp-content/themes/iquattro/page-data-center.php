@@ -16,15 +16,16 @@ $hero_default = file_exists(get_template_directory() . '/assets/images/data-cent
   : ($images_uri . 'data-center.jpg');
 $hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $hero_default);
 $cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-datacenter-costado.jpg');
-$como_pills = array_filter(array_map('trim', explode("\n", (string) $data['como_pills'])));
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
 $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards'] : array();
-$dc_card_urls = array(
-  get_permalink(get_page_by_path('data-center-hardware')) ?: home_url('/data-center-hardware/'),
-  get_permalink(get_page_by_path('data-center-software')) ?: home_url('/data-center-software/'),
-  get_permalink(get_page_by_path('data-center-servicios')) ?: home_url('/data-center-servicios/'),
-);
 $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
+$infra_cards = array();
+for ($i = 1; $i <= 4; $i++) {
+  $infra_cards[] = array(
+    'value' => isset($data['infra_card_' . $i . '_value']) ? $data['infra_card_' . $i . '_value'] : '',
+    'text'  => isset($data['infra_card_' . $i . '_text']) ? $data['infra_card_' . $i . '_text'] : '',
+  );
+}
 ?>
 <main id="main" class="iq-main iq-datacenter-page">
   <div class="iq-page-hero-wrap">
@@ -48,6 +49,9 @@ $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ?
         <p class="iq-datacenter-hero-desc"><?php echo esc_html($data['hero_desc_2']); ?></p>
         <p class="iq-datacenter-hero-actions">
           <a href="#iq-dc-servicios" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
+          <?php if (!empty($data['hero_btn_2'])) : ?>
+            <a href="#iq-dc-contacto" class="iq-btn iq-btn-dark iq-datacenter-hero-btn-secondary"><?php echo esc_html($data['hero_btn_2']); ?></a>
+          <?php endif; ?>
         </p>
       </div>
     </div>
@@ -56,30 +60,23 @@ $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ?
 
   <section class="iq-section iq-datacenter-infra">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['infra_title']); ?></h2>
-      <?php
-      $infra_intro_raw = isset($data['infra_intro']) ? (string) $data['infra_intro'] : '';
-      ?>
-      <div class="iq-datacenter-intro iq-datacenter-infra-intro">
-        <?php
-        if (strpos($infra_intro_raw, '<') !== false) {
-          echo wp_kses_post($infra_intro_raw);
-        } else {
-          echo wp_kses_post(wpautop(esc_html($infra_intro_raw)));
-        }
-        ?>
+      <div class="iq-datacenter-infra-cards">
+        <?php foreach ($infra_cards as $card) : ?>
+          <article class="iq-datacenter-infra-card">
+            <p class="iq-datacenter-infra-card-value"><?php echo esc_html($card['value']); ?></p>
+            <p class="iq-datacenter-infra-card-text"><?php echo esc_html($card['text']); ?></p>
+          </article>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
 
-  <section class="iq-section iq-datacenter-como">
+  <section class="iq-section iq-datacenter-portfolio">
     <div class="iq-container">
-      <div class="iq-datacenter-como-grid">
-        <h2 class="iq-section-title iq-datacenter-como-title"><?php echo esc_html($data['como_title']); ?></h2>
-        <div class="iq-datacenter-pills-wrap">
-          <?php foreach ($como_pills as $pill) : ?>
-            <span class="iq-datacenter-pill"><?php echo esc_html($pill); ?></span>
-          <?php endforeach; ?>
+      <div class="iq-datacenter-portfolio-grid">
+        <h2 class="iq-datacenter-portfolio-title"><?php echo esc_html(isset($data['portfolio_title']) ? $data['portfolio_title'] : ''); ?></h2>
+        <div class="iq-datacenter-portfolio-text">
+          <?php echo wp_kses_post(isset($data['portfolio_text']) ? $data['portfolio_text'] : ''); ?>
         </div>
       </div>
     </div>
@@ -91,15 +88,17 @@ $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ?
       <?php
       $servicios_intro_raw = isset($data['servicios_intro']) ? (string) $data['servicios_intro'] : '';
       ?>
-      <div class="iq-datacenter-intro iq-datacenter-servicios-intro">
-        <?php
-        if (strpos($servicios_intro_raw, '<') !== false) {
-          echo wp_kses_post($servicios_intro_raw);
-        } else {
-          echo wp_kses_post(wpautop(esc_html($servicios_intro_raw)));
-        }
-        ?>
-      </div>
+      <?php if (trim($servicios_intro_raw) !== '') : ?>
+        <div class="iq-datacenter-intro iq-datacenter-servicios-intro">
+          <?php
+          if (strpos($servicios_intro_raw, '<') !== false) {
+            echo wp_kses_post($servicios_intro_raw);
+          } else {
+            echo wp_kses_post(wpautop(esc_html($servicios_intro_raw)));
+          }
+          ?>
+        </div>
+      <?php endif; ?>
       <div class="iq-datacenter-servicios-cards">
         <?php foreach ($servicios_cards as $idx => $card) : ?>
           <?php
@@ -108,15 +107,24 @@ $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ?
             isset($card['icon_id']) ? (int) $card['icon_id'] : 0,
             $icons_uri
           );
-          $card_url = isset($dc_card_urls[ $idx ]) ? $dc_card_urls[ $idx ] : (get_permalink(get_page_by_path('contacto')) ?: home_url('/contacto/'));
+          $service_pills = array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', (string) (isset($card['pills']) ? $card['pills'] : ''))));
           ?>
           <div class="iq-datacenter-servicio-card">
             <div class="iq-datacenter-servicio-head">
               <img src="<?php echo esc_url($icon_src); ?>" alt="" class="iq-datacenter-servicio-icon" width="30" height="30" loading="lazy">
               <h3 class="iq-datacenter-servicio-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
             </div>
+            <p class="iq-datacenter-servicio-subtitle-1"><?php echo esc_html(isset($card['subtitle_1']) ? $card['subtitle_1'] : ''); ?></p>
+            <p class="iq-datacenter-servicio-subtitle-2"><?php echo esc_html(isset($card['subtitle_2']) ? $card['subtitle_2'] : ''); ?></p>
             <p class="iq-datacenter-servicio-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
-            <a href="<?php echo esc_url($card_url); ?>" class="iq-btn iq-btn-dark iq-datacenter-servicio-btn"><?php echo esc_html(isset($card['btn_txt']) ? $card['btn_txt'] : ''); ?></a>
+            <?php if (!empty($service_pills)) : ?>
+              <div class="iq-datacenter-servicio-pills">
+                <?php foreach ($service_pills as $pill_txt) : ?>
+                  <span class="iq-datacenter-servicio-pill"><?php echo esc_html($pill_txt); ?></span>
+                <?php endforeach; ?>
+              </div>
+            <?php endif; ?>
+            <a href="#iq-dc-contacto" class="iq-btn iq-btn-dark iq-datacenter-servicio-btn"><?php esc_html_e('Solicitar información', 'iquattro'); ?></a>
           </div>
         <?php endforeach; ?>
       </div>
@@ -149,7 +157,7 @@ $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ?
     </div>
   </section>
 
-  <section class="iq-section iq-datacenter-contact-section">
+  <section id="iq-dc-contacto" class="iq-section iq-datacenter-contact-section">
     <div class="iq-container">
       <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
       <div class="iq-datacenter-contact-grid">
