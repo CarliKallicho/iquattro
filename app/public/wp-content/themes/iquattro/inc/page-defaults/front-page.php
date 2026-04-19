@@ -77,12 +77,10 @@ return array(
   ),
   'front_allies' => array(
     array('slug' => 'gitlab', 'logo_id' => 0),
-    array('slug' => 'vmware', 'logo_id' => 0),
     array('slug' => 'veeam', 'logo_id' => 0),
-    array('slug' => 'quest', 'logo_id' => 0),
     array('slug' => 'microsoft', 'logo_id' => 0),
     array('slug' => 'fortinet', 'logo_id' => 0),
-    array('slug' => 'solarwinds', 'logo_id' => 0),
     array('slug' => 'dellemc', 'logo_id' => 0),
+    array('slug' => 'flashcopy', 'logo_id' => 0),
   ),
 );

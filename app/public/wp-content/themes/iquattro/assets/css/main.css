@@ -628,10 +628,10 @@
 
 /* Portada: ancho real de viewport (#iq-page tiene margin: 10px) */
 .home .iq-trust {
-  width: calc(100% + 20px);
-  max-width: none;
-  margin-left: -10px;
-  margin-right: -10px;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   box-sizing: border-box;
   padding-left: 0;
   padding-right: 0;
@@ -875,9 +875,9 @@
 }
 
 .home .iq-allies-grid {
-  grid-template-columns: repeat(4, minmax(170px, 1fr));
-  column-gap: 4.5rem;
-  row-gap: 6rem;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  column-gap: 3rem;
+  row-gap: 3rem;
   justify-items: center;
   align-items: center;
   margin-top: 2.5rem;
@@ -887,13 +887,22 @@
 }
 
 .home .iq-allies .iq-ally {
+  width: 100%;
+  min-height: 96px;
   padding: 0;
-  min-height: 0;
   background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home .iq-allies .iq-ally-logo {
-  max-height: 56px;
+  width: min(100%, 280px);
+  height: 64px;
+  max-width: 280px;
+  max-height: 64px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .iq-allies-grid {

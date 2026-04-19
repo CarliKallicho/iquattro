@@ -36,7 +36,27 @@ if (empty($data)) {
 $theme_uri = get_template_directory_uri();
 $images_uri = $theme_uri . '/assets/images/';
 $divisions = isset($data['front_divisions']) ? $data['front_divisions'] : array();
-$allies = isset($data['front_allies']) ? $data['front_allies'] : array();
+$allies_raw = isset($data['front_allies']) ? $data['front_allies'] : array();
+$allies_by_slug = array();
+foreach ($allies_raw as $ally_row) {
+  $ally_slug = isset($ally_row['slug']) ? sanitize_title($ally_row['slug']) : '';
+  if ($ally_slug !== '') {
+    $allies_by_slug[$ally_slug] = $ally_row;
+  }
+}
+$allies = array();
+$ally_first = isset($allies_by_slug['github'])
+  ? $allies_by_slug['github']
+  : (isset($allies_by_slug['gitlab']) ? $allies_by_slug['gitlab'] : array('slug' => 'gitlab', 'logo_id' => 0));
+$allies[] = $ally_first;
+$allies_target_order = array('veeam', 'microsoft', 'fortinet', 'dellemc', 'flashcopy');
+foreach ($allies_target_order as $target_slug) {
+  if (isset($allies_by_slug[$target_slug])) {
+    $allies[] = $allies_by_slug[$target_slug];
+  } else {
+    $allies[] = array('slug' => $target_slug, 'logo_id' => 0);
+  }
+}
 $trust_cards = array();
 for ($i = 1; $i <= 8; $i++) {
   $trust_cards[] = array(
