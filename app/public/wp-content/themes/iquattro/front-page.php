@@ -37,8 +37,13 @@ $theme_uri = get_template_directory_uri();
 $images_uri = $theme_uri . '/assets/images/';
 $divisions = isset($data['front_divisions']) ? $data['front_divisions'] : array();
 $allies = isset($data['front_allies']) ? $data['front_allies'] : array();
-$trust_z = iquattro_meta_image_url($data['trust_z_img_id'], $images_uri . 'z.png');
-$trust_y = iquattro_meta_image_url($data['trust_y_img_id'], $images_uri . 'y.png');
+$trust_cards = array();
+for ($i = 1; $i <= 8; $i++) {
+  $trust_cards[] = array(
+    'value' => isset($data['trust_card_' . $i . '_value']) ? $data['trust_card_' . $i . '_value'] : '',
+    'text'  => isset($data['trust_card_' . $i . '_text']) ? $data['trust_card_' . $i . '_text'] : '',
+  );
+}
 ?>
 
 <main id="main" class="iq-main iq-front">
@@ -97,12 +102,13 @@ $trust_y = iquattro_meta_image_url($data['trust_y_img_id'], $images_uri . 'y.png
   <section class="iq-section iq-trust">
     <div class="iq-container iq-trust-inner">
       <h2 class="iq-section-title iq-trust-title"><?php echo esc_html($data['trust_title']); ?></h2>
-    </div>
-    <div class="iq-trust-visual iq-trust-visual--full">
-      <div class="iq-trust-composite" role="img" aria-label="<?php echo esc_attr($data['trust_arc_desc']); ?>">
-        <div class="iq-trust-globe" aria-hidden="true"></div>
-        <img class="iq-trust-text-layer iq-trust-text-layer--z" src="<?php echo esc_url($trust_z); ?>" alt="" loading="lazy" decoding="async">
-        <img class="iq-trust-text-layer iq-trust-text-layer--y" src="<?php echo esc_url($trust_y); ?>" alt="" loading="lazy" decoding="async">
+      <div class="iq-trust-cards-grid">
+        <?php foreach ($trust_cards as $idx => $card) : ?>
+          <article class="iq-trust-card <?php echo ((($idx + 1) % 2) === 0) ? 'iq-trust-card--even' : 'iq-trust-card--odd'; ?>">
+            <p class="iq-trust-card-value"><?php echo esc_html($card['value']); ?></p>
+            <p class="iq-trust-card-text"><?php echo esc_html($card['text']); ?></p>
+          </article>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>

@@ -22,6 +22,45 @@ if (!defined('ABSPATH')) {
 
 <header id="masthead" class="iq-header">
   <?php if (is_front_page()) : ?>
+  <?php
+  $iq_front_post = null;
+  $iq_front_id = (int) get_option('page_on_front');
+  if ($iq_front_id) {
+    $iq_front_post = get_post($iq_front_id);
+  }
+  if (!$iq_front_post instanceof WP_Post) {
+    $iq_qo = get_queried_object();
+    if ($iq_qo instanceof WP_Post && $iq_qo->post_type === 'page') {
+      $iq_front_post = $iq_qo;
+    }
+  }
+  $iq_front_data = $iq_front_post ? iquattro_get_editable_page_data($iq_front_post) : array();
+  if (empty($iq_front_data)) {
+    $iq_front_data = iquattro_get_page_defaults('front-page');
+  }
+  $iq_hero_pills = array(
+    array(
+      'text' => isset($iq_front_data['hero_pill_1_text']) ? $iq_front_data['hero_pill_1_text'] : '',
+      'url'  => get_permalink(get_page_by_path('capacitacion')) ?: home_url('/capacitacion/'),
+    ),
+    array(
+      'text' => isset($iq_front_data['hero_pill_2_text']) ? $iq_front_data['hero_pill_2_text'] : '',
+      'url'  => get_permalink(get_page_by_path('data-center')) ?: home_url('/data-center/'),
+    ),
+    array(
+      'text' => isset($iq_front_data['hero_pill_3_text']) ? $iq_front_data['hero_pill_3_text'] : '',
+      'url'  => get_permalink(get_page_by_path('servicios')) ?: home_url('/servicios/'),
+    ),
+    array(
+      'text' => isset($iq_front_data['hero_pill_4_text']) ? $iq_front_data['hero_pill_4_text'] : '',
+      'url'  => get_permalink(get_page_by_path('seguridad')) ?: home_url('/seguridad/'),
+    ),
+    array(
+      'text' => isset($iq_front_data['hero_pill_5_text']) ? $iq_front_data['hero_pill_5_text'] : '',
+      'url'  => get_permalink(get_page_by_path('consultoria')) ?: home_url('/consultoria/'),
+    ),
+  );
+  ?>
   <section class="iq-hero">
     <div class="iq-topbar iq-topbar-hero">
       <div class="iq-topbar-inner">
@@ -57,14 +96,24 @@ if (!defined('ABSPATH')) {
         <?php endif; ?>
       </div>
       <div class="iq-hero-ctas">
-        <div class="iq-hero-ctas-row iq-hero-ctas-row--top">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('capacitacion')) ?: home_url('/capacitacion/')); ?>" class="iq-hero-cta"><?php esc_html_e('Necesito capacitar a mi equipo', 'iquattro'); ?></a>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('data-center')) ?: home_url('/data-center/')); ?>" class="iq-hero-cta"><?php esc_html_e('Busco licencias o infraestructura', 'iquattro'); ?></a>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('servicios')) ?: home_url('/servicios/')); ?>" class="iq-hero-cta"><?php esc_html_e('Requiero soporte especializado', 'iquattro'); ?></a>
+        <div class="iq-hero-ctas-row iq-hero-ctas-row--first">
+          <?php for ($i = 0; $i < 2; $i++) : ?>
+            <?php if (isset($iq_hero_pills[$i]) && trim((string) $iq_hero_pills[$i]['text']) !== '') : ?>
+              <a href="<?php echo esc_url($iq_hero_pills[$i]['url']); ?>" class="iq-hero-cta"><?php echo esc_html($iq_hero_pills[$i]['text']); ?></a>
+            <?php endif; ?>
+          <?php endfor; ?>
         </div>
-        <div class="iq-hero-ctas-row iq-hero-ctas-row--bottom">
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('seguridad')) ?: home_url('/seguridad/')); ?>" class="iq-hero-cta"><?php esc_html_e('Quiero mejorar la seguridad de mi empresa', 'iquattro'); ?></a>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('consultoria')) ?: home_url('/consultoria/')); ?>" class="iq-hero-cta"><?php esc_html_e('Tengo un proyecto tecnológico completo', 'iquattro'); ?></a>
+        <div class="iq-hero-ctas-row iq-hero-ctas-row--second">
+          <?php for ($i = 2; $i < 4; $i++) : ?>
+            <?php if (isset($iq_hero_pills[$i]) && trim((string) $iq_hero_pills[$i]['text']) !== '') : ?>
+              <a href="<?php echo esc_url($iq_hero_pills[$i]['url']); ?>" class="iq-hero-cta"><?php echo esc_html($iq_hero_pills[$i]['text']); ?></a>
+            <?php endif; ?>
+          <?php endfor; ?>
+        </div>
+        <div class="iq-hero-ctas-row iq-hero-ctas-row--third">
+          <?php if (isset($iq_hero_pills[4]) && trim((string) $iq_hero_pills[4]['text']) !== '') : ?>
+            <a href="<?php echo esc_url($iq_hero_pills[4]['url']); ?>" class="iq-hero-cta"><?php echo esc_html($iq_hero_pills[4]['text']); ?></a>
+          <?php endif; ?>
         </div>
       </div>
     </div>

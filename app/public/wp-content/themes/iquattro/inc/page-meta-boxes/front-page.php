@@ -18,6 +18,18 @@ $allies = isset($data['front_allies']) ? $data['front_allies'] : array();
     </div>
   <?php endfor; ?>
 
+  <p><strong><?php esc_html_e('Hero portada (pills)', 'iquattro'); ?></strong></p>
+  <?php for ($p = 1; $p <= 5; $p++) : ?>
+    <p>
+      <label><?php echo esc_html(sprintf(__('Texto pill %d', 'iquattro'), $p)); ?></label><br>
+      <input
+        type="text"
+        name="iq_page_hero_pill_<?php echo (int) $p; ?>_text"
+        value="<?php echo esc_attr(isset($data['hero_pill_' . $p . '_text']) ? $data['hero_pill_' . $p . '_text'] : ''); ?>"
+        class="widefat">
+    </p>
+  <?php endfor; ?>
+
   <p><strong><?php esc_html_e('Divisiones', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título de la sección', 'iquattro'); ?></label><br><input type="text" name="iq_page_divisions_title" value="<?php echo esc_attr($data['divisions_title']); ?>" class="widefat"></p>
   <?php for ($i = 0; $i < 5; $i++) : ?>
@@ -53,6 +65,20 @@ $allies = isset($data['front_allies']) ? $data['front_allies'] : array();
   iquattro_page_meta_render_attachment_field('iq_page_trust_z_img_id', __('Imagen capa Z (por defecto: z.png)', 'iquattro'), $data['trust_z_img_id']);
   iquattro_page_meta_render_attachment_field('iq_page_trust_y_img_id', __('Imagen capa Y (por defecto: y.png)', 'iquattro'), $data['trust_y_img_id']);
   ?>
+  <p><strong><?php esc_html_e('Cards de confianza (8)', 'iquattro'); ?></strong></p>
+  <?php for ($t = 1; $t <= 8; $t++) : ?>
+    <div style="border:1px solid #ccd0d4;padding:10px;margin-bottom:8px;background:#fff;">
+      <strong><?php echo esc_html(sprintf(__('Card %d', 'iquattro'), $t)); ?></strong>
+      <p>
+        <label><?php esc_html_e('Número', 'iquattro'); ?></label><br>
+        <input type="text" name="iq_page_trust_card_<?php echo (int) $t; ?>_value" value="<?php echo esc_attr(isset($data['trust_card_' . $t . '_value']) ? $data['trust_card_' . $t . '_value'] : ''); ?>" class="widefat">
+      </p>
+      <p>
+        <label><?php esc_html_e('Texto', 'iquattro'); ?></label><br>
+        <input type="text" name="iq_page_trust_card_<?php echo (int) $t; ?>_text" value="<?php echo esc_attr(isset($data['trust_card_' . $t . '_text']) ? $data['trust_card_' . $t . '_text'] : ''); ?>" class="widefat">
+      </p>
+    </div>
+  <?php endfor; ?>
 
   <p><strong><?php esc_html_e('Aliados', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título de la sección', 'iquattro'); ?></label><br><input type="text" name="iq_page_allies_title" value="<?php echo esc_attr($data['allies_title']); ?>" class="widefat"></p>

@@ -243,15 +243,16 @@
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.85rem;
   align-items: center;
 }
 
 .iq-hero-ctas-row {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 .iq-hero-cta {
@@ -270,6 +271,22 @@
   line-height: 1;
   white-space: nowrap;
   transition: background var(--iq-transition);
+}
+
+.home .iq-hero-ctas-row--first,
+.home .iq-hero-ctas-row--second {
+  justify-content: center;
+}
+
+.home .iq-hero-ctas-row--third {
+  justify-content: center;
+}
+
+.home .iq-hero-cta {
+  font-size: 14px;
+  line-height: 1.2;
+  height: 42px;
+  max-width: min(100%, 540px);
 }
 
 .iq-hero-cta:hover {
@@ -605,8 +622,7 @@
 /* --- Por qué confían --- */
 .iq-trust {
   position: relative;
-  /* Gradiente: blanco 0% hasta gris 60%; de 60% a 100% se mantiene el gris */
-  background: linear-gradient(180deg, #ffffff 0%, #9ca3af 60%, #9ca3af 100%);
+  background: #ffffff;
   overflow-x: hidden;
 }
 
@@ -632,6 +648,69 @@
   font-size: 36px;
   font-weight: 800;
   color: var(--iq-color-dark);
+}
+
+.iq-trust-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  background: #fff;
+}
+
+.iq-trust-card {
+  min-height: 184px;
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.iq-trust-card--odd {
+  background: linear-gradient(to bottom, #0d9fdc66, #0d9fdccc);
+}
+
+.iq-trust-card--even {
+  background: linear-gradient(to bottom, #0d9fdccc, #0d9fdc66);
+}
+
+.iq-trust-card-value {
+  margin: 0 0 0.4rem;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.iq-trust-card-text {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .iq-trust-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .iq-trust-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-trust-card-value {
+    font-size: 40px;
+  }
+
+  .iq-trust-card-text {
+    font-size: 22px;
+  }
 }
 
 /* Bloque visual ancho completo (título sigue en .iq-container acotado) */
@@ -3764,6 +3843,9 @@ body.iq-page-servicios-body {
     grid-column: 1;
     grid-row: 3;
     justify-content: center;
+  }
+  .iq-hero-ctas-row {
+    flex-wrap: wrap;
   }
   .iq-form-row {
     grid-template-columns: 1fr;
