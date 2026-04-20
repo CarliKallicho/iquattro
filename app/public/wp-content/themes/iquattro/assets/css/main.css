@@ -3427,7 +3427,7 @@ body.iq-page-servicios-body {
 }
 
 .iq-datacenter-fabricantes {
-  background: linear-gradient(to bottom, #f3712bcc, #f3712b66);
+  background: #f3712b66;
 }
 
 .iq-datacenter-fabricantes-title {
@@ -3498,6 +3498,14 @@ body.iq-page-servicios-body {
   align-items: stretch;
 }
 
+.iq-datacenter-contact-subtitle {
+  margin: 0 0 1rem;
+  color: #000;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .iq-datacenter-form-wrap {
   background: #f9f9f9;
   border: 1px solid var(--iq-color-gray-light);
@@ -3543,8 +3551,8 @@ body.iq-page-servicios-body {
   background-repeat: no-repeat;
   border-radius: var(--iq-radius-lg);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 2rem;
   overflow: hidden;
 }

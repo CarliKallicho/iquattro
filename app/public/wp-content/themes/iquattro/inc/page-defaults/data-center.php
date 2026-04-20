@@ -143,6 +143,7 @@ return array(
     array('title' => 'GITLAB', 'subtitle' => 'Enterprise Edition'),
     array('title' => 'DB FLASHCOPY', 'subtitle' => 'Snapshot Engine'),
   ),
-  'contact_title'   => 'Construye una infraestructura preparada para el futuro',
-  'contact_cta_text' => 'Conversemos sobre tus desafíos de infraestructura, continuidad operativa y crecimiento tecnológico.',
+  'contact_title'   => 'Construyamos juntos tu infraestructura',
+  'contact_subtitle' => 'Habla con un especialista',
+  'contact_cta_text' => 'Cuéntanos el desafío que enfrenta tu organización y nuestro equipo certificado te orientará sobre la solución más adecuada para tu entorno y presupuesto.',
 );

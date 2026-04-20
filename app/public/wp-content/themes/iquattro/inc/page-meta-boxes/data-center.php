@@ -113,5 +113,6 @@ $fabricantes_cards = isset($data['fabricantes_cards']) ? $data['fabricantes_card
   iquattro_page_meta_render_attachment_field('iq_page_contact_side_bg_id', __('Imagen de fondo del costado (por defecto: fondo-datacenter-costado.jpg)', 'iquattro'), $data['contact_side_bg_id']);
   ?>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_contact_title" value="<?php echo esc_attr($data['contact_title']); ?>" class="widefat"></p>
+  <p><label><?php esc_html_e('Subtítulo', 'iquattro'); ?></label><br><input type="text" name="iq_page_contact_subtitle" value="<?php echo esc_attr(isset($data['contact_subtitle']) ? $data['contact_subtitle'] : ''); ?>" class="widefat"></p>
   <p><label><?php esc_html_e('Texto CTA (costado)', 'iquattro'); ?></label><br><textarea name="iq_page_contact_cta_text" class="widefat" rows="2"><?php echo esc_textarea($data['contact_cta_text']); ?></textarea></p>
 </div>

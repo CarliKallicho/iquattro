@@ -205,6 +205,7 @@ for ($i = 1; $i <= 4; $i++) {
   <section id="iq-dc-contacto" class="iq-section iq-datacenter-contact-section">
     <div class="iq-container">
       <h2 class="iq-section-title"><?php echo esc_html($data['contact_title']); ?></h2>
+      <p class="iq-datacenter-contact-subtitle"><?php echo esc_html(isset($data['contact_subtitle']) ? $data['contact_subtitle'] : ''); ?></p>
       <div class="iq-datacenter-contact-grid">
         <div class="iq-datacenter-form-wrap">
           <form id="iq-datacenter-form" class="iq-contact-form" method="post" novalidate>
