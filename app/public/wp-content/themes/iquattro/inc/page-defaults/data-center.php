@@ -23,7 +23,7 @@ return array(
   'servicios_intro' => '',
   'servicios_cards' => array(
     array(
-      'icon' => 'respaldo-recuperacion.svg',
+      'icon' => 'respaldo.svg',
       'icon_id' => 0,
       'title' => 'Respaldo y recuperación',
       'subtitle_1' => 'Veeam Software',
@@ -33,7 +33,7 @@ return array(
       'btn_txt' => 'Solicitar información',
     ),
     array(
-      'icon' => 'virtualizacion-escritorios.svg',
+      'icon' => 'virtualizacion.svg',
       'icon_id' => 0,
       'title' => 'Virtualización de escritorios',
       'subtitle_1' => 'OMNISA',
@@ -43,7 +43,7 @@ return array(
       'btn_txt' => 'Solicitar información',
     ),
     array(
-      'icon' => 'gestion-licencias.svg',
+      'icon' => 'gestion.svg',
       'icon_id' => 0,
       'title' => 'Gestión de licencias',
       'subtitle_1' => 'SUCE',
@@ -53,7 +53,7 @@ return array(
       'btn_txt' => 'Solicitar información',
     ),
     array(
-      'icon' => 'devops-cicd.svg',
+      'icon' => 'devops.svg',
       'icon_id' => 0,
       'title' => 'DevOps & CI/CD',
       'subtitle_1' => 'GITLAB INC.',
@@ -63,7 +63,7 @@ return array(
       'btn_txt' => 'Solicitar información',
     ),
     array(
-      'icon' => 'snapshots-db.svg',
+      'icon' => 'snapshots.svg',
       'icon_id' => 0,
       'title' => 'Snapshots de Bases de Datos',
       'subtitle_1' => 'DB FLASHCOPY',
@@ -73,20 +73,75 @@ return array(
       'btn_txt' => 'Solicitar información',
     ),
   ),
-  'soluciones_title' => 'Soluciones diseñadas para entornos empresariales exigentes',
+  'implementation_title' => 'Cómo implementamos cada solución',
+  'implementation_cards' => array(
+    array(
+      'number' => '01',
+      'title' => 'Diagnóstico',
+      'text' => 'Evaluamos tu infraestructura actual, identificamos riesgos y definimos los requerimientos técnicos de la organización.',
+    ),
+    array(
+      'number' => '02',
+      'title' => 'Diseño',
+      'text' => 'Diseñamos la arquitectura de solución más adecuada, seleccionando los productos y configuraciones correctas para tu entorno.',
+    ),
+    array(
+      'number' => '03',
+      'title' => 'Implementación',
+      'text' => 'Desplegamos e integramos la solución con estándares internacionales, minimizando el impacto en la operación productiva.',
+    ),
+    array(
+      'number' => '04',
+      'title' => 'Soporte continuo',
+      'text' => 'Brindamos soporte post-implementación, actualizaciones y acompañamiento técnico para garantizar continuidad operativa.',
+    ),
+  ),
+  'soluciones_title' => 'Qué desafíos resolvemos',
   'soluciones_cards' => array(
     array(
-      'title' => 'BC / DR — Continuidad y recuperación',
-      'text'  => '<p>Uno de los principales retos de los negocios es la <strong>gestión y protección</strong> de grandes volúmenes de información.</p><p>En IQuattro implementamos soluciones de almacenamiento, compresión de datos, respaldos y replicación, tanto síncrona como asíncrona, que garantizan la <strong>continuidad del negocio</strong> y una <strong>recuperación eficiente</strong> ante incidentes.</p>',
+      'icon'  => 'insignia.svg',
+      'icon_id' => 0,
+      'title' => 'Continuidad del negocio ante ransomware',
+      'text'  => 'Combinando Veeam y DB FlashCopy, protegemos datos críticos de tu organización con respaldo inmutable y recuperación rápida ante ataques de ransomware sin pagar rescate.',
     ),
     array(
-      'title' => 'Gestión de Data Centers',
-      'text'  => '<p>Administrar decenas de <strong>equipos y servidores críticos</strong> requiere control, monitoreo y seguridad constante.</p><p>Ofrecemos <strong>soluciones de gestión y administración de infraestructuras</strong>, incluyendo monitoreo, help desk y control operativo, para asegurar estabilidad y disponibilidad permanente.</p>',
+      'icon'  => 'habilitacion.svg',
+      'icon_id' => 0,
+      'title' => 'Habilitación de teletrabajo seguro',
+      'text'  => 'Con Horizon VDI by OMNISA, los colaboradores acceden a su entorno de trabajo corporativo desde cualquier lugar, sin exponer datos sensibles en dispositivos personales.',
     ),
     array(
-      'title' => 'Teletrabajo y entornos distribuidos',
-      'text'  => '<p>Los nuevos modelos de trabajo exigen <strong>infraestructuras flexibles y seguras.</strong></p><p>Diseñamos soluciones que permiten habilitar el teletrabajo de forma eficiente, manteniendo el control, la seguridad y el rendimiento de los sistemas corporativos.</p>',
+      'icon'  => 'aceleracion.svg',
+      'icon_id' => 0,
+      'title' => 'Aceleración del ciclo de desarrollo',
+      'text'  => 'GitLab EE on-premise permite a los equipos de desarrollo gestionar código, pipelines y seguridad en una sola plataforma, reduciendo tiempos de entrega y errores en producción.',
     ),
+    array(
+      'icon'  => 'cumplimiento.svg',
+      'icon_id' => 0,
+      'title' => 'Cumplimiento de auditorías de software',
+      'text'  => 'SUCE permite conocer exactamente qué software está instalado, cuántas licencias se usan y cuántas se desperdician, eliminando riesgos legales y optimizando el presupuesto TI.',
+    ),
+    array(
+      'icon'  => 'soft-7.svg',
+      'icon_id' => 0,
+      'title' => 'Migración de bases de datos sin downtime',
+      'text'  => 'DB FlashCopy genera snapshots instantáneos que permiten migrar o actualizar bases de datos de producción sin ventanas de mantenimiento extensas ni interrupción del servicio.',
+    ),
+    array(
+      'icon'  => 'infraestructura.svg',
+      'icon_id' => 0,
+      'title' => 'Infraestructura multi-sede centralizada',
+      'text'  => 'La combinación de Veeam y Horizon permite gestionar y proteger la infraestructura de múltiples sucursales desde un punto central, reduciendo costos operativos.',
+    ),
+  ),
+  'fabricantes_title' => 'Fabricantes que representamos',
+  'fabricantes_cards' => array(
+    array('title' => 'VEEAM', 'subtitle' => 'Software'),
+    array('title' => 'OMNISA', 'subtitle' => 'Horizon VDI'),
+    array('title' => 'SUCE', 'subtitle' => 'License Manager'),
+    array('title' => 'GITLAB', 'subtitle' => 'Enterprise Edition'),
+    array('title' => 'DB FLASHCOPY', 'subtitle' => 'Snapshot Engine'),
   ),
   'contact_title'   => 'Construye una infraestructura preparada para el futuro',
   'contact_cta_text' => 'Conversemos sobre tus desafíos de infraestructura, continuidad operativa y crecimiento tecnológico.',

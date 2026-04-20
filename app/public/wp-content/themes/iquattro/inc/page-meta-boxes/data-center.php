@@ -3,7 +3,9 @@ $dc_hardware_url  = get_permalink(get_page_by_path('data-center-hardware')) ?: h
 $dc_software_url  = get_permalink(get_page_by_path('data-center-software')) ?: home_url('/data-center-software/');
 $dc_servicios_url = get_permalink(get_page_by_path('data-center-servicios')) ?: home_url('/data-center-servicios/');
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
+$implementation_cards = isset($data['implementation_cards']) ? $data['implementation_cards'] : array();
 $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards'] : array();
+$fabricantes_cards = isset($data['fabricantes_cards']) ? $data['fabricantes_cards'] : array();
 ?>
 <div class="iq-page-meta-box" style="display:grid;gap:1.5rem;">
   <p><strong><?php esc_html_e('Hero', 'iquattro'); ?></strong></p>
@@ -64,16 +66,45 @@ $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards']
     </div>
   <?php endfor; ?>
 
+  <p><strong><?php esc_html_e('Sección implementación (4 cards)', 'iquattro'); ?></strong></p>
+  <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_implementation_title" value="<?php echo esc_attr(isset($data['implementation_title']) ? $data['implementation_title'] : ''); ?>" class="widefat"></p>
+  <?php for ($i = 0; $i < 4; $i++) : $c = isset($implementation_cards[$i]) ? $implementation_cards[$i] : array('number'=>'','title'=>'','text'=>''); ?>
+    <div style="border:1px solid #ccc;padding:10px;margin-bottom:8px;background:#f9f9f9;">
+      <strong><?php echo esc_html(sprintf(__('Paso %d', 'iquattro'), $i+1)); ?></strong>
+      <p><input type="text" name="iq_page_implementation_cards_<?php echo $i; ?>_number" value="<?php echo esc_attr(isset($c['number']) ? $c['number'] : ''); ?>" placeholder="<?php esc_attr_e('Número (ej: 01)', 'iquattro'); ?>" class="widefat"></p>
+      <p><input type="text" name="iq_page_implementation_cards_<?php echo $i; ?>_title" value="<?php echo esc_attr(isset($c['title']) ? $c['title'] : ''); ?>" placeholder="<?php esc_attr_e('Título', 'iquattro'); ?>" class="widefat"></p>
+      <p><textarea name="iq_page_implementation_cards_<?php echo $i; ?>_text" class="widefat" rows="3" placeholder="<?php esc_attr_e('Texto', 'iquattro'); ?>"><?php echo esc_textarea(isset($c['text']) ? $c['text'] : ''); ?></textarea></p>
+    </div>
+  <?php endfor; ?>
+
   <p><strong><?php esc_html_e('Soluciones (cards naranja)', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_soluciones_title" value="<?php echo esc_attr($data['soluciones_title']); ?>" class="widefat"></p>
-  <?php for ($i = 0; $i < 5; $i++) : $c = isset($soluciones_cards[$i]) ? $soluciones_cards[$i] : array('title'=>'','text'=>''); ?>
+  <?php for ($i = 0; $i < 6; $i++) : $c = isset($soluciones_cards[$i]) ? $soluciones_cards[$i] : array('icon'=>'','icon_id'=>0,'title'=>'','text'=>''); ?>
     <div style="border:1px solid #ccc;padding:10px;margin-bottom:8px;background:#f9f9f9;">
       <strong><?php echo esc_html(sprintf(__('Solución %d', 'iquattro'), $i+1)); ?></strong>
+      <p><input type="text" name="iq_page_soluciones_cards_<?php echo $i; ?>_icon" value="<?php echo esc_attr(isset($c['icon']) ? $c['icon'] : ''); ?>" placeholder="insignia.svg" style="width:160px"></p>
+      <?php
+      iquattro_page_meta_render_attachment_field(
+        'iq_page_soluciones_cards_' . (int) $i . '_icon_id',
+        __('Icono desde medios (opcional)', 'iquattro'),
+        isset($c['icon_id']) ? (int) $c['icon_id'] : 0
+      );
+      ?>
       <p><input type="text" name="iq_page_soluciones_cards_<?php echo $i; ?>_title" value="<?php echo esc_attr($c['title']); ?>" placeholder="<?php esc_attr_e('Título', 'iquattro'); ?>" class="widefat"></p>
       <p>
         <span class="description"><?php esc_html_e('Texto: puedes usar &lt;p&gt; y &lt;strong&gt; para negritas.', 'iquattro'); ?></span><br>
         <textarea name="iq_page_soluciones_cards_<?php echo $i; ?>_text" class="widefat" rows="8"><?php echo esc_textarea(isset($c['text']) ? $c['text'] : ''); ?></textarea>
       </p>
+    </div>
+  <?php endfor; ?>
+
+  <p><strong><?php esc_html_e('Sección fabricantes (5 cards)', 'iquattro'); ?></strong></p>
+  <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_fabricantes_title" value="<?php echo esc_attr(isset($data['fabricantes_title']) ? $data['fabricantes_title'] : ''); ?>" class="widefat"></p>
+  <?php for ($i = 0; $i < 5; $i++) : $c = isset($fabricantes_cards[$i]) ? $fabricantes_cards[$i] : array('title'=>'','subtitle'=>''); ?>
+    <div style="border:1px solid #ccc;padding:10px;margin-bottom:8px;background:#f9f9f9;">
+      <strong><?php echo esc_html(sprintf(__('Fabricante %d', 'iquattro'), $i+1)); ?></strong>
+      <p><input type="text" name="iq_page_fabricantes_cards_<?php echo $i; ?>_title" value="<?php echo esc_attr(isset($c['title']) ? $c['title'] : ''); ?>" placeholder="<?php esc_attr_e('Título', 'iquattro'); ?>" class="widefat"></p>
+      <p><input type="text" name="iq_page_fabricantes_cards_<?php echo $i; ?>_subtitle" value="<?php echo esc_attr(isset($c['subtitle']) ? $c['subtitle'] : ''); ?>" placeholder="<?php esc_attr_e('Texto pequeño', 'iquattro'); ?>" class="widefat"></p>
     </div>
   <?php endfor; ?>
 

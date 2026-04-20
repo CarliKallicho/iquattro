@@ -17,7 +17,9 @@ $hero_default = file_exists(get_template_directory() . '/assets/images/data-cent
 $hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $hero_default);
 $cta_bg = iquattro_meta_image_url($data['contact_side_bg_id'], $images_uri . 'fondo-datacenter-costado.jpg');
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
+$implementation_cards = isset($data['implementation_cards']) ? $data['implementation_cards'] : array();
 $soluciones_cards = isset($data['soluciones_cards']) ? $data['soluciones_cards'] : array();
+$fabricantes_cards = isset($data['fabricantes_cards']) ? $data['fabricantes_cards'] : array();
 $dc_hero_title_lines = iquattro_dc_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 $infra_cards = array();
 for ($i = 1; $i <= 4; $i++) {
@@ -102,8 +104,10 @@ for ($i = 1; $i <= 4; $i++) {
       <div class="iq-datacenter-servicios-cards">
         <?php foreach ($servicios_cards as $idx => $card) : ?>
           <?php
+          $icon_by_order = array('respaldo.svg', 'virtualizacion.svg', 'gestion.svg', 'devops.svg', 'snapshots.svg');
+          $icon_file = isset($icon_by_order[$idx]) ? $icon_by_order[$idx] : (isset($card['icon']) ? $card['icon'] : '');
           $icon_src = iquattro_page_icon_or_attachment_url(
-            isset($card['icon']) ? $card['icon'] : '',
+            $icon_file,
             isset($card['icon_id']) ? (int) $card['icon_id'] : 0,
             $icons_uri
           );
@@ -131,17 +135,44 @@ for ($i = 1; $i <= 4; $i++) {
     </div>
   </section>
 
+  <section class="iq-section iq-datacenter-implementation">
+    <div class="iq-container">
+      <h2 class="iq-section-title iq-datacenter-implementation-title"><?php echo esc_html(isset($data['implementation_title']) ? $data['implementation_title'] : ''); ?></h2>
+      <div class="iq-datacenter-implementation-cards">
+        <?php foreach ($implementation_cards as $impl_card) : ?>
+          <article class="iq-datacenter-implementation-card">
+            <div class="iq-datacenter-implementation-circle">
+              <span class="iq-datacenter-implementation-number"><?php echo esc_html(isset($impl_card['number']) ? $impl_card['number'] : ''); ?></span>
+            </div>
+            <h3 class="iq-datacenter-implementation-card-title"><?php echo esc_html(isset($impl_card['title']) ? $impl_card['title'] : ''); ?></h3>
+            <p class="iq-datacenter-implementation-card-text"><?php echo esc_html(isset($impl_card['text']) ? $impl_card['text'] : ''); ?></p>
+          </article>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
   <section class="iq-section iq-datacenter-soluciones">
     <div class="iq-container">
       <h2 class="iq-section-title iq-datacenter-soluciones-title"><?php echo esc_html($data['soluciones_title']); ?></h2>
       <div class="iq-datacenter-soluciones-cards">
         <?php foreach ($soluciones_cards as $sol_idx => $sc) : ?>
           <?php
-          $sol_grad = ((int) $sol_idx === 1) ? 'iq-datacenter-solucion-card--grad-dark-light' : 'iq-datacenter-solucion-card--grad-light-dark';
+          $sol_grad = (((int) $sol_idx % 2) === 0) ? 'iq-datacenter-solucion-card--grad-light-dark' : 'iq-datacenter-solucion-card--grad-dark-light';
           $sol_text = isset($sc['text']) ? (string) $sc['text'] : '';
+          $sol_icon_by_order = array('insignia.svg', 'habilitacion.svg', 'aceleracion.svg', 'cumplimiento.svg', 'soft-7.svg', 'infraestructura.svg');
+          $sol_icon_file = isset($sol_icon_by_order[$sol_idx]) ? $sol_icon_by_order[$sol_idx] : (isset($sc['icon']) ? $sc['icon'] : '');
+          $sol_icon_src = iquattro_page_icon_or_attachment_url(
+            $sol_icon_file,
+            isset($sc['icon_id']) ? (int) $sc['icon_id'] : 0,
+            $icons_uri
+          );
           ?>
           <div class="iq-datacenter-solucion-card <?php echo esc_attr($sol_grad); ?>">
-            <h3 class="iq-datacenter-solucion-title"><?php echo esc_html(isset($sc['title']) ? $sc['title'] : ''); ?></h3>
+            <div class="iq-datacenter-solucion-head">
+              <img src="<?php echo esc_url($sol_icon_src); ?>" alt="" class="iq-datacenter-solucion-icon" width="30" height="30" loading="lazy">
+              <h3 class="iq-datacenter-solucion-title"><?php echo esc_html(isset($sc['title']) ? $sc['title'] : ''); ?></h3>
+            </div>
             <div class="iq-datacenter-solucion-body">
               <?php
               if (strpos($sol_text, '<') !== false) {
@@ -152,6 +183,20 @@ for ($i = 1; $i <= 4; $i++) {
               ?>
             </div>
           </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
+  <section class="iq-section iq-datacenter-fabricantes">
+    <div class="iq-container">
+      <h2 class="iq-section-title iq-datacenter-fabricantes-title"><?php echo esc_html(isset($data['fabricantes_title']) ? $data['fabricantes_title'] : ''); ?></h2>
+      <div class="iq-datacenter-fabricantes-cards">
+        <?php foreach ($fabricantes_cards as $fab) : ?>
+          <article class="iq-datacenter-fabricante-card">
+            <h3 class="iq-datacenter-fabricante-title"><?php echo esc_html(isset($fab['title']) ? $fab['title'] : ''); ?></h3>
+            <p class="iq-datacenter-fabricante-subtitle"><?php echo esc_html(isset($fab['subtitle']) ? $fab['subtitle'] : ''); ?></p>
+          </article>
         <?php endforeach; ?>
       </div>
     </div>
