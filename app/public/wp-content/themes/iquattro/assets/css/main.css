@@ -1659,8 +1659,24 @@ span.iq-contacto-card-icon {
   padding: 1.1rem 1.25rem;
 }
 
-.iq-tech-item-title {
+.iq-tech-item-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
   margin: 0 0 0.6rem;
+}
+
+.iq-tech-item-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  filter: brightness(0);
+}
+
+.iq-tech-item-title {
+  margin: 0;
   color: var(--iq-color-dark);
   font-size: 24px;
   font-weight: 700;

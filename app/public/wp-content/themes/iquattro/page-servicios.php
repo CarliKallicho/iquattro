@@ -16,6 +16,11 @@ $cta_bg = iquattro_meta_image_url($data['cta_side_bg_id'], $images_uri . 'fondo-
 $que_cajas = array_filter(array_map('trim', explode("\n", (string) $data['que_hacemos_cajas'])));
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
 $tecnologias_groups = isset($data['tecnologias_groups']) ? $data['tecnologias_groups'] : array();
+$tecnologias_item_icons = array(
+  array('people.svg', 'icon-mail.svg', 'home.svg', 'computer.svg', 'insignia.svg', 'rack.svg'),
+  array('rack.svg', 'signal.svg', 'block.svg', 'cloud.svg', 'people.svg', 'flash.svg'),
+  array('block.svg', 'refresh.svg', 'insignia.svg', 'home.svg'),
+);
 $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 ?>
 <main id="main" class="iq-main iq-servicios-page">
@@ -83,7 +88,7 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
     <div class="iq-container">
       <h2 class="iq-servicios-tecnologias-title"><?php echo esc_html(isset($data['tecnologias_title']) ? $data['tecnologias_title'] : ''); ?></h2>
       <div class="iq-servicios-tecnologias-list">
-        <?php foreach ($tecnologias_groups as $group) : ?>
+        <?php foreach ($tecnologias_groups as $group_idx => $group) : ?>
           <?php
           $group_pills = array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', (string) (isset($group['pills']) ? $group['pills'] : ''))));
           $group_items = isset($group['items']) && is_array($group['items']) ? $group['items'] : array();
@@ -105,10 +110,19 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
             </div>
 
             <div class="iq-tech-items-grid">
-              <?php foreach ($group_items as $item) : ?>
+              <?php foreach ($group_items as $item_idx => $item) : ?>
                 <?php $item_pills = array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', (string) (isset($item['pills']) ? $item['pills'] : '')))); ?>
                 <article class="iq-tech-item-card">
-                  <h4 class="iq-tech-item-title"><?php echo esc_html(isset($item['title']) ? $item['title'] : ''); ?></h4>
+                  <?php
+                  $item_icon_file = isset($tecnologias_item_icons[$group_idx][$item_idx]) ? $tecnologias_item_icons[$group_idx][$item_idx] : '';
+                  $item_icon_src = $item_icon_file !== '' ? $icons_uri . ltrim((string) $item_icon_file, '/') : '';
+                  ?>
+                  <div class="iq-tech-item-head">
+                    <?php if ($item_icon_src !== '') : ?>
+                      <img src="<?php echo esc_url($item_icon_src); ?>" alt="" class="iq-tech-item-icon" width="30" height="30" loading="lazy">
+                    <?php endif; ?>
+                    <h4 class="iq-tech-item-title"><?php echo esc_html(isset($item['title']) ? $item['title'] : ''); ?></h4>
+                  </div>
                   <p class="iq-tech-item-desc"><?php echo esc_html(isset($item['desc']) ? $item['desc'] : ''); ?></p>
                   <?php if (!empty($item_pills)) : ?>
                     <div class="iq-tech-item-pills">
