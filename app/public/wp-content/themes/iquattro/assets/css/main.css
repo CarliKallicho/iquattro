@@ -2142,10 +2142,23 @@ span.iq-contacto-card-icon {
 /* --- Página Seguridad --- */
 .iq-seguridad-page .iq-seguridad-hero .iq-container,
 .iq-seguridad-page .iq-seguridad-que-protegemos .iq-container,
-.iq-seguridad-page .iq-seguridad-monitoreo .iq-container,
+.iq-seguridad-page .iq-seguridad-ejecucion .iq-container,
+.iq-seguridad-page .iq-seguridad-servicios-comp .iq-container,
+.iq-seguridad-page .iq-seguridad-estandares .iq-container,
+.iq-seguridad-page .iq-seguridad-experiencia .iq-container,
 .iq-seguridad-page .iq-seguridad-contact-section .iq-container {
   max-width: 1688px;
   width: 100%;
+}
+
+/* Más aire entre bloques (referencia diseño ~80–120px entre secciones) */
+.iq-seguridad-page .iq-section {
+  padding-top: clamp(3rem, 5.5vw, 5.5rem);
+  padding-bottom: clamp(3rem, 5.5vw, 5.5rem);
+}
+
+.iq-seguridad-page .iq-page-hero-wrap + .iq-section {
+  padding-top: clamp(3.5rem, 6vw, 6rem);
 }
 
 .iq-seguridad-hero {
@@ -2200,7 +2213,7 @@ span.iq-contacto-card-icon {
   font-style: normal;
   line-height: 1.6;
   color: var(--iq-color-dark);
-  width: 100%;
+  width: max-content;
   max-width: 100%;
 }
 
@@ -2226,8 +2239,7 @@ span.iq-contacto-card-icon {
 }
 
 /* ¿Qué protegemos? — sin fondo de sección (degradado del body) */
-.iq-seguridad-que-protegemos,
-.iq-seguridad-monitoreo {
+.iq-seguridad-que-protegemos {
   background: transparent;
 }
 
@@ -2272,6 +2284,116 @@ span.iq-contacto-card-icon {
   color: var(--iq-color-dark-light);
   line-height: 1.6;
   /*max-width: 72ch;*/
+}
+
+.iq-seguridad-main-card {
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  color: #fff;
+}
+
+.iq-seguridad-main-card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 1.5rem;
+}
+
+.iq-seguridad-main-card-left .iq-seguridad-card-icon {
+  align-self: flex-start;
+}
+
+.iq-seguridad-main-card-left .iq-seguridad-card-title {
+  text-align: left;
+  margin-top: 0.75rem;
+}
+
+.iq-seguridad-main-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.iq-seguridad-main-card-intro {
+  margin: 0 0 0.85rem;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.iq-seguridad-main-card-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.iq-seguridad-main-card-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.iq-seguridad-main-card-bullet {
+  width: 32px;
+  height: 24px;
+  display: inline-block;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 999px;
+  padding: 2px 4px;
+  box-sizing: border-box;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+  margin-top: 0.08rem;
+}
+
+.iq-seguridad-main-card-list li span {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.iq-seguridad-main-card-bottom {
+  width: 100%;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.iq-seguridad-main-card-btn {
+  margin-top: 0;
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.55rem 1.35rem;
+  border-radius: 50px;
+  background: #f9f9f999;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.iq-seguridad-main-card-btn:hover {
+  background: #f9f9f9;
+  color: #000;
 }
 
 .iq-seguridad-cards {
@@ -2333,21 +2455,361 @@ span.iq-contacto-card-icon {
   text-align: left;
 }
 
-/* Monitoreo 24/7 */
-.iq-seguridad-monitoreo .iq-seguridad-intro {
-  margin-bottom: 0;
+@media (max-width: 900px) {
+  .iq-seguridad-main-card {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-seguridad-main-card-right {
+    align-items: stretch;
+  }
+
+  .iq-seguridad-main-card-btn {
+    align-self: flex-start;
+  }
+
+  .iq-seguridad-main-card-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
-.iq-seguridad-intro--monitoreo {
+.iq-seguridad-ejecucion {
+  background: transparent;
+}
+
+.iq-seguridad-ejecucion .iq-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.5rem 2rem;
+  align-items: start;
+}
+
+.iq-seguridad-ejecucion-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+}
+
+.iq-seguridad-ejecucion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.iq-seguridad-ejecucion-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: grid;
+  grid-template-columns: 41px minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.iq-seguridad-ejecucion-number-wrap {
+  width: 41px;
+  height: 41px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, #d7263d66, #d7263d33);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iq-seguridad-ejecucion-number {
+  font-size: 18px;
+  font-weight: 800;
+  color: #000;
+  line-height: 1;
+}
+
+.iq-seguridad-ejecucion-card-title {
+  margin: 0 0 0.25rem;
+  font-size: 18px;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.3;
+}
+
+.iq-seguridad-ejecucion-card-desc {
+  margin: 0;
   font-size: 18px;
   font-weight: 400;
-  font-style: normal;
-  line-height: 1.6;
-  color: var(--iq-color-dark);
+  color: #000;
+  line-height: 1.35;
 }
 
-.iq-seguridad-intro--monitoreo strong {
+.iq-seguridad-servicios-comp {
+  background: transparent;
+}
+
+.iq-seguridad-servicios-comp-title {
+  margin: 0 0 0.6rem;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.iq-seguridad-servicios-comp-intro {
+  margin: 0 0 1.25rem;
+  font-size: 18px;
+  font-weight: 400;
+  color: #111827;
+  line-height: 1.35;
+}
+
+.iq-seguridad-servicios-comp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.iq-seguridad-servicios-comp-card {
+  border-radius: 18px;
+  padding: 1.25rem 1.35rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 365px;
+}
+
+.iq-seguridad-servicios-comp-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.iq-seguridad-servicios-comp-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
+.iq-seguridad-servicios-comp-card-title {
+  margin: 0;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.iq-seguridad-servicios-comp-card-desc {
+  margin: 0 0 0.65rem;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.iq-seguridad-servicios-comp-points {
+  margin: 0;
+  padding-left: 2.5rem;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.iq-seguridad-servicios-comp-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.55rem 1.35rem;
+  border-radius: 50px;
+  background: #f9f9f999;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.iq-seguridad-servicios-comp-btn:hover {
+  background: #f9f9f9;
+  color: #000;
+}
+
+@media (max-width: 900px) {
+  .iq-seguridad-servicios-comp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.iq-seguridad-estandares {
+  background: transparent;
+}
+
+.iq-seguridad-estandares-title {
+  margin: 0 0 0.6rem;
+  color: #111827;
+  font-size: 48px;
   font-weight: 800;
+  line-height: 1.15;
+}
+
+.iq-seguridad-estandares-intro {
+  margin: 0 0 1.25rem;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.iq-seguridad-estandares-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.iq-seguridad-estandares-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  min-height: 170px;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.iq-seguridad-estandares-card-title {
+  margin: 0 0 0.45rem;
+  color: #000;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.iq-seguridad-estandares-card-subtitle {
+  margin: 0 0 0.45rem;
+  color: #000;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.iq-seguridad-estandares-card-detail {
+  margin: 0;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .iq-seguridad-estandares-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .iq-seguridad-estandares-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.iq-seguridad-experiencia {
+  background: transparent;
+}
+
+.iq-seguridad-experiencia-title {
+  margin: 0 0 1rem;
+  color: #111827;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.iq-seguridad-experiencia-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.iq-seguridad-experiencia-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 1.5rem 1rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 280px;
+  box-sizing: border-box;
+}
+
+.iq-seguridad-experiencia-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d7263d99, #d7263d66);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.iq-seguridad-experiencia-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.iq-seguridad-experiencia-stat {
+  margin: 0 0 0.65rem;
+  color: #000;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.iq-seguridad-experiencia-desc {
+  margin: 0;
+  color: #000;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .iq-seguridad-experiencia-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .iq-seguridad-experiencia-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-seguridad-experiencia-title {
+    font-size: clamp(1.5rem, 5vw, 48px);
+  }
+}
+
+@media (max-width: 900px) {
+  .iq-seguridad-ejecucion .iq-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /* Sección contacto Seguridad — sin fondo de sección (degradado del body) */
@@ -2464,6 +2926,15 @@ span.iq-contacto-card-icon {
 /* --- Página Data Center --- */
 .iq-datacenter-page {
   overflow-x: hidden;
+}
+
+.iq-datacenter-page .iq-section {
+  padding-top: clamp(2.4rem, 4.5vw, 4rem);
+  padding-bottom: clamp(2.4rem, 4.5vw, 4rem);
+}
+
+.iq-datacenter-page .iq-page-hero-wrap + .iq-section {
+  padding-top: clamp(2.8rem, 5vw, 4.4rem);
 }
 
 /*

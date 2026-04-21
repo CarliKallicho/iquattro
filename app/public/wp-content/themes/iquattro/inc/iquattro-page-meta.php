@@ -113,7 +113,7 @@ function iquattro_page_meta_html_field_keys($meta_slug) {
     'acerca-de' => array('mision_content', 'vision_content'),
     'front-page' => array('feature1_text', 'feature2_text', 'feature3_text'),
     'data-center' => array('infra_intro', 'servicios_intro'),
-    'seguridad' => array('que_protegemos_intro', 'monitoreo_intro'),
+    'seguridad' => array('que_protegemos_intro'),
     'capacitacion' => array('partner_text', 'catalogo_section_text', 'cronograma_text', 'contact_cta_text'),
   );
   $keys = isset($map[ $meta_slug ]) ? $map[ $meta_slug ] : array();
@@ -192,8 +192,17 @@ function iquattro_get_editable_page_data($post) {
   $pid = $post->ID;
   $data = array();
   $attachment_keys = iquattro_page_meta_attachment_field_keys($meta_slug);
+  $repeaters_path = get_template_directory() . '/inc/page-defaults/' . $meta_slug . '-repeaters.php';
+  $repeater_keys = array();
+  if (file_exists($repeaters_path)) {
+    $repeaters_cfg = include $repeaters_path;
+    $repeater_keys = is_array($repeaters_cfg) ? array_keys($repeaters_cfg) : array();
+  }
 
   foreach ($defaults as $key => $default_value) {
+    if (in_array($key, $repeater_keys, true)) {
+      continue;
+    }
     $meta_key = '_iq_page_' . $key;
     $stored = get_post_meta($pid, $meta_key, true);
     if (is_array($default_value) && isset($default_value[0]) && is_array($default_value[0])) {
@@ -213,7 +222,6 @@ function iquattro_get_editable_page_data($post) {
     }
   }
 
-  $repeaters_path = get_template_directory() . '/inc/page-defaults/' . $meta_slug . '-repeaters.php';
   if (file_exists($repeaters_path)) {
     $repeaters = include $repeaters_path;
     if (is_array($repeaters)) {
