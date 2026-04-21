@@ -34,7 +34,7 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
             <?php echo esc_html($serv_l1 !== '' ? $serv_l1 : $serv_l2); ?>
           <?php endif; ?>
         </h1>
-        <p class="iq-servicios-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+        <p class="iq-servicios-hero-desc"><?php echo nl2br(esc_html($data['hero_desc'])); ?></p>
         <p class="iq-servicios-hero-actions">
           <a href="#iq-servicios-form" class="iq-btn iq-btn-dark"><?php echo esc_html($data['hero_btn']); ?></a>
         </p>
