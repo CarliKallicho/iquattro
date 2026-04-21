@@ -43,6 +43,13 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
   </section>
   </div>
 
+  <section class="iq-section iq-servicios-intro-negocio">
+    <div class="iq-container">
+      <h2 class="iq-servicios-intro-negocio-title"><?php echo esc_html(isset($data['intro_negocio_title']) ? $data['intro_negocio_title'] : ''); ?></h2>
+      <p class="iq-servicios-intro-negocio-desc"><?php echo wp_kses_post(isset($data['intro_negocio_desc']) ? $data['intro_negocio_desc'] : ''); ?></p>
+    </div>
+  </section>
+
   <section class="iq-section iq-servicios-que-hacemos">
     <div class="iq-container">
       <?php

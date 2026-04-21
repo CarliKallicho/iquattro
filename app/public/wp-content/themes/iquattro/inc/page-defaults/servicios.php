@@ -5,6 +5,8 @@ return array(
   'hero_title' => 'Servicios tecnológicos para|asegurar la continuidad de tu operación',
   'hero_desc'  => "Soporte especializado en las tres plataformas más críticas del entorno empresarial\nboliviano: Microsoft, Oracle y Veeam — con profesionales certificados y respaldo probado\nen organizaciones del sector financiero, público y privado.",
   'hero_btn'   => 'Solicitar soporte',
+  'intro_negocio_title' => 'Pensamos la tecnología desde el negocio',
+  'intro_negocio_desc' => 'En iQuattro entregamos <strong>soporte técnico especializado</strong> en las plataformas Microsoft, Oracle y Veeam — tecnologías que sustentan la operación de las organizaciones más exigentes de Bolivia y la región. Nuestros consultores tienen certificaciones OCP, OCM, MCP y las más altas credenciales reconocidas por cada fabricante. Trabajamos bajo demanda, por bolsa de horas o en modalidad de <strong>servicio gestionado continuo </strong>, adaptándonos a las necesidades y presupuesto de cada cliente.',
   'que_hacemos_title' => 'Qué hacemos',
   'que_hacemos_subtitle' => 'Soporte, calidad y acompañamiento tecnológico',
   'que_hacemos_text' => 'Nuestros servicios están diseñados para mantener, optimizar y asegurar el correcto funcionamiento de las soluciones tecnológicas de nuestros clientes, reduciendo riesgos operativos y maximizando el valor de su inversión tecnológica.',

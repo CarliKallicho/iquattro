@@ -1459,6 +1459,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-servicios-page .iq-servicios-hero .iq-container,
+.iq-servicios-page .iq-servicios-intro-negocio .iq-container,
 .iq-servicios-page .iq-servicios-que-hacemos .iq-container,
 .iq-servicios-page .iq-servicios-especializados .iq-container,
 .iq-servicios-page .iq-servicios-contact-section .iq-container {
@@ -1540,6 +1541,29 @@ span.iq-contacto-card-icon {
   .iq-servicios-hero-title {
     font-size: clamp(1.35rem, 4.2vw, 46px);
   }
+}
+
+/* Qué hacemos — sin fondo de sección (mismo criterio que Data Center “Cómo trabajamos”) */
+.iq-servicios-intro-negocio {
+  background: transparent;
+}
+
+.iq-servicios-intro-negocio-title {
+  margin: 0 0 1rem;
+  font-size: 36px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.2;
+  color: var(--iq-color-dark);
+}
+
+.iq-servicios-intro-negocio-desc {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--iq-color-dark);
 }
 
 /* Qué hacemos — sin fondo de sección (mismo criterio que Data Center “Cómo trabajamos”) */

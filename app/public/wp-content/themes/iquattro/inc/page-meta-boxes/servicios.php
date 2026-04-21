@@ -10,6 +10,10 @@ $cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
   <p><label><?php esc_html_e('Descripción', 'iquattro'); ?></label><br><textarea name="iq_page_hero_desc" class="widefat" rows="4"><?php echo esc_textarea($data['hero_desc']); ?></textarea></p>
   <p><label><?php esc_html_e('Texto botón', 'iquattro'); ?></label><br><input type="text" name="iq_page_hero_btn" value="<?php echo esc_attr($data['hero_btn']); ?>" class="widefat"></p>
 
+  <p><strong><?php esc_html_e('Introducción (debajo del hero)', 'iquattro'); ?></strong></p>
+  <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_intro_negocio_title" value="<?php echo esc_attr(isset($data['intro_negocio_title']) ? $data['intro_negocio_title'] : ''); ?>" class="widefat"></p>
+  <p><label><?php esc_html_e('Descripción', 'iquattro'); ?></label><br><textarea name="iq_page_intro_negocio_desc" class="widefat" rows="4"><?php echo esc_textarea(isset($data['intro_negocio_desc']) ? $data['intro_negocio_desc'] : ''); ?></textarea></p>
+
   <p><strong><?php esc_html_e('Qué hacemos', 'iquattro'); ?></strong></p>
   <p><label><?php esc_html_e('Título', 'iquattro'); ?></label><br><input type="text" name="iq_page_que_hacemos_title" value="<?php echo esc_attr($data['que_hacemos_title']); ?>" class="widefat"></p>
   <p><label><?php esc_html_e('Subtítulo', 'iquattro'); ?></label><br><input type="text" name="iq_page_que_hacemos_subtitle" value="<?php echo esc_attr($data['que_hacemos_subtitle']); ?>" class="widefat"></p>
