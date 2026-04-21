@@ -1461,6 +1461,7 @@ span.iq-contacto-card-icon {
 .iq-servicios-page .iq-servicios-hero .iq-container,
 .iq-servicios-page .iq-servicios-intro-negocio .iq-container,
 .iq-servicios-page .iq-servicios-que-hacemos .iq-container,
+.iq-servicios-page .iq-servicios-tecnologias .iq-container,
 .iq-servicios-page .iq-servicios-especializados .iq-container,
 .iq-servicios-page .iq-servicios-contact-section .iq-container {
   max-width: 1688px;
@@ -1569,6 +1570,142 @@ span.iq-contacto-card-icon {
 /* Qué hacemos — sin fondo de sección (mismo criterio que Data Center “Cómo trabajamos”) */
 .iq-servicios-que-hacemos {
   background: transparent;
+}
+
+.iq-servicios-tecnologias {
+  background: transparent;
+}
+
+.iq-servicios-tecnologias-title {
+  margin: 0 0 1.25rem;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--iq-color-dark);
+}
+
+.iq-servicios-tecnologias-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.iq-tech-group-card {
+  background: #f9f9f9;
+  border-radius: 14px;
+  padding: 1.4rem;
+}
+
+.iq-tech-group-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(180deg, #ffc84766 0%, #ffc847 100%);
+}
+
+.iq-tech-group-head-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
+.iq-tech-group-head-copy {
+  min-width: 0;
+}
+
+.iq-tech-group-head-title {
+  margin: 0 0 0.6rem;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--iq-color-dark);
+}
+
+.iq-tech-group-head-pills,
+.iq-tech-item-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.iq-tech-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.25rem 0.8rem;
+  border-radius: 10px;
+  background: #fff;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.iq-tech-items-grid {
+  margin-top: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.iq-tech-item-card {
+  background: #f9f9f9;
+  border: 2px solid #ffc847;
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+}
+
+.iq-tech-item-title {
+  margin: 0 0 0.6rem;
+  color: var(--iq-color-dark);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.iq-tech-item-desc {
+  margin: 0 0 0.8rem;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.iq-tech-pill--outline {
+  border: 1px solid #111827;
+  background: #f9f9f9;
+  color: #111827;
+}
+
+@media (max-width: 1024px) {
+  .iq-tech-group-head-title {
+    font-size: clamp(1.35rem, 3.7vw, 40px);
+  }
+
+  .iq-tech-item-title {
+    font-size: clamp(1.1rem, 2.6vw, 24px);
+  }
+}
+
+@media (max-width: 900px) {
+  .iq-tech-items-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .iq-tech-group-head {
+    align-items: flex-start;
+  }
+
+  .iq-tech-group-head-icon {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 .iq-servicios-que-hacemos-lead {

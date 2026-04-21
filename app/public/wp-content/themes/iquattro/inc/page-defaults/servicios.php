@@ -11,6 +11,46 @@ return array(
   'que_hacemos_subtitle' => 'Soporte, calidad y acompañamiento tecnológico',
   'que_hacemos_text' => 'Nuestros servicios están diseñados para mantener, optimizar y asegurar el correcto funcionamiento de las soluciones tecnológicas de nuestros clientes, reduciendo riesgos operativos y maximizando el valor de su inversión tecnológica.',
   'que_hacemos_cajas' => "Soporte técnico especializado\nQuality Assurance y Testing\nAcompañamiento continuo",
+  'tecnologias_title' => 'Nuestras tecnologías',
+  'tecnologias_groups' => array(
+    array(
+      'icon' => 'windows.svg',
+      'title' => 'Microsoft',
+      'pills' => "Active Directory\nAzure\nM 365\nExchange\nIntune",
+      'items' => array(
+        array('title' => 'Active Directory y Gestión de Identidades', 'desc' => 'Implementación, configuración y administración de AD DS, AD FS y Azure AD Connect. Gestión de dominios, forest, políticas GPO, unidades organizacionales y permisos en entornos híbridos.', 'pills' => "AD DS / AD FS\nAzure AD Connect\nGPO\nMulti-dominio\nIAM"),
+        array('title' => 'Exchange Server y Mensajería Empresarial', 'desc' => 'Soporte, migración y optimización de Exchange Server on-premise y Exchange Online. Migraciones a versiones superiores y a Microsoft 365, configuración avanzada de reglas y flujos.', 'pills' => "Exchange Server\nExchange Online\nMigración M365\nTroubleshooting"),
+        array('title' => 'Microsoft Azure - Cloud e Infraestructura', 'desc' => 'Implementación y administración de máquinas virtuales, redes virtuales, backup y Disaster Recovery en Azure. Seguridad en la nube y arquitecturas híbridas on-premise + cloud.', 'pills' => "Azure VMs\nVNETs\nAzure Backup\nDR\nAzure Security"),
+        array('title' => 'Microsoft 365 e Intune', 'desc' => 'Administración de tenants M365, usuarios, grupos, permisos y seguridad. Configuración de Intune para gestión de dispositivos (MDM/MAM), políticas de seguridad y control de endpoints corporativos.', 'pills' => "M365 Admin\nIntune MDM/MAM\nEndpoints\nCompliance"),
+        array('title' => 'Seguridad en Entornos Microsoft', 'desc' => 'Revisión de configuraciones críticas, implementación de baselines de seguridad y protección contra ransomware en infraestructuras Windows Server y entornos híbridos Microsoft.', 'pills' => "Baseline de seguridad\nAnti-ransomware\nWindows Server 2019/2022"),
+        array('title' => 'Windows Server - Administración y Migración', 'desc' => 'Instalación, configuración y migración de Windows Server 2019/2022. Gestión de roles, servicios, almacenamiento, redes y políticas de seguridad. Migración entre versiones de servidor.', 'pills' => "WS 2019/2022\nRoles y servicios\nMigración\nHardening"),
+      ),
+    ),
+    array(
+      'icon' => 'oracle.svg',
+      'title' => 'Oracle',
+      'pills' => "Base de datos\nPerformance tuning\nRAC\nCloud",
+      'items' => array(
+        array('title' => 'Administración de Base de Datos Oracle', 'desc' => 'Soporte especializado en administración, monitoreo y mantenimiento preventivo de bases de datos Oracle. Health Check mensual, tareas programadas bajo demanda y soporte correctivo con recursos OCP y OCM certificados.', 'pills' => "Health Check mensual\nOCP / OCM\nSoporte 7x24\nMantenimiento preventivo"),
+        array('title' => 'Performance Tuning y Optimización', 'desc' => 'Diagnóstico y optimización del rendimiento de instancias Oracle. Análisis de consultas lentas, ajuste de parámetros, optimización de índices y ejecución de planes de mejora con resultados medibles.', 'pills' => "Query tuning\nAWR / ADDM\nÍndices\nOracle Database 11g-21c"),
+        array('title' => 'Alta Disponibilidad y RAC', 'desc' => 'Implementación y soporte de Oracle Real Application Clusters (RAC) para alta disponibilidad. Configuración de Data Guard, failover automático y arquitecturas de continuidad del negocio con mínimo RPO/RTO.', 'pills' => "Oracle RAC\nData Guard\nFailover\nHA / DR"),
+        array('title' => 'Oracle Cloud Infrastructure - OCI', 'desc' => 'Implementación y administración de Oracle Cloud Infrastructure. Migración de bases de datos on-premise a OCI, Oracle Autonomous Database y arquitecturas cloud-native certificadas OCI 2020.', 'pills' => "OCI\nAutonomous DB\nMigración cloud\nOCI Architect"),
+        array('title' => 'Equipo certificado con alianza ITCabarique', 'desc' => 'iQuattro opera en Oracle a través de su alianza con ITCabarique (Ecuador), pioneros en soporte Oracle desde 1992 con el primer Oracle Certified Master 10g, 11g y 12c de la región y más de 3.000 ingenieros capacitados. Experiencia en banca, gobierno, telecomunicaciones, industria y manufactura.', 'pills' => "+30 años experiencia\nOracle Certified Master\nOCP / OCA\nOracle Open World"),
+        array('title' => 'DB FlashCopy - Protección instantánea de datos Oracle', 'desc' => 'Producto fabricado por ITCabarique, exclusivo para Bolivia a través de iQuattro. Genera snapshots point-in-time de bases de datos Oracle con impacto mínimo en producción, redireccionamiento de usuarios en minutos ante incidentes y aprovisionamiento ultrarrápido de copias para desarrollo, pruebas y capacitación.', 'pills' => "Snapshots instantáneos\nPoint-in-time recovery\nZero downtime\nAnti-ransomware"),
+      ),
+    ),
+    array(
+      'icon' => 'block.svg',
+      'title' => 'Veeam',
+      'pills' => "Backup\nReplicación\nDisaster Recovery\nCloud",
+      'items' => array(
+        array('title' => 'Implementación de Veeam Backup & Replication', 'desc' => 'Diseño, implementación y configuración de entornos Veeam Backup & Replication para proteger máquinas virtuales, físicas y cargas de trabajo en la nube. Arquitecturas on-premise, híbridas y cloud-native.', 'pills' => "VBR\nVMware vSphere\nHyper-V\nNube híbrida\nImplementación"),
+        array('title' => 'Soporte y Optimización de Entornos Veeam', 'desc' => 'Soporte técnico especializado en entornos Veeam existentes. Diagnóstico de fallas de backup, optimización de trabajos, ajuste de retenciones, repositorios y configuraciones de replicación para maximizar el rendimiento.', 'pills' => "Troubleshooting\nOptimización de jobs\nRepositorios\nRetención"),
+        array('title' => 'Disaster Recovery con Veeam', 'desc' => 'Diseño e implementación de planes de Disaster Recovery con Veeam. Configuración de replicación síncrona y asíncrona, pruebas de DR, SureBackup para verificación automática y definición de RPO/RTO reales.', 'pills' => "DR Planning\nReplicación\nSureBackup\nRPO / RTO\nFailover"),
+        array('title' => 'Respaldo en la Nube - Azure, AWS y Google Cloud', 'desc' => 'Configuración de Veeam para respaldo directo a repositorios en Azure Blob, AWS S3 y Google Cloud Storage. Arquitecturas de backup 3-2-1 y protección de cargas de trabajo nativas en la nube.', 'pills' => "Azure Blob\nAWS S3\nGCS\nBackup 3-2-1\nImmutable backups"),
+      ),
+    ),
+  ),
   'especializados_title' => 'Servicios especializados',
   'servicios_cards' => array(
     array('title' => 'Microsoft', 'pills' => "Exchange Server\nSkype for Business\nMicrosoft 365\nAZURE\nActive Directory", 'desc' => 'Diseñados para asegurar disponibilidad, seguridad y rendimiento de los entornos Microsoft.'),
