@@ -61,33 +61,6 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
     </div>
   </section>
 
-  <section class="iq-section iq-servicios-que-hacemos">
-    <div class="iq-container">
-      <?php
-      $qh_sub = isset($data['que_hacemos_subtitle']) ? trim((string) $data['que_hacemos_subtitle']) : '';
-      $qh_txt = isset($data['que_hacemos_text']) ? trim((string) $data['que_hacemos_text']) : '';
-      if ($qh_sub !== '' || $qh_txt !== '') :
-        ?>
-      <div class="iq-servicios-que-hacemos-lead">
-        <?php if ($qh_sub !== '') : ?>
-          <h3 class="iq-servicios-que-hacemos-lead-sub"><?php echo esc_html($qh_sub); ?></h3>
-        <?php endif; ?>
-        <?php if ($qh_txt !== '') : ?>
-          <p class="iq-servicios-que-hacemos-lead-text"><?php echo esc_html($qh_txt); ?></p>
-        <?php endif; ?>
-      </div>
-      <?php endif; ?>
-      <div class="iq-servicios-que-hacemos-grid">
-        <h2 class="iq-section-title iq-servicios-que-hacemos-title"><?php echo esc_html($data['que_hacemos_title']); ?></h2>
-        <div class="iq-servicios-que-hacemos-pills-wrap">
-          <?php foreach ($que_cajas as $pill) : ?>
-            <span class="iq-servicios-que-hacemos-pill"><?php echo esc_html($pill); ?></span>
-          <?php endforeach; ?>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="iq-section iq-servicios-tecnologias">
     <div class="iq-container">
       <h2 class="iq-servicios-tecnologias-title"><?php echo esc_html(isset($data['tecnologias_title']) ? $data['tecnologias_title'] : ''); ?></h2>

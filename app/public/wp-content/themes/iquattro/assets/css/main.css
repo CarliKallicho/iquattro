@@ -1471,6 +1471,15 @@ span.iq-contacto-card-icon {
   width: 100%;
 }
 
+.iq-servicios-page .iq-section {
+  padding-top: clamp(3rem, 5.5vw, 5.5rem);
+  padding-bottom: clamp(3rem, 5.5vw, 5.5rem);
+}
+
+.iq-servicios-page .iq-page-hero-wrap + .iq-section {
+  padding-top: clamp(3.5rem, 6vw, 6rem);
+}
+
 .iq-servicios-hero {
   position: relative;
   background-color: #fef3c7;
