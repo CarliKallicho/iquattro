@@ -14,9 +14,11 @@ $icons_uri = get_template_directory_uri() . '/assets/icons/';
 $hero_bg = iquattro_meta_image_url($data['hero_bg_id'], $images_uri . 'fondo-servicio.jpg');
 $cta_bg = iquattro_meta_image_url($data['cta_side_bg_id'], $images_uri . 'fondo-servicios-costado.jpg');
 $que_cajas = array_filter(array_map('trim', explode("\n", (string) $data['que_hacemos_cajas'])));
-$servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
 $tecnologias_groups = isset($data['tecnologias_groups']) ? $data['tecnologias_groups'] : array();
 $adaptacion_cards = isset($data['adaptacion_cards']) ? $data['adaptacion_cards'] : array();
+$intervencion_cards = isset($data['intervencion_cards']) ? $data['intervencion_cards'] : array();
+$entregables_cards = isset($data['entregables_cards']) ? $data['entregables_cards'] : array();
+$clientes_cards = isset($data['clientes_cards']) ? $data['clientes_cards'] : array();
 $tecnologias_item_icons = array(
   array('people.svg', 'icon-mail.svg', 'home.svg', 'computer.svg', 'insignia.svg', 'rack.svg'),
   array('rack.svg', 'signal.svg', 'block.svg', 'cloud.svg', 'people.svg', 'flash.svg'),
@@ -176,35 +178,56 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
     </div>
   </section>
 
-  <section class="iq-section iq-servicios-especializados">
+  <section class="iq-section iq-servicios-intervencion">
     <div class="iq-container">
-      <h2 class="iq-section-title"><?php echo esc_html($data['especializados_title']); ?></h2>
-      <div class="iq-servicios-cards">
-        <?php
-        foreach ($servicios_cards as $idx => $card) :
-          $icon_class = 'iq-servicio-card-icon';
-          if ((int) $idx === 0) {
-            $icon_class .= ' iq-servicio-icon-microsoft';
-          } elseif ((int) $idx === 1) {
-            $icon_class .= ' iq-servicio-icon-almacenamiento';
-          }
-          $pills = array_filter(array_map('trim', explode("\n", (string) (isset($card['pills']) ? $card['pills'] : ''))));
-          ?>
-          <div class="iq-servicio-card">
-            <div class="iq-servicio-card-icon-shell" aria-hidden="true">
-              <div class="<?php echo esc_attr($icon_class); ?>"></div>
-            </div>
-            <h3 class="iq-servicio-card-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
-            <?php if (!empty($pills)) : ?>
-              <div class="iq-servicio-pills">
-                <?php foreach ($pills as $pill) : ?>
-                  <span class="iq-servicio-pill"><?php echo esc_html($pill); ?></span>
-                <?php endforeach; ?>
+      <div class="iq-servicios-intervencion-grid">
+        <h2 class="iq-servicios-intervencion-title"><?php echo esc_html(isset($data['intervencion_title']) ? $data['intervencion_title'] : ''); ?></h2>
+        <div class="iq-servicios-intervencion-list">
+          <?php foreach ($intervencion_cards as $card) : ?>
+            <article class="iq-servicios-intervencion-card">
+              <div class="iq-servicios-intervencion-circle"><?php echo esc_html(isset($card['number']) ? $card['number'] : ''); ?></div>
+              <div class="iq-servicios-intervencion-copy">
+                <h3 class="iq-servicios-intervencion-card-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+                <p class="iq-servicios-intervencion-card-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
               </div>
-            <?php endif; ?>
-            <p class="iq-servicio-card-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
-          </div>
+            </article>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iq-section iq-servicios-entregables">
+    <div class="iq-container">
+      <h2 class="iq-servicios-entregables-title"><?php echo esc_html(isset($data['entregables_title']) ? $data['entregables_title'] : ''); ?></h2>
+      <div class="iq-servicios-entregables-grid">
+        <?php foreach ($entregables_cards as $card) : ?>
+          <?php $deliver_icon = isset($card['icon']) ? $card['icon'] : ''; ?>
+          <article class="iq-servicios-entregables-card">
+            <img src="<?php echo esc_url($icons_uri . ltrim((string) $deliver_icon, '/')); ?>" alt="" class="iq-servicios-entregables-icon" width="30" height="30" loading="lazy">
+            <p class="iq-servicios-entregables-card-text"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></p>
+          </article>
         <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
+  <section class="iq-section iq-servicios-clientes">
+    <div class="iq-container">
+      <div class="iq-servicios-clientes-grid">
+        <h2 class="iq-servicios-clientes-title"><?php echo esc_html(isset($data['clientes_title']) ? $data['clientes_title'] : ''); ?></h2>
+        <div class="iq-servicios-clientes-list">
+          <?php foreach ($clientes_cards as $card) : ?>
+            <?php $pill_type = isset($card['pill_type']) ? sanitize_html_class($card['pill_type']) : 'bolivia'; ?>
+            <article class="iq-servicios-clientes-card">
+              <div class="iq-servicios-clientes-head">
+                <h3 class="iq-servicios-clientes-card-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+                <span class="iq-servicios-clientes-pill iq-servicios-clientes-pill--<?php echo esc_attr($pill_type); ?>"><?php echo esc_html(isset($card['pill']) ? $card['pill'] : ''); ?></span>
+              </div>
+              <p class="iq-servicios-clientes-card-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
+            </article>
+          <?php endforeach; ?>
+        </div>
       </div>
     </div>
   </section>

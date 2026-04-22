@@ -1463,7 +1463,9 @@ span.iq-contacto-card-icon {
 .iq-servicios-page .iq-servicios-que-hacemos .iq-container,
 .iq-servicios-page .iq-servicios-tecnologias .iq-container,
 .iq-servicios-page .iq-servicios-adaptacion .iq-container,
-.iq-servicios-page .iq-servicios-especializados .iq-container,
+.iq-servicios-page .iq-servicios-intervencion .iq-container,
+.iq-servicios-page .iq-servicios-entregables .iq-container,
+.iq-servicios-page .iq-servicios-clientes .iq-container,
 .iq-servicios-page .iq-servicios-contact-section .iq-container {
   max-width: 1688px;
   width: 100%;
@@ -1811,6 +1813,220 @@ span.iq-contacto-card-icon {
   margin-top: 0.15rem;
 }
 
+.iq-servicios-intervencion {
+  background: transparent;
+}
+
+.iq-servicios-intervencion-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.1rem 1.5rem;
+  align-items: start;
+}
+
+.iq-servicios-intervencion-title {
+  margin: 0;
+  color: var(--iq-color-dark);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.iq-servicios-intervencion-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+.iq-servicios-intervencion-card {
+  display: grid;
+  grid-template-columns: 41px minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 0.8rem 0.9rem;
+}
+
+.iq-servicios-intervencion-circle {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffc847cc 0%, #ffc84766 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.iq-servicios-intervencion-card-title {
+  margin: 0 0 0.2rem;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.iq-servicios-intervencion-card-desc {
+  margin: 0;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.iq-servicios-entregables {
+  background: linear-gradient(180deg, #ffc847 0%, #ffc84766 100%);
+  border-radius: 16px;
+}
+
+.iq-servicios-entregables-title {
+  margin: 0 0 1.1rem;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.iq-servicios-entregables-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.iq-servicios-entregables-card {
+  background: #f9f9f9;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+}
+
+.iq-servicios-entregables-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0);
+}
+
+.iq-servicios-entregables-card-text {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.iq-servicios-clientes {
+  background: transparent;
+}
+
+.iq-servicios-clientes-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.1rem 1.5rem;
+  align-items: start;
+}
+
+.iq-servicios-clientes-title {
+  margin: 0;
+  color: var(--iq-color-dark);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.iq-servicios-clientes-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+.iq-servicios-clientes-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 0.85rem 0.95rem;
+}
+
+.iq-servicios-clientes-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.iq-servicios-clientes-card-title {
+  margin: 0;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.iq-servicios-clientes-card-desc {
+  margin: 0.2rem 0 0;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.iq-servicios-clientes-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.iq-servicios-clientes-pill--bolivia {
+  background: #1d7a46;
+}
+
+.iq-servicios-clientes-pill--ecuador {
+  background: #275e8f;
+}
+
+.iq-servicios-clientes-pill--colombia {
+  background: #d9ad00;
+}
+
+@media (max-width: 1024px) {
+  .iq-servicios-intervencion-title {
+    font-size: clamp(2rem, 4.4vw, 54px);
+  }
+
+  .iq-servicios-clientes-title {
+    font-size: clamp(2rem, 4.4vw, 54px);
+  }
+}
+
+@media (max-width: 900px) {
+  .iq-servicios-intervencion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-servicios-clientes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-servicios-entregables-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1100px) {
   .iq-servicios-adaptacion-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1824,6 +2040,10 @@ span.iq-contacto-card-icon {
 
   .iq-servicios-adaptacion-title {
     font-size: clamp(1.5rem, 5vw, 48px);
+  }
+
+  .iq-servicios-entregables-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1897,109 +2117,6 @@ span.iq-contacto-card-icon {
   .iq-servicios-que-hacemos .iq-servicios-que-hacemos-pill {
     max-width: none;
   }
-}
-
-/* Servicios especializados — sin fondo de sección */
-.iq-servicios-especializados {
-  background: transparent;
-}
-
-.iq-servicios-especializados > .iq-container > .iq-section-title {
-  font-size: 36px;
-  font-weight: 800;
-  font-style: normal;
-  line-height: 1.2;
-  color: var(--iq-color-dark);
-}
-
-.iq-servicios-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: stretch;
-}
-
-.iq-servicio-card {
-  background: linear-gradient(180deg, #ffc84766 0%, #ffc847 100%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: var(--iq-radius-lg);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-}
-
-.iq-servicio-card-icon-shell {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  background: #ffc847;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-sizing: border-box;
-}
-
-.iq-servicio-card-icon {
-  width: 120px;
-  height: 120px;
-  background: #fff;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-.iq-servicio-icon-microsoft {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23 23'%3E%3Cpath fill='%23000' d='M0 0h11v11H0zm12 0h11v11H12zM0 12h11v11H0zm12 0h11v11H12z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23 23'%3E%3Cpath fill='%23000' d='M0 0h11v11H0zm12 0h11v11H12zM0 12h11v11H0zm12 0h11v11H12z'/%3E%3C/svg%3E");
-}
-
-.iq-servicio-icon-almacenamiento {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='2' y='6' width='20' height='12' rx='2'/%3E%3Cline x1='6' y1='10' x2='6' y2='14'/%3E%3Cline x1='10' y1='10' x2='10' y2='14'/%3E%3Cline x1='14' y1='10' x2='14' y2='14'/%3E%3Cline x1='18' y1='10' x2='18' y2='14'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Crect x='2' y='6' width='20' height='12' rx='2'/%3E%3Cline x1='6' y1='10' x2='6' y2='14'/%3E%3Cline x1='10' y1='10' x2='10' y2='14'/%3E%3Cline x1='14' y1='10' x2='14' y2='14'/%3E%3Cline x1='18' y1='10' x2='18' y2='14'/%3E%3C/svg%3E");
-}
-
-.iq-servicio-card-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #000;
-  margin: 0;
-  text-align: center;
-  width: 100%;
-}
-
-.iq-servicio-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  width: 100%;
-}
-
-.iq-servicio-pill {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #f9f9f9;
-  color: #000;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border-radius: 50px;
-}
-
-.iq-servicio-card-desc {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--iq-color-dark-light);
-  line-height: 1.5;
-  text-align: center;
-  width: 100%;
 }
 
 /* Sección contacto Servicios — sin fondo de sección */
