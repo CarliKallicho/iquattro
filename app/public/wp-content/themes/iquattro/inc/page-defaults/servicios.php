@@ -51,6 +51,27 @@ return array(
       ),
     ),
   ),
+  'adaptacion_title' => 'Nos adaptamos a tu operación',
+  'adaptacion_cards' => array(
+    array(
+      'title' => 'Soporte Bajo Demanda',
+      'desc' => 'Atención puntual por incidente o requerimiento. Ideal para organizaciones que necesitan soporte experto ocasional sin compromiso de contrato.',
+      'points' => "Atención por incidente o requerimiento específico\nDiagnóstico y solución puntual\nSin compromiso de contrato mínimo\nFacturación por horas efectivas",
+      'badge' => '',
+    ),
+    array(
+      'title' => 'Bolsa de Horas',
+      'desc' => 'Paquetes de horas mensuales con uso flexible según la necesidad de cada mes. Garantiza disponibilidad y prioridad de atención a menor costo por hora.',
+      'points' => "Paquetes de horas mensuales configurables\nUso flexible según necesidad\nPrioridad de atención garantizada\nRollover de horas no utilizadas",
+      'badge' => '',
+    ),
+    array(
+      'title' => 'Servicio Gestionado',
+      'desc' => 'Soporte continuo mensual con monitoreo, mantenimiento preventivo y acompañamiento estratégico. La opción que maximiza la disponibilidad y minimiza los riesgos operativos.',
+      'points' => "Soporte continuo y monitoreo mensual\nMantenimiento preventivo programado\nReportes periódicos de estado\nAcompañamiento estratégico incluido",
+      'badge' => 'Recomendado',
+    ),
+  ),
   'especializados_title' => 'Servicios especializados',
   'servicios_cards' => array(
     array('title' => 'Microsoft', 'pills' => "Exchange Server\nSkype for Business\nMicrosoft 365\nAZURE\nActive Directory", 'desc' => 'Diseñados para asegurar disponibilidad, seguridad y rendimiento de los entornos Microsoft.'),

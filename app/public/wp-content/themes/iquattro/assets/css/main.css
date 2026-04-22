@@ -1462,6 +1462,7 @@ span.iq-contacto-card-icon {
 .iq-servicios-page .iq-servicios-intro-negocio .iq-container,
 .iq-servicios-page .iq-servicios-que-hacemos .iq-container,
 .iq-servicios-page .iq-servicios-tecnologias .iq-container,
+.iq-servicios-page .iq-servicios-adaptacion .iq-container,
 .iq-servicios-page .iq-servicios-especializados .iq-container,
 .iq-servicios-page .iq-servicios-contact-section .iq-container {
   max-width: 1688px;
@@ -1728,6 +1729,102 @@ span.iq-contacto-card-icon {
   margin: 0 0 2rem;
   max-width: none;
   width: 100%;
+}
+
+.iq-servicios-adaptacion {
+  background: transparent;
+}
+
+.iq-servicios-adaptacion-title {
+  margin: 0 0 1rem;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--iq-color-dark);
+}
+
+.iq-servicios-adaptacion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.iq-servicios-adaptacion-card {
+  background: linear-gradient(180deg, #ffc84766 0%, #ffc847 100%);
+  border-radius: 14px;
+  padding: 1.25rem 1.35rem;
+}
+
+.iq-servicios-adaptacion-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.iq-servicios-adaptacion-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  filter: brightness(0);
+}
+
+.iq-servicios-adaptacion-card-title {
+  margin: 0;
+  color: var(--iq-color-dark);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.iq-servicios-adaptacion-badge {
+  display: inline-flex;
+  margin-top: 0.55rem;
+  min-height: 28px;
+  padding: 0.25rem 0.7rem;
+  border-radius: 10px;
+  background: #fff;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.iq-servicios-adaptacion-card-desc {
+  margin: 0.75rem 0 0;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.iq-servicios-adaptacion-points {
+  margin: 0.8rem 0 0;
+  padding-left: 2.1rem;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.iq-servicios-adaptacion-points li + li {
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 1100px) {
+  .iq-servicios-adaptacion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .iq-servicios-adaptacion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-servicios-adaptacion-title {
+    font-size: clamp(1.5rem, 5vw, 48px);
+  }
 }
 
 .iq-servicios-que-hacemos-lead-sub {

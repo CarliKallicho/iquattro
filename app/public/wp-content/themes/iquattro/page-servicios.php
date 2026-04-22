@@ -16,11 +16,13 @@ $cta_bg = iquattro_meta_image_url($data['cta_side_bg_id'], $images_uri . 'fondo-
 $que_cajas = array_filter(array_map('trim', explode("\n", (string) $data['que_hacemos_cajas'])));
 $servicios_cards = isset($data['servicios_cards']) ? $data['servicios_cards'] : array();
 $tecnologias_groups = isset($data['tecnologias_groups']) ? $data['tecnologias_groups'] : array();
+$adaptacion_cards = isset($data['adaptacion_cards']) ? $data['adaptacion_cards'] : array();
 $tecnologias_item_icons = array(
   array('people.svg', 'icon-mail.svg', 'home.svg', 'computer.svg', 'insignia.svg', 'rack.svg'),
   array('rack.svg', 'signal.svg', 'block.svg', 'cloud.svg', 'people.svg', 'flash.svg'),
   array('block.svg', 'refresh.svg', 'insignia.svg', 'home.svg'),
 );
+$adaptacion_icons = array('clock.svg', 'toolcase.svg', 'flash.svg');
 $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero_title']) ? $data['hero_title'] : '');
 ?>
 <main id="main" class="iq-main iq-servicios-page">
@@ -134,6 +136,40 @@ $serv_hero_title_lines = iquattro_consultoria_hero_title_lines(isset($data['hero
                 </article>
               <?php endforeach; ?>
             </div>
+          </article>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
+  <section class="iq-section iq-servicios-adaptacion">
+    <div class="iq-container">
+      <h2 class="iq-servicios-adaptacion-title"><?php echo esc_html(isset($data['adaptacion_title']) ? $data['adaptacion_title'] : ''); ?></h2>
+      <div class="iq-servicios-adaptacion-grid">
+        <?php foreach ($adaptacion_cards as $card_idx => $card) : ?>
+          <?php $card_points = array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', (string) (isset($card['points']) ? $card['points'] : '')))); ?>
+          <article class="iq-servicios-adaptacion-card">
+            <?php
+            $adapt_icon_file = isset($adaptacion_icons[$card_idx]) ? $adaptacion_icons[$card_idx] : '';
+            $adapt_icon_src = $adapt_icon_file !== '' ? $icons_uri . ltrim((string) $adapt_icon_file, '/') : '';
+            ?>
+            <div class="iq-servicios-adaptacion-head">
+              <?php if ($adapt_icon_src !== '') : ?>
+                <img src="<?php echo esc_url($adapt_icon_src); ?>" alt="" class="iq-servicios-adaptacion-icon" width="30" height="30" loading="lazy">
+              <?php endif; ?>
+              <h3 class="iq-servicios-adaptacion-card-title"><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+            </div>
+            <?php if (!empty($card['badge'])) : ?>
+              <span class="iq-servicios-adaptacion-badge"><?php echo esc_html($card['badge']); ?></span>
+            <?php endif; ?>
+            <p class="iq-servicios-adaptacion-card-desc"><?php echo esc_html(isset($card['desc']) ? $card['desc'] : ''); ?></p>
+            <?php if (!empty($card_points)) : ?>
+              <ul class="iq-servicios-adaptacion-points">
+                <?php foreach ($card_points as $point) : ?>
+                  <li><?php echo esc_html($point); ?></li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
           </article>
         <?php endforeach; ?>
       </div>
