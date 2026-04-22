@@ -5459,11 +5459,12 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-beneficio-list li {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   font-style: normal;
   line-height: 1.35;
   margin-bottom: 0.15rem;
+  text-align: left;
 }
 
 .iq-capacitacion-beneficio-list li:last-child {
@@ -5473,9 +5474,10 @@ body.iq-page-servicios-body {
 .iq-capacitacion-beneficio-text {
   margin: 0;
   color: #fff;
-  font-size: 35px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.22;
+  line-height: 1.35;
+  text-align: left;
 }
 
 .iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-default,
