@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('IQUATTRO_VERSION', '1.3.57');
+define('IQUATTRO_VERSION', '1.3.59');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
@@ -522,33 +522,60 @@ function iquattro_consultoria_hero_title_lines($title) {
 /**
  * Renderizar el topbar de la página Capacitación (logo + menú). Se usa dentro de .iq-capacitacion-wrap.
  */
-function iquattro_render_capacitacion_topbar() {
+function iquattro_get_topbar_logo_data() {
   $theme_uri = get_template_directory_uri();
   if (is_page('acerca-de')) {
-    $logo_src = $theme_uri . '/assets/images/logo-iquattro-acerca.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Acerca de', 'iquattro');
-  } elseif (is_page('contacto')) {
-    $logo_src = $theme_uri . '/assets/images/logo-iquattro-contacto.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Contacto', 'iquattro');
-  } elseif (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios'))) {
-    $logo_src = $theme_uri . '/assets/images/logo-iquattro-datacenter.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Data Center', 'iquattro');
-  } elseif (is_page('seguridad')) {
-    $logo_src = $theme_uri . '/assets/images/logo-iquattro-seguridad.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Seguridad', 'iquattro');
-  } elseif (is_page('consultoria')) {
-    $logo_src = $theme_uri . '/assets/images/logo-iquattro-consultoria.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Consultoría', 'iquattro');
-  } elseif (is_page('servicios')) {
-    $logo_src = $theme_uri . '/assets/images/logo-iquattro-servicios.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Servicios', 'iquattro');
-  } else {
-    $logo_src = $theme_uri . '/assets/images/iquattro-capacitacion-header.png';
-    $logo_alt = get_bloginfo('name') . ' – ' . __('Capacitación', 'iquattro');
+    return array(
+      'src' => $theme_uri . '/assets/images/logo-iquattro-acerca.png',
+      'alt' => get_bloginfo('name') . ' - ' . __('Acerca de', 'iquattro'),
+    );
   }
+  if (is_page('contacto')) {
+    return array(
+      'src' => $theme_uri . '/assets/images/logo-iquattro-contacto.png',
+      'alt' => get_bloginfo('name') . ' - ' . __('Contacto', 'iquattro'),
+    );
+  }
+  if (is_page(array('data-center', 'data-center-hardware', 'data-center-software', 'data-center-servicios'))) {
+    return array(
+      'src' => $theme_uri . '/assets/images/logo-iquattro-datacenter.png',
+      'alt' => get_bloginfo('name') . ' - ' . __('Data Center', 'iquattro'),
+    );
+  }
+  if (is_page('seguridad')) {
+    return array(
+      'src' => $theme_uri . '/assets/images/logo-iquattro-seguridad.png',
+      'alt' => get_bloginfo('name') . ' - ' . __('Seguridad', 'iquattro'),
+    );
+  }
+  if (is_page('consultoria')) {
+    return array(
+      'src' => $theme_uri . '/assets/images/logo-iquattro-consultoria.png',
+      'alt' => get_bloginfo('name') . ' - ' . __('Consultoría', 'iquattro'),
+    );
+  }
+  if (is_page('servicios')) {
+    return array(
+      'src' => $theme_uri . '/assets/images/logo-iquattro-servicios.png',
+      'alt' => get_bloginfo('name') . ' - ' . __('Servicios', 'iquattro'),
+    );
+  }
+  return array(
+    'src' => $theme_uri . '/assets/images/iquattro-capacitacion-header.png',
+    'alt' => get_bloginfo('name'),
+  );
+}
+
+function iquattro_render_capacitacion_topbar() {
+  $logo_data = iquattro_get_topbar_logo_data();
+  $logo_src = $logo_data['src'];
+  $logo_alt = $logo_data['alt'];
   ?>
   <div class="iq-topbar iq-topbar-capacitacion">
     <div class="iq-topbar-capacitacion-inner">
+      <button type="button" class="iq-mobile-menu-toggle" aria-controls="iq-mobile-menu-panel" aria-expanded="false" aria-label="<?php esc_attr_e('Abrir menú', 'iquattro'); ?>">
+        <span></span><span></span><span></span>
+      </button>
       <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-topbar-capacitacion-logo">
         <img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($logo_alt); ?>" class="iq-topbar-capacitacion-img">
       </a>
@@ -717,6 +744,17 @@ function iquattro_customize_register($wp_customize) {
     'label'   => __('Ubicación', 'iquattro'),
     'section' => 'iquattro_contact',
     'type'    => 'text',
+  ));
+
+  $wp_customize->add_setting('iquattro_whatsapp_number', array(
+    'default'           => '+59169722623',
+    'sanitize_callback' => 'sanitize_text_field',
+  ));
+  $wp_customize->add_control('iquattro_whatsapp_number', array(
+    'label'       => __('WhatsApp (solo ícono flotante mobile en Inicio)', 'iquattro'),
+    'description' => __('Ejemplo: +59169722623', 'iquattro'),
+    'section'     => 'iquattro_contact',
+    'type'        => 'text',
   ));
 }
 add_action('customize_register', 'iquattro_customize_register');

@@ -64,9 +64,17 @@ for ($i = 1; $i <= 8; $i++) {
     'text'  => isset($data['trust_card_' . $i . '_text']) ? $data['trust_card_' . $i . '_text'] : '',
   );
 }
+$wa_raw = (string) get_theme_mod('iquattro_whatsapp_number', '+59169722623');
+$wa_digits = preg_replace('/\D+/', '', $wa_raw);
+$wa_href = $wa_digits !== '' ? ('https://wa.me/' . $wa_digits . '?text=' . rawurlencode('Hola, quisiera información.')) : '';
 ?>
 
 <main id="main" class="iq-main iq-front">
+  <?php if ($wa_href !== '') : ?>
+    <a href="<?php echo esc_url($wa_href); ?>" class="iq-mobile-whatsapp-float" target="_blank" rel="noopener" aria-label="<?php esc_attr_e('Escribir por WhatsApp', 'iquattro'); ?>">
+      <img src="<?php echo esc_url($theme_uri . '/assets/icons/whatsapp.svg'); ?>" alt="" width="28" height="28" loading="lazy">
+    </a>
+  <?php endif; ?>
 
   <section class="iq-section iq-somos">
     <div class="iq-container">

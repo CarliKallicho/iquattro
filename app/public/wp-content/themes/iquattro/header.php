@@ -21,6 +21,8 @@ if (!defined('ABSPATH')) {
 <?php wp_body_open(); ?>
 
 <header id="masthead" class="iq-header">
+  <?php $iq_topbar_logo = function_exists('iquattro_get_topbar_logo_data') ? iquattro_get_topbar_logo_data() : array('src' => get_template_directory_uri() . '/assets/images/iquattro-capacitacion-header.png', 'alt' => get_bloginfo('name')); ?>
+  <?php $iq_mobile_home_logo = get_template_directory_uri() . '/assets/images/logo-iquattro-acerca.png'; ?>
   <?php if (is_front_page()) : ?>
   <?php
   $iq_front_post = null;
@@ -64,6 +66,12 @@ if (!defined('ABSPATH')) {
   <section class="iq-hero">
     <div class="iq-topbar iq-topbar-hero">
       <div class="iq-topbar-inner">
+        <button type="button" class="iq-mobile-menu-toggle" aria-controls="iq-mobile-menu-panel" aria-expanded="false" aria-label="<?php esc_attr_e('Abrir menú', 'iquattro'); ?>">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-topbar-capacitacion-logo iq-topbar-mobile-logo">
+          <img src="<?php echo esc_url($iq_mobile_home_logo); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="iq-topbar-capacitacion-img">
+        </a>
         <nav class="iq-nav" aria-label="<?php esc_attr_e('Menú principal', 'iquattro'); ?>">
           <?php
           if (has_nav_menu('primary')) {
@@ -130,6 +138,12 @@ if (!defined('ABSPATH')) {
   <section class="iq-page-hero">
     <div class="iq-topbar">
       <div class="iq-container iq-topbar-inner">
+        <button type="button" class="iq-mobile-menu-toggle" aria-controls="iq-mobile-menu-panel" aria-expanded="false" aria-label="<?php esc_attr_e('Abrir menú', 'iquattro'); ?>">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-topbar-capacitacion-logo iq-topbar-mobile-logo">
+          <img src="<?php echo esc_url($iq_topbar_logo['src']); ?>" alt="<?php echo esc_attr($iq_topbar_logo['alt']); ?>" class="iq-topbar-capacitacion-img">
+        </a>
         <nav class="iq-nav" aria-label="<?php esc_attr_e('Menú principal', 'iquattro'); ?>">
           <?php
           if (has_nav_menu('primary')) {
@@ -149,5 +163,27 @@ if (!defined('ABSPATH')) {
   </section>
   <?php endif; ?>
 </header>
+
+<div id="iq-mobile-menu-panel" class="iq-mobile-menu-panel" hidden>
+  <div class="iq-mobile-menu-content">
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="iq-mobile-menu-logo">
+      <img src="<?php echo esc_url(is_front_page() ? $iq_mobile_home_logo : $iq_topbar_logo['src']); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="iq-mobile-menu-logo-img">
+    </a>
+    <nav class="iq-mobile-menu-nav" aria-label="<?php esc_attr_e('Menú móvil', 'iquattro'); ?>">
+      <?php
+      if (has_nav_menu('primary')) {
+        wp_nav_menu(array(
+          'theme_location' => 'primary',
+          'menu_class'     => 'iq-mobile-menu-list',
+          'container'      => false,
+          'fallback_cb'    => 'iquattro_fallback_menu',
+        ));
+      } else {
+        iquattro_fallback_menu();
+      }
+      ?>
+    </nav>
+  </div>
+</div>
 
 <div id="iq-page" class="iq-page<?php echo (is_page(array('capacitacion', 'catalogo-cursos', 'cronograma', 'evento')) || is_singular('curso')) ? ' iq-page--capacitacion' : ''; ?>">
