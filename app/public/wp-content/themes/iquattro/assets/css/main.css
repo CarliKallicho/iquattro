@@ -5382,7 +5382,7 @@ body.iq-page-servicios-body {
   }
 }
 
-/* Beneficios exclusivos (4 cards, fondo verde claro, icono blanco) */
+/* Beneficios exclusivos (4 cards con hover tipo divisiones footer) */
 .iq-capacitacion-beneficios .iq-container {
   max-width: 1688px;
   margin-left: auto;
@@ -5397,46 +5397,63 @@ body.iq-page-servicios-body {
 }
 
 .iq-capacitacion-beneficios-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.35rem;
+  align-items: stretch;
 }
 
 .iq-capacitacion-beneficio-card {
-  background: linear-gradient(180deg, #47c28199 0%, #12b76a 100%);
-  border-radius: var(--iq-radius-lg);
-  padding: 1.5rem;
+  position: relative;
+  background: #717680;
+  border-radius: 20px;
+  padding: 20px;
+  overflow: hidden;
+  min-height: 420px;
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex-grow 0.3s ease, flex-basis 0.3s ease;
+}
+
+.iq-capacitacion-beneficio-default,
+.iq-capacitacion-beneficio-hover {
+  position: absolute;
+  inset: 20px;
+  border-radius: 12px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.iq-capacitacion-beneficio-default {
+  opacity: 1;
+  visibility: visible;
+}
+
+.iq-capacitacion-beneficio-hover {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  transition: box-shadow 0.25s ease;
+  gap: 14px;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.iq-capacitacion-beneficio-icon {
-  width: 200px;
-  height: 155px;
-  object-fit: contain;
-  object-position: center;
-  filter: brightness(0) invert(1);
-  flex-shrink: 0;
+.iq-capacitacion-beneficio-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
   display: block;
-  margin: 0 auto;
-  transition: width 0.25s ease, height 0.25s ease;
 }
 
-.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-icon,
-.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-icon {
-  width: 120px;
-  height: 93px;
+.iq-capacitacion-beneficio-image--hover {
+  height: 68%;
+  min-height: 180px;
+  flex-shrink: 0;
 }
 
 .iq-capacitacion-beneficio-list {
   margin: 0;
-  padding-left: 1.25rem;
+  padding-left: 1.2rem;
   width: 100%;
-  box-sizing: border-box;
-  align-self: stretch;
   color: #fff;
   list-style: disc;
 }
@@ -5445,25 +5462,41 @@ body.iq-page-servicios-body {
   font-size: 18px;
   font-weight: 400;
   font-style: normal;
-  line-height: 1.5;
-  margin-bottom: 0.35rem;
-  transition: font-size 0.25s ease, font-weight 0.25s ease, margin-bottom 0.25s ease;
+  line-height: 1.35;
+  margin-bottom: 0.15rem;
 }
 
 .iq-capacitacion-beneficio-list li:last-child {
   margin-bottom: 0;
 }
 
-.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-list li,
-.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-list li {
-  font-size: 21px;
-  font-weight: 800;
-  margin-bottom: 10px;
+.iq-capacitacion-beneficio-text {
+  margin: 0;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 1.22;
 }
 
-.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-list li:last-child,
-.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-list li:last-child {
-  margin-bottom: 0;
+.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-default,
+.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-default {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.iq-capacitacion-beneficio-card:hover .iq-capacitacion-beneficio-hover,
+.iq-capacitacion-beneficio-card:focus-within .iq-capacitacion-beneficio-hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.iq-capacitacion-beneficios-grid:hover .iq-capacitacion-beneficio-card {
+  flex: 0.85 1 0;
+}
+
+.iq-capacitacion-beneficios-grid:hover .iq-capacitacion-beneficio-card:hover,
+.iq-capacitacion-beneficios-grid:hover .iq-capacitacion-beneficio-card:focus-within {
+  flex: 2.45 1 0;
 }
 
 /* Partner Microsoft */
@@ -5821,7 +5854,14 @@ body.iq-page-servicios-body {
 
 @media (max-width: 900px) {
   .iq-capacitacion-beneficios-grid {
+    display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+  .iq-capacitacion-beneficio-card {
+    min-height: 360px;
+  }
+  .iq-capacitacion-beneficio-text {
+    font-size: 26px;
   }
   .iq-capacitacion-partner-inner {
     grid-template-columns: 1fr;
@@ -5841,6 +5881,12 @@ body.iq-page-servicios-body {
 @media (max-width: 768px) {
   .iq-capacitacion-beneficios-grid {
     grid-template-columns: 1fr;
+  }
+  .iq-capacitacion-beneficio-card {
+    min-height: 340px;
+  }
+  .iq-capacitacion-beneficio-text {
+    font-size: 24px;
   }
   .iq-capacitacion-evoluciona-row--top {
     grid-template-columns: 1fr;

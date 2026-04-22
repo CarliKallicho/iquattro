@@ -48,34 +48,33 @@ $partner_logo = iquattro_meta_image_url($data['partner_logo_id'], $images_dir . 
 
 $beneficios_cards = array(
   array(
-    'icon'  => 'cap1.svg',
+    'image' => 'card-verde-1.jpg',
+    'type'  => 'list',
     'items' => array(
-      __('Laboratorios calados', 'iquattro'),
-      __('Costos netos y análisis de incidentes relevantes', 'iquattro'),
+      __('Laboratorios guiados', 'iquattro'),
+      __('Casos reales y análisis de incidentes relevantes', 'iquattro'),
       __('Simulaciones técnicas', 'iquattro'),
-      __('Facilidades colaborativas', 'iquattro'),
-      __('Optimización y resolución de problemas', 'iquattro'),
+      __('Actividades colaborativas', 'iquattro'),
+      __('Discusiones y resolución de problemas', 'iquattro'),
     ),
   ),
   array(
-    'icon'  => 'cap2.svg',
-    'items' => array(
-      __('Acceso a nuestra plataforma', 'iquattro'),
-      __('Material y visualización de grabaciones', 'iquattro'),
-    ),
+    'image' => 'card-verde-2.jpg',
+    'type'  => 'text',
+    'text'  => __('Acceso a nuestra plataforma Moodle con todo el material y visualización de grabaciones.', 'iquattro'),
   ),
   array(
-    'icon'  => 'cap3.svg',
+    'image' => 'card-verde-3.jpg',
+    'type'  => 'list',
     'items' => array(
-      __('Certificado emitido por iQuattro', 'iquattro'),
+      __('Certificado avalado por iQuattro', 'iquattro'),
       __('Certificados avalados internacionalmente', 'iquattro'),
     ),
   ),
   array(
-    'icon'  => 'cap4.svg',
-    'items' => array(
-      __('Contenido personalizado (previo acuerdo con nuestras expectativas)', 'iquattro'),
-    ),
+    'image' => 'card-verde-4.jpg',
+    'type'  => 'text',
+    'text'  => __('Contenido personalizable (previo acuerdo con nuestros especialistas)', 'iquattro'),
   ),
 );
 
@@ -133,12 +132,21 @@ $evoluciona_cards = array(
         <div class="iq-capacitacion-beneficios-grid">
           <?php foreach ($beneficios_cards as $card) : ?>
             <div class="iq-capacitacion-beneficio-card">
-              <img src="<?php echo esc_url($icons_uri . $card['icon']); ?>" alt="" class="iq-capacitacion-beneficio-icon" width="200" height="155" loading="lazy">
-              <ul class="iq-capacitacion-beneficio-list">
-                <?php foreach ($card['items'] as $item) : ?>
-                  <li><?php echo esc_html($item); ?></li>
-                <?php endforeach; ?>
-              </ul>
+              <div class="iq-capacitacion-beneficio-default">
+                <img src="<?php echo esc_url($images_dir . $card['image']); ?>" alt="" class="iq-capacitacion-beneficio-image" loading="lazy">
+              </div>
+              <div class="iq-capacitacion-beneficio-hover">
+                <img src="<?php echo esc_url($images_dir . $card['image']); ?>" alt="" class="iq-capacitacion-beneficio-image iq-capacitacion-beneficio-image--hover" loading="lazy">
+                <?php if (isset($card['type']) && $card['type'] === 'list') : ?>
+                  <ul class="iq-capacitacion-beneficio-list">
+                    <?php foreach ($card['items'] as $item) : ?>
+                      <li><?php echo esc_html($item); ?></li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php else : ?>
+                  <p class="iq-capacitacion-beneficio-text"><?php echo esc_html(isset($card['text']) ? $card['text'] : ''); ?></p>
+                <?php endif; ?>
+              </div>
             </div>
           <?php endforeach; ?>
         </div>
