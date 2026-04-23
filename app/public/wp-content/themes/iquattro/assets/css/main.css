@@ -1570,6 +1570,19 @@ span.iq-contacto-card-icon {
     font-size: clamp(1.15rem, 4vw, 28px);
   }
 
+  .iq-contacto-cards {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+
+  .iq-contacto-card-tel,
+  .iq-contacto-card-email,
+  .iq-contacto-card-horario {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
   .iq-contacto-card-tel,
   .iq-contacto-card-email,
   .iq-contacto-card-horario {
@@ -1588,6 +1601,72 @@ span.iq-contacto-card-icon {
   .iq-contacto-page .iq-btn-enviar {
     width: 100%;
     max-width: 250px;
+  }
+
+  .iq-evento-wrap {
+    padding: 86px 1rem 3rem;
+    overflow-x: hidden;
+  }
+
+  .iq-evento-title {
+    font-size: clamp(1.75rem, 7.4vw, 2.75rem);
+    line-height: 1.12;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+  }
+
+  .iq-evento-hero-image {
+    width: 100%;
+    max-width: 100%;
+    height: clamp(180px, 42vw, 300px);
+    margin-top: 0.85rem;
+  }
+
+  .iq-evento-content .iq-container,
+  .iq-evento-form-section .iq-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .iq-evento-grid,
+  .iq-evento-form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .iq-evento-speaker-photo-wrap {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .iq-evento-speaker-name,
+  .iq-evento-block-title {
+    overflow-wrap: anywhere;
+  }
+
+  .iq-evento-speaker-bio,
+  .iq-evento-block-text,
+  .iq-evento-datos dd {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .iq-evento-datos {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .iq-evento-datos dt {
+    margin-top: 0.35rem;
+  }
+
+  .iq-evento-datos dd {
+    margin-bottom: 0.4rem;
   }
 }
 
@@ -6198,8 +6277,14 @@ body.iq-page-servicios-body {
   .iq-capacitacion-beneficio-card {
     min-height: 340px;
   }
+  .iq-capacitacion-beneficio-list li {
+    font-size: 13px;
+    line-height: 1.25;
+    margin-bottom: 0.1rem;
+  }
   .iq-capacitacion-beneficio-text {
-    font-size: 24px;
+    font-size: 13px;
+    line-height: 1.25;
   }
   .iq-capacitacion-evoluciona-row--top {
     grid-template-columns: 1fr;
@@ -7066,39 +7151,72 @@ body.iq-page-servicios-body {
 }
 
 @media (max-width: 768px) {
+  .iq-cronograma-inner {
+    width: 100%;
+  }
+
+  .iq-cronograma-cards {
+    width: 100%;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .iq-cronograma-card {
+    width: 100%;
+    max-width: none;
+  }
+
   .iq-cronograma-card-inner {
-    grid-template-columns: 1fr;
-    justify-items: start;
+    grid-template-columns: 56px minmax(0, 1fr);
+    align-items: start;
     min-height: 0;
-    padding: 1.25rem;
+    padding: 1rem;
+    gap: 0.75rem;
   }
 
   .iq-cronograma-card-icon-wrap {
+    grid-column: 1;
+    grid-row: 1;
     justify-content: flex-start;
   }
 
   .iq-cronograma-card-icon-wrap,
   .iq-cronograma-card-icon {
-    width: min(198px, 50vw);
-    height: min(198px, 50vw);
+    width: 52px;
+    height: 52px;
   }
 
   .iq-cronograma-card-main {
+    grid-column: 2;
+    grid-row: 1;
     min-height: 0;
     width: 100%;
+  }
+
+  .iq-cronograma-card-body {
+    width: 100%;
+    gap: 0.75rem;
+    padding-top: 0;
+  }
+
+  .iq-cronograma-card-title {
+    width: 100%;
+    font-size: clamp(1.18rem, 5.4vw, 1.55rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
   }
 
   .iq-cronograma-pills {
     width: 100%;
     height: auto;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
   .iq-cronograma-pills-row--top,
   .iq-cronograma-pills-row--bottom {
-    flex-direction: column;
-    height: auto;
-    align-items: stretch;
+    display: contents;
   }
 
   .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1),
@@ -7108,21 +7226,49 @@ body.iq-page-servicios-body {
   .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(2) {
     width: 100%;
     flex: none;
-    min-height: 48px;
+    min-height: 40px;
     height: auto;
+    padding: 0.45rem 0.55rem;
+    line-height: 1.2;
+  }
+
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1) { order: 1; }
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(2) { order: 2; }
+  .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(3) { order: 3; }
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(2) { order: 4; }
+  .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(1) {
+    order: 5;
+    grid-column: 1 / -1;
+  }
+
+  .iq-cronograma-pill-label,
+  .iq-cronograma-pill-value {
+    font-size: clamp(0.78rem, 2.9vw, 0.9rem);
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .iq-cronograma-pills-row--bottom .iq-cronograma-card-actions {
+    order: 6;
+    grid-column: 1 / -1;
     margin-left: 0;
     width: 100%;
     height: auto;
-    min-height: 48px;
-    justify-content: flex-end;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: stretch;
+    gap: 0.5rem;
   }
 
   .iq-cronograma-btn {
-    font-size: clamp(15px, 4vw, 18px);
-    padding: 0.5rem 1rem;
+    width: 100%;
+    font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+    padding: 0.45rem 0.65rem;
+    min-height: 38px;
+    justify-content: center;
+    white-space: nowrap;
   }
 
   .iq-inscribirme-form .iq-form-row {
@@ -7139,6 +7285,50 @@ body.iq-page-servicios-body {
 
   .iq-evento-form-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-cronograma-page .iq-cronograma-card-inner {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 0.65rem;
+    padding: 0.85rem;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-icon-wrap,
+  .iq-cronograma-page .iq-cronograma-card-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-title {
+    font-size: clamp(1.02rem, 4.7vw, 1.28rem);
+    line-height: 1.18;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills {
+    gap: 0.42rem;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pill {
+    min-height: 34px;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pill-label,
+  .iq-cronograma-page .iq-cronograma-pill-value {
+    font-size: clamp(0.7rem, 2.65vw, 0.82rem);
+    line-height: 1.15;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom .iq-cronograma-card-actions {
+    gap: 0.42rem;
+  }
+
+  .iq-cronograma-page .iq-cronograma-btn {
+    min-height: 34px;
+    padding: 0.38rem 0.5rem;
+    font-size: clamp(0.72rem, 3vw, 0.86rem);
   }
 }
 
@@ -7753,11 +7943,20 @@ a.iq-catalogo-card:hover {
   }
 
   .iq-catalogo-grid {
+    grid-template-columns: 1fr;
     gap: 0.75rem;
+  }
+
+  .iq-catalogo-card,
+  a.iq-catalogo-card {
+    width: 100%;
+    min-height: 0;
+    height: auto;
   }
 
   .iq-catalogo-card-inner {
     padding: 1rem;
+    min-height: 0;
   }
 }
 
@@ -7925,6 +8124,393 @@ a.iq-catalogo-card:hover {
     white-space: nowrap;
     text-align: center;
     justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-servicios-page .iq-servicios-hero {
+    min-height: calc(100dvh - 1.25rem);
+    min-height: calc(100vh - 1.25rem);
+    padding: 5.4rem 1rem 2rem;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+  }
+
+  .iq-servicios-page .iq-servicios-hero-copy {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    text-align: center;
+  }
+
+  .iq-servicios-page .iq-servicios-hero-title {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 1.2rem;
+    font-size: clamp(1.68rem, 7.2vw, 2.18rem);
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .iq-servicios-page .iq-servicios-hero-title-line {
+    white-space: normal;
+  }
+
+  .iq-servicios-page .iq-servicios-hero-desc {
+    width: 100%;
+    max-width: 34ch;
+    margin: 0 auto 1.35rem;
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .iq-servicios-page .iq-servicios-hero-actions {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .iq-servicios-page .iq-servicios-hero-actions .iq-btn {
+    width: 100%;
+    max-width: 34ch;
+    min-height: 42px;
+    padding: 0.62rem 1rem;
+    border-radius: 999px;
+    font-size: clamp(0.95rem, 3.9vw, 1.1rem);
+    line-height: 1.15;
+    white-space: nowrap;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-capacitacion-page .iq-capacitacion-wrap {
+    padding: 86px 1rem 3rem;
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-hero {
+    padding: 1.75rem 0 2.25rem;
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-title {
+    max-width: 15ch;
+    margin: 0 auto 1.7rem;
+    font-size: clamp(2rem, 8.2vw, 3.4rem);
+    line-height: 1.14;
+    text-align: center;
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-ctas {
+    width: 100%;
+    max-width: 34rem;
+    margin: 2.2rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    align-items: stretch;
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-hero .iq-capacitacion-ctas > .iq-capacitacion-btn:first-child {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-hero .iq-capacitacion-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 0.62rem 0.65rem;
+    border-radius: 999px;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-hero .iq-capacitacion-btn-primary {
+    font-size: clamp(1.2rem, 5vw, 1.55rem);
+  }
+
+  .iq-capacitacion-page .iq-capacitacion-hero .iq-capacitacion-btn-secondary {
+    font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-capacitacion-partner .iq-capacitacion-section-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .iq-capacitacion-partner-text {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .iq-capacitacion-partner-text p {
+    margin-bottom: 1rem;
+  }
+
+  .iq-capacitacion-partner-logo {
+    width: min(100%, 34rem);
+    height: auto;
+    min-height: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .iq-capacitacion-partner-logo img {
+    width: min(100%, 360px);
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .iq-capacitacion-catalogo-section .iq-capacitacion-btn.iq-capacitacion-btn-primary {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-evento-page * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .iq-evento-page .iq-evento-grid,
+  .iq-evento-page .iq-evento-form-grid,
+  .iq-evento-page .iq-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .iq-evento-page .iq-evento-speaker,
+  .iq-evento-page .iq-evento-details,
+  .iq-evento-page .iq-evento-block,
+  .iq-evento-page .iq-evento-form-wrap,
+  .iq-evento-page .iq-evento-form-cta {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .iq-evento-page .iq-evento-speaker-photo-wrap {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .iq-evento-page .iq-evento-speaker-name {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .iq-evento-page .iq-evento-speaker-credentials,
+  .iq-evento-page .iq-evento-speaker-bio,
+  .iq-evento-page .iq-evento-block-text,
+  .iq-evento-page .iq-evento-form-cta p,
+  .iq-evento-page .iq-evento-datos dt,
+  .iq-evento-page .iq-evento-datos dd {
+    font-size: clamp(0.92rem, 3.5vw, 1rem);
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .iq-evento-page .iq-evento-datos {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-cronograma-page .iq-cronograma-card-inner {
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 0.65rem !important;
+    padding: 0.9rem !important;
+    align-items: start !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-icon-wrap {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+    justify-self: start !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-icon {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-main,
+  .iq-cronograma-page .iq-cronograma-card-body {
+    display: contents !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-title {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    font-size: clamp(1rem, 4.4vw, 1.22rem) !important;
+    line-height: 1.18 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.42rem !important;
+    width: 100% !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills-row--top,
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom {
+    display: contents !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pill {
+    min-height: 34px !important;
+    height: auto !important;
+    padding: 0.35rem 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(1) {
+    grid-column: 1 / -1 !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pill-label,
+  .iq-cronograma-page .iq-cronograma-pill-value {
+    font-size: clamp(0.7rem, 2.6vw, 0.82rem) !important;
+    line-height: 1.14 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-actions {
+    grid-column: 1 / -1 !important;
+    grid-row: 3 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.42rem !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-btn {
+    width: 100% !important;
+    min-height: 34px !important;
+    padding: 0.38rem 0.5rem !important;
+    font-size: clamp(0.72rem, 3vw, 0.86rem) !important;
+    white-space: nowrap !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-cronograma-page .iq-cronograma-card-inner {
+    grid-template-columns: 36px minmax(0, 1fr) !important;
+    gap: 0.55rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-icon-wrap,
+  .iq-cronograma-page .iq-cronograma-card-icon {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-title {
+    font-size: clamp(0.92rem, 4.4vw, 1.12rem) !important;
+    line-height: 1.12 !important;
+    align-self: center !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "fecha modalidad"
+      "duracion horarios"
+      "dias dias"
+      "actions actions" !important;
+    gap: 0.38rem !important;
+    margin-top: 0.2rem !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(1) { grid-area: fecha !important; }
+  .iq-cronograma-page .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(2) { grid-area: modalidad !important; }
+  .iq-cronograma-page .iq-cronograma-pills-row--top .iq-cronograma-pill:nth-child(3) { grid-area: duracion !important; }
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(2) { grid-area: horarios !important; }
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom .iq-cronograma-pill:nth-child(1) { grid-area: dias !important; }
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom .iq-cronograma-card-actions { grid-area: actions !important; }
+
+  .iq-cronograma-page .iq-cronograma-pill {
+    min-height: 30px !important;
+    padding: 0.3rem 0.45rem !important;
+    border-radius: 10px !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-pill-label,
+  .iq-cronograma-page .iq-cronograma-pill-value {
+    font-size: clamp(0.64rem, 2.6vw, 0.76rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-card-actions {
+    margin-top: 0.1rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    justify-content: stretch !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .iq-cronograma-page .iq-cronograma-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: 31px !important;
+    padding: 0.28rem 0.4rem !important;
+    font-size: clamp(0.66rem, 2.8vw, 0.8rem) !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .iq-cronograma-page .iq-cronograma-pills-row--bottom .iq-cronograma-card-actions {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: stretch !important;
+    box-sizing: border-box !important;
   }
 }
 

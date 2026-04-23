@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('IQUATTRO_VERSION', '1.3.80');
+define('IQUATTRO_VERSION', '1.4.00');
 define('IQUATTRO_THEME_DIR', get_template_directory());
 define('IQUATTRO_THEME_URI', get_template_directory_uri());
 
