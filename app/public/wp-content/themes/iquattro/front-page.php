@@ -72,7 +72,7 @@ $wa_href = $wa_digits !== '' ? ('https://wa.me/' . $wa_digits . '?text=' . rawur
 <main id="main" class="iq-main iq-front">
   <?php if ($wa_href !== '') : ?>
     <a href="<?php echo esc_url($wa_href); ?>" class="iq-mobile-whatsapp-float" target="_blank" rel="noopener" aria-label="<?php esc_attr_e('Escribir por WhatsApp', 'iquattro'); ?>">
-      <img src="<?php echo esc_url($theme_uri . '/assets/icons/whatsapp.svg'); ?>" alt="" width="28" height="28" loading="lazy">
+      <img src="<?php echo esc_url($theme_uri . '/assets/images/whatsapp.png'); ?>" alt="" width="28" height="28" loading="lazy">
     </a>
   <?php endif; ?>
 

@@ -7,7 +7,7 @@ return array(
   'hero_title' => 'Seguridad digital para proteger| lo que hace crecer tu negocio',
   'hero_desc'  => "Identificamos vulnerabilidades reales, evaluamos tu cumplimiento normativo y\nrespondemos ante incidentes con metodología comprobada y profesionales certificados,\nantes de que el daño sea irreversible.",
   'hero_btn'   => 'Solicitar evaluación',
-  'que_protegemos_title' => 'Servicio principal',
+  'que_protegemos_title' => '¿Qué protegemos?',
   'que_protegemos_intro' => 'Simulamos ataques reales contra tus sistemas, redes y aplicaciones con el mismo arsenal que usa un atacante, pero con autorización y metodología controlada. El resultado: conoces exactamente dónde estás expuesto y cómo corregirlo, antes de que alguien con malas intenciones lo descubra.',
   'que_protegemos_points' => "Penetration Testing de redes internas y perimetrales\nEvaluación de aplicaciones web y APIs (OWASP Top 10)\nPruebas de ingeniería social y phishing controlado\nRevisión de Active Directory, privilegios y credenciales\nInforme ejecutivo + técnico con plan de remediación priorizado",
   'que_protegemos_btn' => 'Solicitar Ethical Hacking',

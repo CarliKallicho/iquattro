@@ -36,16 +36,23 @@ $seg_hero_title_lines = iquattro_seguridad_hero_title_lines(isset($data['hero_ti
     <div class="iq-container">
       <div class="iq-seguridad-hero-copy">
         <h1 class="iq-seguridad-hero-title">
-          <?php
-          $seg_l1 = isset($seg_hero_title_lines[0]) ? $seg_hero_title_lines[0] : '';
-          $seg_l2 = isset($seg_hero_title_lines[1]) ? $seg_hero_title_lines[1] : '';
-          if ($seg_l1 !== '' && $seg_l2 !== '') :
-            ?>
-            <span class="iq-seguridad-hero-title-line"><?php echo esc_html($seg_l1); ?></span>
-            <span class="iq-seguridad-hero-title-line"><?php echo esc_html($seg_l2); ?></span>
-          <?php else : ?>
-            <?php echo esc_html($seg_l1 !== '' ? $seg_l1 : $seg_l2); ?>
-          <?php endif; ?>
+          <span class="iq-seguridad-hero-title-desktop">
+            <?php
+            $seg_l1 = isset($seg_hero_title_lines[0]) ? $seg_hero_title_lines[0] : '';
+            $seg_l2 = isset($seg_hero_title_lines[1]) ? $seg_hero_title_lines[1] : '';
+            if ($seg_l1 !== '' && $seg_l2 !== '') :
+              ?>
+              <span class="iq-seguridad-hero-title-line"><?php echo esc_html($seg_l1); ?></span>
+              <span class="iq-seguridad-hero-title-line"><?php echo esc_html($seg_l2); ?></span>
+            <?php else : ?>
+              <?php echo esc_html($seg_l1 !== '' ? $seg_l1 : $seg_l2); ?>
+            <?php endif; ?>
+          </span>
+          <span class="iq-seguridad-hero-title-mobile" aria-hidden="true">
+            <span class="iq-seguridad-hero-title-line">Seguridad digital para</span>
+            <span class="iq-seguridad-hero-title-line">proteger lo que hace</span>
+            <span class="iq-seguridad-hero-title-line">crecer tu negocio</span>
+          </span>
         </h1>
         <p class="iq-seguridad-hero-desc"><?php echo nl2br(esc_html($data['hero_desc'])); ?></p>
         <p class="iq-seguridad-hero-actions">
@@ -59,6 +66,13 @@ $seg_hero_title_lines = iquattro_seguridad_hero_title_lines(isset($data['hero_ti
   <section class="iq-section iq-seguridad-que-protegemos">
     <div class="iq-container">
       <h2 class="iq-section-title iq-seguridad-que-protegemos-title"><?php echo esc_html($data['que_protegemos_title']); ?></h2>
+      <div class="iq-seguridad-intro-full">
+        <p class="iq-seguridad-intro--que-protegemos">
+          En iQuattro ayudamos a las organizaciones a <strong>anticiparse, detectar y responder</strong> ante amenazas digitales,
+          combinando servicios especializados de hacking ético, cumplimiento regulatorio y gestión de incidentes.
+        </p>
+      </div>
+      <h3 class="iq-seguridad-main-service-title"><?php esc_html_e('Servicio principal', 'iquattro'); ?></h3>
       <div class="iq-seguridad-main-card iq-seguridad-card--grad-light-dark">
         <div class="iq-seguridad-main-card-left">
           <img src="<?php echo esc_url($main_icon_src); ?>" alt="" class="iq-seguridad-card-icon" width="200" height="200" loading="lazy">

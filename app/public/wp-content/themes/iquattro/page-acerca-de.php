@@ -11,12 +11,15 @@ global $post;
 $data = iquattro_get_editable_page_data($post);
 $icons_uri = get_template_directory_uri() . '/assets/icons/';
 $valores = isset($data['valores_cards']) && is_array($data['valores_cards']) ? $data['valores_cards'] : array();
+$acerca_hero_desc = isset($data['hero_desc']) ? (string) $data['hero_desc'] : '';
+$acerca_hero_desc = esc_html($acerca_hero_desc);
+$acerca_hero_desc = str_replace('tecnológicos.', 'tecnológicos.<br class="iq-mobile-only-break">', $acerca_hero_desc);
 ?>
 <main id="main" class="iq-main iq-acerca-page">
   <section class="iq-section iq-acerca-hero">
     <div class="iq-container iq-acerca-hero-inner">
       <h1 class="iq-acerca-hero-title"><?php echo esc_html($data['hero_title']); ?></h1>
-      <p class="iq-acerca-hero-desc"><?php echo esc_html($data['hero_desc']); ?></p>
+      <p class="iq-acerca-hero-desc"><?php echo $acerca_hero_desc; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
       <p class="iq-acerca-hero-subtitle"><?php echo esc_html($data['hero_subtitle']); ?></p>
     </div>
   </section>

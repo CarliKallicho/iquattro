@@ -2659,7 +2659,13 @@ span.iq-contacto-card-icon {
     grid-template-columns: 1fr;
   }
   .iq-consultoria-diferenciales {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+  .iq-consultoria-diferencial {
+    height: 116px;
+    min-height: 116px;
+    padding: 0.55rem 1rem;
+    line-height: 1.2;
   }
   .iq-consultoria-contact-grid {
     grid-template-columns: 1fr;
@@ -2743,6 +2749,10 @@ span.iq-contacto-card-icon {
   white-space: nowrap;
 }
 
+.iq-seguridad-hero-title-mobile {
+  display: none;
+}
+
 .iq-seguridad-hero-desc {
   position: relative;
   margin: 0 0 1.5rem;
@@ -2783,10 +2793,10 @@ span.iq-contacto-card-icon {
 
 .iq-seguridad-que-protegemos .iq-section-title.iq-seguridad-que-protegemos-title {
   font-size: 36px;
-  font-weight: 800;
+  font-weight: 700;
   font-style: normal;
   line-height: 1.2;
-  margin: 0 0 1.25rem;
+  margin: 0 0 2.25rem;
   color: var(--iq-color-dark);
 }
 
@@ -2811,6 +2821,18 @@ span.iq-contacto-card-icon {
   line-height: 1.6;
   color: var(--iq-color-dark);
   text-align: left;
+}
+
+.iq-seguridad-intro--que-protegemos strong {
+  font-weight: 700;
+}
+
+.iq-seguridad-main-service-title {
+  margin: 0 0 1rem;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--iq-color-dark);
 }
 
 .iq-seguridad-intro--que-protegemos strong {
@@ -2859,7 +2881,7 @@ span.iq-contacto-card-icon {
 }
 
 .iq-seguridad-main-card-intro {
-  margin: 0 0 0.85rem;
+  margin: 0 0 1.6rem;
   color: #fff;
   font-size: 18px;
   font-weight: 400;
@@ -3991,21 +4013,60 @@ body.iq-page-servicios-body {
   .iq-datacenter-hero-copy {
     max-width: none;
     padding-top: 0.25rem;
+    margin-top: 0;
+    text-align: center;
   }
 
   .iq-datacenter-hero {
-    min-height: clamp(18rem, 42vh, 26rem);
-    padding: 2rem 1.25rem 1.75rem;
-    background-size: 70% auto;
-    background-position: right -10% bottom;
+    min-height: calc(100dvh - 1.25rem);
+    min-height: calc(100vh - 1.25rem);
+    padding: 5.4rem 1rem 2rem;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
   }
 
   .iq-datacenter-hero-title {
-    font-size: clamp(1.15rem, 4.25vw, 1.85rem);
+    font-size: clamp(1.9rem, 7.6vw, 2.8rem);
+    line-height: 1.08;
+    margin: 0 0 1.15rem;
+    text-align: center;
   }
 
   .iq-datacenter-hero-title-line {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     white-space: nowrap;
+  }
+
+  .iq-datacenter-hero-desc {
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    line-height: 1.45;
+    max-width: 34ch;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .iq-datacenter-hero-actions {
+    margin-top: 1.5rem;
+    justify-content: center;
+    gap: 0.65rem;
+    flex-wrap: nowrap;
+  }
+
+  .iq-datacenter-hero-actions .iq-btn {
+    min-width: 0;
+    width: min(46vw, 170px);
+    padding: 0.62rem 0.75rem;
+    font-size: clamp(0.85rem, 3.3vw, 0.95rem);
+    line-height: 1.15;
+    white-space: nowrap;
+    text-align: center;
   }
 }
 
@@ -4669,6 +4730,10 @@ body.iq-page-servicios-body {
   line-height: 1.6;
 }
 
+.iq-mobile-only-break {
+  display: none;
+}
+
 .iq-acerca-hero-subtitle {
   margin: 0;
   text-align: center;
@@ -4807,6 +4872,14 @@ body.iq-page-servicios-body {
   }
   .iq-acerca-valores-grid {
     grid-template-columns: 1fr;
+  }
+  .iq-acerca-page .iq-acerca-hero-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .iq-acerca-page .iq-mobile-only-break {
+    display: block;
   }
 }
 
@@ -5176,6 +5249,22 @@ body.iq-page-servicios-body {
   }
   .home .iq-mobile-whatsapp-float {
     display: inline-flex;
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+  }
+  .home .iq-mobile-whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none !important;
+  }
+  .home .iq-section.iq-somos .iq-section-title,
+  .home .iq-trust-title,
+  .home .iq-contact-section > .iq-container > .iq-section-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .iq-form-row {
     grid-template-columns: 1fr;
@@ -7684,6 +7773,76 @@ a.iq-catalogo-card:hover {
   border-radius: 10px;
 }
 
+@media (max-width: 768px) {
+  .iq-seguridad-page .iq-seguridad-hero-title-desktop {
+    display: none;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-title-mobile {
+    display: block;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero {
+    min-height: calc(100dvh - 1.25rem);
+    min-height: calc(100vh - 1.25rem);
+    padding: 5.4rem 1rem 2rem;
+    background-size: cover;
+    background-position: 72% center;
+    display: flex;
+    align-items: center;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-copy {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    text-align: center;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-title {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 1.2rem;
+    font-size: clamp(1.55rem, 6.9vw, 2.05rem);
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-title-line {
+    white-space: nowrap;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-desc {
+    width: 100%;
+    max-width: 34ch;
+    margin: 0 auto 1.35rem;
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-actions {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .iq-seguridad-page .iq-seguridad-hero-actions .iq-btn {
+    width: min(100%, 540px);
+    min-height: 42px;
+    padding: 0.62rem 1rem;
+    border-radius: 999px;
+    font-size: clamp(0.95rem, 3.9vw, 1.1rem);
+    line-height: 1.15;
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+
 /* Formularios de Seguridad, Consultoría, Servicios, Capacitación y Contacto */
 .iq-seguridad-form-wrap .iq-contact-form input[type="text"],
 .iq-seguridad-form-wrap .iq-contact-form input[type="email"],
@@ -7706,6 +7865,67 @@ a.iq-catalogo-card:hover {
 .iq-contacto-page .iq-contact-form input[type="tel"],
 .iq-contacto-page .iq-contact-form textarea {
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .iq-consultoria-page .iq-consultoria-hero {
+    min-height: calc(100dvh - 1.25rem);
+    min-height: calc(100vh - 1.25rem);
+    padding: 5.4rem 1rem 2rem;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+  }
+
+  .iq-consultoria-page .iq-consultoria-hero-copy {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    text-align: center;
+  }
+
+  .iq-consultoria-page .iq-consultoria-hero-title {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 1.2rem;
+    font-size: clamp(1.62rem, 7.1vw, 2.12rem);
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .iq-consultoria-page .iq-consultoria-hero-title-line {
+    white-space: normal;
+  }
+
+  .iq-consultoria-page .iq-consultoria-hero-desc {
+    width: 100%;
+    max-width: 34ch;
+    margin: 0 auto 1.35rem;
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .iq-consultoria-page .iq-consultoria-hero-actions {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .iq-consultoria-page .iq-consultoria-hero-actions .iq-btn {
+    width: 100%;
+    max-width: 34ch;
+    min-height: 42px;
+    padding: 0.62rem 1rem;
+    border-radius: 999px;
+    font-size: clamp(0.95rem, 3.9vw, 1.1rem);
+    line-height: 1.15;
+    white-space: nowrap;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 
